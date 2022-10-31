@@ -23,6 +23,7 @@
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
+.idea/
 
 # Gradle
 .idea/**/gradle.xml
@@ -82,6 +83,7 @@ fabric.properties
 .gradle/wrapper
 **/build/
 !src/**/build/
+
 
 # Ignore Gradle GUI config
 gradle-app.setting
