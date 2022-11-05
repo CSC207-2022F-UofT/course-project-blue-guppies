@@ -7,7 +7,6 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
-.idea
 
 # AWS User-specific
 .idea/**/aws.xml
@@ -23,7 +22,6 @@
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
-.idea/
 
 # Gradle
 .idea/**/gradle.xml
@@ -80,10 +78,8 @@ fabric.properties
 
 ## Gradle-related
 .gradle
-.gradle/wrapper
 **/build/
 !src/**/build/
-
 
 # Ignore Gradle GUI config
 gradle-app.setting
