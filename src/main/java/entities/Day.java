@@ -7,9 +7,9 @@ public class Day{
 
     private final HashMap<String, Event> events;
 
-    public Day(){
-        this.tasks = new HashMap<>();
-        this.events = new HashMap<>();
+    public Day(HashMap<String, Task> tasks, HashMap<String, Event> events){
+        this.tasks = tasks;
+        this.events = events;
     }
 
     public HashMap<String, Task> getTasks() {

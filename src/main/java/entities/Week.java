@@ -1,12 +1,13 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Week{
     private final ArrayList<Day> days;
 
-    public Week(){
-        this.days = new ArrayList<>();
+    public Week(ArrayList<Day> days){
+        this.days = days;
     }
 
     public ArrayList<Day> getDays(){
