@@ -7,7 +7,7 @@
 
 package entities;
 
-import java.sql.Time;
+import java.time.LocalTime;
 
 public class EventFactory {
     /**
@@ -23,7 +23,7 @@ public class EventFactory {
      * Precondition 3: 0 <= startTime.getTime() < 86400000 and 0 <= endTime.getTime() < 86400000
      *
      */
-    public Event createEvent(String title, Time startTime, Time endTime){
+    public Event createEvent(String title, LocalTime startTime, LocalTime endTime){
         return new Event(title, startTime, endTime);
     }
 }

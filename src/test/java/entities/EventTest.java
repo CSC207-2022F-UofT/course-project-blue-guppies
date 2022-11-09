@@ -1,7 +1,8 @@
 package entities;
 
 import org.junit.jupiter.api.Test;
-import java.sql.Time;
+
+import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,25 +10,25 @@ class EventTest {
 
     @Test
     void getTitle() {
-        Event mathEvent = new Event("math", new Time(45000000), new Time(500000000));
+        Event mathEvent = new Event("math", LocalTime.parse("12:30"), LocalTime.parse("01:53:20"));
         assertEquals("math", mathEvent.getTitle());
     }
 
     @Test
     void getEndTime() {
-        Event studyEvent = new Event("study", new Time(4000), new Time(3600000));
-        assertEquals(3600000, studyEvent.getEndTime().getTime());
+        Event studyEvent = new Event("study", LocalTime.parse("00:00:04"), LocalTime.parse("01:00"));
+        assertEquals(LocalTime.parse("01:00"), studyEvent.getEndTime());
     }
 
     @Test
     void getStartTime() {
-        Event studyEvent = new Event("study", new Time(70000), new Time(360000));
-        assertEquals(70000, studyEvent.getStartTime().getTime());
+        Event studyEvent = new Event("study", LocalTime.parse("00:01:10"), LocalTime.parse("01:00"));
+        assertEquals(LocalTime.parse("00:01:10"), studyEvent.getStartTime());
     }
 
     @Test
     void setTitle() {
-        Event sleepEvent = new Event("zzz", new Time(82800000), new Time(86300000));
+        Event sleepEvent = new Event("zzz", LocalTime.parse("23:00"), LocalTime.parse("23:58:20"));
         sleepEvent.setTitle("Sleep zzz");
         assertEquals("Sleep zzz", sleepEvent.getTitle());
 
@@ -35,21 +36,21 @@ class EventTest {
 
     @Test
     void setStartTime() {
-        Event meetingEvent = new Event("Very important meeting", new Time(5000000), new Time(50000000));
-        meetingEvent.setStartTime(new Time(300000));
-        assertEquals(300000, meetingEvent.getStartTime().getTime());
+        Event meetingEvent = new Event("Very important meeting", LocalTime.parse("01:23:20"), LocalTime.parse("13:53:20"));
+        meetingEvent.setStartTime(LocalTime.parse("00:05:00"));
+        assertEquals(LocalTime.parse("00:05:00"), meetingEvent.getStartTime());
     }
 
     @Test
     void setEndTime() {
-        Event schoolEvent = new Event("School", new Time(500000), new Time(30000000));
-        schoolEvent.setEndTime(new Time(20000000));
-        assertEquals(20000000, schoolEvent.getEndTime().getTime());
+        Event schoolEvent = new Event("School", LocalTime.parse("00:08:20"), LocalTime.parse("08:20"));
+        schoolEvent.setEndTime(LocalTime.parse("05:33:20"));
+        assertEquals(LocalTime.parse("05:33:20"), schoolEvent.getEndTime());
     }
 
     @Test
     void stringRepresentation() {
-        Event mathEvent = new Event("math", new Time(45000), new Time(500000));
+        Event mathEvent = new Event("math", LocalTime.parse("00:00:45"), LocalTime.parse("00:08:20"));
         assertEquals("math", mathEvent.toString());
     }
 }

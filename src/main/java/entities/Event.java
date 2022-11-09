@@ -7,14 +7,14 @@
  */
 package entities;
 
-import java.sql.Time;
+import java.time.LocalTime;
 
 public class Event{
     private String title;
-    private Time startTime;
-    private Time endTime;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
-    protected Event(String title, Time startTime, Time endTime) {
+    protected Event(String title, LocalTime startTime, LocalTime endTime) {
         this.title = title;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -24,11 +24,11 @@ public class Event{
         return title;
     }
 
-    public Time getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public Time getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
@@ -36,11 +36,11 @@ public class Event{
         this.title = title;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 
