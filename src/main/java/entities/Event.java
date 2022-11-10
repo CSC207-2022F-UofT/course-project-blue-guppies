@@ -2,8 +2,9 @@
  * Event class.
  *
  * Author: Anna Myllyniemi
+ * Modified by: Daniel Livshits
  * Date created: Nov 9 2022
- *
+ * Last modified: Nov 9 2022
  */
 package entities;
 

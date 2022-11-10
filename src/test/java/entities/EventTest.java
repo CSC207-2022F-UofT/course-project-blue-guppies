@@ -36,7 +36,8 @@ class EventTest {
 
     @Test
     void setStartTime() {
-        Event meetingEvent = new Event("Very important meeting", LocalTime.parse("01:23:20"), LocalTime.parse("13:53:20"));
+        Event meetingEvent = new Event("Very important meeting", LocalTime.parse("01:23:20"),
+                LocalTime.parse("13:53:20"));
         meetingEvent.setStartTime(LocalTime.parse("00:05:00"));
         assertEquals(LocalTime.parse("00:05:00"), meetingEvent.getStartTime());
     }
