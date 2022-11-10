@@ -9,9 +9,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DayTest {
 
     @Test
-    public void testEmptyConstructor(){
-        Day d = new Day(new HashMap<>(), new HashMap<>());
+    public void testGetEventsWithDefaultConstructor(){
+        Day d = new Day();
         assertEquals(new HashMap<>(), d.getEvents());
+    }
+
+    @Test
+    public void testGetTasksWithDefaultConstructor(){
+        Day d = new Day();
         assertEquals(new HashMap<>(), d.getTasks());
     }
 }

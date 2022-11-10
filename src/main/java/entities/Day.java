@@ -7,7 +7,12 @@ public class Day{
 
     private final HashMap<String, Event> events;
 
-    public Day(HashMap<String, Task> tasks, HashMap<String, Event> events){
+    protected Day(){
+        this.tasks = new HashMap<>();
+        this.events = new HashMap<>();
+    }
+
+    protected Day(HashMap<String, Task> tasks, HashMap<String, Event> events){
         this.tasks = tasks;
         this.events = events;
     }
@@ -19,4 +24,5 @@ public class Day{
     public HashMap<String, Event> getEvents() {
         return events;
     }
+
 }
