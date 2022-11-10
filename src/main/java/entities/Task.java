@@ -6,6 +6,7 @@
  * Last Modified: NA
  */
 package entities;
+
 public class Task {
     private String title;
 
