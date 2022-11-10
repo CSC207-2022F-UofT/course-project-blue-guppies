@@ -1,6 +1,5 @@
 /**
  * Event class.
- *
  * Author: Anna Myllyniemi
  * Modified by: Daniel Livshits
  * Date created: Nov 9 2022
