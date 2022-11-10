@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class EventFactoryTest {
 
     @Test
-    void TestCreateEvent() {
+    void testCreateEvent() {
         EventFactory factory = new EventFactory();
         Event festival = factory.createEvent("festival", LocalTime.parse("01:23:20"),
                 LocalTime.parse("16:40"));
