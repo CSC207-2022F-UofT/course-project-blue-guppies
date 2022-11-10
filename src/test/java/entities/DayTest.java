@@ -9,6 +9,7 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DayTest {
+    //task and event instances (and maps) to be used across tests.
     private final static HashMap<String, Event> e = new HashMap<>();
     private final static HashMap<String, Task> t = new HashMap<>();
     private final static Event e1 = new Event("1", LocalTime.parse("00:01"), LocalTime.parse("01:00"));
