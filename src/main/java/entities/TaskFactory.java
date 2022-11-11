@@ -14,7 +14,7 @@ public class TaskFactory {
      * @param title title of the task
      * @return a task create with the given inputs
      */
-    public Task creatTask(String title){
+    public Task createTask(String title){
         return new Task(title);
     }
 }
