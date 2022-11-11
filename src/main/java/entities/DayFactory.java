@@ -9,11 +9,6 @@ package entities;
 import java.util.HashMap;
 
 public class DayFactory {
-    /**
-     * Default creation method. Creates a new Day with empty Hashmaps for tasks and events.
-     * @return a Day with no tasks and no events.
-     */
-    public Day createDay(){return new Day();}
 
     /**
      * Creates a new Day containing the given tasks and events.

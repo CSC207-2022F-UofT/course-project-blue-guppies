@@ -26,10 +26,10 @@ class DayFactoryTest {
     }
 
     @Test
-    public void testCreateDay(){
+    public void testCreateDayWithEmptyMaps(){
         Day d = new Day(new HashMap<>(), new HashMap<>());
         DayFactory fact = new DayFactory();
-        Day d1 = fact.createDay();
+        Day d1 = fact.createDay(new HashMap<>(), new HashMap<>());
         assertEquals(d.getTasks(), d1.getTasks());
         assertEquals(d.getEvents(), d1.getEvents());
     }

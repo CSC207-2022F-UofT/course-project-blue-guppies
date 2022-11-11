@@ -18,14 +18,14 @@ public class DayTest {
     private final static Task t2 = new Task("World!");
 
     @Test
-    public void testGetEventsWithDefaultConstructor(){
-        Day d = new Day();
+    public void testGetEventsWithEmptyMaps(){
+        Day d = new Day(new HashMap<>(), new HashMap<>());
         assertEquals(new HashMap<>(), d.getEvents());
     }
 
     @Test
-    public void testGetTasksWithDefaultConstructor(){
-        Day d = new Day();
+    public void testGetTasksWithEmptyMaps(){
+        Day d = new Day(new HashMap<>(), new HashMap<>());
         assertEquals(new HashMap<>(), d.getTasks());
     }
 

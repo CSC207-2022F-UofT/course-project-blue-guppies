@@ -17,17 +17,6 @@ public class WeekTest {
     private final static Task t1 = new Task("Hello,");
     private final static Task t2 = new Task("World!");
     @Test
-    public void testGetDaysWithDefaultConstructor(){
-        Week w = new Week();
-        ArrayList<Day> a = new ArrayList<>();
-        Day d = new Day(new HashMap<>(), new HashMap<>());
-        for(int i = 0; i < 7; i++){
-            a.add(d);
-            assertEquals(a.get(i).getEvents(), w.getDays().get(i).getEvents());
-            assertEquals(a.get(i).getTasks(), w.getDays().get(i).getTasks());
-        }
-    }
-    @Test
     public void testGetDaysConstructorWithEmptyDays(){
         Day d = new Day(new HashMap<>(), new HashMap<>());
         ArrayList<Day> a = new ArrayList<>();
@@ -55,6 +44,8 @@ public class WeekTest {
         a.add(d2);
         a.add(d3);
         a.add(d4);
+        a.add(new Day(new HashMap<>(), new HashMap<>()));
+        a.add(new Day(new HashMap<>(), new HashMap<>()));
         Week w = new Week(a);
         assertEquals(w.getDays(), a);
     }
