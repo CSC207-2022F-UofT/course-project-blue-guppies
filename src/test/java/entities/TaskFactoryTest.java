@@ -11,5 +11,6 @@ public class TaskFactoryTest {
         TaskFactory factory = new TaskFactory();
         Task study = factory.createTask("Study for Exam");
         assertEquals("Study for Exam", study.getTitle());
+        assertFalse(study.getCompleted());
     }
 }
