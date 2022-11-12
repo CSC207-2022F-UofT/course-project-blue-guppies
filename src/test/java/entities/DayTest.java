@@ -19,14 +19,14 @@ public class DayTest {
 
     @Test
     public void testGetEventsWithEmptyMaps(){
-        Day d = new Day(new HashMap<>(), new HashMap<>());
-        assertEquals(new HashMap<>(), d.getEvents());
+        Day day = new Day(new HashMap<>(), new HashMap<>());
+        assertEquals(new HashMap<>(), day.getEvents());
     }
 
     @Test
     public void testGetTasksWithEmptyMaps(){
-        Day d = new Day(new HashMap<>(), new HashMap<>());
-        assertEquals(new HashMap<>(), d.getTasks());
+        Day day = new Day(new HashMap<>(), new HashMap<>());
+        assertEquals(new HashMap<>(), day.getTasks());
     }
 
     @BeforeAll
@@ -39,17 +39,17 @@ public class DayTest {
 
     @Test
     public void testGetEvents(){
-        Day d = new Day(taskMap, eventMap);
-        Day d1 = new Day(new HashMap<>(), eventMap);
-        assertEquals(eventMap, d.getEvents());
-        assertEquals(eventMap, d1.getEvents());
+        Day day1 = new Day(taskMap, eventMap);
+        Day day2 = new Day(new HashMap<>(), eventMap);
+        assertEquals(eventMap, day1.getEvents());
+        assertEquals(eventMap, day2.getEvents());
     }
 
     @Test
     public void testGetTasks(){
-        Day d = new Day(taskMap, eventMap);
-        Day d1 = new Day(taskMap, new HashMap<>());
-        assertEquals(taskMap, d.getTasks());
-        assertEquals(taskMap, d1.getTasks());
+        Day day1 = new Day(taskMap, eventMap);
+        Day day2 = new Day(taskMap, new HashMap<>());
+        assertEquals(taskMap, day1.getTasks());
+        assertEquals(taskMap, day2.getTasks());
     }
 }

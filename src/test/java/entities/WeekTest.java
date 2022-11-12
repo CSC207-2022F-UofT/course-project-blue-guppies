@@ -18,13 +18,13 @@ public class WeekTest {
     private final static Task task2 = new Task("World!");
     @Test
     public void testGetDaysConstructorWithEmptyDays(){
-        Day day = new Day(new HashMap<>(), new HashMap<>());
+        Day emptyDay = new Day(new HashMap<>(), new HashMap<>());
         ArrayList<Day> dayList = new ArrayList<>();
         for(int i = 0; i < 7; i++){
-            dayList.add(day);
+            dayList.add(emptyDay);
         }
-        Week w = new Week(dayList);
-        assertEquals(dayList, w.getDays());
+        Week exampleWeek = new Week(dayList);
+        assertEquals(dayList, exampleWeek.getDays());
     }
     
     @Test
@@ -38,15 +38,15 @@ public class WeekTest {
         Day day3 = new Day(taskMap, eventMap);
         eventMap.put("2", event2);
         Day day4 = new Day(taskMap, eventMap);
-        ArrayList<Day> exampleWeek = new ArrayList<>();
-        exampleWeek.add(day0);
-        exampleWeek.add(day1);
-        exampleWeek.add(day2);
-        exampleWeek.add(day3);
-        exampleWeek.add(day4);
-        exampleWeek.add(new Day(new HashMap<>(), new HashMap<>()));
-        exampleWeek.add(new Day(new HashMap<>(), new HashMap<>()));
-        Week w = new Week(exampleWeek);
-        assertEquals(w.getDays(), exampleWeek);
+        ArrayList<Day> daysList = new ArrayList<>();
+        daysList.add(day0);
+        daysList.add(day1);
+        daysList.add(day2);
+        daysList.add(day3);
+        daysList.add(day4);
+        daysList.add(new Day(new HashMap<>(), new HashMap<>()));
+        daysList.add(new Day(new HashMap<>(), new HashMap<>()));
+        Week exampleWeek = new Week(daysList);
+        assertEquals(exampleWeek.getDays(), daysList);
     }
 }
