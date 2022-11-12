@@ -20,6 +20,19 @@ public class TaskTest {
     }
 
     @Test
+    void testGetCompleted() {
+        Task sleep = new Task("get some sleep");
+        assertFalse(sleep.getCompleted());
+    }
+
+    @Test
+    void testSetCompleted() {
+        Task study = new Task("study a lot");
+        study.setCompleted(true);
+        assertTrue(study.getCompleted());
+    }
+
+    @Test
     void testToString() {
         Task resume = new Task("Update Resume");
         assertEquals("Update Resume", resume.toString());
