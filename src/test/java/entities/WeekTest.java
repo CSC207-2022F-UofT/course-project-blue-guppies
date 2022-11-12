@@ -10,43 +10,43 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class WeekTest {
     //task and event instances (and maps) to be used across tests.
-    private final static HashMap<String, Event> e = new HashMap<>();
-    private final static HashMap<String, Task> t = new HashMap<>();
-    private final static Event e1 = new Event("1", LocalTime.parse("00:01"), LocalTime.parse("01:00"));
-    private final static Event e2 = new Event("2", LocalTime.parse("01:02"), LocalTime.parse("02:00"));
-    private final static Task t1 = new Task("Hello,");
-    private final static Task t2 = new Task("World!");
+    private final static HashMap<String, Event> eventMap = new HashMap<>();
+    private final static HashMap<String, Task> taskMap = new HashMap<>();
+    private final static Event event1 = new Event("1", LocalTime.parse("00:01"), LocalTime.parse("01:00"));
+    private final static Event event2 = new Event("2", LocalTime.parse("01:02"), LocalTime.parse("02:00"));
+    private final static Task task1 = new Task("Hello,");
+    private final static Task task2 = new Task("World!");
     @Test
     public void testGetDaysConstructorWithEmptyDays(){
-        Day d = new Day(new HashMap<>(), new HashMap<>());
-        ArrayList<Day> a = new ArrayList<>();
+        Day day = new Day(new HashMap<>(), new HashMap<>());
+        ArrayList<Day> dayList = new ArrayList<>();
         for(int i = 0; i < 7; i++){
-            a.add(d);
+            dayList.add(day);
         }
-        Week w = new Week(a);
-        assertEquals(a, w.getDays());
+        Week w = new Week(dayList);
+        assertEquals(dayList, w.getDays());
     }
     
     @Test
     public void testGetDaysConstructorWithParameters(){
-        Day d0 = new Day(t, e);
-        t.put("Hello,", t1);
-        Day d1 = new Day(t, e);
-        e.put("1", e1);
-        Day d2 = new Day(t, e);
-        t.put("World!", t2);
-        Day d3 = new Day(t, e);
-        e.put("2", e2);
-        Day d4 = new Day(t, e);
-        ArrayList<Day> a = new ArrayList<>();
-        a.add(d0);
-        a.add(d1);
-        a.add(d2);
-        a.add(d3);
-        a.add(d4);
-        a.add(new Day(new HashMap<>(), new HashMap<>()));
-        a.add(new Day(new HashMap<>(), new HashMap<>()));
-        Week w = new Week(a);
-        assertEquals(w.getDays(), a);
+        Day day0 = new Day(taskMap, eventMap);
+        taskMap.put("Hello,", task1);
+        Day day1 = new Day(taskMap, eventMap);
+        eventMap.put("1", event1);
+        Day day2 = new Day(taskMap, eventMap);
+        taskMap.put("World!", task2);
+        Day day3 = new Day(taskMap, eventMap);
+        eventMap.put("2", event2);
+        Day day4 = new Day(taskMap, eventMap);
+        ArrayList<Day> exampleWeek = new ArrayList<>();
+        exampleWeek.add(day0);
+        exampleWeek.add(day1);
+        exampleWeek.add(day2);
+        exampleWeek.add(day3);
+        exampleWeek.add(day4);
+        exampleWeek.add(new Day(new HashMap<>(), new HashMap<>()));
+        exampleWeek.add(new Day(new HashMap<>(), new HashMap<>()));
+        Week w = new Week(exampleWeek);
+        assertEquals(w.getDays(), exampleWeek);
     }
 }

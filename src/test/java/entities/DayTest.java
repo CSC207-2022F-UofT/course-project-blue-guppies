@@ -10,12 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DayTest {
     //task and event instances (and maps) to be used across tests.
-    private final static HashMap<String, Event> e = new HashMap<>();
-    private final static HashMap<String, Task> t = new HashMap<>();
-    private final static Event e1 = new Event("1", LocalTime.parse("00:01"), LocalTime.parse("01:00"));
-    private final static Event e2 = new Event("2", LocalTime.parse("01:02"), LocalTime.parse("02:00"));
-    private final static Task t1 = new Task("Hello,");
-    private final static Task t2 = new Task("World!");
+    private final static HashMap<String, Event> eventMap = new HashMap<>();
+    private final static HashMap<String, Task> taskMap = new HashMap<>();
+    private final static Event event1 = new Event("1", LocalTime.parse("00:01"), LocalTime.parse("01:00"));
+    private final static Event event2 = new Event("2", LocalTime.parse("01:02"), LocalTime.parse("02:00"));
+    private final static Task task1 = new Task("Hello,");
+    private final static Task task2 = new Task("World!");
 
     @Test
     public void testGetEventsWithEmptyMaps(){
@@ -31,25 +31,25 @@ public class DayTest {
 
     @BeforeAll
     public static void setUpHashMaps(){
-        e.put("1", e1);
-        e.put("2", e2);
-        t.put("Hello,", t1);
-        t.put("World!", t2);
+        eventMap.put("1", event1);
+        eventMap.put("2", event2);
+        taskMap.put("Hello,", task1);
+        taskMap.put("World!", task2);
     }
 
     @Test
     public void testGetEvents(){
-        Day d = new Day(t, e);
-        Day d1 = new Day(new HashMap<>(), e);
-        assertEquals(e, d.getEvents());
-        assertEquals(e, d1.getEvents());
+        Day d = new Day(taskMap, eventMap);
+        Day d1 = new Day(new HashMap<>(), eventMap);
+        assertEquals(eventMap, d.getEvents());
+        assertEquals(eventMap, d1.getEvents());
     }
 
     @Test
     public void testGetTasks(){
-        Day d = new Day(t, e);
-        Day d1 = new Day(t, new HashMap<>());
-        assertEquals(t, d.getTasks());
-        assertEquals(t, d1.getTasks());
+        Day d = new Day(taskMap, eventMap);
+        Day d1 = new Day(taskMap, new HashMap<>());
+        assertEquals(taskMap, d.getTasks());
+        assertEquals(taskMap, d1.getTasks());
     }
 }
