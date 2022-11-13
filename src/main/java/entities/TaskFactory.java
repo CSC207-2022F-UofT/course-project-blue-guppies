@@ -17,4 +17,12 @@ public class TaskFactory {
     public Task createTask(String title){
         return new Task(title);
     }
+
+
+    /**
+     * Modify a given Task by changing it's title
+     * Precondition: newTitle is a non-empty string
+     * @param newTitle title of the task
+     */
+    public void modifyTask(String newTitle, Task task) { task.setTitle(newTitle); }
 }
