@@ -9,9 +9,11 @@ package entities;
 
 public class Task {
     private String title;
+    private boolean completed;
 
     protected Task(String title) {
         this.title = title;
+        this.completed = false;
     }
 
     public String getTitle() {
@@ -20,6 +22,14 @@ public class Task {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public boolean getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
     @Override
