@@ -4,13 +4,11 @@ public class TaskModificationRequestModel {
     private int dayID;
     private String newTitle;
     private String title;
-    private boolean isComplete;
 
-    public TaskModificationRequestModel(int dayId, String newTitle, String title, boolean isComplete) {
+    public TaskModificationRequestModel(int dayId, String newTitle, String title) {
         this.dayID = dayId;
         this.newTitle = newTitle;
         this.title = title;
-        this.isComplete = isComplete;
     }
 
     public String getNewTitle() { return this.newTitle; }
@@ -19,13 +17,9 @@ public class TaskModificationRequestModel {
 
     public String getTitle() { return this.title; }
 
-    public boolean getCompletionStatus() { return this.isComplete; }
-
     public void setNewTitle(String newTitle) { this.newTitle = newTitle; }
 
     public void setTitle(String title) { this.title = title; }
-
-    public void setCompletionStatus(boolean isComplete) { this.isComplete = isComplete; }
 
     public void setDayID(int dayID) { this.dayID = dayID; }
 }

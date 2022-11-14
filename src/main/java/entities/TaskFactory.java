@@ -20,9 +20,21 @@ public class TaskFactory {
 
 
     /**
-     * Modify a given Task by changing it's title
-     * Precondition: newTitle is a non-empty string
+     * Modify a given Task by changing its title.
+     *
+     * Precondition: newTitle is a non-empty string, and not equal to any other task
+     * scheduled for the same day.
+     *
      * @param newTitle title of the task
+     * @param task the underlying Task object
      */
     public void modifyTask(String newTitle, Task task) { task.setTitle(newTitle); }
+
+    /**
+     * Mark a given Task as completed.
+     * @param task the underlying Task object
+     */
+    public void markTaskAsCompleted(Task task) { task.setCompleted(true); }
+
+
 }
