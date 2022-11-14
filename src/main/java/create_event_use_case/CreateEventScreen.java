@@ -17,32 +17,44 @@ public class CreateEventScreen extends JPanel implements ActionListener{
 
     JTextField title = new JTextField(15);
 
-    JPasswordField startTime = new JPasswordField(15);
-    JPasswordField endTime = new JPasswordField(15);
+    JTextField startTime = new JTextField(15);
+    JTextField endTime = new JTextField(15);
 
     public CreateEventScreen() {
-        JLabel screenTitle = new JLabel("Create Event Screen");
+        JLabel screenTitle = new JLabel("Create a new event");
         screenTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        JButton cancel = new JButton("Cancel");
+        JButton create = new JButton("Create");
 
-        ButtonGroup group = new ButtonGroup();
-        group.add(sundayButton);
-        group.add(mondayButton);
-        group.add(tuesdayButton);
-        group.add(wednesdayButton);
-        group.add(thursdayButton);
-        group.add(fridayButton);
-        group.add(saturdayButton);
+        JLabel titleLabel = new JLabel("Task Title:");
+        JLabel startTimeLabel = new JLabel("Start time:");
+        JLabel endTimeLabel = new JLabel("End time:");
 
-        sundayButton.addActionListener(this);
-        mondayButton.addActionListener(this);
-        tuesdayButton.addActionListener(this);
-        wednesdayButton.addActionListener(this);
-        thursdayButton.addActionListener(this);
-        fridayButton.addActionListener(this);
-        saturdayButton.addActionListener(this);
+        JPanel buttons = new JPanel();
+        buttons.add(create);
+        buttons.add(cancel);
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        ButtonGroup radioGroup = new ButtonGroup();
+        radioGroup.add(sundayButton);
+        radioGroup.add(mondayButton);
+        radioGroup.add(tuesdayButton);
+        radioGroup.add(wednesdayButton);
+        radioGroup.add(thursdayButton);
+        radioGroup.add(fridayButton);
+        radioGroup.add(saturdayButton);
+
+//        sundayButton.addActionListener(this);
+//        mondayButton.addActionListener(this);
+//        tuesdayButton.addActionListener(this);
+//        wednesdayButton.addActionListener(this);
+//        thursdayButton.addActionListener(this);
+//        fridayButton.addActionListener(this);
+//        saturdayButton.addActionListener(this);
+        create.addActionListener(this);
+        cancel.addActionListener(this);
+
+        this.add(screenTitle);
         this.add(sundayButton);
         this.add(mondayButton);
         this.add(tuesdayButton);
@@ -50,10 +62,21 @@ public class CreateEventScreen extends JPanel implements ActionListener{
         this.add(thursdayButton);
         this.add(fridayButton);
         this.add(saturdayButton);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(titleLabel);
+        this.add(title);
+        this.add(startTimeLabel);
+        this.add(startTime);
+        this.add(endTimeLabel);
+        this.add(endTime);
+        this.add(create);
+        this.add(cancel);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         System.out.println("yo yo yo");
     }
 
