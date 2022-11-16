@@ -1,10 +1,21 @@
-import create_event_use_case.CreateEventScreen;
+import create_event_use_case.*;
+import entities.EventFactory;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
+        DataAccess gateway = new DataAccess();
+
+        // initialize create event classes
+        CreateEventOutputBoundary createEventPresenter = new CreateEventPresenter();
+        EventFactory eventFactory = new EventFactory();
+        CreateEventInputBoundary createEventInteractor = new CreateEventInteractor(
+                gateway, createEventPresenter, eventFactory);
+        CreateEventController createEventController = new CreateEventController(createEventInteractor);
+
+
         // create calendar screen
         JFrame calendarScreen = new JFrame("Clean Calendar");
         calendarScreen.setLayout(new BorderLayout());
@@ -15,7 +26,8 @@ public class Main {
 
         // initialize the create event screen
         JFrame createEventScreenFrame = new JFrame("Create Event");
-        CreateEventScreen createEventScreenPanel = new CreateEventScreen(createEventScreenFrame);
+        CreateEventScreen createEventScreenPanel = new CreateEventScreen(createEventScreenFrame,
+                createEventController);
         createEventScreenFrame.add(createEventScreenPanel);
 
         // add a button to create a new event

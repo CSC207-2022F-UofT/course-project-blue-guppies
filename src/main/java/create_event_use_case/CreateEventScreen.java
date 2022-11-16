@@ -1,3 +1,15 @@
+/**
+ * Creates a screen with the form a user fills out when making a new event consisting of 7 radio
+ * buttons representing the days of the week; text fields for the event title, start time, and
+ * end time; and create and cancel buttons. When the user clicks either the window's x button or the
+ * cancel button, the fields of the form reset in preparation for the next time the form is used and
+ * the window is hidden.
+ * Author: Anna Myllyniemi
+ * Modified by: NA
+ * Date created: Nov 14 2022
+ * Last modified: Nov 15 2022
+ */
+
 package create_event_use_case;
 
 import javax.swing.*;
@@ -8,16 +20,29 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 public class CreateEventScreen extends JPanel implements ActionListener, WindowListener {
-    String day = "Sunday";
-    JTextField title = new JTextField();
-    JTextField startTime = new JTextField();
-    JTextField endTime = new JTextField();
+    // Day of the week the user has currently selected
+    private String day = "Sunday";
 
-    JFrame window;
+    // Event title
+    private final JTextField title = new JTextField();
 
-    public CreateEventScreen(JFrame frame) {
+    // Start time of the event
+    private final JTextField startTime = new JTextField();
+
+    // End time of the event
+    private final JTextField endTime = new JTextField();
+
+    private final JFrame window;
+    private final CreateEventController createEventController;
+
+    /** Creates a JPanel with 7 radio buttons, 3 JTextFields and their labels, and two JButtons
+     * @param frame the JFrame the JPanel is going to be added to
+     * @param controller the controller to call when the user hits the create button
+     */
+    public CreateEventScreen(JFrame frame, CreateEventController controller) {
         super(new GridBagLayout());
         this.window = frame;
+        createEventController = controller;
         window.addWindowListener(this);
 
         GridBagConstraints constraints = new GridBagConstraints();
@@ -174,7 +199,11 @@ public class CreateEventScreen extends JPanel implements ActionListener, WindowL
             System.out.println(day);
             System.out.println(startTime.getText());
             System.out.println(endTime.getText());
+
             // call controller
+            createEventController.create(day, title.getText(), startTime.getText(), endTime.getText());
+
+            // clear fields in form (only if successful)
             title.setText("");
             startTime.setText("");
             endTime.setText("");
