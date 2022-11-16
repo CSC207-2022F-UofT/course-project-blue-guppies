@@ -4,15 +4,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-public class CreateEventScreen extends JPanel implements ActionListener {
+public class CreateEventScreen extends JPanel implements ActionListener, WindowListener {
     String day = "Sunday";
     JTextField title = new JTextField();
     JTextField startTime = new JTextField();
     JTextField endTime = new JTextField();
 
-    public CreateEventScreen() {
+    JFrame window;
+
+    public CreateEventScreen(JFrame frame) {
         super(new GridBagLayout());
+        this.window = frame;
+        window.addWindowListener(this);
 
         GridBagConstraints constraints = new GridBagConstraints();
 
@@ -157,21 +163,124 @@ public class CreateEventScreen extends JPanel implements ActionListener {
         this.add(cancel, constraints);
     }
 
+    /**
+     * @param evt the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent evt) {
         if ("create".equals(evt.getActionCommand())) {
             System.out.println("create");
+            System.out.println(title.getText());
+            System.out.println(day);
+            System.out.println(startTime.getText());
+            System.out.println(endTime.getText());
             // call controller
+            title.setText("");
+            startTime.setText("");
+            endTime.setText("");
         }
         else if ("cancel".equals(evt.getActionCommand())) {
             System.out.println("cancel");
-            this.setVisible(false);
-            JOptionPane.showMessageDialog(this,"hello");
+            window.setVisible(false);
+            title.setText("");
+            startTime.setText("");
+            endTime.setText("");
         }
         // user has clicked a radio button and the day variable should be updated
         else {
             day = evt.getActionCommand();
             System.out.println(day);
         }
+    }
+
+    /**
+     * Invoked the first time a window is made visible.
+     *
+     * @param e the event to be processed
+     */
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    /**
+     * Invoked when the user attempts to close the window
+     * from the window's system menu.
+     *
+     * @param e the event to be processed
+     */
+    @Override
+    public void windowClosing(WindowEvent e) {
+        // clear form
+        title.setText("");
+        startTime.setText("");
+        endTime.setText("");
+    }
+
+    /**
+     * Invoked when a window has been closed as the result
+     * of calling dispose on the window.
+     *
+     * @param e the event to be processed
+     */
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    /**
+     * Invoked when a window is changed from a normal to a
+     * minimized state. For many platforms, a minimized window
+     * is displayed as the icon specified in the window's
+     * iconImage property.
+     *
+     * @param e the event to be processed
+     * @see Frame#setIconImage
+     */
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    /**
+     * Invoked when a window is changed from a minimized
+     * to a normal state.
+     *
+     * @param e the event to be processed
+     */
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    /**
+     * Invoked when the Window is set to be the active Window. Only a Frame or
+     * a Dialog can be the active Window. The native windowing system may
+     * denote the active Window or its children with special decorations, such
+     * as a highlighted title bar. The active Window is always either the
+     * focused Window, or the first Frame or Dialog that is an owner of the
+     * focused Window.
+     *
+     * @param e the event to be processed
+     */
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+
+    }
+
+    /**
+     * Invoked when a Window is no longer the active Window. Only a Frame or a
+     * Dialog can be the active Window. The native windowing system may denote
+     * the active Window or its children with special decorations, such as a
+     * highlighted title bar. The active Window is always either the focused
+     * Window, or the first Frame or Dialog that is an owner of the focused
+     * Window.
+     *
+     * @param e the event to be processed
+     */
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 }

@@ -2,31 +2,31 @@ import create_event_use_case.CreateEventScreen;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Main {
     public static void main(String[] args) {
-        JFrame application = new JFrame("Clean Calendar");
-        JPanel calendarScreen = new JPanel();
+        // create calendar screen
+        JFrame calendarScreen = new JFrame("Clean Calendar");
+        calendarScreen.setLayout(new BorderLayout());
+        JPanel p = new JPanel();
+        p.add(new JLabel("To become the main calendar view"));
+        calendarScreen.add(p, BorderLayout.CENTER);
+        calendarScreen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        CreateEventScreen createEventScreen = new CreateEventScreen();
+        // initialize the create event screen
+        JFrame createEventScreenFrame = new JFrame("Create Event");
+        CreateEventScreen createEventScreenPanel = new CreateEventScreen(createEventScreenFrame);
+        createEventScreenFrame.add(createEventScreenPanel);
 
-        CardLayout cardLayout = new CardLayout();
-        JPanel screens = new JPanel(cardLayout);
-        application.add(screens);
-
-        screens.add(createEventScreen, "welcome");
-
+        // add a button to create a new event
         JButton addEvent = new JButton("New Event");
-        addEvent.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                cardLayout.show(screens, "create event");
-            }
-        });
+        addEvent.addActionListener(e -> createEventScreenFrame.setVisible(true));
+        p.add(addEvent);
 
-        application.pack();
-        application.setVisible(true);
+        createEventScreenFrame.pack();
+        createEventScreenFrame.setVisible(false);
+        calendarScreen.pack();
+        calendarScreen.setVisible(true);
 
 
     }
