@@ -35,7 +35,8 @@ public class CreateEventScreen extends JPanel implements ActionListener, WindowL
     private final JFrame window;
     private final CreateEventController createEventController;
 
-    /** Creates a JPanel with 7 radio buttons, 3 JTextFields and their labels, and two JButtons
+    /**
+     * Creates a JPanel with 7 radio buttons, 3 JTextFields and their labels, and two JButtons
      * @param frame the JFrame the JPanel is going to be added to
      * @param controller the controller to call when the user hits the create button
      */
@@ -45,17 +46,22 @@ public class CreateEventScreen extends JPanel implements ActionListener, WindowL
         createEventController = controller;
         window.addWindowListener(this);
 
+        // each row has 7 "columns"
+        // rows and columns accessed similar to indexing
+
         GridBagConstraints constraints = new GridBagConstraints();
 
-        constraints.fill = GridBagConstraints.BOTH;
+        constraints.fill = GridBagConstraints.BOTH; // use all available vertical and horizontal space
+
+        // padding of 5 px on everything
         constraints.insets.top = 5;
         constraints.insets.bottom = 5;
         constraints.insets.left = 5;
         constraints.insets.right = 5;
 
         // Add screen title to form
-        constraints.gridy = 0;
-        constraints.gridwidth = 7;
+        constraints.gridy = 0; // row 0
+        constraints.gridwidth = 7; // sets component to span 7 columns
         JLabel screenTitle = new JLabel("Create a new event", JLabel.CENTER);
         screenTitle.setFont(new Font(screenTitle.getFont().toString(), Font.BOLD, 16));
         screenTitle.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -68,7 +74,6 @@ public class CreateEventScreen extends JPanel implements ActionListener, WindowL
         JRadioButton sundayButton = new JRadioButton("Sunday");
         sundayButton.setActionCommand("Sunday");
         sundayButton.setSelected(true);
-        sundayButton.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
 
         JRadioButton mondayButton = new JRadioButton("Monday");
         mondayButton.setActionCommand("Monday");
@@ -87,7 +92,6 @@ public class CreateEventScreen extends JPanel implements ActionListener, WindowL
 
         JRadioButton saturdayButton = new JRadioButton("Saturday");
         saturdayButton.setActionCommand("Saturday");
-        saturdayButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));
 
         // Add action listeners to all radio buttons
         sundayButton.addActionListener(this);
@@ -109,21 +113,21 @@ public class CreateEventScreen extends JPanel implements ActionListener, WindowL
         radioGroup.add(saturdayButton);
 
         // Add the radio buttons
-        constraints.gridwidth = 1;
-        constraints.gridy = 1;
-        constraints.gridx = 0;
+        constraints.gridwidth = 1; // each radio button takes 1 column
+        constraints.gridy = 1; // row 1
+        constraints.gridx = 0; // col 0
         this.add(sundayButton, constraints);
-        constraints.gridx = 1;
+        constraints.gridx = 1; // col 1
         this.add(mondayButton, constraints);
-        constraints.gridx = 2;
+        constraints.gridx = 2; // col 2
         this.add(tuesdayButton, constraints);
-        constraints.gridx = 3;
+        constraints.gridx = 3; // col 3
         this.add(wednesdayButton, constraints);
-        constraints.gridx = 4;
+        constraints.gridx = 4; // col 4
         this.add(thursdayButton, constraints);
-        constraints.gridx = 5;
+        constraints.gridx = 5; // col 5
         this.add(fridayButton, constraints);
-        constraints.gridx = 6;
+        constraints.gridx = 6; // col 6
         this.add(saturdayButton, constraints);
 
 
@@ -131,37 +135,31 @@ public class CreateEventScreen extends JPanel implements ActionListener, WindowL
 
         // Create labels for JTextFields and connect them to their JTextFields
         JLabel titleLabel = new JLabel("Event Title:");
-        titleLabel.setLabelFor(title);
+        titleLabel.setLabelFor(title); // potentially related to accessibility if mnemonic key is also set
         JLabel startTimeLabel = new JLabel("Start time:");
         startTimeLabel.setLabelFor(startTime);
         JLabel endTimeLabel = new JLabel("End time:");
         endTimeLabel.setLabelFor(endTime);
 
-        // Add padding
-//        titleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
-//        title.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
-
-
         // Add event title field and its label
-        constraints.gridwidth = 1;
-        constraints.gridy = 2;
-        constraints.gridx = 0;
+        constraints.gridwidth = 1; // component spans 1 column
+        constraints.gridy = 2; // row 2
+        constraints.gridx = 0; // col 0
         this.add(titleLabel, constraints);
-        constraints.gridwidth = 6;
-        constraints.gridx = 1;
+        constraints.gridwidth = 6; // component spans 6 columns
+        constraints.gridx = 1; // col 1
         this.add(title, constraints);
 
         // add start and end time and their labels
-        constraints.gridwidth = 1;
-        constraints.gridy = 3;
-        constraints.gridx = 1;
+        constraints.gridwidth = 1; // component spans 1 column
+        constraints.gridy = 3; // row 3
+        constraints.gridx = 1; // col 1
         this.add(startTimeLabel, constraints);
-        constraints.gridx = 4;
+        constraints.gridx = 4; // col 4
         this.add(endTimeLabel, constraints);
-        constraints.gridwidth = 1;
-        constraints.gridx = 2;
+        constraints.gridx = 2; // col 2
         this.add(startTime, constraints);
-        constraints.gridx = 5;
+        constraints.gridx = 5; // col 5
         this.add(endTime, constraints);
 
 
@@ -174,17 +172,16 @@ public class CreateEventScreen extends JPanel implements ActionListener, WindowL
         JButton cancel = new JButton("Cancel");
         cancel.setActionCommand("cancel");
 
-
         create.addActionListener(this);
         cancel.addActionListener(this);
 
         // Add buttons
-        constraints.gridy = 4;
-        constraints.gridwidth = 5;
-        constraints.gridx = 0;
+        constraints.gridy = 4; // row 4
+        constraints.gridwidth = 5; // component spans 5 columns
+        constraints.gridx = 0; // col 0
         this.add(create, constraints);
-        constraints.gridx = 5;
-        constraints.gridwidth = 2;
+        constraints.gridx = 5; // col 5
+        constraints.gridwidth = 2; // component spans 2 columns
         this.add(cancel, constraints);
     }
 
@@ -204,6 +201,7 @@ public class CreateEventScreen extends JPanel implements ActionListener, WindowL
             createEventController.create(day, title.getText(), startTime.getText(), endTime.getText());
 
             // clear fields in form (only if successful)
+            // add success check etc.
             title.setText("");
             startTime.setText("");
             endTime.setText("");
@@ -215,7 +213,7 @@ public class CreateEventScreen extends JPanel implements ActionListener, WindowL
             startTime.setText("");
             endTime.setText("");
         }
-        // user has clicked a radio button and the day variable should be updated
+        // user has clicked a radio button and the day variable should be updated to reflect it
         else {
             day = evt.getActionCommand();
             System.out.println(day);
