@@ -1,8 +1,16 @@
+/**
+ * Event class for use in data access.
+ * Author: Daniel Livshits
+ * Modified by: N/A
+ * Date created: Nov 17, 2022
+ * Last modified: Nov 14, 2022
+ */
 package data_access;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 
-public class DataAccessEvent {
+public class DataAccessEvent implements Serializable {
     private String title;
     private LocalTime startTime;
     private LocalTime endTime;

@@ -1,6 +1,15 @@
+/**
+ * Task class for use in data access.
+ * Author: Daniel Livshits
+ * Modified by: NA
+ * Date created: Nov 14, 2022
+ * Last Modified: Nov 17, 2022
+ */
 package data_access;
 
-public class DataAccessTask {
+import java.io.Serializable;
+
+public class DataAccessTask implements Serializable {
     private String title;
     private boolean completed;
 
