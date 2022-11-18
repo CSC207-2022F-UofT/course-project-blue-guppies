@@ -11,9 +11,6 @@ public class TaskModificationPresenter implements TaskModificationOutputBoundary
 
     @Override
     public TaskModificationResponseModel prepareFailView(String error) {
-        TaskModificationResponseModel responseModel = new TaskModificationResponseModel(
-                "", -1
-        );
-        return responseModel;
+        throw new TaskModificationFailed(error);
     }
 }

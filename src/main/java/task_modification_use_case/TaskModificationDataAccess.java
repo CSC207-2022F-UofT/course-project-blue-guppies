@@ -7,6 +7,11 @@ public class TaskModificationDataAccess implements TaskModificationDsGateway {
     @Override
 
     public boolean taskExistsByTitle(String title, int dayID) {
-        return true;
+        return false;
+    }
+
+    @Override
+    public void save(TaskModificationDsRequestModel dsRequestModel) {
+
     }
 }
