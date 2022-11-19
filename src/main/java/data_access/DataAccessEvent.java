@@ -1,9 +1,9 @@
 /**
  * Event class for use in data access.
  * Author: Daniel Livshits
- * Modified by: N/A
- * Date created: Nov 17, 2022
- * Last modified: Nov 14, 2022
+ * Modified by: Daniel Livshits
+ * Date created: Nov 14, 2022
+ * Last modified: Nov 19, 2022
  */
 package data_access;
 
@@ -15,7 +15,7 @@ public class DataAccessEvent implements Serializable {
     private LocalTime startTime;
     private LocalTime endTime;
 
-    protected DataAccessEvent(String title, LocalTime startTime, LocalTime endTime) {
+    public DataAccessEvent(String title, LocalTime startTime, LocalTime endTime) {
         this.title = title;
         this.startTime = startTime;
         this.endTime = endTime;
