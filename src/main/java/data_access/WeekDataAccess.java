@@ -2,9 +2,9 @@
  * The superclass for data access, with an static attribute and private method to be shared across all DataAccess
  * classes.
  * Author: Daniel Livshits
- * Modified by: NA
+ * Modified by: Daniel Livshits
  * Created: Nov 14, 2022
- * Last Modified: Nov 17, 2022
+ * Last Modified: Nov 19, 2022
  */
 package data_access;
 
@@ -18,7 +18,7 @@ public class WeekDataAccess implements Serializable {
      * The ArrayList of days to be used for data persistence. The state of this data structure is saved
      * to a .ser file.
      */
-    private static ArrayList<DataAccessDay> days = new ArrayList<>();
+    protected static ArrayList<DataAccessDay> days = new ArrayList<>();
 
 
     /**
@@ -46,7 +46,11 @@ public class WeekDataAccess implements Serializable {
         return days;
     }
 
-    private void Save(){
+    public static void setDays(ArrayList<DataAccessDay> days) {
+        WeekDataAccess.days = days;
+    }
+
+    protected void save(){
         // TODO: Implement using Serializable once we understand the implementation.
     }
 }
