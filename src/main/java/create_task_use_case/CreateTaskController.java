@@ -8,8 +8,8 @@ public class CreateTaskController {
         this.createTaskInput = createTaskInput;
     }
 
-    CreateTaskOutputData create(String title, boolean completed){
-        CreateTaskInputData taskInputData = new CreateTaskInputData(title, completed);
+    CreateTaskOutputData create(String title, boolean completed, String day){
+        CreateTaskInputData taskInputData = new CreateTaskInputData(title, completed, day);
 
         return createTaskInput.create(taskInputData);
     }

@@ -5,6 +5,7 @@ public class CreateTaskOutputData {
     String title;
     boolean completed;
 
+
     public CreateTaskOutputData(String title, boolean completed){
         this.title = title;
         this.completed = completed;
