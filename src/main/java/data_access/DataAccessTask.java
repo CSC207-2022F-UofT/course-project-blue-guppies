@@ -1,17 +1,19 @@
 /**
- * Task class.
- * Author: Fardin Faruk
+ * Task class for use in data access.
+ * Author: Daniel Livshits
  * Modified by: NA
- * Date created: Nov 10, 2022
- * Last Modified: NA
+ * Date created: Nov 14, 2022
+ * Last Modified: Nov 17, 2022
  */
-package entities;
+package data_access;
 
-public class Task {
+import java.io.Serializable;
+
+public class DataAccessTask implements Serializable {
     private String title;
     private boolean completed;
 
-    protected Task(String title) {
+    protected DataAccessTask(String title) {
         this.title = title;
         this.completed = false;
     }
