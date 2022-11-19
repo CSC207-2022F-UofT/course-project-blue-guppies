@@ -8,10 +8,10 @@ public class CreateTaskInputData {
     private boolean completed;
     private int day;
 
-    public CreateTaskInputData(String title, boolean completed, String day){
+    public CreateTaskInputData(String title, boolean completed, String dayName){
         this.title = title;
         this.completed = completed;
-        switch (day){
+        switch (dayName){
             case "Sunday":
                 this.day = 0;
                 break;
