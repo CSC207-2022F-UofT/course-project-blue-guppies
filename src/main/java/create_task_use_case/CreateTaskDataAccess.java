@@ -1,3 +1,10 @@
+/**
+ * Create Task Data Access Class.
+ * Author: Fardin Faruk
+ * Modified By: N/A
+ * Created: Nov 19, 2022
+ * Last Modified: N/A
+ */
 package create_task_use_case;
 
 import data_access.DataAccessDay;
@@ -24,6 +31,11 @@ public class CreateTaskDataAccess extends WeekDataAccess implements CreateTaskDs
 
     @Override
     public void save(CreateTaskDsOutputData taskData) {
-        super.Save();
+        ArrayList<DataAccessDay> days = super.getDays();
+        DataAccessDay referenceDay = days.get(taskData.getDay());
+        HashMap<String, DataAccessTask> tasks = referenceDay.getTasks();
+        DataAccessTask newTask = new DataAccessTask(taskData.getTitle());
+        tasks.put(newTask.getTitle(), newTask);
+        super.save();
     }
 }
