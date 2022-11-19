@@ -4,21 +4,28 @@ import entities.Task;
 import entities.TaskFactory;
 
 public class CreateTaskInteractor implements CreateTaskInputBoundary {
-    // TODO: CreateTaskDSThings for Data Persistence
-    // TODO: CreateTask Presenter Things
+    final CreateTaskDsGateway createTaskDsGateway;
+    final CreateTaskPresenter createTaskPresenter;
     final TaskFactory taskFactory;
 
-    public CreateTaskInteractor(TaskFactory taskFactory){
+    public CreateTaskInteractor(TaskFactory taskFactory, CreateTaskPresenter createTaskPresenter,
+                                CreateTaskDsGateway createTaskDsGateway){
         this.taskFactory = taskFactory;
+        this.createTaskPresenter = createTaskPresenter;
+        this.createTaskDsGateway = createTaskDsGateway;
     }
 
 
     @Override
-    public CreateTaskResponseModel create(CreateTaskRequestModel requestModel) {
-        Task task = taskFactory.createTask(requestModel.getTitle());
-        // TODO: Check existence on Gateway
-        // TODO: Save on gateway
-        CreateTaskResponseModel taskRequestModel = new CreateTaskResponseModel(task.getTitle(), task.getCompleted());
-        return null;
+    public CreateTaskOutputData create(CreateTaskInputData createTaskInputData) {
+        if (createTaskDsGateway.existsByTitle(createTaskInputData.getTitle())){
+            return createTaskPresenter.prepareFailView("Task with the same name already exists.");
+        }
+        Task task = taskFactory.createTask(createTaskInputData.getTitle());
+        CreateTaskDsOutputData createTaskDsData = new CreateTaskDsOutputData(task.getTitle(), task.getCompleted());
+        createTaskDsGateway.save(createTaskDsData);
+
+        CreateTaskOutputData createTaskData = new CreateTaskOutputData(task.getTitle(), task.getCompleted());
+        return createTaskPresenter.prepareSuccessView(createTaskData);
     }
 }

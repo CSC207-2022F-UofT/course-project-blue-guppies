@@ -1,11 +1,11 @@
 package create_task_use_case;
 
-public class CreateTaskResponseModel {
+public class CreateTaskOutputData {
 
     String title;
     boolean completed;
 
-    public CreateTaskResponseModel(String title, boolean completed){
+    public CreateTaskOutputData(String title, boolean completed){
         this.title = title;
         this.completed = completed;
     }

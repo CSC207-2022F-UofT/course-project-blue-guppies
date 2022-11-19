@@ -1,7 +1,7 @@
 package create_task_use_case;
 
 public interface CreateTaskOutputBoundary {
-    CreateTaskResponseModel prepareSuccessView(CreateTaskResponseModel response);
+    CreateTaskOutputData prepareSuccessView(CreateTaskOutputData response);
 
-    CreateTaskResponseModel prepareFailView(String error);
+    CreateTaskOutputData prepareFailView(String error);
 }
