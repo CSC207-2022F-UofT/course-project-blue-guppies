@@ -1,16 +1,23 @@
+/**
+ * Task Modification Controller Class.
+ * Author: Raghav Arora
+ * Modified By: Raghav Arora
+ * Created: Nov 12, 2022
+ * Last Modified: Nov 19, 2022
+ */
 package task_modification_use_case;
 
 public class TaskModificationController {
-    private TaskModificationInputBoundary taskModificationInputBoundary;
+    private TaskModificationInputBoundary inputBoundary;
 
-    public TaskModificationController(TaskModificationInteractor taskModificationInputBoundary) {
-        this.taskModificationInputBoundary = taskModificationInputBoundary;
+    public TaskModificationController(TaskModificationInputBoundary inputBoundary) {
+        this.inputBoundary = inputBoundary;
     }
 
-    TaskModificationResponseModel modifyTask(int dayId, String newTitle, String title) {
-        TaskModificationRequestModel requestModel = new TaskModificationRequestModel(
+    TaskModificationOutputData modifyTask(int dayId, String newTitle, String title) {
+        TaskModificationInputData inputData = new TaskModificationInputData(
                 dayId, newTitle, title
         );
-        return taskModificationInputBoundary.modifyTask(requestModel);
+        return inputBoundary.modifyTask(inputData);
     }
 }

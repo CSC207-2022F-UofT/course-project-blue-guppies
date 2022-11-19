@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TaskModificationInteractorTest {
-    private final static TaskModificationRequestModel task = new TaskModificationRequestModel(
+    private final static TaskModificationInputData inputData = new TaskModificationInputData(
             0,"New Sample Task", "Sample Task"
     );
     private final static TaskModificationPresenter outputBoundary = new TaskModificationPresenter();
@@ -16,11 +16,11 @@ class TaskModificationInteractorTest {
         TaskModificationInputBoundary inputBoundary = new TaskModificationInteractor(
                 outputBoundary, dsGateway
         );
-        TaskModificationResponseModel responseModel = inputBoundary.modifyTask(
-                task
+        TaskModificationOutputData outputData = inputBoundary.modifyTask(
+                inputData
         );
-        assertEquals(0, responseModel.getDayId());
-        assertEquals("New Sample Task", responseModel.getTitle());
+        assertEquals(0, outputData.getDayId());
+        assertEquals("New Sample Task", outputData.getTitle());
     }
 
 }

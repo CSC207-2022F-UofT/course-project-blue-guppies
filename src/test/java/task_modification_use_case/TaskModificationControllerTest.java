@@ -17,10 +17,10 @@ class TaskModificationControllerTest {
                 outputBoundary, dsGateway
         );
         TaskModificationController controller = new TaskModificationController(inputBoundary);
-        TaskModificationResponseModel responseModel = controller.modifyTask(
+        TaskModificationOutputData outputData = controller.modifyTask(
                 dayId, newTitle, title
         );
-        assertEquals(0, responseModel.getDayId());
-        assertEquals("New Sample Task", responseModel.getTitle());
+        assertEquals(0, outputData.getDayId());
+        assertEquals("New Sample Task", outputData.getTitle());
     }
 }

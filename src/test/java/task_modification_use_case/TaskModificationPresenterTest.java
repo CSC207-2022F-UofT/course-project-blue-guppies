@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TaskModificationPresenterTest {
     //task and event instances (and maps) to be used across tests.
-    private final static TaskModificationResponseModel task = new TaskModificationResponseModel(
+    private final static TaskModificationOutputData outputData = new TaskModificationOutputData(
             "Sample Task", 0
     );
     private final static String error = "ERROR!";
@@ -14,18 +14,18 @@ class TaskModificationPresenterTest {
     @Test
     public void testPrepareSuccessView(){
         TaskModificationOutputBoundary outputBoundary = new TaskModificationPresenter();
-        TaskModificationResponseModel responseModel = outputBoundary.prepareSuccessView(
-                task
+        TaskModificationOutputData response = outputBoundary.prepareSuccessView(
+                outputData
         );
-        assertEquals(task.getDayId(), responseModel.getDayId());
-        assertEquals(task.getTitle(), responseModel.getTitle());
+        assertEquals(outputData.getDayId(), response.getDayId());
+        assertEquals(outputData.getTitle(), response.getTitle());
     }
 
     @Test
     public void testPrepareFailView(){
         TaskModificationOutputBoundary outputBoundary = new TaskModificationPresenter();
         try {
-            TaskModificationResponseModel responseModel = outputBoundary.prepareFailView(
+            TaskModificationOutputData response = outputBoundary.prepareFailView(
                     error
             );
         } catch (TaskModificationFailed e) {
