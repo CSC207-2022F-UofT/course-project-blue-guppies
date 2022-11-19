@@ -18,7 +18,7 @@ public class WeekDataAccess implements Serializable {
      * The ArrayList of days to be used for data persistence. The state of this data structure is saved
      * to a .ser file.
      */
-    private static ArrayList<DataAccessDay> days = new ArrayList<>();
+    protected static ArrayList<DataAccessDay> days = new ArrayList<>();
 
 
     /**
@@ -46,7 +46,7 @@ public class WeekDataAccess implements Serializable {
         return days;
     }
 
-    private void Save(){
+    protected void Save(){
         // TODO: Implement using Serializable once we understand the implementation.
     }
 }
