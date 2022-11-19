@@ -7,11 +7,7 @@ import data_access.WeekDataAccess;
 
 import java.util.HashMap;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class TaskModificationInteractorTest extends WeekDataAccess {
@@ -20,24 +16,27 @@ class TaskModificationInteractorTest extends WeekDataAccess {
     );
     private final static TaskModificationPresenter outputBoundary = new TaskModificationPresenter();
     private final static TaskModificationDataAccess dsGateway = new TaskModificationDataAccess();
-    private final static WeekDataAccess week = new WeekDataAccess();
 
-    @BeforeAll
-    public static void setUpWeekDays() {
-        HashMap<String, DataAccessTask> tasks = new HashMap<>();
-        HashMap<String, DataAccessEvent > events = new HashMap<>();
-    }
 
     @Test
     public void testModifyTask(){
+        DataAccessTask task = new DataAccessTask("Sample Task");
+        HashMap<String, DataAccessTask> tasks = new HashMap<>();
+        HashMap<String, DataAccessEvent > events = new HashMap<>();
+        tasks.put("Sample Task", task);
+        DataAccessDay day = new DataAccessDay(tasks, events);
+        this.days.set(0, day);
+
         TaskModificationInputBoundary inputBoundary = new TaskModificationInteractor(
                 outputBoundary, dsGateway
         );
         TaskModificationOutputData outputData = inputBoundary.modifyTask(
                 inputData
         );
-        assertEquals(0, outputData.getDayId());
+
         assertEquals("New Sample Task", outputData.getTitle());
+        assertEquals(0, outputData.getDayId());
+        assertEquals("New Sample Task", task.getTitle());
     }
 
 }

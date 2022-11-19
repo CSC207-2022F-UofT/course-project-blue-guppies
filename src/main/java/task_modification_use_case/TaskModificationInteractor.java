@@ -22,7 +22,7 @@ public class TaskModificationInteractor implements TaskModificationInputBoundary
 
     @Override
     public TaskModificationOutputData modifyTask(TaskModificationInputData inputData) {
-        if (dsGateway.taskExistsByTitle(inputData.getTitle(), inputData.getDayID())) {
+        if (dsGateway.taskExistsByTitle(inputData.getNewTitle(), inputData.getDayID())) {
             return outputBoundary.prepareFailView(
                     "Task with name: " + inputData.getTitle() + " already exists for day " + inputData.getDayID()
             );

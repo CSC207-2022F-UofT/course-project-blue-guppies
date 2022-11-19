@@ -46,6 +46,6 @@ public class TaskModificationDataAccess extends WeekDataAccess implements TaskMo
         // update the tasks for the given day
         day.setTasks(tasks);
         this.days.set(dayId, day);
-        this.Save();
+        this.save();
     }
 }
