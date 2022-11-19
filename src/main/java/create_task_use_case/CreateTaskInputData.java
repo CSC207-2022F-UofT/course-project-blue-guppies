@@ -13,25 +13,25 @@ public class CreateTaskInputData {
         this.completed = completed;
         switch (dayName){
             case "Sunday":
-                this.day = 0;
+                day = 0;
                 break;
             case "Monday":
-                this.day = 1;
+                day = 1;
                 break;
             case "Tuesday":
-                this.day = 2;
+                day = 2;
                 break;
             case "Wednesday":
-                this.day = 3;
+                day = 3;
                 break;
             case "Thursday":
-                this.day = 4;
+                day = 4;
                 break;
             case "Friday":
-                this.day = 5;
+                day = 5;
                 break;
             case "Saturday":
-                this.day = 6;
+                day = 6;
                 break;
         }
 
@@ -54,7 +54,7 @@ public class CreateTaskInputData {
     }
 
     int getDay(){
-        return this.day;
+        return day;
     }
 
     void setDay(int day){
