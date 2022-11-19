@@ -1,8 +1,9 @@
 /**
  * Day Class for use in data access.
  * Author: Daniel Livshits
+ * Modified By: Daniel Livshits
  * Created: Nov 14, 2022
- * Last Modified: Nov 17, 2022
+ * Last Modified: Nov 19, 2022
  */
 package data_access;
 
@@ -15,7 +16,7 @@ public class DataAccessDay implements Serializable {
     private HashMap<String, DataAccessEvent> events;
 
     //this constructor will be useful for data persistence later.
-    protected DataAccessDay(HashMap<String, DataAccessTask> tasks, HashMap<String, DataAccessEvent> events) {
+    public DataAccessDay(HashMap<String, DataAccessTask> tasks, HashMap<String, DataAccessEvent> events) {
         this.tasks = tasks;
         this.events = events;
     }
