@@ -14,8 +14,6 @@ import java.util.HashMap;
 
 public class TaskModificationDataAccess extends WeekDataAccess implements TaskModificationDsGateway {
 
-    public TaskModificationDataAccess() {}
-
     /**
      * Check whether a task with the given title already exists for the pertinent day.
      * Precondition: title is a non-empty string
