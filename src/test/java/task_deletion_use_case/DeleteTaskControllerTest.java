@@ -1,7 +1,6 @@
 package task_deletion_use_case;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DeleteTaskControllerTest {
