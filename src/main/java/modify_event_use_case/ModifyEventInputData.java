@@ -1,3 +1,10 @@
+/**
+ * Input for the InputBoundary's modify method.
+ * Author: Daniel Livshits
+ * Created: Nov 19, 2022
+ * Modified by:
+ * Last Modified: Nov 19, 2022
+ */
 package modify_event_use_case;
 
 import java.time.LocalTime;
@@ -9,6 +16,13 @@ public class ModifyEventInputData {
     private final LocalTime newStartTime;
     private final LocalTime newEndTime;
 
+    /**
+     * @param title - the current title of the event to be modified
+     * @param dayIndex - the index for the day of the event being modified
+     * @param newTitle - the new desired title for the event
+     * @param newStartTime - the new desired starting time
+     * @param newEndTime - the new desired ending time
+     */
     public ModifyEventInputData(String title, int dayIndex, String newTitle, LocalTime newStartTime, LocalTime newEndTime){
         this.title = title;
         this.dayIndex = dayIndex;

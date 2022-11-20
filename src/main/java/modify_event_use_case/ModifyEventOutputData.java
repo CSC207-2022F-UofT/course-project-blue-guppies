@@ -1,3 +1,10 @@
+/**
+ * Output data to be sent back through to the Controller.
+ * Author: Daniel Livshits
+ * Created: Nov 19, 2022
+ * Modified by:
+ * Last Modified: Nov 19, 2022
+ */
 package modify_event_use_case;
 
 import java.time.LocalTime;
@@ -8,7 +15,13 @@ public class ModifyEventOutputData {
     private final String newTitle;
     private final LocalTime newStartTime;
     private final LocalTime newEndTime;
+    /**
+     *true if the modification was successful, false if not.
+     */
     private boolean successState = true;
+    /**
+     * if the modification was not successful, represents the reason it failed. Otherwise null.
+     */
     private String failureType = null;
 
     public ModifyEventOutputData(String title, int dayIndex, String newTitle, LocalTime newStart, LocalTime newEnd){

@@ -1,3 +1,10 @@
+/**
+ * Data Access Class. Interacts with the in-memory week to "save" modifications.
+ * Author: Daniel Livshits
+ * Created: Nov 19, 2022
+ * Modified by:
+ * Last Modified: Nov 19, 2022
+ */
 package modify_event_use_case;
 
 import data_access.WeekDataAccess;
@@ -9,7 +16,7 @@ import java.util.Objects;
 
 public class ModifyEventDataAccess extends WeekDataAccess implements ModifyEventDsGateway{
     @Override
-    public void save(ModifyEventDataAccessInput dataAccessInput){
+    public void save(ModifyEventDsInputData dataAccessInput){
         HashMap<String, DataAccessEvent> eventsToChange = days.get(dataAccessInput.getDayIndex()).getEvents();
         DataAccessEvent eventToChange = eventsToChange.get(dataAccessInput.getTitle());
         DataAccessEvent newEvent = new DataAccessEvent(dataAccessInput.getNewTitle(), dataAccessInput.getNewStartTime(),
