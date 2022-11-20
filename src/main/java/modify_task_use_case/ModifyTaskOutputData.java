@@ -5,13 +5,13 @@
  * Created: Nov 12, 2022
  * Last Modified: Nov 19, 2022
  */
-package task_modification_use_case;
+package modify_task_use_case;
 
-public class TaskModificationOutputData {
+public class ModifyTaskOutputData {
     private String title;
     private int dayId;
 
-    public TaskModificationOutputData(String title, int dayId) {
+    public ModifyTaskOutputData(String title, int dayId) {
         this.title = title;
         this.dayId = dayId;
     }

@@ -5,14 +5,14 @@
  * Created: Nov 12, 2022
  * Last Modified: Nov 19, 2022
  */
-package task_modification_use_case;
+package modify_task_use_case;
 
 import data_access.DataAccessDay;
 import data_access.DataAccessTask;
 import data_access.WeekDataAccess;
 import java.util.HashMap;
 
-public class TaskModificationDataAccess extends WeekDataAccess implements TaskModificationDsGateway {
+public class ModifyTaskDataAccess extends WeekDataAccess implements ModifyTaskDsGateway {
 
     /**
      * Check whether a task with the given title already exists for the pertinent day.
@@ -28,7 +28,7 @@ public class TaskModificationDataAccess extends WeekDataAccess implements TaskMo
     }
 
     @Override
-    public void save(TaskModificationDsInputData dsInputData) {
+    public void save(ModifyTaskDsInputData dsInputData) {
         String title = dsInputData.getTitle();
         String newTitle = dsInputData.getNewTitle();
         int dayId = dsInputData.getDayID();

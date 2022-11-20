@@ -1,4 +1,4 @@
-package task_modification_use_case;
+package modify_task_use_case;
 
 import data_access.DataAccessDay;
 import data_access.DataAccessEvent;
@@ -10,12 +10,12 @@ import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class TaskModificationInteractorTest extends WeekDataAccess {
-    private final static TaskModificationInputData inputData = new TaskModificationInputData(
+class ModifyTaskInteractorTest extends WeekDataAccess {
+    private final static ModifyTaskInputData inputData = new ModifyTaskInputData(
             0,"New Sample Task", "Sample Task"
     );
-    private final static TaskModificationPresenter outputBoundary = new TaskModificationPresenter();
-    private final static TaskModificationDataAccess dsGateway = new TaskModificationDataAccess();
+    private final static ModifyTaskPresenter outputBoundary = new ModifyTaskPresenter();
+    private final static ModifyTaskDataAccess dsGateway = new ModifyTaskDataAccess();
 
 
     @Test
@@ -27,10 +27,10 @@ class TaskModificationInteractorTest extends WeekDataAccess {
         DataAccessDay day = new DataAccessDay(tasks, events);
         this.days.set(0, day);
 
-        TaskModificationInputBoundary inputBoundary = new TaskModificationInteractor(
+        ModifyTaskInputBoundary inputBoundary = new ModifyTaskInteractor(
                 outputBoundary, dsGateway
         );
-        TaskModificationOutputData outputData = inputBoundary.modifyTask(
+        ModifyTaskOutputData outputData = inputBoundary.modifyTask(
                 inputData
         );
 

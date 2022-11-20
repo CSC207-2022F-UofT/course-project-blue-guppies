@@ -5,33 +5,33 @@
  * Created: Nov 12, 2022
  * Last Modified: Nov 19, 2022
  */
-package task_modification_use_case;
+package modify_task_use_case;
 
-public class TaskModificationInteractor implements TaskModificationInputBoundary {
+public class ModifyTaskInteractor implements ModifyTaskInputBoundary {
 
-    private TaskModificationOutputBoundary outputBoundary;
-    private TaskModificationDsGateway dsGateway;
+    private ModifyTaskOutputBoundary outputBoundary;
+    private ModifyTaskDsGateway dsGateway;
 
-    public TaskModificationInteractor(
-            TaskModificationOutputBoundary outputBoundary,
-            TaskModificationDsGateway dsGateway
+    public ModifyTaskInteractor(
+            ModifyTaskOutputBoundary outputBoundary,
+            ModifyTaskDsGateway dsGateway
     ) {
         this.outputBoundary = outputBoundary;
         this.dsGateway = dsGateway;
     }
 
     @Override
-    public TaskModificationOutputData modifyTask(TaskModificationInputData inputData) {
+    public ModifyTaskOutputData modifyTask(ModifyTaskInputData inputData) {
         if (dsGateway.taskExistsByTitle(inputData.getNewTitle(), inputData.getDayID())) {
             return outputBoundary.prepareFailView(
                     "Task with name: " + inputData.getTitle() + " already exists for day " + inputData.getDayID()
             );
         }
-        TaskModificationDsInputData dsInputData = new TaskModificationDsInputData(
+        ModifyTaskDsInputData dsInputData = new ModifyTaskDsInputData(
                 inputData.getDayID(), inputData.getNewTitle(), inputData.getTitle()
         );
         dsGateway.save(dsInputData);
-        TaskModificationOutputData task = new TaskModificationOutputData(
+        ModifyTaskOutputData task = new ModifyTaskOutputData(
                 inputData.getNewTitle(), inputData.getDayID()
         );
         return outputBoundary.prepareSuccessView(task);

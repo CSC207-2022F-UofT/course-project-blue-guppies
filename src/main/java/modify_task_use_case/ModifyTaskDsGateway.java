@@ -5,9 +5,9 @@
  * Created: Nov 12, 2022
  * Last Modified: Nov 19, 2022
  */
-package task_modification_use_case;
+package modify_task_use_case;
 
-public interface TaskModificationDsGateway {
+public interface ModifyTaskDsGateway {
     boolean taskExistsByTitle(String title, int dayID);
-    void save(TaskModificationDsInputData dsInputData);
+    void save(ModifyTaskDsInputData dsInputData);
 }

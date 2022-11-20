@@ -5,8 +5,8 @@
  * Created: Nov 12, 2022
  * Last Modified: Nov 19, 2022
  */
-package task_modification_use_case;
+package modify_task_use_case;
 
-public interface TaskModificationInputBoundary {
-    TaskModificationOutputData modifyTask(TaskModificationInputData inputData);
+public interface ModifyTaskInputBoundary {
+    ModifyTaskOutputData modifyTask(ModifyTaskInputData inputData);
 }
