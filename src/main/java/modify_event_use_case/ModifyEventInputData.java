@@ -4,14 +4,14 @@ import java.time.LocalTime;
 
 public class ModifyEventInputData {
     private final String title;
-    private final int day;
+    private final int dayIndex;
     private final String newTitle;
     private final LocalTime newStartTime;
     private final LocalTime newEndTime;
 
-    public ModifyEventInputData(String title, int day, String newTitle, LocalTime newStartTime, LocalTime newEndTime){
+    public ModifyEventInputData(String title, int dayIndex, String newTitle, LocalTime newStartTime, LocalTime newEndTime){
         this.title = title;
-        this.day = day;
+        this.dayIndex = dayIndex;
         this.newTitle = newTitle;
         this.newStartTime = newStartTime;
         this.newEndTime = newEndTime;
@@ -21,8 +21,8 @@ public class ModifyEventInputData {
         return title;
     }
 
-    public int getDay() {
-        return day;
+    public int getDayIndex() {
+        return dayIndex;
     }
 
     public String getNewTitle() {

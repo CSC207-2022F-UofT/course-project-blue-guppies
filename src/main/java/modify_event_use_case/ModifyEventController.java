@@ -9,8 +9,8 @@ public class ModifyEventController {
         this.inputBoundary = inputBound;
     }
 
-    public ModifyEventOutputData Modify(String title, int day, String newTitle, LocalTime newStart, LocalTime newEnd){
-        ModifyEventInputData inputData = new ModifyEventInputData(title, day, newTitle, newStart, newEnd);
+    public ModifyEventOutputData Modify(String title, int dayIndex, String newTitle, LocalTime newStart, LocalTime newEnd){
+        ModifyEventInputData inputData = new ModifyEventInputData(title, dayIndex, newTitle, newStart, newEnd);
         return inputBoundary.Modify(inputData);
     }
 }
