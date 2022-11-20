@@ -7,14 +7,15 @@
  */
 package entities;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 
-public class Event{
+public class Event implements Serializable {
     private String title;
     private LocalTime startTime;
     private LocalTime endTime;
 
-    protected Event(String title, LocalTime startTime, LocalTime endTime) {
+    public Event(String title, LocalTime startTime, LocalTime endTime) {
         this.title = title;
         this.startTime = startTime;
         this.endTime = endTime;

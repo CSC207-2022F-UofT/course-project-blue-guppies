@@ -7,8 +7,8 @@
  */
 package modify_task_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessTask;
+import entities.Day;
+import entities.Task;
 import data_access.WeekDataAccess;
 import java.util.HashMap;
 
@@ -23,7 +23,7 @@ public class ModifyTaskDataAccess extends WeekDataAccess implements ModifyTaskDs
      */
     @Override
     public boolean taskExistsByTitle(String title, int dayID) {
-        DataAccessDay day = this.getDays().get(dayID);
+        Day day = this.getDays().get(dayID);
         return day.getTasks().containsKey(title);
     }
 
@@ -35,15 +35,15 @@ public class ModifyTaskDataAccess extends WeekDataAccess implements ModifyTaskDs
 
         /* Remove the association of the task to be modified to key title, and instead
         associate it with newTitle */
-        DataAccessDay day = this.getDays().get(dayId);
-        HashMap<String, DataAccessTask> tasks = day.getTasks();
-        DataAccessTask modifiedTask = tasks.remove(title);
+        Day day = this.getDays().get(dayId);
+        HashMap<String, Task> tasks = day.getTasks();
+        Task modifiedTask = tasks.remove(title);
         modifiedTask.setTitle(newTitle);
         tasks.put(newTitle, modifiedTask);
 
         // update the tasks for the given day
         day.setTasks(tasks);
-        this.days.set(dayId, day);
+        days.set(dayId, day);
         this.save();
     }
 }

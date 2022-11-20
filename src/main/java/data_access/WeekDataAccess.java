@@ -8,6 +8,8 @@
  */
 package data_access;
 
+import entities.Day;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +20,7 @@ public class WeekDataAccess implements Serializable {
      * The ArrayList of days to be used for data persistence. The state of this data structure is saved
      * to a .ser file.
      */
-    protected static ArrayList<DataAccessDay> days = new ArrayList<>();
+    protected static ArrayList<Day> days = new ArrayList<>();
 
 
     /**
@@ -26,7 +28,7 @@ public class WeekDataAccess implements Serializable {
      */
     public WeekDataAccess() {
         if(days.isEmpty()){
-            DataAccessDay emptyDay = new DataAccessDay(new HashMap<>(), new HashMap<>());
+            Day emptyDay = new Day(new HashMap<>(), new HashMap<>());
             for(int i = 0; i < 7; i++){
                 days.add(emptyDay);
             }
@@ -38,15 +40,15 @@ public class WeekDataAccess implements Serializable {
      * Precondition: dataDays is an ArrayList containing 7 dataDay instances
      * @param dataDays - a representation of a week.
      */
-    public WeekDataAccess(ArrayList<DataAccessDay> dataDays){
+    public WeekDataAccess(ArrayList<Day> dataDays){
         days = dataDays;
     }
 
-    public ArrayList<DataAccessDay> getDays() {
+    public ArrayList<Day> getDays() {
         return days;
     }
 
-    public static void setDays(ArrayList<DataAccessDay> days) {
+    public static void setDays(ArrayList<Day> days) {
         WeekDataAccess.days = days;
     }
 

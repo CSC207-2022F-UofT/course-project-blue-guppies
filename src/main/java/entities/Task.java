@@ -7,11 +7,13 @@
  */
 package entities;
 
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serializable {
     private String title;
     private boolean completed;
 
-    protected Task(String title) {
+    public Task(String title) {
         this.title = title;
         this.completed = false;
     }

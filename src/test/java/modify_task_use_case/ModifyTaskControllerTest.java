@@ -1,14 +1,14 @@
 package modify_task_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessEvent;
-import data_access.DataAccessTask;
 import data_access.WeekDataAccess;
+import entities.Day;
+import entities.Event;
+import entities.Task;
+import org.junit.Test;
 
 import java.util.HashMap;
 
-import org.junit.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ModifyTaskControllerTest extends WeekDataAccess {
     private final static ModifyTaskPresenter outputBoundary = new ModifyTaskPresenter();
@@ -19,12 +19,12 @@ public class ModifyTaskControllerTest extends WeekDataAccess {
 
     @Test
     public void testModifyTask() {
-        DataAccessTask task = new DataAccessTask("Sample Task");
-        HashMap<String, DataAccessTask> tasks = new HashMap<>();
-        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        Task task = new Task("Sample Task");
+        HashMap<String, Task> tasks = new HashMap<>();
+        HashMap<String, Event> events = new HashMap<>();
         tasks.put("Sample Task", task);
-        DataAccessDay day = new DataAccessDay(tasks, events);
-        this.days.set(0, day);
+        Day day = new Day(tasks, events);
+        days.set(0, day);
 
         ModifyTaskInteractor inputBoundary = new ModifyTaskInteractor(
                 outputBoundary, dsGateway
