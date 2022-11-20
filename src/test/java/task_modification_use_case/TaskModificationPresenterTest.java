@@ -17,8 +17,8 @@ class TaskModificationPresenterTest {
         TaskModificationOutputData response = outputBoundary.prepareSuccessView(
                 outputData
         );
-        assertEquals(outputData.getDayId(), response.getDayId());
-        assertEquals(outputData.getTitle(), response.getTitle());
+        assertEquals(0, response.getDayId());
+        assertEquals("Sample Task", response.getTitle());
     }
 
     @Test

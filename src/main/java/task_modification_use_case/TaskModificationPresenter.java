@@ -9,12 +9,7 @@ package task_modification_use_case;
 
 public class TaskModificationPresenter implements TaskModificationOutputBoundary {
     @Override
-    public TaskModificationOutputData prepareSuccessView(TaskModificationOutputData task) {
-        TaskModificationOutputData outputData = new TaskModificationOutputData(
-                task.getTitle(), task.getDayId()
-        );
-        return outputData;
-    }
+    public TaskModificationOutputData prepareSuccessView(TaskModificationOutputData task) { return task; }
 
     @Override
     public TaskModificationOutputData prepareFailView(String error) {
