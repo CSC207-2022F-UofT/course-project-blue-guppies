@@ -1,5 +1,6 @@
 import create_event_use_case.*;
 import entities.EventFactory;
+import screens.CreateEventScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,18 +26,15 @@ public class Main {
         calendarScreen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // initialize the create event screen
-        JFrame createEventScreenFrame = new JFrame("Create Event");
-        CreateEventScreen createEventScreenPanel = new CreateEventScreen(createEventScreenFrame,
-                createEventController);
-        createEventScreenFrame.add(createEventScreenPanel);
+        CreateEventScreen createEventScreen = new CreateEventScreen(createEventController);
 
         // add a button to create a new event
         JButton addEvent = new JButton("New Event");
-        addEvent.addActionListener(e -> createEventScreenFrame.setVisible(true));
+        addEvent.addActionListener(e -> createEventScreen.setVisible(true));
         p.add(addEvent);
 
-        createEventScreenFrame.pack();
-        createEventScreenFrame.setVisible(false);
+        createEventScreen.pack();
+        createEventScreen.setVisible(false);
         calendarScreen.pack();
         calendarScreen.setVisible(true);
 
