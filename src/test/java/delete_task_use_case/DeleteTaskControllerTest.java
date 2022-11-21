@@ -10,7 +10,7 @@ public class DeleteTaskControllerTest {
     private final static String taskTitle = "Task";
 
     @Test
-    public void testDeleteTask() {
+    public void testDeleteTaskController() {
         DeleteTaskInteractor inputBoundary = new DeleteTaskInteractor(outputBoundary, dsGateway);
         DeleteTaskController controller = new DeleteTaskController(inputBoundary);
         DeleteTaskOutputData outputData = controller.deleteTask(dayIndex, taskTitle);

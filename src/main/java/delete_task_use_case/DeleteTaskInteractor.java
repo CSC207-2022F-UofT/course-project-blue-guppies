@@ -7,11 +7,10 @@
  */
 package delete_task_use_case;
 
-
 public class DeleteTaskInteractor implements DeleteTaskInputBoundary {
 
-    private DeleteTaskOutputBoundary outputBoundary;
-    private DeleteTaskDsGateway dsGateway;
+    private final DeleteTaskOutputBoundary outputBoundary;
+    private final DeleteTaskDsGateway dsGateway;
 
     public DeleteTaskInteractor(
             DeleteTaskOutputBoundary outputBoundary, DeleteTaskDsGateway dsGateway) {

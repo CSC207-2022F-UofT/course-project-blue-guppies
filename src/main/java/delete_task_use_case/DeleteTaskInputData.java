@@ -3,14 +3,14 @@
  * Author: Ricky Fung
  * Modified By: Ricky Fung
  * Created: Nov 19, 2022
- * Last Modified: Nov 19, 2022
+ * Last Modified: Nov 21, 2022
  */
 package delete_task_use_case;
 
 public class DeleteTaskInputData {
 
-    private int dayIndex;
-    private String taskTitle;
+    private final int dayIndex;
+    private final String taskTitle;
 
     public DeleteTaskInputData(int dayIndex, String taskTitle) {
         this.taskTitle = taskTitle;

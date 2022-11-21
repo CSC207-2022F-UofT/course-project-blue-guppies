@@ -18,7 +18,7 @@ class DeleteTaskInteractorTest extends WeekDataAccess {
     private final static DeleteTaskDataAccess dsGateway = new DeleteTaskDataAccess();
 
     @Test
-    public void testDeleteTask() {
+    public void testDeleteTaskInteractor() {
         DataAccessTask task = new DataAccessTask("Task");
         HashMap<String, DataAccessTask> tasks = new HashMap<>();
         HashMap<String, DataAccessEvent> events = new HashMap<>();
@@ -32,7 +32,6 @@ class DeleteTaskInteractorTest extends WeekDataAccess {
         assertEquals(5, outputData.getInputDay());
         assertEquals("Task", outputData.getLabel());
         assertTrue(day.getTasks().isEmpty());
-        assertTrue(tasks.isEmpty());
-        assertTrue(days.get(5).getTasks().isEmpty());
+        assertTrue(outputData.getSuccess());
     }
 }
