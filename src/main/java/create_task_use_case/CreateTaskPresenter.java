@@ -11,7 +11,7 @@ public class CreateTaskPresenter implements CreateTaskOutputBoundary {
     @Override
     public CreateTaskOutputData prepareSuccessView(CreateTaskOutputData response) {
         //View Model Update
-        response.setCompleted(true);
+        response.setSuccessfullyCreated(true);
         return response;
     }
 

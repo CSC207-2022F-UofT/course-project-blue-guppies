@@ -21,5 +21,6 @@ public class CreateTaskControllerTest {
         assertEquals("Sample Task", createTaskOutputData.getTitle());
         assertFalse(createTaskOutputData.isCompleted());
         assertEquals(0, createTaskOutputData.getDayID());
+        assertTrue(createTaskOutputData.isSuccessfullyCreated());
     }
 }

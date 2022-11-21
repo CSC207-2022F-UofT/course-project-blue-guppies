@@ -35,6 +35,7 @@ public class CreateTaskInteractor implements CreateTaskInputBoundary {
 
         CreateTaskOutputData createTaskData = new CreateTaskOutputData(task.getTitle(), task.getCompleted(),
                 createTaskInputData.getDayID());
+        System.out.println(createTaskData);
         return createTaskPresenter.prepareSuccessView(createTaskData);
     }
 }
