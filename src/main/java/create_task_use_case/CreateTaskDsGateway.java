@@ -8,7 +8,7 @@
 package create_task_use_case;
 
 public interface CreateTaskDsGateway {
-    boolean existsByTitle(String title, int dayIndex);
+    boolean existsByTitle(String title, int dayID);
 
     void save(CreateTaskDsOutputData taskData);
 }

@@ -15,8 +15,8 @@ public class CreateTaskController {
         this.createTaskInput = createTaskInput;
     }
 
-    CreateTaskOutputData create(String title, boolean completed, String dayName){
-        CreateTaskInputData taskInputData = new CreateTaskInputData(title, completed, dayName);
+    CreateTaskOutputData createTask(String title, boolean completed, int dayID){
+        CreateTaskInputData taskInputData = new CreateTaskInputData(title, completed, dayID);
 
         return createTaskInput.create(taskInputData);
     }

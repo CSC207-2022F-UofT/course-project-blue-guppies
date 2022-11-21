@@ -1,3 +1,10 @@
+/**
+ * Create Task Interactor Class.
+ * Author: Fardin Faruk
+ * Modified By: N/A
+ * Created: Nov 19, 2022
+ * Last Modified: N/A
+ */
 package create_task_use_case;
 
 import entities.Task;
@@ -18,15 +25,16 @@ public class CreateTaskInteractor implements CreateTaskInputBoundary {
 
     @Override
     public CreateTaskOutputData create(CreateTaskInputData createTaskInputData) {
-        if (createTaskDsGateway.existsByTitle(createTaskInputData.getTitle(), createTaskInputData.getDay())){
+        if (createTaskDsGateway.existsByTitle(createTaskInputData.getTitle(), createTaskInputData.getDayID())){
             return createTaskPresenter.prepareFailView("Task with the same name already exists.");
         }
         Task task = taskFactory.createTask(createTaskInputData.getTitle());
         CreateTaskDsOutputData createTaskDsData = new CreateTaskDsOutputData(task.getTitle(), task.getCompleted(),
-                createTaskInputData.getDay());
+                createTaskInputData.getDayID());
         createTaskDsGateway.save(createTaskDsData);
 
-        CreateTaskOutputData createTaskData = new CreateTaskOutputData(task.getTitle(), task.getCompleted());
+        CreateTaskOutputData createTaskData = new CreateTaskOutputData(task.getTitle(), task.getCompleted(),
+                createTaskInputData.getDayID());
         return createTaskPresenter.prepareSuccessView(createTaskData);
     }
 }

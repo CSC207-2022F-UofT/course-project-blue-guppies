@@ -1,41 +1,24 @@
+/**
+ * Create Task Input Data Class.
+ * Author: Fardin Faruk
+ * Modified By: N/A
+ * Created: Nov 19, 2022
+ * Last Modified: N/A
+ */
 package create_task_use_case;
-
-import java.util.Objects;
 
 public class CreateTaskInputData {
 
     private String title;
     private boolean completed;
-    private int day;
+    private int dayID;
 
-    public CreateTaskInputData(String title, boolean completed, String dayName){
+    public CreateTaskInputData(String title, boolean completed, int dayID){
         this.title = title;
         this.completed = completed;
-        switch (dayName){
-            case "Sunday":
-                day = 0;
-                break;
-            case "Monday":
-                day = 1;
-                break;
-            case "Tuesday":
-                day = 2;
-                break;
-            case "Wednesday":
-                day = 3;
-                break;
-            case "Thursday":
-                day = 4;
-                break;
-            case "Friday":
-                day = 5;
-                break;
-            case "Saturday":
-                day = 6;
-                break;
+        this.dayID = dayID;
         }
 
-    }
 
     String getTitle(){
         return title;
@@ -53,13 +36,12 @@ public class CreateTaskInputData {
         this.completed = completed;
     }
 
-    int getDay(){
-        return day;
+    int getDayID(){
+        return dayID;
     }
 
-    void setDay(int day){
-        this.day = day;
+    void setDayID(int dayID){
+        this.dayID = dayID;
     }
-
 
 }

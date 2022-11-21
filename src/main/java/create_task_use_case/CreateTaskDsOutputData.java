@@ -1,14 +1,21 @@
+/**
+ * Create Task DsInputData Class.
+ * Author: Fardin Faruk
+ * Modified By: N/A
+ * Created: Nov 19, 2022
+ * Last Modified: N/A
+ */
 package create_task_use_case;
 
 public class CreateTaskDsOutputData {
     private String title;
     private boolean completed;
-    private int day;
+    private int dayID;
 
-    public CreateTaskDsOutputData(String title, boolean completed, int day){
+    public CreateTaskDsOutputData(String title, boolean completed, int dayID){
         this.title = title;
         this.completed = completed;
-        this.day = day;
+        this.dayID = dayID;
     }
 
     public String getTitle() {
@@ -28,10 +35,10 @@ public class CreateTaskDsOutputData {
     }
 
     public int getDay(){
-        return day;
+        return dayID;
     }
 
-    public void setDay(int day) {
-        this.day = day;
+    public void setDay(int dayID) {
+        this.dayID = dayID;
     }
 }
