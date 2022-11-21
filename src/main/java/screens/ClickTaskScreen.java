@@ -10,31 +10,36 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ClickTaskScreen extends JFrame implements ActionListener {
-    ModifyTaskController modifyTaskController;
+    ModifyTaskScreen modifyTaskScreen;
     DeleteTaskController deleteTaskController;
     CompleteTaskController completeTaskController;
     int dayId;
-    String title;
+    String taskTitle;
 
-    /**
-     * Creates a new, initially invisible <code>Frame</code> with the
-     * specified title.
-     * <p>
-     * This constructor sets the component's locale property to the value
-     * returned by <code>JComponent.getDefaultLocale</code>.
-     * @throws HeadlessException if GraphicsEnvironment.isHeadless()
-     *                           returns true.
-     * @see GraphicsEnvironment#isHeadless
-     * @see Component#setSize
-     * @see Component#setVisible
-     * @see JComponent#getDefaultLocale
-     */
-    public ClickTaskScreen(ModifyTaskController modifyTaskController, DeleteTaskController deleteTaskController,
+    public ClickTaskScreen(ModifyTaskScreen modifyTaskScreen, DeleteTaskController deleteTaskController,
                            CompleteTaskController completeTaskController) {
         super("Menu");
-        this.modifyTaskController = modifyTaskController;
+        this.modifyTaskScreen = modifyTaskScreen;
         this.deleteTaskController = deleteTaskController;
         this.completeTaskController = completeTaskController;
+
+        JPanel panel = new JPanel(new GridBagLayout());
+
+        JButton complete = new JButton("mark task as complete");
+        JButton modify = new JButton("modify task");
+        JButton delete = new JButton("delete task");
+
+        complete.addActionListener(this);
+        complete.setActionCommand("complete");
+        modify.addActionListener(this);
+        modify.setActionCommand("modify");
+        delete.addActionListener(this);
+        delete.setActionCommand("delete");
+
+        panel.add(complete);
+        panel.add(modify);
+        panel.add(delete);
+        this.add(panel);
     }
 
     /**
@@ -44,20 +49,29 @@ public class ClickTaskScreen extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        if ("complete".equals(e.getActionCommand())) {
+            completeTaskController.complete(dayId, taskTitle);
+        } else if ("modify".equals(e.getActionCommand())) {
+            modifyTaskScreen.setOldTitle(taskTitle);
+            modifyTaskScreen.setDay(dayId);
+            modifyTaskScreen.setVisible(true);
+        } else if ("delete".equals(e.getActionCommand())) {
+            Frame confirm = new JFrame();
+            int x = JOptionPane.showOptionDialog(confirm, "Are you sure you want to delete this task?",
+                    "Delete Task", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
+                    new String[] {"Yes", "Cancel"}, "Yes");
+            if (x == 0) {
+                deleteTaskController.deleteTask(dayId, taskTitle);
+            }
+        }
 
-    }
-
-    private void resetValues() {
-        this.dayId = 0;
-        this.title = "";
     }
 
     public void setDayId(int dayId) {
         this.dayId = dayId;
     }
 
-    @Override
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTaskTitle(String taskTitle) {
+        this.taskTitle = taskTitle;
     }
 }
