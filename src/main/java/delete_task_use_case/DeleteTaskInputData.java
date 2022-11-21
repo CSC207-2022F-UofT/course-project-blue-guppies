@@ -1,17 +1,18 @@
 /**
- * Delete Task DataAccessInput Class.
+ * Delete Task InputData Class.
  * Author: Ricky Fung
  * Modified By: Ricky Fung
  * Created: Nov 19, 2022
  * Last Modified: Nov 19, 2022
  */
-package task_deletion_use_case;
+package delete_task_use_case;
 
-public class DeleteTaskDataAccessInput {
+public class DeleteTaskInputData {
+
     private int dayIndex;
     private String taskTitle;
 
-    public DeleteTaskDataAccessInput(int dayIndex, String taskTitle) {
+    public DeleteTaskInputData(int dayIndex, String taskTitle) {
         this.taskTitle = taskTitle;
         this.dayIndex = dayIndex;
     }

@@ -5,7 +5,7 @@
  * Created: Nov 19, 2022
  * Last Modified: Nov 19, 2022
  */
-package task_deletion_use_case;
+package delete_task_use_case;
 
 public class DeleteTaskOutputData {
     private String label;
@@ -32,13 +32,5 @@ public class DeleteTaskOutputData {
 
     public void setSuccess(boolean success) {
         this.success = success;
-    }
-
-    public String getFailure() {
-        return failure;
-    }
-
-    public void setFailure(String failure) {
-        this.failure = failure;
     }
 }

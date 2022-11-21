@@ -5,7 +5,7 @@
  * Created: Nov 19, 2022
  * Last Modified: Nov 19, 2022
  */
-package task_deletion_use_case;
+package delete_task_use_case;
 
 
 public class DeleteTaskInteractor implements DeleteTaskInputBoundary {
@@ -22,12 +22,6 @@ public class DeleteTaskInteractor implements DeleteTaskInputBoundary {
     @Override
     public DeleteTaskOutputData deleteTask(DeleteTaskInputData inputData) {
         DeleteTaskOutputData outputData = new DeleteTaskOutputData(inputData.getDayIndex(), inputData.getTaskTitle());
-
-        if (!dsGateway.taskExists(inputData.getDayIndex(), inputData.getTaskTitle())) {
-            outputData.setSuccess(false);
-            outputData.setFailure("noTask");
-            return outputBoundary.prepareFailView(outputData);
-        }
         DeleteTaskDataAccessInput dataAccessInput = new DeleteTaskDataAccessInput(
                 inputData.getDayIndex(), inputData.getTaskTitle());
         dsGateway.save(dataAccessInput);

@@ -1,4 +1,4 @@
-package task_deletion_use_case;
+package delete_task_use_case;
 
 import data_access.DataAccessDay;
 import data_access.DataAccessEvent;

@@ -1,4 +1,4 @@
-package task_deletion_use_case;
+package delete_task_use_case;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
