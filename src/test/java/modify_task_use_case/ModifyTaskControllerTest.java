@@ -27,8 +27,7 @@ public class ModifyTaskControllerTest extends WeekDataAccess {
         this.days.set(0, day);
 
         ModifyTaskInteractor inputBoundary = new ModifyTaskInteractor(
-                outputBoundary,
-                dsGateway
+                outputBoundary, dsGateway
         );
         ModifyTaskController controller = new ModifyTaskController(inputBoundary);
         ModifyTaskOutputData outputData = controller.modifyTask(
