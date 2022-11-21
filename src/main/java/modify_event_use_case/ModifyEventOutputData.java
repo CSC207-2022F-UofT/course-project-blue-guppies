@@ -18,7 +18,7 @@ public class ModifyEventOutputData {
     /**
      *true if the modification was successful, false if not.
      */
-    private boolean successState = true;
+    private boolean successfullyModified = true;
     /**
      * if the modification was not successful, represents the reason it failed. Otherwise null.
      */
@@ -52,12 +52,12 @@ public class ModifyEventOutputData {
         return newEndTime;
     }
 
-    public boolean getSuccessState(){
-        return successState;
+    public boolean getSuccessfullyModified(){
+        return successfullyModified;
     }
 
-    public void setSuccessState(boolean successState) {
-        this.successState = successState;
+    public void setSuccessfullyModified(boolean successfullyModified) {
+        this.successfullyModified = successfullyModified;
     }
 
     public String getFailureType() {
