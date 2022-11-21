@@ -7,7 +7,8 @@ public class CreateEventController {
         this.createEventInteractor = createEventInteractor;
     }
 
-    public void create(String day, String text, String text1, String text2) {
+    public CreateEventOutputData create(String day, String title, String startTime, String endTime) {
 
+        return new CreateEventOutputData();
     }
 }
