@@ -1,3 +1,10 @@
+/**
+ * abstract class that contains methods shared by all four forms
+ * Author: Anna Myllyniemi
+ * Modified by:
+ * Date created: Nov 20 2022
+ * Last modified:
+ */
 package screens;
 
 import javax.swing.*;

@@ -14,7 +14,6 @@ package screens;
 
 import create_event_use_case.CreateEventController;
 import create_event_use_case.CreateEventOutputData;
-import create_task_use_case.CreateTaskOutputData;
 
 import javax.swing.*;
 import java.awt.*;
