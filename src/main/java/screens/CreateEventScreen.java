@@ -20,13 +20,13 @@ import java.awt.event.ActionEvent;
 
 public class CreateEventScreen extends FormScreen {
     // Array containing all the radio buttons representing the day of the week
-    private final JRadioButton[] daysOfTheWeekRadioButtons;
+    protected final JRadioButton[] daysOfTheWeekRadioButtons;
 
     // Start time of the event
-    private final JTextField startTime = new JTextField();
+    protected final JTextField startTime = new JTextField();
 
     // End time of the event
-    private final JTextField endTime = new JTextField();
+    protected final JTextField endTime = new JTextField();
 
     private final CreateEventController createEventController;
 
@@ -43,12 +43,6 @@ public class CreateEventScreen extends FormScreen {
         addHeader(panel, c, "CREATE A NEW EVENT");
 
         daysOfTheWeekRadioButtons = createRadioButtons();
-        addActionListenersToRadioButtons();
-        // Group the radio buttons together
-        ButtonGroup radioGroup = new ButtonGroup(); // not sure if this part can be extracted
-        for (JRadioButton radioButton : daysOfTheWeekRadioButtons) {
-            radioGroup.add(radioButton);
-        }
         addDaysOfTheWeekRadioButtons(panel, c, daysOfTheWeekRadioButtons);
 
         addTitleField(panel, c, 2, "Event Title:");
@@ -59,13 +53,16 @@ public class CreateEventScreen extends FormScreen {
         this.add(panel);
     }
 
-    private void addActionListenersToRadioButtons() {
+    private void initializeRadioButtons() {
+        // Group the radio buttons together
+        ButtonGroup radioGroup = new ButtonGroup(); // not sure if this part can be extracted
         for (JRadioButton radioButton : daysOfTheWeekRadioButtons) {
-            radioButton.addActionListener(this);
+            radioGroup.add(radioButton);
         }
     }
 
     private void addDaysOfTheWeekRadioButtons(JPanel panel, GridBagConstraints constraints, JRadioButton[] radioButtons) {
+        initializeRadioButtons();
         // Add the radio buttons
         constraints.gridwidth = 1; // each radio button takes 1 column
         constraints.gridy = 1;
@@ -154,7 +151,7 @@ public class CreateEventScreen extends FormScreen {
         daysOfTheWeekRadioButtons[0].setSelected(true);
     }
 
-    private String getSelectedDay() {
+    protected String getSelectedDay() {
         for (JRadioButton radioButton: daysOfTheWeekRadioButtons) {
             if (radioButton.isSelected()) {
                 return radioButton.getText();
