@@ -66,9 +66,10 @@ public class ModifyTaskScreen extends FormScreen{
                 this.setVisible(false);
             } catch (ModifyTaskFailed e) {
                 message = e.getMessage();
-            } catch (Exception e2) {
-                message = "unexpected error";
             }
+//            catch (Exception e2) {
+//                message = "unexpected error";
+//            }
 
             JFrame messageBox = new JFrame();
             JOptionPane.showMessageDialog(messageBox, message);
