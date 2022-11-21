@@ -9,7 +9,7 @@ package create_task_use_case;
 
 public class CreateTaskController {
 
-    final CreateTaskInputBoundary createTaskInput;
+    private final CreateTaskInputBoundary createTaskInput;
 
     public CreateTaskController(CreateTaskInputBoundary createTaskInput) {
         this.createTaskInput = createTaskInput;
