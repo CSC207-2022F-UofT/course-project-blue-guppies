@@ -34,11 +34,11 @@ public class CreateTaskDsOutputData {
         this.completed = completed;
     }
 
-    public int getDay(){
+    public int getDayID(){
         return dayID;
     }
 
-    public void setDay(int dayID) {
+    public void setDayID(int dayID) {
         this.dayID = dayID;
     }
 }

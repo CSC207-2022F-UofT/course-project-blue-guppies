@@ -27,7 +27,7 @@ public class CreateTaskDataAccess extends WeekDataAccess implements CreateTaskDs
     @Override
     public void save(CreateTaskDsOutputData taskData) {
         ArrayList<DataAccessDay> days = super.getDays();
-        DataAccessDay referenceDay = days.get(taskData.getDay());
+        DataAccessDay referenceDay = days.get(taskData.getDayID());
         HashMap<String, DataAccessTask> tasks = referenceDay.getTasks();
         DataAccessTask newTask = new DataAccessTask(taskData.getTitle());
         tasks.put(newTask.getTitle(), newTask);
