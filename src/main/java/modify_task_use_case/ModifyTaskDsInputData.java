@@ -12,8 +12,8 @@ public class ModifyTaskDsInputData {
     private String newTitle;
     private String title;
 
-    public ModifyTaskDsInputData(int dayId, String newTitle, String title) {
-        this.dayID = dayId;
+    public ModifyTaskDsInputData(int dayID, String newTitle, String title) {
+        this.dayID = dayID;
         this.newTitle = newTitle;
         this.title = title;
     }

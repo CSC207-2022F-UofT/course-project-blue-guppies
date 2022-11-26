@@ -5,25 +5,23 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ModifyTaskPresenterTest {
-    //task and event instances (and maps) to be used across tests.
     private final static ModifyTaskOutputData outputData = new ModifyTaskOutputData(
             "Sample Task", 0
     );
     private final static String error = "ERROR!";
+    private final static ModifyTaskPresenter outputBoundary = new ModifyTaskPresenter();
 
     @Test
     public void testPrepareSuccessView(){
-        ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter();
         ModifyTaskOutputData response = outputBoundary.prepareSuccessView(
                 outputData
         );
-        assertEquals(0, response.getDayId());
+        assertEquals(0, response.getDayID());
         assertEquals("Sample Task", response.getTitle());
     }
 
     @Test
     public void testPrepareFailView(){
-        ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter();
         try {
             ModifyTaskOutputData response = outputBoundary.prepareFailView(
                     error

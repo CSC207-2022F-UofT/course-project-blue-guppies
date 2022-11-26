@@ -31,11 +31,11 @@ public class ModifyTaskDataAccess extends WeekDataAccess implements ModifyTaskDs
     public void save(ModifyTaskDsInputData dsInputData) {
         String title = dsInputData.getTitle();
         String newTitle = dsInputData.getNewTitle();
-        int dayId = dsInputData.getDayID();
+        int dayID = dsInputData.getDayID();
 
         /* Remove the association of the task to be modified to key title, and instead
         associate it with newTitle */
-        DataAccessDay day = this.getDays().get(dayId);
+        DataAccessDay day = this.getDays().get(dayID);
         HashMap<String, DataAccessTask> tasks = day.getTasks();
         DataAccessTask modifiedTask = tasks.remove(title);
         modifiedTask.setTitle(newTitle);
@@ -43,7 +43,7 @@ public class ModifyTaskDataAccess extends WeekDataAccess implements ModifyTaskDs
 
         // update the tasks for the given day
         day.setTasks(tasks);
-        this.days.set(dayId, day);
+        this.days.set(dayID, day);
         this.save();
     }
 }

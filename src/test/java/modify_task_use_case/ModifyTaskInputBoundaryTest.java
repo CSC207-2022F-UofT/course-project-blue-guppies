@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ModifyTaskInputBoundaryTest extends WeekDataAccess {
     private final static ModifyTaskPresenter presenter = new ModifyTaskPresenter();
@@ -27,14 +27,18 @@ public class ModifyTaskInputBoundaryTest extends WeekDataAccess {
         HashMap<String, DataAccessEvent> events = new HashMap<>();
         tasks.put("Sample Task", task);
         DataAccessDay day = new DataAccessDay(tasks, events);
-        this.days.set(0, day);
+        days.set(0, day);
 
         ModifyTaskOutputData outputData = inputBoundary.modifyTask(
                 inputData
         );
 
+        // Day 0 should not have a task named "Sample Task", and instead
+        // have "New Sample Task"
         assertEquals("New Sample Task", outputData.getTitle());
-        assertEquals(0, outputData.getDayId());
-        assertEquals("New Sample Task", task.getTitle());
+        assertEquals(0, outputData.getDayID());
+        DataAccessDay day0 = this.getDays().get(0);
+        assertFalse(day0.getTasks().containsKey("Sample Task"));
+        assertTrue(day0.getTasks().containsKey("New Sample Task"));
     }
 }

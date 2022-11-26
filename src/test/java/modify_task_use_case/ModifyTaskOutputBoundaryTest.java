@@ -17,7 +17,7 @@ public class ModifyTaskOutputBoundaryTest {
         ModifyTaskOutputData response = outputBoundary.prepareSuccessView(
                 outputData
         );
-        assertEquals(0, response.getDayId());
+        assertEquals(0, response.getDayID());
         assertEquals("Sample Task", response.getTitle());
     }
 

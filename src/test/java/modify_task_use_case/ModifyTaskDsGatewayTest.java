@@ -9,10 +9,11 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
-class ModifyTaskDataAccessTest extends WeekDataAccess {
-    private final static ModifyTaskDataAccess dsGateway = new ModifyTaskDataAccess();
+
+class ModifyTaskDsGatewayTest extends WeekDataAccess {
+    private final static ModifyTaskDsGateway dsGateway = new ModifyTaskDataAccess();
     private final static ModifyTaskDsInputData dsInputData = new ModifyTaskDsInputData(
-        0, "New Sample Task 1", "Sample Task 1"
+            0, "New Sample Task 1", "Sample Task 1"
     );
 
     @Test

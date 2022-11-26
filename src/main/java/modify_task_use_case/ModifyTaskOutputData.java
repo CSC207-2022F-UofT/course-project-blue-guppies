@@ -9,14 +9,14 @@ package modify_task_use_case;
 
 public class ModifyTaskOutputData {
     private String title;
-    private int dayId;
+    private int dayID;
 
-    public ModifyTaskOutputData(String title, int dayId) {
+    public ModifyTaskOutputData(String title, int dayID) {
         this.title = title;
-        this.dayId = dayId;
+        this.dayID = dayID;
     }
 
     String getTitle() { return this.title; }
 
-    int getDayId() { return this.dayId; }
+    int getDayID() { return this.dayID; }
 }

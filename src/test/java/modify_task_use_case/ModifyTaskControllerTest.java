@@ -13,6 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ModifyTaskControllerTest extends WeekDataAccess {
     private final static ModifyTaskPresenter outputBoundary = new ModifyTaskPresenter();
     private final static ModifyTaskDataAccess dsGateway = new ModifyTaskDataAccess();
+    private final static ModifyTaskInteractor inputBoundary = new ModifyTaskInteractor(
+            outputBoundary, dsGateway
+    );
+    private final static ModifyTaskController controller = new ModifyTaskController(inputBoundary);
     private final static int dayId = 0;
     private final static String newTitle = "New Sample Task";
     private final static String title = "Sample Task";
@@ -24,16 +28,19 @@ public class ModifyTaskControllerTest extends WeekDataAccess {
         HashMap<String, DataAccessEvent> events = new HashMap<>();
         tasks.put("Sample Task", task);
         DataAccessDay day = new DataAccessDay(tasks, events);
-        this.days.set(0, day);
+        days.set(0, day);
 
-        ModifyTaskInteractor inputBoundary = new ModifyTaskInteractor(
-                outputBoundary, dsGateway
-        );
-        ModifyTaskController controller = new ModifyTaskController(inputBoundary);
+
         ModifyTaskOutputData outputData = controller.modifyTask(
                 dayId, newTitle, title
         );
-        assertEquals(0, outputData.getDayId());
+
+        // Day 0 should not have a task named "Sample Task", and instead
+        // have "New Sample Task"
+        assertEquals(0, outputData.getDayID());
         assertEquals("New Sample Task", outputData.getTitle());
+        DataAccessDay day0 = this.getDays().get(0);
+        assertFalse(day0.getTasks().containsKey("Sample Task"));
+        assertTrue(day0.getTasks().containsKey("New Sample Task"));
     }
 }

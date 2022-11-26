@@ -24,7 +24,7 @@ public class ModifyTaskInteractor implements ModifyTaskInputBoundary {
     public ModifyTaskOutputData modifyTask(ModifyTaskInputData inputData) {
         if (dsGateway.taskExistsByTitle(inputData.getNewTitle(), inputData.getDayID())) {
             return outputBoundary.prepareFailView(
-                    "Task with name: " + inputData.getTitle() + " already exists for day " + inputData.getDayID()
+                    "Task with name: " + inputData.getNewTitle() + " already exists for day " + inputData.getDayID()
             );
         }
         ModifyTaskDsInputData dsInputData = new ModifyTaskDsInputData(

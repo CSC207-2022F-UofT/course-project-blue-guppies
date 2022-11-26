@@ -14,9 +14,9 @@ public class ModifyTaskController {
         this.inputBoundary = inputBoundary;
     }
 
-    ModifyTaskOutputData modifyTask(int dayId, String newTitle, String title) {
+    ModifyTaskOutputData modifyTask(int dayID, String newTitle, String title) {
         ModifyTaskInputData inputData = new ModifyTaskInputData(
-                dayId, newTitle, title
+                dayID, newTitle, title
         );
         return inputBoundary.modifyTask(inputData);
     }
