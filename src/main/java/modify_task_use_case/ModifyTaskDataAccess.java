@@ -43,7 +43,7 @@ public class ModifyTaskDataAccess extends WeekDataAccess implements ModifyTaskDs
 
         // update the tasks for the given day
         day.setTasks(tasks);
-        this.days.set(dayID, day);
-        this.save();
+        days.set(dayID, day);
+        super.save();
     }
 }
