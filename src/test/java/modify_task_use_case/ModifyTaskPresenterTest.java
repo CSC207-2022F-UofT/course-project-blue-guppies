@@ -16,7 +16,7 @@ class ModifyTaskPresenterTest {
             "Sample Task", 0
     );
     private final static String error = "ERROR!";
-    private final static ModifyTaskPresenter outputBoundary = new ModifyTaskPresenter();
+    private final static ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter();
 
     @Test
     public void testPrepareSuccessView(){

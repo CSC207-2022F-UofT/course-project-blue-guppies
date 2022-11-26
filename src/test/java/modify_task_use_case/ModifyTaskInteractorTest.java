@@ -10,24 +10,23 @@ package modify_task_use_case;
 import data_access.DataAccessDay;
 import data_access.DataAccessEvent;
 import data_access.DataAccessTask;
-import data_access.WeekDataAccess;
 
 import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ModifyTaskInteractorTest extends WeekDataAccess {
+class ModifyTaskInteractorTest {
     private final static ModifyTaskInputData inputData1 = new ModifyTaskInputData(
             0,"New Sample Task", "Sample Task"
     );
     private final static ModifyTaskInputData inputData2 = new ModifyTaskInputData(
             0,"Another Sample Task", "Sample Task"
     );
-
-    private final static ModifyTaskPresenter outputBoundary = new ModifyTaskPresenter();
-    private final static ModifyTaskDataAccess dsGateway = new ModifyTaskDataAccess();
-    private final static ModifyTaskInteractor inputBoundary = new ModifyTaskInteractor(
+    private final static ModifyTaskDataAccess dataAccess = new ModifyTaskDataAccess();
+    private final static ModifyTaskDsGateway dsGateway = dataAccess;
+    private final static ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter();
+    private final static ModifyTaskInputBoundary inputBoundary = new ModifyTaskInteractor(
             outputBoundary, dsGateway
     );
 
@@ -42,7 +41,7 @@ class ModifyTaskInteractorTest extends WeekDataAccess {
         tasks.put("Sample Task", task1);
         tasks.put("Another Sample Task", task2);
         DataAccessDay day = new DataAccessDay(tasks, events);
-        days.set(0, day);
+        dataAccess.getDays().set(0, day);
 
         // Cannot change the title of "Sample Task" to "Another Sample Task"
         // because a Task by that name already exists for day 0!
@@ -58,7 +57,7 @@ class ModifyTaskInteractorTest extends WeekDataAccess {
         }
 
         // Day 0 should continue to have a task called "Sample Task"
-        DataAccessDay day0 = this.getDays().get(0);
+        DataAccessDay day0 = dataAccess.getDays().get(0);
         assertTrue(day0.getTasks().containsKey("Sample Task"));
     }
 
@@ -70,6 +69,6 @@ class ModifyTaskInteractorTest extends WeekDataAccess {
         HashMap<String, DataAccessEvent > events = new HashMap<>();
         tasks.put("Sample Task", task);
         DataAccessDay day = new DataAccessDay(tasks, events);
-        days.set(0, day);
+        dataAccess.getDays().set(0, day);
     }
 }

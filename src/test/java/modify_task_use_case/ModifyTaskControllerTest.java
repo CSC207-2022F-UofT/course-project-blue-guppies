@@ -10,17 +10,17 @@ package modify_task_use_case;
 import data_access.DataAccessDay;
 import data_access.DataAccessEvent;
 import data_access.DataAccessTask;
-import data_access.WeekDataAccess;
 
 import java.util.HashMap;
 
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ModifyTaskControllerTest extends WeekDataAccess {
-    private final static ModifyTaskPresenter outputBoundary = new ModifyTaskPresenter();
-    private final static ModifyTaskDataAccess dsGateway = new ModifyTaskDataAccess();
-    private final static ModifyTaskInteractor inputBoundary = new ModifyTaskInteractor(
+public class ModifyTaskControllerTest {
+    private final static ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter();
+    private final static ModifyTaskDataAccess dataAccess = new ModifyTaskDataAccess();
+    private final static ModifyTaskDsGateway dsGateway = dataAccess;
+    private final static ModifyTaskInputBoundary inputBoundary = new ModifyTaskInteractor(
             outputBoundary, dsGateway
     );
     private final static ModifyTaskController controller = new ModifyTaskController(inputBoundary);
@@ -35,7 +35,7 @@ public class ModifyTaskControllerTest extends WeekDataAccess {
         HashMap<String, DataAccessEvent> events = new HashMap<>();
         tasks.put("Sample Task", task);
         DataAccessDay day = new DataAccessDay(tasks, events);
-        days.set(0, day);
+        dataAccess.getDays().set(0, day);
 
 
         ModifyTaskOutputData outputData = controller.modifyTask(
@@ -46,7 +46,7 @@ public class ModifyTaskControllerTest extends WeekDataAccess {
         // have "New Sample Task"
         assertEquals(0, outputData.getDayID());
         assertEquals("New Sample Task", outputData.getTitle());
-        DataAccessDay day0 = this.getDays().get(0);
+        DataAccessDay day0 = dataAccess.getDays().get(0);
         assertFalse(day0.getTasks().containsKey("Sample Task"));
         assertTrue(day0.getTasks().containsKey("New Sample Task"));
     }
