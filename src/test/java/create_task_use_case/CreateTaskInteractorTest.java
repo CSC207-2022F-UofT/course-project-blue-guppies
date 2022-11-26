@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CreateTaskInteractorTest {
-    private final static CreateTaskPresenter createTaskPresenter = new CreateTaskPresenter();
+    private final static CreateTaskOutputBoundary createTaskPresenter = new CreateTaskPresenter();
     private final static CreateTaskDataAccess createTaskDataAccess = new CreateTaskDataAccess();
     private final static TaskFactory taskFactory = new TaskFactory();
     @Test

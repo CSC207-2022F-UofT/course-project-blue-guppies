@@ -1,9 +1,9 @@
 /**
  * Create Task Interactor Class.
  * Author: Fardin Faruk
- * Modified By: N/A
+ * Modified By: Fardin Faruk
  * Created: Nov 19, 2022
- * Last Modified: N/A
+ * Last Modified: Nov 26, 2022
  */
 package create_task_use_case;
 
@@ -12,13 +12,13 @@ import entities.TaskFactory;
 
 public class CreateTaskInteractor implements CreateTaskInputBoundary {
     final CreateTaskDsGateway createTaskDsGateway;
-    final CreateTaskPresenter createTaskPresenter;
+    final CreateTaskOutputBoundary createTaskOutputBoundary;
     final TaskFactory taskFactory;
 
-    public CreateTaskInteractor(TaskFactory taskFactory, CreateTaskPresenter createTaskPresenter,
+    public CreateTaskInteractor(TaskFactory taskFactory, CreateTaskOutputBoundary createTaskOutputBoundary,
                                 CreateTaskDsGateway createTaskDsGateway){
         this.taskFactory = taskFactory;
-        this.createTaskPresenter = createTaskPresenter;
+        this.createTaskOutputBoundary = createTaskOutputBoundary;
         this.createTaskDsGateway = createTaskDsGateway;
     }
 
@@ -26,7 +26,7 @@ public class CreateTaskInteractor implements CreateTaskInputBoundary {
     @Override
     public CreateTaskOutputData create(CreateTaskInputData createTaskInputData) {
         if (createTaskDsGateway.existsByTitle(createTaskInputData.getTitle(), createTaskInputData.getDayID())){
-            return createTaskPresenter.prepareFailView("Task with the same name already exists.");
+            return createTaskOutputBoundary.prepareFailView("Task with the same name already exists.");
         }
         Task task = taskFactory.createTask(createTaskInputData.getTitle());
         CreateTaskDsOutputData createTaskDsData = new CreateTaskDsOutputData(task.getTitle(), task.getCompleted(),
@@ -36,6 +36,6 @@ public class CreateTaskInteractor implements CreateTaskInputBoundary {
         CreateTaskOutputData createTaskData = new CreateTaskOutputData(task.getTitle(), task.getCompleted(),
                 createTaskInputData.getDayID());
         System.out.println(createTaskData);
-        return createTaskPresenter.prepareSuccessView(createTaskData);
+        return createTaskOutputBoundary.prepareSuccessView(createTaskData);
     }
 }
