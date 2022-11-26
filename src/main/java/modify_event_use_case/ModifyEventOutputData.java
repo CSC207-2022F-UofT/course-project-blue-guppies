@@ -10,11 +10,11 @@ package modify_event_use_case;
 import java.time.LocalTime;
 
 public class ModifyEventOutputData {
-    private final String title;
-    private final int dayIndex;
-    private final String newTitle;
-    private final LocalTime newStartTime;
-    private final LocalTime newEndTime;
+    private String title;
+    private int dayIndex;
+    private String newTitle;
+    private LocalTime newStartTime;
+    private LocalTime newEndTime;
     /**
      *true if the modification was successful, false if not.
      */
@@ -22,7 +22,7 @@ public class ModifyEventOutputData {
     /**
      * if the modification was not successful, represents the reason it failed. Otherwise null.
      */
-    private String failureType = null;
+    private String failureMessage = null;
 
     public ModifyEventOutputData(String title, int dayIndex, String newTitle, LocalTime newStart, LocalTime newEnd){
         this.title = title;
@@ -60,11 +60,11 @@ public class ModifyEventOutputData {
         this.successfullyModified = successfullyModified;
     }
 
-    public String getFailureType() {
-        return failureType;
+    public String getFailureMessage() {
+        return failureMessage;
     }
 
-    public void setFailureType(String failureType) {
-        this.failureType = failureType;
+    public void setFailureMessage(String failureMessage) {
+        this.failureMessage = failureMessage;
     }
 }

@@ -10,11 +10,11 @@ package modify_event_use_case;
 import java.time.LocalTime;
 
 public class ModifyEventInputData {
-    private final String title;
-    private final int dayIndex;
-    private final String newTitle;
-    private final LocalTime newStartTime;
-    private final LocalTime newEndTime;
+    private String title;
+    private int dayIndex;
+    private String newTitle;
+    private LocalTime newStartTime;
+    private LocalTime newEndTime;
 
     /**
      * @param title - the current title of the event to be modified
