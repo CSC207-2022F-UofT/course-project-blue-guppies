@@ -1,5 +1,11 @@
 package complete_task_use_case;
-
+/**
+ * Complete Task Data Access Class.
+ * Author: Fardin Faruk
+ * Modified By: N/A
+ * Created: Nov 26, 2022
+ * Last Modified: N/A
+ */
 import data_access.DataAccessDay;
 import data_access.DataAccessTask;
 import data_access.WeekDataAccess;
