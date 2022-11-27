@@ -1,9 +1,9 @@
 /**
  * Create Task Presenter Class.
  * Author: Fardin Faruk
- * Modified By: N/A
+ * Modified By: Fardin Faruk
  * Created: Nov 19, 2022
- * Last Modified: N/A
+ * Last Modified: Nov 27, 2022
  */
 package create_task_use_case;
 
@@ -16,9 +16,10 @@ public class CreateTaskPresenter implements CreateTaskOutputBoundary {
     }
 
     @Override
-    public CreateTaskOutputData prepareFailView(String error) {
+    public CreateTaskOutputData prepareFailView(CreateTaskOutputData response, String error) {
         //View Model Update
-        //throw new CreateTaskFailed(error);
-        return null;
+        response.setSuccessfullyCreated(false);
+        response.setErrorMessage(error);
+        return response;
     }
 }

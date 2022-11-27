@@ -29,12 +29,6 @@ public class CreateTaskInputDataTest {
     @Test
     public void testGetDayID(){
         CreateTaskInputData outputData = new CreateTaskInputData("Office Hours", true, 3);
-        assertEquals(outputData.getDayID(), 3);
-    }
-    @Test
-    public void testSetDayID(){
-        CreateTaskInputData outputData = new CreateTaskInputData("Drawings", true, 2);
-        outputData.setDayID(1);
-        assertEquals(outputData.getDayID(), 1);
+        assertEquals(outputData.getDayIndex(), 3);
     }
 }

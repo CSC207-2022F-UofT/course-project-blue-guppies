@@ -1,9 +1,9 @@
 /**
  * Create Task Output Data Class.
  * Author: Fardin Faruk
- * Modified By: N/A
+ * Modified By: Fardin Faruk
  * Created: Nov 19, 2022
- * Last Modified: N/A
+ * Last Modified: Nov 27, 2022
  */
 package create_task_use_case;
 
@@ -12,30 +12,24 @@ public class CreateTaskOutputData {
     String title;
     boolean completed;
     boolean isSuccessfullyCreated;
-    int dayID;
+    int dayIndex;
+    String errorMessage;
 
 
-    public CreateTaskOutputData(String title, boolean completed, int dayID){
+    public CreateTaskOutputData(String title, boolean completed, int dayIndex, String errorMessage){
         this.title = title;
         this.completed = completed;
-        this.dayID = dayID;
+        this.dayIndex = dayIndex;
         this.isSuccessfullyCreated = false;
+        this.errorMessage = errorMessage;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public boolean getCompleted() {
         return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
     }
 
     public boolean isSuccessfullyCreated() {
@@ -46,11 +40,14 @@ public class CreateTaskOutputData {
         isSuccessfullyCreated = successfullyCreated;
     }
 
-    public int getDayID() {
-        return dayID;
+    public int getDayIndex() {
+        return dayIndex;
     }
 
-    public void setDayID(int dayID) {
-        this.dayID = dayID;
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

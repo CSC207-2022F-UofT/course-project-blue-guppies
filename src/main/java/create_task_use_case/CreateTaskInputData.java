@@ -1,9 +1,9 @@
 /**
  * Create Task Input Data Class.
  * Author: Fardin Faruk
- * Modified By: N/A
+ * Modified By: Fardin Faruk
  * Created: Nov 19, 2022
- * Last Modified: N/A
+ * Last Modified: Nov 27, 2022
  */
 package create_task_use_case;
 
@@ -11,12 +11,12 @@ public class CreateTaskInputData {
 
     private String title;
     private boolean completed;
-    private int dayID;
+    private int dayIndex;
 
-    public CreateTaskInputData(String title, boolean completed, int dayID){
+    public CreateTaskInputData(String title, boolean completed, int dayIndex){
         this.title = title;
         this.completed = completed;
-        this.dayID = dayID;
+        this.dayIndex = dayIndex;
         }
 
 
@@ -36,12 +36,8 @@ public class CreateTaskInputData {
         this.completed = completed;
     }
 
-    int getDayID(){
-        return dayID;
-    }
-
-    void setDayID(int dayID){
-        this.dayID = dayID;
+    int getDayIndex(){
+        return dayIndex;
     }
 
 }

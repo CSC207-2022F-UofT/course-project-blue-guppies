@@ -2,12 +2,23 @@ package create_task_use_case;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 public class CreateTaskPresenterTest {
     @Test
     public void TestPrepareSuccessView(){
-        CreateTaskOutputData createTaskOutputData = new CreateTaskOutputData("Test Task", false, 0);
+        CreateTaskOutputData createTaskOutputData = new CreateTaskOutputData("Test Task", false, 0, "");
         CreateTaskPresenter createTaskPresenter = new CreateTaskPresenter();
-        createTaskPresenter.prepareSuccessView(createTaskOutputData);
+        CreateTaskOutputData outputData = createTaskPresenter.prepareSuccessView(createTaskOutputData);
+        assertTrue(outputData.isSuccessfullyCreated);
     }
-    // Prepare Fail View does nothing to test for now, test cases will be updated upon GUI integration
+    @Test
+    public void TestPrepareFailView(){
+        CreateTaskOutputData createTaskOutputData = new CreateTaskOutputData("Test Task", false, 0, "");
+        CreateTaskPresenter createTaskPresenter = new CreateTaskPresenter();
+        CreateTaskOutputData outputData = createTaskPresenter.prepareFailView(createTaskOutputData,
+                "There already exists a task with name: 'Test Task' on Wednesday");
+        assertFalse(outputData.isSuccessfullyCreated);
+        assertEquals(outputData.getErrorMessage(),
+                "There already exists a task with name: 'Test Task' on Wednesday");
+    }
 }

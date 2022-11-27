@@ -5,22 +5,23 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CreateTaskControllerTest {
-    private final static CreateTaskPresenter createTaskPresenter = new CreateTaskPresenter();
-    private final static CreateTaskDataAccess createTaskDataAccess = new CreateTaskDataAccess();
+    private final static CreateTaskPresenter presenter = new CreateTaskPresenter();
+    private final static CreateTaskDataAccess dataAccess = new CreateTaskDataAccess();
     private final static TaskFactory taskFactory = new TaskFactory();
 
     @Test
     public void testCreateTask(){
-        CreateTaskInteractor createTaskInteractor = new CreateTaskInteractor(
-                taskFactory, createTaskPresenter, createTaskDataAccess
+        CreateTaskInteractor interactor = new CreateTaskInteractor(
+                taskFactory, presenter, dataAccess
         );
-        CreateTaskController createTaskController = new CreateTaskController(createTaskInteractor);
-        CreateTaskOutputData createTaskOutputData = createTaskController.createTask(
+        CreateTaskController controller = new CreateTaskController(interactor);
+        CreateTaskOutputData outputData = controller.createTask(
                 "Sample Task", false, 0
         );
-        assertEquals("Sample Task", createTaskOutputData.getTitle());
-        assertFalse(createTaskOutputData.getCompleted());
-        assertEquals(0, createTaskOutputData.getDayID());
-        assertTrue(createTaskOutputData.isSuccessfullyCreated());
+        assertEquals("Sample Task", outputData.getTitle());
+        assertFalse(outputData.getCompleted());
+        assertEquals(0, outputData.getDayIndex());
+        assertTrue(outputData.isSuccessfullyCreated());
+        assertTrue(dataAccess.existsByTitle("Sample Task", 0));
     }
 }

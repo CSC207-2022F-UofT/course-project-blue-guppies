@@ -1,23 +1,23 @@
 /**
  * Create Task Controller Class.
  * Author: Fardin Faruk
- * Modified By: N/A
+ * Modified By: Fardin Faruk
  * Created: Nov 19, 2022
- * Last Modified: N/A
+ * Last Modified: Nov 27, 2022
  */
 package create_task_use_case;
 
 public class CreateTaskController {
 
-    private final CreateTaskInputBoundary createTaskInput;
+    private final CreateTaskInputBoundary inputBoundary;
 
-    public CreateTaskController(CreateTaskInputBoundary createTaskInput) {
-        this.createTaskInput = createTaskInput;
+    public CreateTaskController(CreateTaskInputBoundary inputBoundary) {
+        this.inputBoundary = inputBoundary;
     }
 
-    CreateTaskOutputData createTask(String title, boolean completed, int dayID){
-        CreateTaskInputData taskInputData = new CreateTaskInputData(title, completed, dayID);
+    CreateTaskOutputData createTask(String title, boolean completed, int dayIndex){
+        CreateTaskInputData taskInputData = new CreateTaskInputData(title, completed, dayIndex);
 
-        return createTaskInput.create(taskInputData);
+        return inputBoundary.create(taskInputData);
     }
 }
