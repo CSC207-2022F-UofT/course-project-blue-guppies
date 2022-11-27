@@ -13,7 +13,7 @@ import data_access.DataAccessTask;
 
 import java.util.HashMap;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ModifyTaskControllerTest {
