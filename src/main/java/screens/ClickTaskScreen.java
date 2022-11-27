@@ -2,7 +2,6 @@ package screens;
 
 import complete_task_use_case.CompleteTaskController;
 import delete_task_use_case.DeleteTaskController;
-import modify_task_use_case.ModifyTaskController;
 
 import javax.swing.*;
 import java.awt.*;
