@@ -20,12 +20,12 @@ class ModifyEventControllerTest {
     @Test
     void testModify() {
         ModifyEventOutputData output = sampleController.modify("MAT237", 1, "Mat237",
-                LocalTime.parse("09:01"), LocalTime.parse("09:59:59"));
+                "09:01", "09:59");
         assertEquals("MAT237", output.getTitle());
         assertEquals("Mat237", output.getNewTitle());
         assertEquals(1, output.getDayIndex());
         assertEquals(LocalTime.parse("09:01:00"), output.getNewStartTime());
-        assertEquals(LocalTime.parse("09:59:59"), output.getNewEndTime());
+        assertEquals(LocalTime.parse("09:59:00"), output.getNewEndTime());
         assertTrue(output.getSuccessfullyModified());
         assertNull(output.getFailureMessage());
     }
@@ -34,7 +34,7 @@ class ModifyEventControllerTest {
     void testModifyTitleConflict(){
         DataAccessEvent originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
         ModifyEventOutputData output = sampleController.modify("Mat237", 2, "Sta247",
-                LocalTime.parse("09:00"), LocalTime.parse("09:59:59"));
+                "09:00", "09:59");
         assertFalse(output.getSuccessfullyModified());
         String failMessage = "The title Sta247 was already used for another event on Tuesday.";
         assertEquals(failMessage, output.getFailureMessage());
@@ -47,7 +47,7 @@ class ModifyEventControllerTest {
     void testModifyTimeConflict(){
         DataAccessEvent originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
         ModifyEventOutputData output = sampleController.modify("Mat237", 2, "Mat237",
-                LocalTime.parse("14:30"), LocalTime.parse("15:00"));
+                "14:30", "15:00");
         assertFalse(output.getSuccessfullyModified());
         String failMessage = "The new times for the event Mat237 conflict with another event on Tuesday.";
         assertEquals(failMessage, output.getFailureMessage());

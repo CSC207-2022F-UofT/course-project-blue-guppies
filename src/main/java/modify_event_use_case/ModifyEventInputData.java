@@ -7,14 +7,12 @@
  */
 package modify_event_use_case;
 
-import java.time.LocalTime;
-
 public class ModifyEventInputData {
-    private String title;
-    private int dayIndex;
-    private String newTitle;
-    private LocalTime newStartTime;
-    private LocalTime newEndTime;
+    private final String title;
+    private final int dayIndex;
+    private final String newTitle;
+    private final String newStartTime;
+    private final String newEndTime;
 
     /**
      * @param title - the current title of the event to be modified
@@ -23,7 +21,7 @@ public class ModifyEventInputData {
      * @param newStartTime - the new desired starting time
      * @param newEndTime - the new desired ending time
      */
-    public ModifyEventInputData(String title, int dayIndex, String newTitle, LocalTime newStartTime, LocalTime newEndTime){
+    public ModifyEventInputData(String title, int dayIndex, String newTitle, String newStartTime, String newEndTime){
         this.title = title;
         this.dayIndex = dayIndex;
         this.newTitle = newTitle;
@@ -43,11 +41,11 @@ public class ModifyEventInputData {
         return newTitle;
     }
 
-    public LocalTime getNewStartTime() {
+    public String getNewStartTime() {
         return newStartTime;
     }
 
-    public LocalTime getNewEndTime() {
+    public String getNewEndTime() {
         return newEndTime;
     }
 }

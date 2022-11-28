@@ -8,8 +8,6 @@
  */
 package modify_event_use_case;
 
-import java.time.LocalTime;
-
 public class ModifyEventController {
     private final ModifyEventInputBoundary inputBoundary;
 
@@ -27,7 +25,7 @@ public class ModifyEventController {
      * Precondition: newStart.isBefore(newEnd)
      * @return an instance of outputdata with the necessary information about the modification of the event
      */
-    public ModifyEventOutputData modify(String title, int dayIndex, String newTitle, LocalTime newStart, LocalTime newEnd){
+    public ModifyEventOutputData modify(String title, int dayIndex, String newTitle, String newStart, String newEnd){
         ModifyEventInputData inputData = new ModifyEventInputData(title, dayIndex, newTitle, newStart, newEnd);
         return inputBoundary.modify(inputData);
     }

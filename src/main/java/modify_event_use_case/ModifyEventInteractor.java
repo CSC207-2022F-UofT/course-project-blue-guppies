@@ -7,6 +7,8 @@
  */
 package modify_event_use_case;
 
+import java.time.LocalTime;
+
 public class ModifyEventInteractor implements ModifyEventInputBoundary{
     private final ModifyEventOutputBoundary outputBoundary;
     private final ModifyEventDsGateway dsGateway;
@@ -28,22 +30,34 @@ public class ModifyEventInteractor implements ModifyEventInputBoundary{
      */
     @Override
     public ModifyEventOutputData modify(ModifyEventInputData inputData){
+        if(!(inputData.getNewStartTime().matches("[01][0-9]:[0-5][0-9]|2[0-3]:[0-5][0-9]"))) {
+            ModifyEventOutputData outputData = new ModifyEventOutputData(inputData.getTitle(), inputData.getDayIndex(),
+                    inputData.getNewTitle(), null, null);
+            String failMessage = "The start and end times are not valid times!";
+            return outputBoundary.prepareFailView(outputData, failMessage);
+        }
+        LocalTime newStartTime = LocalTime.parse(inputData.getNewStartTime());
+        LocalTime newEndTime = LocalTime.parse(inputData.getNewEndTime());
         ModifyEventOutputData outputData = new ModifyEventOutputData(inputData.getTitle(), inputData.getDayIndex(),
-                inputData.getNewTitle(), inputData.getNewStartTime(), inputData.getNewEndTime());
+                inputData.getNewTitle(), newStartTime, newEndTime);
+        if(newStartTime.isAfter(newEndTime) || newStartTime.equals(newEndTime)){
+            String failMessage = "The new start time is not before the new end time";
+            return outputBoundary.prepareFailView(outputData, failMessage);
+        }
         if(!(inputData.getTitle().equals(inputData.getNewTitle())) &&
                 dsGateway.titleExistsInDay(inputData.getDayIndex(), inputData.getNewTitle())){
             String failMessage = "The title " + inputData.getNewTitle() + " was already used for another event on " +
                     DAYSOFWEEK[inputData.getDayIndex()] + ".";
             return outputBoundary.prepareFailView(outputData, failMessage);
         }
-        else if (dsGateway.isTimeConflict(inputData.getDayIndex(), inputData.getTitle(), inputData.getNewStartTime(),
-                inputData.getNewEndTime())){
+        else if (dsGateway.isTimeConflict(inputData.getDayIndex(), inputData.getTitle(), newStartTime,
+                newEndTime)){
             String failMessage = "The new times for the event " + inputData.getTitle() +
                     " conflict with another event on " + DAYSOFWEEK[inputData.getDayIndex()] + ".";
             return outputBoundary.prepareFailView(outputData, failMessage);
         }
         ModifyEventDsInputData dataAccessInput = new ModifyEventDsInputData(inputData.getDayIndex(), inputData.getTitle(),
-                inputData.getNewTitle(), inputData.getNewStartTime(), inputData.getNewEndTime());
+                inputData.getNewTitle(), newStartTime,newEndTime);
         dsGateway.save(dataAccessInput);
 
         return outputBoundary.prepareSuccessView(outputData);

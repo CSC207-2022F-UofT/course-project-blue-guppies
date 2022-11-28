@@ -19,13 +19,13 @@ class ModifyEventInteractorTest {
     @Test
     void testModify() {
         ModifyEventInputData inputData = new ModifyEventInputData("MAT237", 1, "Mat237",
-                LocalTime.parse("09:00:09"), LocalTime.parse("10:00:40"));
+                "09:00", "10:00");
         ModifyEventOutputData output = sampleInteractor.modify(inputData);
         assertEquals("MAT237", output.getTitle());
         assertEquals("Mat237", output.getNewTitle());
         assertEquals(1, output.getDayIndex());
-        assertEquals(LocalTime.parse("09:00:09"), output.getNewStartTime());
-        assertEquals(LocalTime.parse("10:00:40"), output.getNewEndTime());
+        assertEquals(LocalTime.parse("09:00"), output.getNewStartTime());
+        assertEquals(LocalTime.parse("10:00"), output.getNewEndTime());
         assertTrue(output.getSuccessfullyModified());
         assertNull(output.getFailureMessage());
     }
@@ -34,7 +34,7 @@ class ModifyEventInteractorTest {
     void testModifyTitleConflict(){
         DataAccessEvent originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
         ModifyEventInputData inputData = new ModifyEventInputData("Mat237", 2, "Sta247",
-                LocalTime.parse("09:00"), LocalTime.parse("10:00"));
+                "09:00","10:00");
         ModifyEventOutputData output = sampleInteractor.modify(inputData);
         assertFalse(output.getSuccessfullyModified());
         String failMessage = "The title Sta247 was already used for another event on Tuesday.";
@@ -48,7 +48,7 @@ class ModifyEventInteractorTest {
     void testModifyTimeConflict(){
         DataAccessEvent originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
         ModifyEventInputData inputData = new ModifyEventInputData("Mat237", 2, "Mat247",
-                LocalTime.parse("14:30"), LocalTime.parse("15:00"));
+                "14:30", "15:00");
         ModifyEventOutputData output = sampleInteractor.modify(inputData);
         assertFalse(output.getSuccessfullyModified());
         String failMessage = "The new times for the event Mat237 conflict with another event on Tuesday.";
