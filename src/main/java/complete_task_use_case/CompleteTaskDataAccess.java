@@ -1,4 +1,3 @@
-package complete_task_use_case;
 /**
  * Complete Task Data Access Class.
  * Author: Fardin Faruk
@@ -6,6 +5,8 @@ package complete_task_use_case;
  * Created: Nov 26, 2022
  * Last Modified: N/A
  */
+package complete_task_use_case;
+
 import data_access.DataAccessDay;
 import data_access.DataAccessTask;
 import data_access.WeekDataAccess;
@@ -16,8 +17,8 @@ public class CompleteTaskDataAccess extends WeekDataAccess implements CompleteTa
 
     @Override
     public void save(CompleteTaskDsInputData dsInputData) {
-        int DayID = dsInputData.getDayID();
-        DataAccessDay day = this.getDays().get(DayID);
+        int DayIndex = dsInputData.getDayIndex();
+        DataAccessDay day = this.getDays().get(DayIndex);
         HashMap<String, DataAccessTask> tasksList = day.getTasks();
         DataAccessTask task = tasksList.get(dsInputData.getTitle());
         task.setCompleted(!task.getCompleted());

@@ -9,13 +9,13 @@ package complete_task_use_case;
 
 public class CompleteTaskOutputData {
     String title;
-    int dayID;
+    int dayIndex;
     boolean isSuccessfullyCreated;
 
 
-    public CompleteTaskOutputData(String title, int dayID){
+    public CompleteTaskOutputData(String title, int dayIndex){
         this.title = title;
-        this.dayID = dayID;
+        this.dayIndex = dayIndex;
         this.isSuccessfullyCreated = false;
     }
 
@@ -27,14 +27,9 @@ public class CompleteTaskOutputData {
         this.title = title;
     }
 
-    public int getDayID() {
-        return dayID;
+    public int getDayIndex() {
+        return dayIndex;
     }
-
-    public void setDayID(int dayID) {
-        this.dayID = dayID;
-    }
-
     public boolean isSuccessfullyCreated() {
         return isSuccessfullyCreated;
     }

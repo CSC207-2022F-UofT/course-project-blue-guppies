@@ -7,4 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CompleteTaskControllerTest {
     private final static CompleteTaskOutputBoundary createTaskPresenter = new CompleteTaskPresenter();
     private final static CompleteTaskDataAccess completeTaskDataAccess = new CompleteTaskDataAccess();
+
+    @Test
+    public void testCompleteTask(){
+
+    }
+
 }

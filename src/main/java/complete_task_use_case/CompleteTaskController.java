@@ -14,8 +14,8 @@ public class CompleteTaskController {
         this.inputBoundary = inputBoundary;
     }
 
-    CompleteTaskOutputData completeTask(int dayID, String title){
-        CompleteTaskInputData inputData = new CompleteTaskInputData(dayID, title);
+    CompleteTaskOutputData completeTask(int dayIndex, String title){
+        CompleteTaskInputData inputData = new CompleteTaskInputData(dayIndex, title);
         return inputBoundary.completeTask(inputData);
     }
 

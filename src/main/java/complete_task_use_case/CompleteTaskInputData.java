@@ -8,20 +8,16 @@
 package complete_task_use_case;
 
 public class CompleteTaskInputData {
-    private int dayID;
+    private int dayIndex;
     private String title;
 
-    public CompleteTaskInputData(int dayID, String title){
-        this.dayID = dayID;
+    public CompleteTaskInputData(int dayIndex, String title){
+        this.dayIndex = dayIndex;
         this.title = title;
     }
 
-    public int getDayID() {
-        return dayID;
-    }
-
-    public void setDayID(int dayID) {
-        this.dayID = dayID;
+    public int getDayIndex() {
+        return dayIndex;
     }
 
     public String getTitle() {
