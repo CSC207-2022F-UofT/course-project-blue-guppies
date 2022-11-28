@@ -27,7 +27,7 @@ public class CreateTaskInputDataTest {
         assertTrue(inputData.getCompleted());
     }
     @Test
-    public void testGetDayID(){
+    public void testGetDayIndex(){
         CreateTaskInputData outputData = new CreateTaskInputData("Office Hours", true, 3);
         assertEquals(outputData.getDayIndex(), 3);
     }

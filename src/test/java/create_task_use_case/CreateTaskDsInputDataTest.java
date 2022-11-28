@@ -29,12 +29,12 @@ public class CreateTaskDsInputDataTest {
         assertFalse(outputData.getCompleted());
     }
     @Test
-    public void testGetDayID(){
+    public void testGetDayIndex(){
         CreateTaskDsInputData outputData = new CreateTaskDsInputData("Meal Prep", true, 0);
         assertEquals(outputData.getDayIndex(), 0);
     }
     @Test
-    public void testSetDayID(){
+    public void testSetDayIndex(){
         CreateTaskDsInputData outputData = new CreateTaskDsInputData("Meal Prep", true, 2);
         outputData.setDayIndex(4);
         assertEquals(outputData.getDayIndex(), 4);
