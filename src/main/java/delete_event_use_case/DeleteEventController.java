@@ -1,11 +1,12 @@
-package delete_event_use_case;
-
 /**
  * Delete Event Controller class.
  * @author : Khizer Ahmad
  * @created: November 19th 2022
- * @since : 2022-11-21, Mon.
+ * @since : 2022-11-28, Mon.
  **/
+
+package delete_event_use_case;
+
 public class DeleteEventController {
 
     private DeleteEventInputBoundary deleteEventInput;

@@ -15,12 +15,12 @@ public class DeleteEventControllerTest {
     private final static String eventTitle = "Event";
 
     @Test
-    public void testDeleteTask() {
+    public void testDeleteEvent() {
         DeleteEventInteractor inputBoundary = new DeleteEventInteractor(outputBoundary, dsGateway);
         DeleteEventController controller = new DeleteEventController(inputBoundary);
         DeleteEventOutputData outputData = controller.delete(eventTitle, dayIndex);
 
-        assertEquals(5, outputData.getDayIndex());
+        assertEquals(3, outputData.getDayIndex());
         assertEquals("Event", outputData.getLabel());
     }
 }

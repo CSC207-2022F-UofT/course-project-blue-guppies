@@ -8,4 +8,6 @@ package delete_event_use_case;
  **/
 public interface DeleteEventOutputBoundary {
     DeleteEventOutputData prepareSuccessView(DeleteEventOutputData eventOutputData);
+
+    DeleteEventOutputData prepareFailureView(DeleteEventOutputData eventOutputData, String errorMessage);
 }

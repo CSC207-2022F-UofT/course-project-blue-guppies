@@ -1,11 +1,11 @@
-package delete_event_use_case;
-
 /**
  * Delete Event Interactor class.
  * @author : Khizer Ahmad
  * @created: November 19th 2022
- * @since : 2022-11-21, Mon.
+ * @since : 2022-11-28, Mon.
  **/
+
+package delete_event_use_case;
 public class DeleteEventInteractor implements DeleteEventInputBoundary {
 
     private DeleteEventOutputBoundary outputBoundary;
@@ -21,15 +21,12 @@ public class DeleteEventInteractor implements DeleteEventInputBoundary {
     public DeleteEventOutputData delete(DeleteEventInputData inputData) {
         DeleteEventOutputData outputData = new DeleteEventOutputData(inputData.getDayIndex(), inputData.getEventTitle());
 
-//        if (!dsGateway.taskExists(inputData.getDayIndex(), inputData.getTaskTitle())) {
-//            outputData.setSuccess(false);
-//            outputData.setFailure("noTask");
-//            return outputBoundary.prepareFailView(outputData);
-//        }
-//        DeleteEveDataAccessInput dataAccessInput = new DeleteTaskDataAccessInput(
-//                inputData.getDayIndex(), inputData.getTaskTitle());
+        if (!dsGateway.eventExists(inputData.getDayIndex(), inputData.getEventTitle())) {
+            return outputBoundary.prepareFailureView(outputData, "The event does not exist.");
+        }
         dsGateway.save(outputData);
 
         return outputBoundary.prepareSuccessView(outputData);
+
     }
 }
