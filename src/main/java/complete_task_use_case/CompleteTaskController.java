@@ -8,7 +8,7 @@
 package complete_task_use_case;
 
 public class CompleteTaskController {
-    private CompleteTaskInputBoundary inputBoundary;
+    private final CompleteTaskInputBoundary inputBoundary;
 
     public CompleteTaskController(CompleteTaskInputBoundary inputBoundary){
         this.inputBoundary = inputBoundary;
