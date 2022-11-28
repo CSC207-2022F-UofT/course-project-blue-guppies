@@ -25,7 +25,8 @@ public class ModifyEventPresenter implements ModifyEventOutputBoundary{
      * @return outputData with successState changed to false
      */
     @Override
-    public ModifyEventOutputData prepareFailView(ModifyEventOutputData outputData) {
+    public ModifyEventOutputData prepareFailView(ModifyEventOutputData outputData, String failureMessage) {
+        outputData.setFailureMessage(failureMessage);
         outputData.setSuccessfullyModified(false);
         return outputData;
     }

@@ -2,14 +2,16 @@
  * Interactor for the Modify Event use case. Calls the dsGateway and Output Boundary to modify the event.
  * Author: Daniel Livshits
  * Created: Nov 19, 2022
- * Modified by:
- * Last Modified: Nov 19, 2022
+ * Modified by: Daniel Livshits
+ * Last Modified: Nov 27, 2022
  */
 package modify_event_use_case;
 
 public class ModifyEventInteractor implements ModifyEventInputBoundary{
     private final ModifyEventOutputBoundary outputBoundary;
     private final ModifyEventDsGateway dsGateway;
+
+    private final String[] DAYSOFWEEK = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
     public ModifyEventInteractor(ModifyEventOutputBoundary outputBoundary, ModifyEventDsGateway dsGateway){
         this.outputBoundary = outputBoundary;
@@ -30,14 +32,15 @@ public class ModifyEventInteractor implements ModifyEventInputBoundary{
                 inputData.getNewTitle(), inputData.getNewStartTime(), inputData.getNewEndTime());
         if(!(inputData.getTitle().equals(inputData.getNewTitle())) &&
                 dsGateway.titleExistsInDay(inputData.getDayIndex(), inputData.getNewTitle())){
-            outputData.setFailureMessage("The title " + inputData.getNewTitle() +
-                    " was already used for another event in that day.");
-            return outputBoundary.prepareFailView(outputData);
+            String failMessage = "The title " + inputData.getNewTitle() + " was already used for another event on " +
+                    DAYSOFWEEK[inputData.getDayIndex()] + ".";
+            return outputBoundary.prepareFailView(outputData, failMessage);
         }
         else if (dsGateway.isTimeConflict(inputData.getDayIndex(), inputData.getTitle(), inputData.getNewStartTime(),
                 inputData.getNewEndTime())){
-            outputData.setFailureMessage("There was a time conflict for the new times for this event.");
-            return outputBoundary.prepareFailView(outputData);
+            String failMessage = "The new times for the event " + inputData.getTitle() +
+                    " conflict with another event on " + DAYSOFWEEK[inputData.getDayIndex()] + ".";
+            return outputBoundary.prepareFailView(outputData, failMessage);
         }
         ModifyEventDsInputData dataAccessInput = new ModifyEventDsInputData(inputData.getDayIndex(), inputData.getTitle(),
                 inputData.getNewTitle(), inputData.getNewStartTime(), inputData.getNewEndTime());

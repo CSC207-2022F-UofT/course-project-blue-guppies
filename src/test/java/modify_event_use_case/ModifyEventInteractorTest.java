@@ -37,7 +37,7 @@ class ModifyEventInteractorTest {
                 LocalTime.parse("09:00"), LocalTime.parse("10:00"));
         ModifyEventOutputData output = sampleInteractor.modify(inputData);
         assertFalse(output.getSuccessfullyModified());
-        String failMessage = "The title Sta247 was already used for another event in that day.";
+        String failMessage = "The title Sta247 was already used for another event on Tuesday.";
         assertEquals(failMessage, output.getFailureMessage());
         assertFalse(output.getSuccessfullyModified());
         DataAccessEvent currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
@@ -51,7 +51,7 @@ class ModifyEventInteractorTest {
                 LocalTime.parse("14:30"), LocalTime.parse("15:00"));
         ModifyEventOutputData output = sampleInteractor.modify(inputData);
         assertFalse(output.getSuccessfullyModified());
-        String failMessage = "There was a time conflict for the new times for this event.";
+        String failMessage = "The new times for the event Mat237 conflict with another event on Tuesday.";
         assertEquals(failMessage, output.getFailureMessage());
         assertFalse(output.getSuccessfullyModified());
         DataAccessEvent currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");

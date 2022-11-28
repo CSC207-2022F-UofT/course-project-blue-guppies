@@ -20,8 +20,7 @@ class ModifyEventPresenterTest {
 
     @Test
     void testPrepareFailView() {
-        outputData.setFailureMessage("more testing is required!");
-        ModifyEventOutputData outputAfter = samplePresenter.prepareFailView(outputData);
+    ModifyEventOutputData outputAfter = samplePresenter.prepareFailView(outputData, "more testing is required!");
         assertEquals("Team Mtg", outputAfter.getTitle());
         assertEquals(6, outputAfter.getDayIndex());
         assertEquals("Blue Guppies Meeting", outputAfter.getNewTitle());
