@@ -16,8 +16,7 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        // TODO Initialize all use cases
-        // TODO Initialize all screens
+        // TODO Document everything
         DataAccess gateway = new DataAccess();
 
         // initialize create event classes
@@ -88,43 +87,5 @@ public class Main {
         WeekViewScreen view = new WeekViewScreen(screens, controllers);
         System.out.println("event 6 11:30 01:30 event title");
         System.out.println("task 3 task title");
-//
-//        // create calendar screen
-//        JFrame calendarScreen = new JFrame("Clean Calendar");
-//        calendarScreen.setLayout(new BorderLayout());
-//        JPanel p = new JPanel();
-//        p.add(new JLabel("To become the main calendar view"));
-//        calendarScreen.add(p, BorderLayout.CENTER);
-//        calendarScreen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-//
-//        // add a button to create a new event
-//        JButton addEvent = new JButton("New Event");
-//        addEvent.addActionListener(e -> createEventScreen.setVisible(true));
-//        p.add(addEvent);
-//
-//        // add a button to create a new task
-//        JButton addTask = new JButton("New Task");
-//        addTask.addActionListener(e -> createTaskScreen.setVisible(true));
-//        p.add(addTask);
-//
-//        // add a button ot modify a task.
-//        JButton modifyTask = new JButton("Modify Task");
-//        modifyTaskScreen.setDay(0);
-//        modifyTaskScreen.setOldTitle("clean house");
-//        modifyTask.addActionListener(e -> modifyTaskScreen.setVisible(true));
-//        p.add(modifyTask);
-//
-//
-//        JButton openTaskMenu = new JButton("Task menu");
-//        taskMenu.setTaskTitle("clean house");
-//        taskMenu.setDayId(0);
-//        openTaskMenu.addActionListener(e -> taskMenu.setVisible(true));
-//        p.add(openTaskMenu);
-//        calendarScreen.pack();
-//        calendarScreen.setVisible(true);
-
-
-
     }
 }

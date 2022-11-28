@@ -1,3 +1,4 @@
+// TODO Documentation
 package screens;
 
 import clear_all_use_case.ClearAllController;
@@ -33,6 +34,9 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
         JToolBar toolBar = new JToolBar("Still draggable");
         addButtons(toolBar);
 
+        // TODO setup 14 scroll panes attached to jpanels
+        // TODO event and task titles to left of scroll panes
+        // TODO add sample task and events and hook them up to ClickTaskScreen and ClickEventScreen
         //Create the text area used for output.  Request
         //enough space for 5 rows and 30 columns.
 //        textArea = new JTextArea(5, 30);
@@ -43,11 +47,24 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
         setPreferredSize(new Dimension(450, 130));
         add(toolBar, BorderLayout.PAGE_START);
         //add(scrollPane, BorderLayout.CENTER);
+        setVisible(true);
     }
 
     private void addButtons(JToolBar toolBar) {
         JButton newTask = new JButton("New Task");
         newTask.addActionListener(this);
+        newTask.setActionCommand("create task");
+        toolBar.add(newTask);
+
+        JButton newEvent = new JButton("New Event");
+        newEvent.addActionListener(this);
+        newEvent.setActionCommand("create event");
+        toolBar.add(newEvent);
+
+        JButton clear = new JButton("Clear Week");
+        clear.addActionListener(this);
+        clear.setActionCommand("clear all");
+        toolBar.add(clear);
     }
 
     public WeekViewScreen() {

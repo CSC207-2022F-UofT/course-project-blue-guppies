@@ -1,3 +1,4 @@
+// TODO documentation
 package screens;
 
 import delete_event_use_case.DeleteEventController;
@@ -11,6 +12,8 @@ public class ClickEventScreen extends JFrame implements ActionListener {
     private String eventTitle;
     private String startTime;
     private String endTime;
+
+    // TODO write ClickEventScreen
 
     public ClickEventScreen(ModifyEventScreen modifyEventScreen, DeleteEventController deleteEventController) {
     }

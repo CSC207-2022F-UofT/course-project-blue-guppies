@@ -136,6 +136,7 @@ public class CreateEventScreen extends FormScreen {
                 message = "Event successfully created";
             } else {
                 message = outputData.getErrorMessage();
+                // TODO check against Daniel's implementation of output data for this use case
             }
             JFrame messageBox = new JFrame();
             JOptionPane.showMessageDialog(messageBox, message);
@@ -161,7 +162,7 @@ public class CreateEventScreen extends FormScreen {
         daysOfTheWeekRadioButtons[0].setSelected(true);
     }
 
-    protected String getSelectedDay() {
+    private String getSelectedDay() {
         for (JRadioButton radioButton: daysOfTheWeekRadioButtons) {
             if (radioButton.isSelected()) {
                 return radioButton.getText();

@@ -103,6 +103,7 @@ public class CreateTaskScreen extends FormScreen{
 
             // call controller
             CreateTaskOutputData outputData = createTaskController.create(day, title.getText());
+            // TODO check my controller against Fardin's
 
             String message;
             if (outputData.isSuccessfullyCreated()) {
@@ -110,6 +111,7 @@ public class CreateTaskScreen extends FormScreen{
                 this.setVisible(false);
                 message = "Task successfully created";
             } else {
+                // TODO update message with Fardin's finalized use case and output data
                 message = "A task with the same title already exists on " + day;
             }
             JFrame messageBox = new JFrame();
@@ -135,7 +137,7 @@ public class CreateTaskScreen extends FormScreen{
         daysOfTheWeekRadioButtons[0].setSelected(true);
     }
 
-    protected String getSelectedDay() {
+    private String getSelectedDay() {
         for (JRadioButton radioButton: daysOfTheWeekRadioButtons) {
             if (radioButton.isSelected()) {
                 return radioButton.getText();
