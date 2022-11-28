@@ -3,7 +3,7 @@
  * Author: Ricky Fung
  * Modified By: Ricky Fung
  * Created: Nov 19, 2022
- * Last Modified: Nov 21, 2022
+ * Last Modified: Nov 28, 2022
  */
 package delete_task_use_case;
 
@@ -14,11 +14,11 @@ import java.util.HashMap;
 
 public class DeleteTaskDataAccess extends WeekDataAccess implements DeleteTaskDsGateway {
     @Override
-    public void save(DeleteTaskDataAccessInput dataAccessInput) {
-        DataAccessDay day = super.getDays().get(dataAccessInput.getDayIndex());
+    public void save(DeleteTaskDsInputData dataAccessInput) {
+        DataAccessDay day = days.get(dataAccessInput.getDayIndex());
         HashMap<String, DataAccessTask> tasks = day.getTasks();
-        tasks.remove(dataAccessInput.getTaskTitle());
+        DataAccessTask deleted = tasks.remove(dataAccessInput.getTaskTitle());
 
-        super.save();
+        this.save();
     }
 }

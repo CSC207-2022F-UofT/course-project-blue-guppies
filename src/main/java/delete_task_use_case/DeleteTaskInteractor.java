@@ -3,7 +3,7 @@
  * Author: Ricky Fung
  * Modified By: Ricky Fung
  * Created: Nov 19, 2022
- * Last Modified: Nov 19, 2022
+ * Last Modified: Nov 28, 2022
  */
 package delete_task_use_case;
 
@@ -21,7 +21,7 @@ public class DeleteTaskInteractor implements DeleteTaskInputBoundary {
     @Override
     public DeleteTaskOutputData deleteTask(DeleteTaskInputData inputData) {
         DeleteTaskOutputData outputData = new DeleteTaskOutputData(inputData.getDayIndex(), inputData.getTaskTitle());
-        DeleteTaskDataAccessInput dataAccessInput = new DeleteTaskDataAccessInput(
+        DeleteTaskDsInputData dataAccessInput = new DeleteTaskDsInputData(
                 inputData.getDayIndex(), inputData.getTaskTitle());
         dsGateway.save(dataAccessInput);
 

@@ -8,12 +8,12 @@ class DeleteTaskPresenterTest {
             5, "Task");
 
     @Test
-    public void testPrepareSuccessView() {
+    void testPrepareSuccessView() {
         DeleteTaskOutputBoundary outputBoundary = new DeleteTaskPresenter();
         DeleteTaskOutputData response = outputBoundary.prepareSuccessView(success);
 
         assertTrue(response.getSuccess());
-        assertEquals(5, response.getInputDay());
-        assertEquals("Task", response.getLabel());
+        assertEquals(5, response.getDayIndex());
+        assertEquals("Task", response.getTaskTitle());
     }
 }

@@ -3,26 +3,26 @@
  * Author: Ricky Fung
  * Modified By: Ricky Fung
  * Created: Nov 19, 2022
- * Last Modified: Nov 21, 2022
+ * Last Modified: Nov 28, 2022
  */
 package delete_task_use_case;
 
 public class DeleteTaskOutputData {
-    private final String label;
-    private final int inputDay;
-    private boolean success = true;
+    private final String taskTitle;
+    private final int dayIndex;
+    private boolean success = false;
 
-    public DeleteTaskOutputData(int inputDay, String label) {
-        this.inputDay = inputDay;
-        this.label = label;
+    public DeleteTaskOutputData(int dayIndex, String taskTitle) {
+        this.dayIndex = dayIndex;
+        this.taskTitle = taskTitle;
     }
 
-    int getInputDay() {
-        return inputDay;
+    int getDayIndex() {
+        return dayIndex;
     }
 
-    String getLabel() {
-        return label;
+    String getTaskTitle() {
+        return taskTitle;
     }
 
     public boolean getSuccess() {

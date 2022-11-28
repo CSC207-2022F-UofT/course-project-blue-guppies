@@ -15,10 +15,10 @@ class DeleteTaskInteractorTest extends WeekDataAccess {
             5, "Task");
 
     private final static DeleteTaskPresenter outputBoundary = new DeleteTaskPresenter();
-    private final static DeleteTaskDataAccess dsGateway = new DeleteTaskDataAccess();
+    private final static DeleteTaskDataAccess dataAccess = new DeleteTaskDataAccess();
 
     @Test
-    public void testDeleteTaskInteractor() {
+    void testDeleteTaskInteractor() {
         DataAccessTask task = new DataAccessTask("Task");
         HashMap<String, DataAccessTask> tasks = new HashMap<>();
         HashMap<String, DataAccessEvent> events = new HashMap<>();
@@ -26,11 +26,11 @@ class DeleteTaskInteractorTest extends WeekDataAccess {
         DataAccessDay day = new DataAccessDay(tasks, events);
         WeekDataAccess.days.set(5, day);
 
-        DeleteTaskInputBoundary inputBoundary = new DeleteTaskInteractor(outputBoundary, dsGateway);
+        DeleteTaskInputBoundary inputBoundary = new DeleteTaskInteractor(outputBoundary, dataAccess);
         DeleteTaskOutputData outputData = inputBoundary.deleteTask(inputData);
 
-        assertEquals(5, outputData.getInputDay());
-        assertEquals("Task", outputData.getLabel());
+        assertEquals(5, outputData.getDayIndex());
+        assertEquals("Task", outputData.getTaskTitle());
         assertTrue(day.getTasks().isEmpty());
         assertTrue(outputData.getSuccess());
     }
