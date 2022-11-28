@@ -24,7 +24,7 @@ public class WeekViewScreen extends JFrame implements WindowListener {
     public WeekViewScreen(Object[] controllers) {
         super();
         setTitle("Clean Calendar");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addWindowListener(this);
 
         //setting the bounds for the JFrame
         setBounds(0,0, WIDTH, HEIGHT);
@@ -81,6 +81,16 @@ public class WeekViewScreen extends JFrame implements WindowListener {
     @Override
     public void windowClosing(WindowEvent e) {
         // TODO: Are you sure? window
+        JFrame f = new JFrame();
+        int confirmed = JOptionPane.showConfirmDialog(null,
+                "Are you sure you want to exit the program?", "Exit Program Message Box",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirmed == JOptionPane.YES_OPTION) {
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        } else {
+            this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        }
     }
 
     /**
