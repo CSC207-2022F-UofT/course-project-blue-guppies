@@ -4,7 +4,7 @@ import entities.EventFactory;
 
 public class CreateEventInteractor implements CreateEventInputBoundary {
 
-    public CreateEventInteractor(CreateEventDataAccess gateway,
+    public CreateEventInteractor(CreateEventDsGateway gateway,
                                  CreateEventOutputBoundary createEventPresenter,
                                  EventFactory eventFactory) {
 

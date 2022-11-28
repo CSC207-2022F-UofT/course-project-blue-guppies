@@ -2,13 +2,13 @@ package create_event_use_case;
 
 import java.time.LocalTime;
 
-public class CreateEventOutputData {
+public class CreateEventDsInputData {
     private String title;
     private LocalTime startTime;
     private LocalTime endTime;
     private int dayIndex;
 
-    public CreateEventOutputData(String title, LocalTime startTime, LocalTime endTime, int dayIndex) {
+    public CreateEventDsInputData(String title, LocalTime startTime, LocalTime endTime, int dayIndex) {
         this.title = title;
         this.startTime = startTime;
         this.endTime = endTime;
