@@ -1,13 +1,18 @@
 package create_event_use_case;
 
-public class CreateEventController {
-    private final CreateEventInputBoundary createEventInteractor;
+import java.time.LocalTime;
 
-    public CreateEventController(CreateEventInputBoundary createEventInteractor) {
-        this.createEventInteractor = createEventInteractor;
+public class CreateEventController {
+    private final CreateEventInputBoundary inputBoundary;
+
+    public CreateEventController(CreateEventInputBoundary inputBoundary) {
+        this.inputBoundary = inputBoundary;
     }
 
-    public void create(String day, String text, String text1, String text2) {
-
+    public void create(String title, LocalTime startTime, LocalTime endTime, int dayIndex) {
+        CreateEventInputData inputData = new CreateEventInputData(
+                title, startTime, endTime, dayIndex
+        );
+        return inputBoundary.create(inputData);
     }
 }
