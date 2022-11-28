@@ -4,9 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
 
 public class WeekViewScreen extends JFrame implements WindowListener {
-    //TODO write WeekViewClass
+    public static final int HEIGHT = 550;
+    public static final int WIDTH = 1100;
+    ArrayList<JScrollPane> panels = new ArrayList<JScrollPane>();
     /*
      * - constructor
      * - week with 7 days
@@ -22,50 +25,41 @@ public class WeekViewScreen extends JFrame implements WindowListener {
         super();
         setTitle("Clean Calendar");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(null);
+
         //setting the bounds for the JFrame
-        setBounds(100,100,1000,550);
-        Container c=getContentPane();
-        //Creating a JPanel for the JFrame
-        JPanel panel = halfDayPanel("Buttons/header", 0, 0, 1000, 0, 100, Color.yellow, 0);
+        setBounds(0,0, WIDTH, HEIGHT);
+        Container c = getContentPane();
+        JPanel panel = new JPanel();
+        panel.setBounds(0, 0, WIDTH, HEIGHT / 5);
+        panel.setBackground(Color.white);
         c.add(panel);
 
-        JPanel sundayTop = halfDayPanel("sunday top", 39, 100 ,100, 100, 200, Color.green, 20);
-        c.add(sundayTop);
-        JPanel sundayBottom = halfDayPanel("sunday bottom", 39, 300 ,100, 100, 200, Color.blue, 20);
-        c.add(sundayBottom);
-
-        JPanel mondayTop = halfDayPanel("monday top", 176, 100 ,100, 100, 200, Color.blue, 20);
-        c.add(mondayTop);
-        JPanel mondayBottom = halfDayPanel("monday bottom", 176, 300 ,100, 100, 200, Color.green, 20);
-        c.add(mondayBottom);
-
-        JPanel tuesdayTop = halfDayPanel("tuesday top", 313, 100 ,100, 100, 200, Color.green, 20);
-        c.add(tuesdayTop);
-        JPanel tuesdayBottom = halfDayPanel("tuesday bottom", 313, 300 ,100, 100, 200, Color.blue, 20);
-        c.add(tuesdayBottom);
-
-        JPanel wednesdayTop = halfDayPanel("wednesday top", 450, 100 ,100, 100, 200, Color.blue, 20);
-        c.add(wednesdayTop);
-        JPanel wednesdayBottom = halfDayPanel("wednesday bottom", 450, 300 ,100, 100, 200, Color.green, 20);
-        c.add(wednesdayBottom);
-
-        // TODO make positioning relative to variables. like make a window width variable and such
-        // TODO add rest of days
+        for (int i = 0; i < 7; i++) {
+            panels.add(halfDayPanel(i, false));
+            panels.add(halfDayPanel(i, true));
+        }
+        for (JScrollPane p: panels) {
+            c.add(p);
+        }
 
         setVisible(true);
 
     }
 
-    private static JPanel halfDayPanel(String title, int x, int y, int width, int width1, int height, Color blue, int x1) {
-        JPanel panel=new JPanel();
+    private static JScrollPane halfDayPanel(int dayIndex, boolean isEvent) {
+        int width = WIDTH / 7;
+        int height = 2 * HEIGHT / 5;
+        int y = (isEvent) ? height + height / 2 : height / 2;
+        int x = dayIndex * width;
+        JPanel panel = new JPanel();
         panel.setLayout(null);
-        JLabel labelM1=new JLabel(title);
-        labelM1.setBounds(x1,0, width, height);
-        panel.add(labelM1);
-        panel.setBackground(blue);
+        panel.setBorder(BorderFactory.createLineBorder(Color.black));
         panel.setBounds(x, y, width, height);
-        return panel;
+        panel.add(new JLabel("Test"));
+        JScrollPane scrollPane = new JScrollPane(panel);
+        panel.setAutoscrolls(true);
+        scrollPane.setBounds(x, y, width, height);
+        return scrollPane;
     }
 
     /**
@@ -154,4 +148,5 @@ public class WeekViewScreen extends JFrame implements WindowListener {
     public void windowDeactivated(WindowEvent e) {
 
     }
+
 }
