@@ -34,9 +34,7 @@ public class DeleteEventOutputData {
     public void setSuccess(boolean success) {
         this.success = success;
     }
-    public String getErrorMessage() {
-        return errorMessage;
-    }
+
     public void setErrorMessage(String message) {
         this.errorMessage = message;
     }

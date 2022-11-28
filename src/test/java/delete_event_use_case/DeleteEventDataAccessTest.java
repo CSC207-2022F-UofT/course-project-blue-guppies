@@ -24,6 +24,6 @@ class DeleteEventDataAccessTest {
     void testSave() {
         DeleteEventOutputData outputData = new DeleteEventOutputData(1, "MAT237");
         dataAccess.save(outputData);
-        assertEquals("MAT237", dataAccess.getDays().get(1).getEvents().get("MAT237").getTitle());
+        assertFalse(dataAccess.getDays().get(1).getEvents().containsKey("MAT237"));
     }
 }
