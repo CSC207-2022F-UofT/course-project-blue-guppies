@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteEventInteractorTest extends WeekDataAccess {
     private final static DeleteEventInputData inputData = new DeleteEventInputData(
-            5, "Task");
+            5, "Event");
 
     private final static DeleteEventPresenter outputBoundary = new DeleteEventPresenter();
     private final static DeleteEventDataAccess dsGateway = new DeleteEventDataAccess();
