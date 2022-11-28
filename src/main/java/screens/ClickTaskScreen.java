@@ -12,7 +12,7 @@ public class ClickTaskScreen extends JFrame implements ActionListener {
     ModifyTaskScreen modifyTaskScreen;
     DeleteTaskController deleteTaskController;
     CompleteTaskController completeTaskController;
-    int dayId;
+    int dayIndex;
     String taskTitle;
 
     public ClickTaskScreen(ModifyTaskScreen modifyTaskScreen, DeleteTaskController deleteTaskController,
@@ -49,25 +49,25 @@ public class ClickTaskScreen extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if ("complete".equals(e.getActionCommand())) {
-            completeTaskController.complete(dayId, taskTitle);
+            completeTaskController.complete(dayIndex, taskTitle);
         } else if ("modify".equals(e.getActionCommand())) {
             modifyTaskScreen.setOldTitle(taskTitle);
-            modifyTaskScreen.setDay(dayId);
+            modifyTaskScreen.setDay(dayIndex);
             modifyTaskScreen.setVisible(true);
         } else if ("delete".equals(e.getActionCommand())) {
-            Frame confirm = new JFrame();
-            int x = JOptionPane.showOptionDialog(confirm, "Are you sure you want to delete this task?",
-                    "Delete Task", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
-                    new String[] {"Yes", "Cancel"}, "Yes");
-            if (x == 0) {
-                deleteTaskController.deleteTask(dayId, taskTitle);
+            int confirmed = JOptionPane.showConfirmDialog(null,
+                    "Are you sure you want to delete this task?", "Delete Task Message Box",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirmed == JOptionPane.YES_OPTION) {
+                deleteTaskController.deleteTask(dayIndex, taskTitle);
             }
         }
 
     }
 
-    public void setDayId(int dayId) {
-        this.dayId = dayId;
+    public void setDayIndex(int dayIndex) {
+        this.dayIndex = dayIndex;
     }
 
     public void setTaskTitle(String taskTitle) {

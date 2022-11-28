@@ -1,27 +1,56 @@
 package screens;
 
+import clear_all_use_case.ClearAllController;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.util.Map;
 
-public class WeekViewScreen extends JFrame implements WindowListener {
-    public static final int HEIGHT = 550;
-    public static final int WIDTH = 1100;
-    ArrayList<JScrollPane> panels = new ArrayList<JScrollPane>();
-    /*
-     * - constructor
-     * - week with 7 days
-     *    - tasks and events separated
-     * - clear all button
-     * - New task button
-     * - new event button
-     * - click on a task and get three options: modify, mark as completed, and delete
-     * - click on an event and get two options: modify and delete
-     */
+public class WeekViewScreen extends JFrame implements WindowListener, ActionListener {
+    private static final int HEIGHT = 550;
+    private static final int WIDTH = 1100;
+    private Map<String, Object> controllers;
+    private Map<String, JFrame> screens;
+    private ArrayList<JScrollPane> panels = new ArrayList<JScrollPane>();
 
-    public WeekViewScreen(Object[] controllers) {
+
+    public WeekViewScreen(Map<String, JFrame> screens, Map<String, Object> controllers) {
+        super();
+        setTitle("Clean Calendar");
+        addWindowListener(this);
+
+        this.controllers = controllers;
+        this.screens = screens;
+
+        JPanel panel = new JPanel(new BorderLayout());
+
+        //Create the toolbar.
+        JToolBar toolBar = new JToolBar("Still draggable");
+        addButtons(toolBar);
+
+        //Create the text area used for output.  Request
+        //enough space for 5 rows and 30 columns.
+//        textArea = new JTextArea(5, 30);
+//        textArea.setEditable(false);
+//        JScrollPane scrollPane = new JScrollPane(textArea);
+
+        //Lay out the main panel.
+        setPreferredSize(new Dimension(450, 130));
+        add(toolBar, BorderLayout.PAGE_START);
+        //add(scrollPane, BorderLayout.CENTER);
+    }
+
+    private void addButtons(JToolBar toolBar) {
+        JButton newTask = new JButton("New Task");
+        newTask.addActionListener(this);
+    }
+
+    public WeekViewScreen() {
         super();
         setTitle("Clean Calendar");
         addWindowListener(this);
@@ -63,6 +92,38 @@ public class WeekViewScreen extends JFrame implements WindowListener {
     }
 
     /**
+     * Invoked when an action occurs.
+     *
+     * @param e the event to be processed
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("create event")) {
+            screens.get("create event").setVisible(true);
+        } else if (e.getActionCommand().equals("create task")) {
+            screens.get("create task").setVisible(true);
+        } else if (e.getActionCommand().equals("clear all")) {
+            int confirmed = JOptionPane.showConfirmDialog(null,
+                    "Are you sure you want to clear this week?", "Clear Week Message Box",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirmed == JOptionPane.YES_OPTION) {
+                ((ClearAllController)controllers.get("clear all")).clearAll();
+            }
+        } else if (e.getActionCommand().contains("event")) {
+            ((ClickEventScreen)screens.get("click event")).setDayIndex(e.getActionCommand().charAt(6) - 48);
+            ((ClickEventScreen)screens.get("click event")).setStartTime(e.getActionCommand().substring(8,13));
+            ((ClickEventScreen)screens.get("click event")).setEndTime(e.getActionCommand().substring(14,19));
+            ((ClickEventScreen)screens.get("click event")).setEventTitle(e.getActionCommand().substring(20));
+            screens.get("click event").setVisible(true);
+        } else if (e.getActionCommand().contains("task")) {
+            ((ClickTaskScreen)screens.get("click task")).setDayIndex(e.getActionCommand().charAt(5) - 48);
+            ((ClickTaskScreen)screens.get("click task")).setTaskTitle(e.getActionCommand().substring(7));
+            screens.get("click task").setVisible(true);
+        }
+    }
+
+    /**
      * Invoked the first time a window is made visible.
      *
      * @param e the event to be processed
@@ -80,8 +141,6 @@ public class WeekViewScreen extends JFrame implements WindowListener {
      */
     @Override
     public void windowClosing(WindowEvent e) {
-        // TODO: Are you sure? window
-        JFrame f = new JFrame();
         int confirmed = JOptionPane.showConfirmDialog(null,
                 "Are you sure you want to exit the program?", "Exit Program Message Box",
                 JOptionPane.YES_NO_OPTION);
