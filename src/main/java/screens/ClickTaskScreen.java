@@ -10,15 +10,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ClickTaskScreen extends JFrame implements ActionListener {
-    ModifyTaskScreen modifyTaskScreen;
-    DeleteTaskController deleteTaskController;
+    private final ModifyTaskScreen modifyTaskScreen;
+    private final DeleteTaskController deleteTaskController;
     CompleteTaskController completeTaskController;
     int dayIndex;
     String taskTitle;
 
     public ClickTaskScreen(ModifyTaskScreen modifyTaskScreen, DeleteTaskController deleteTaskController,
                            CompleteTaskController completeTaskController) {
-        super("Menu");
+        super("Task Menu");
         this.modifyTaskScreen = modifyTaskScreen;
         this.deleteTaskController = deleteTaskController;
         this.completeTaskController = completeTaskController;
@@ -53,7 +53,7 @@ public class ClickTaskScreen extends JFrame implements ActionListener {
             completeTaskController.complete(dayIndex, taskTitle);
         } else if ("modify".equals(e.getActionCommand())) {
             modifyTaskScreen.setOldTitle(taskTitle);
-            modifyTaskScreen.setDay(dayIndex);
+            modifyTaskScreen.setDayIndex(dayIndex);
             modifyTaskScreen.setVisible(true);
         } else if ("delete".equals(e.getActionCommand())) {
             int confirmed = JOptionPane.showConfirmDialog(null,

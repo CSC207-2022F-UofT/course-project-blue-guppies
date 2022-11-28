@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 public class ModifyTaskScreen extends FormScreen{
     private final ModifyTaskController modifyTaskController;
     private String oldTitle = "";
-    private int day = 0;
+    private int dayIndex = 0;
 
     /**
      * Creates a JPanel with a JTextField and two JButtons
@@ -44,7 +44,7 @@ public class ModifyTaskScreen extends FormScreen{
     protected void resetForm() {
         this.oldTitle = "";
         this.title.setText("");
-        this.day = 0;
+        this.dayIndex = 0;
     }
 
     /**
@@ -56,11 +56,11 @@ public class ModifyTaskScreen extends FormScreen{
             System.out.println("modify");
             System.out.println("new title: " + title.getText());
             System.out.println("old title: " + this.oldTitle);
-            System.out.println("day: " + day);
+            System.out.println("day: " + dayIndex);
 
             String message;
             try {
-                modifyTaskController.modifyTask(day, title.getText(), this.oldTitle);
+                modifyTaskController.modifyTask(dayIndex, title.getText(), this.oldTitle);
                 message = "Task successfully modified";
                 resetForm();
                 this.setVisible(false);
@@ -86,7 +86,7 @@ public class ModifyTaskScreen extends FormScreen{
         this.title.setText(this.oldTitle);
     }
 
-    public void setDay(int day) {
-        this.day = day;
+    public void setDayIndex(int dayIndex) {
+        this.dayIndex = dayIndex;
     }
 }

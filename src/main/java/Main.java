@@ -87,5 +87,7 @@ public class Main {
         WeekViewScreen view = new WeekViewScreen(screens, controllers);
         System.out.println("event 6 11:30 01:30 event title");
         System.out.println("task 3 task title");
+
+        modifyEventScreen.setVisible(true);
     }
 }
