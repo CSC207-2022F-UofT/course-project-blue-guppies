@@ -16,13 +16,13 @@ import java.util.Objects;
 
 public class ModifyEventDataAccess extends WeekDataAccess implements ModifyEventDsGateway{
     @Override
-    public void save(ModifyEventDsInputData dataAccessInput){
-        HashMap<String, DataAccessEvent> eventsToChange = days.get(dataAccessInput.getDayIndex()).getEvents();
-        DataAccessEvent eventToChange = eventsToChange.get(dataAccessInput.getTitle());
-        DataAccessEvent newEvent = new DataAccessEvent(dataAccessInput.getNewTitle(), dataAccessInput.getNewStartTime(),
-                dataAccessInput.getNewEndTime());
+    public void save(ModifyEventDsInputData dsInputData){
+        HashMap<String, DataAccessEvent> eventsToChange = days.get(dsInputData.getDayIndex()).getEvents();
+        DataAccessEvent eventToChange = eventsToChange.get(dsInputData.getTitle());
+        DataAccessEvent newEvent = new DataAccessEvent(dsInputData.getNewTitle(), dsInputData.getNewStartTime(),
+                dsInputData.getNewEndTime());
         eventsToChange.remove(eventToChange.getTitle());
-        eventsToChange.put(dataAccessInput.getNewTitle(), newEvent);
+        eventsToChange.put(dsInputData.getNewTitle(), newEvent);
         super.save();
     }
 
