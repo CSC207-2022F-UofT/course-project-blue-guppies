@@ -3,7 +3,6 @@ package screens;
 import clear_all_use_case.ClearAllController;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,9 +17,9 @@ import java.util.Map;
 public class WeekViewScreen extends JFrame implements WindowListener, ActionListener {
     private static final int HEIGHT = 550 / 2;
     private static final int WIDTH = 1100 / 7;
-    private Map<String, Object> controllers;
-    private Map<String, JFrame> screens;
-    private JPanel[][] panels = new JPanel[2][7];
+    private final Map<String, Object> controllers;
+    private final Map<String, JFrame> screens;
+    private final JPanel[][] panels = new JPanel[2][7];
 
 
     public WeekViewScreen(Map<String, JFrame> screens, Map<String, Object> controllers) {
@@ -37,32 +36,33 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
         JToolBar toolBar = new JToolBar("Still draggable");
         addButtons(toolBar);
 
-        // TODO setup 14 scroll panes attached to jpanels
-        // TODO event and task titles to left of scroll panes
-        // TODO add sample task and events and hook them up to ClickTaskScreen and ClickEventScreen
-        //Create the text area used for output.  Request
-        //enough space for 5 rows and 30 columns.
-//        textArea = new JTextArea(5, 30);
-//        textArea.setEditable(false);
-//        JScrollPane scrollPane = new JScrollPane(textArea);
-
-
         JPanel week = new JPanel(new GridLayout(2, 7));
         for (int i = 0; i < panels.length; i++) {
             for (int j = 0; j < panels[i].length; j++) {
                 JPanel halfDay = new JPanel();
-                halfDay.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+                halfDay.setLayout(new BoxLayout(halfDay, BoxLayout.Y_AXIS));
                 if (i == 0) {
                     halfDay.setBackground(new Color(245, 255 - j * 2, 255));
                 } else {
                     halfDay.setBackground(new Color(255, 255 - j * 2, 240));
                 }
-
+                halfDay.setAutoscrolls(true);
                 halfDay.setBorder(BorderFactory.createLineBorder(Color.black));
-                halfDay.add(new JLabel("hello"));
                 panels[i][j] = halfDay;
                 JScrollPane scrollPane = new JScrollPane(halfDay);
-                week.add(halfDay);
+                scrollPane.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+                week.add(scrollPane);
+            }
+        }
+
+        for (int j = 0; j < panels[0].length; j++) {
+            for (int k = 0; k < 20; k++) {
+                panels[0][j].add(new JButton("test " + k));
+            }
+        }
+        for (int j = 0; j < panels[1].length; j++) {
+            for (int k = 0; k < 20; k++) {
+                panels[1][j].add(new JButton("11:30-13:30 test " + k));
             }
         }
 
@@ -95,12 +95,10 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
         rowLabels.add(eventLabelHolder);
 
         //Lay out the main panel.
-        //setPreferredSize(new Dimension(450, 130));
         panel.add(toolBar, BorderLayout.PAGE_START);
         panel.add(weekDayBoxesAndLabels, BorderLayout.CENTER);
         panel.add(rowLabels, BorderLayout.WEST);
         this.add(panel);
-        //add(scrollPane, BorderLayout.CENTER);
     }
 
     private void addButtons(JToolBar toolBar) {
@@ -120,46 +118,6 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
         toolBar.add(clear);
     }
 
-    public WeekViewScreen() {
-        super();
-        setTitle("Clean Calendar");
-        addWindowListener(this);
-
-        //setting the bounds for the JFrame
-        setBounds(0,0, WIDTH, HEIGHT);
-        Container c = getContentPane();
-        JPanel panel = new JPanel();
-        panel.setBounds(0, 0, WIDTH, HEIGHT / 5);
-        panel.setBackground(Color.white);
-        c.add(panel);
-
-//        for (int i = 0; i < 7; i++) {
-//            panels.add(halfDayPanel(i, false));
-//            panels.add(halfDayPanel(i, true));
-//        }
-//        for (JScrollPane p: panels) {
-//            c.add(p);
-//        }
-
-        setVisible(true);
-
-    }
-
-    private static JScrollPane halfDayPanel(int dayIndex, boolean isEvent) {
-        int width = WIDTH / 7;
-        int height = 2 * HEIGHT / 5;
-        int y = (isEvent) ? height + height / 2 : height / 2;
-        int x = dayIndex * width;
-        JPanel panel = new JPanel();
-        panel.setLayout(null);
-        panel.setBorder(BorderFactory.createLineBorder(Color.black));
-        panel.setBounds(x, y, width, height);
-        panel.add(new JLabel("Test"));
-        JScrollPane scrollPane = new JScrollPane(panel);
-        panel.setAutoscrolls(true);
-        scrollPane.setBounds(x, y, width, height);
-        return scrollPane;
-    }
 
     /**
      * Invoked when an action occurs.
