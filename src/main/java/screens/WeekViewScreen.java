@@ -3,27 +3,24 @@ package screens;
 import clear_all_use_case.ClearAllController;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.ArrayList;
 import java.util.Map;
 
 /**
- * The screen for the main week view.
- * Author: Anna Myllyniemi.
- * Modified by: NA.
- * Date created: Nov 28 2022.
- * Last modified: NA.
+ * The screen for the main week view. Links all use cases together.
+ * @author Anna Myllyniemi
  */
 public class WeekViewScreen extends JFrame implements WindowListener, ActionListener {
-    private static final int HEIGHT = 550;
-    private static final int WIDTH = 1100;
+    private static final int HEIGHT = 550 / 2;
+    private static final int WIDTH = 1100 / 7;
     private Map<String, Object> controllers;
     private Map<String, JFrame> screens;
-    private ArrayList<JScrollPane> panels = new ArrayList<JScrollPane>();
+    private JPanel[][] panels = new JPanel[2][7];
 
 
     public WeekViewScreen(Map<String, JFrame> screens, Map<String, Object> controllers) {
@@ -49,9 +46,60 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
 //        textArea.setEditable(false);
 //        JScrollPane scrollPane = new JScrollPane(textArea);
 
+
+        JPanel week = new JPanel(new GridLayout(2, 7));
+        for (int i = 0; i < panels.length; i++) {
+            for (int j = 0; j < panels[i].length; j++) {
+                JPanel halfDay = new JPanel();
+                halfDay.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+                if (i == 0) {
+                    halfDay.setBackground(new Color(245, 255 - j * 2, 255));
+                } else {
+                    halfDay.setBackground(new Color(255, 255 - j * 2, 240));
+                }
+
+                halfDay.setBorder(BorderFactory.createLineBorder(Color.black));
+                halfDay.add(new JLabel("hello"));
+                panels[i][j] = halfDay;
+                JScrollPane scrollPane = new JScrollPane(halfDay);
+                week.add(halfDay);
+            }
+        }
+
+        JPanel weekDayLabels = new JPanel(new GridLayout(1, 7));
+        weekDayLabels.setPreferredSize(new Dimension(WIDTH * 7, 15));
+        weekDayLabels.add(new JLabel("SUNDAY", SwingConstants.CENTER));
+        weekDayLabels.add(new JLabel("MONDAY", SwingConstants.CENTER));
+        weekDayLabels.add(new JLabel("TUESDAY", SwingConstants.CENTER));
+        weekDayLabels.add(new JLabel("WEDNESDAY", SwingConstants.CENTER));
+        weekDayLabels.add(new JLabel("THURSDAY", SwingConstants.CENTER));
+        weekDayLabels.add(new JLabel("FRIDAY", SwingConstants.CENTER));
+        weekDayLabels.add(new JLabel("SATURDAY", SwingConstants.CENTER));
+
+        JPanel weekDayBoxesAndLabels = new JPanel(new BorderLayout());
+        weekDayBoxesAndLabels.add(weekDayLabels, BorderLayout.NORTH);
+        weekDayBoxesAndLabels.add(week, BorderLayout.CENTER);
+
+
+        JPanel rowLabels = new JPanel(new GridLayout(2, 1));
+
+        JPanel taskLabelHolder = new JPanel(new BorderLayout());
+        JLabel tasksLabel = new JLabel("TASKS", SwingConstants.CENTER);
+        taskLabelHolder.add(tasksLabel, BorderLayout.CENTER);
+        rowLabels.add(taskLabelHolder);
+
+        JPanel eventLabelHolder = new JPanel(new BorderLayout());
+        JLabel eventLabel = new JLabel("EVENTS", SwingConstants.CENTER);
+        eventLabelHolder.add(eventLabel, BorderLayout.CENTER);
+
+        rowLabels.add(eventLabelHolder);
+
         //Lay out the main panel.
-        setPreferredSize(new Dimension(450, 130));
-        add(toolBar, BorderLayout.PAGE_START);
+        //setPreferredSize(new Dimension(450, 130));
+        panel.add(toolBar, BorderLayout.PAGE_START);
+        panel.add(weekDayBoxesAndLabels, BorderLayout.CENTER);
+        panel.add(rowLabels, BorderLayout.WEST);
+        this.add(panel);
         //add(scrollPane, BorderLayout.CENTER);
     }
 
@@ -85,13 +133,13 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
         panel.setBackground(Color.white);
         c.add(panel);
 
-        for (int i = 0; i < 7; i++) {
-            panels.add(halfDayPanel(i, false));
-            panels.add(halfDayPanel(i, true));
-        }
-        for (JScrollPane p: panels) {
-            c.add(p);
-        }
+//        for (int i = 0; i < 7; i++) {
+//            panels.add(halfDayPanel(i, false));
+//            panels.add(halfDayPanel(i, true));
+//        }
+//        for (JScrollPane p: panels) {
+//            c.add(p);
+//        }
 
         setVisible(true);
 
@@ -133,6 +181,7 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
                 ((ClearAllController)controllers.get("clear all")).clearAll();
             }
         } else if (e.getActionCommand().contains("event")) {
+
             // the following should be later changed to get all these values from the view model but at present they are
             // encoded in a string that is saved as the action command for a task or event.
             ((ClickEventScreen)screens.get("click event")).setDayIndex(e.getActionCommand().charAt(6) - 48);
