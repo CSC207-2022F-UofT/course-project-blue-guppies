@@ -1,10 +1,3 @@
-/**
- * abstract class that contains methods shared by all four forms
- * Author: Anna Myllyniemi
- * Modified by:
- * Date created: Nov 20 2022
- * Last modified:
- */
 package screens;
 
 import javax.swing.*;
@@ -13,14 +6,30 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * Abstract class that contains methods shared by CreateEventScreen, CreateTaskScreen, ModifyEventScreen, and
+ * ModifyTaskScreen.
+ * @author Anna Myllyniemi
+ */
 public abstract class FormScreen extends JFrame implements ActionListener, WindowListener {
-    // Event title
-    protected final JTextField title = new JTextField();
+    /**
+     * Event title
+     */
+    protected final JTextField title = new JTextField(30);
+
+    /**
+     * @param windowTitle The title of the window that is being created
+     */
     protected FormScreen(String windowTitle) {
         super(windowTitle);
         this.addWindowListener(this);
     }
 
+    /**
+     * Makes the GridBagConstraints and initializes the insets.
+     *
+     * @return Initialized GridBagConstraints
+     */
     protected GridBagConstraints initializeConstraints() {
         GridBagConstraints constraints = new GridBagConstraints();
 
@@ -35,8 +44,14 @@ public abstract class FormScreen extends JFrame implements ActionListener, Windo
         return constraints;
     }
 
+    /**
+     * Creates a JLabel with a header/title within the frame of the form.
+     *
+     * @param panel JPanel to add header to
+     * @param constraints GridBagConstraints to use
+     * @param header The text to put as the header
+     */
     protected void addHeader(JPanel panel, GridBagConstraints constraints, String header) {
-        // Add screen title to form
         constraints.gridy = 0; // row 0
         constraints.gridwidth = 7; // sets component to span 7 columns
         JLabel screenTitle = new JLabel(header, JLabel.CENTER);
@@ -45,6 +60,14 @@ public abstract class FormScreen extends JFrame implements ActionListener, Windo
         panel.add(screenTitle, constraints);
     }
 
+    /**
+     * Adds a JTextField and JLabel for the task/event title to the form in the given row.
+     *
+     * @param panel JPanel to add the JTextField and JLabel to
+     * @param constraints GridBagConstraints to use
+     * @param rowIndex Index of the row of the form to add the title field to
+     * @param labelText Text for the JLabel attached to the JTextField
+     */
     protected void addTitleField(JPanel panel, GridBagConstraints constraints, int rowIndex, String labelText) {
         JLabel titleLabel = new JLabel(labelText);
         // Add event title field and its label
@@ -58,7 +81,8 @@ public abstract class FormScreen extends JFrame implements ActionListener, Windo
     }
 
     /**
-     * Add create/save and cancel buttons to form
+     * Add create/save and cancel buttons to form.
+     *
      * @param panel the JPanel the buttons will be added to
      * @param constraints the GridBagConstraints for the buttons
      * @param rowIndex the row of the form the buttons are to be added to
@@ -91,6 +115,9 @@ public abstract class FormScreen extends JFrame implements ActionListener, Windo
     protected abstract void resetForm();
 
 
+    /**
+     * @param e the event to be processed
+     */
     @Override
     public void windowOpened(WindowEvent e) {}
 
@@ -106,20 +133,35 @@ public abstract class FormScreen extends JFrame implements ActionListener, Windo
         resetForm();
     }
 
+    /**
+     * @param e the event to be processed
+     */
     @Override
     public void windowClosed(WindowEvent e) {}
 
+    /**
+     * @param e the event to be processed
+     */
     @Override
     public void windowIconified(WindowEvent e) {}
 
+    /**
+     * @param e the event to be processed
+     */
     @Override
     public void windowDeiconified(WindowEvent e) {}
 
 
+    /**
+     * @param e the event to be processed
+     */
     @Override
     public void windowActivated(WindowEvent e) {}
 
 
+    /**
+     * @param e the event to be processed
+     */
     @Override
     public void windowDeactivated(WindowEvent e) {}
 }

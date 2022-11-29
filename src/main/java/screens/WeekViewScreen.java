@@ -1,4 +1,3 @@
-// TODO Documentation
 package screens;
 
 import clear_all_use_case.ClearAllController;
@@ -12,6 +11,13 @@ import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * The screen for the main week view.
+ * Author: Anna Myllyniemi.
+ * Modified by: NA.
+ * Date created: Nov 28 2022.
+ * Last modified: NA.
+ */
 public class WeekViewScreen extends JFrame implements WindowListener, ActionListener {
     private static final int HEIGHT = 550;
     private static final int WIDTH = 1100;
@@ -47,7 +53,6 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
         setPreferredSize(new Dimension(450, 130));
         add(toolBar, BorderLayout.PAGE_START);
         //add(scrollPane, BorderLayout.CENTER);
-        setVisible(true);
     }
 
     private void addButtons(JToolBar toolBar) {
@@ -128,14 +133,20 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
                 ((ClearAllController)controllers.get("clear all")).clearAll();
             }
         } else if (e.getActionCommand().contains("event")) {
+            // the following should be later changed to get all these values from the view model but at present they are
+            // encoded in a string that is saved as the action command for a task or event.
             ((ClickEventScreen)screens.get("click event")).setDayIndex(e.getActionCommand().charAt(6) - 48);
             ((ClickEventScreen)screens.get("click event")).setStartTime(e.getActionCommand().substring(8,13));
             ((ClickEventScreen)screens.get("click event")).setEndTime(e.getActionCommand().substring(14,19));
             ((ClickEventScreen)screens.get("click event")).setEventTitle(e.getActionCommand().substring(20));
+
             screens.get("click event").setVisible(true);
         } else if (e.getActionCommand().contains("task")) {
             ((ClickTaskScreen)screens.get("click task")).setDayIndex(e.getActionCommand().charAt(5) - 48);
-            ((ClickTaskScreen)screens.get("click task")).setTaskTitle(e.getActionCommand().substring(7));
+            ((ClickTaskScreen)screens.get("click task")).setTaskCompleted(
+                    Boolean.parseBoolean(e.getActionCommand().substring(7, 8)));
+            ((ClickTaskScreen)screens.get("click task")).setTaskTitle(e.getActionCommand().substring(9));
+
             screens.get("click task").setVisible(true);
         }
     }

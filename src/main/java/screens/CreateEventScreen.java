@@ -1,15 +1,3 @@
-/**
- * Creates a screen with the form a user fills out when making a new event consisting of 7 radio
- * buttons representing the days of the week; text fields for the event title, start time, and
- * end time; and create and cancel buttons. When the user clicks either the window's x button or the
- * cancel button, the fields of the form reset in preparation for the next time the form is used and
- * the window is hidden.
- * Author: Anna Myllyniemi
- * Modified by: Anna Myllyniemi
- * Date created: Nov 14 2022
- * Last modified: Nov 20 2022
- */
-
 package screens;
 
 import create_event_use_case.CreateEventController;
@@ -19,14 +7,28 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * Creates a screen with the form a user fills out when making a new event consisting of 7 radio
+ * buttons representing the days of the week; text fields for the event title, start time, and
+ * end time; and create and cancel buttons. When the user clicks either the window's x button or the
+ * cancel button, the fields of the form reset in preparation for the next time the form is used and
+ * the window is hidden.
+ * @author Anna Myllyniemi
+ */
 public class CreateEventScreen extends FormScreen {
-    // Array containing all the radio buttons representing the day of the week
+    /**
+     * Array containing all the radio buttons representing the day of the week
+     */
     protected final JRadioButton[] daysOfTheWeekRadioButtons;
 
-    // Start time of the event
+    /**
+     * Start time of the event
+     */
     protected final JTextField startTime = new JTextField();
 
-    // End time of the event
+    /**
+     * End time of the event
+     */
     protected final JTextField endTime = new JTextField();
 
     private final CreateEventController createEventController;
@@ -78,8 +80,9 @@ public class CreateEventScreen extends FormScreen {
     }
 
     /**
-     * Create radio buttons for each day of the week with Sunday selected by default
-     * @return an array of JRadioButtons representng the days of the week
+     * Create radio buttons for each day of the week with Sunday selected by default.
+     *
+     * @return an array of JRadioButtons representing the days of the week
      */
     private JRadioButton[] createRadioButtons() {
         JRadioButton sundayButton = new JRadioButton("Sunday");
@@ -96,6 +99,11 @@ public class CreateEventScreen extends FormScreen {
                 wednesdayButton, thursdayButton, fridayButton, saturdayButton};
     }
 
+    /** Adds the time fields to the form.
+     *
+     * @param panel The JPanel to and the start and end time to
+     * @param constraints The GridBagConstrains to use
+     */
     private void addTimeFields(JPanel panel, GridBagConstraints constraints) {
         JLabel startTimeLabel = new JLabel("Start time:");
         JLabel endTimeLabel = new JLabel("End time:");
@@ -169,6 +177,5 @@ public class CreateEventScreen extends FormScreen {
         }
         return "Sunday";
     }
-
 
 }

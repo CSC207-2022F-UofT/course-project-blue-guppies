@@ -1,12 +1,3 @@
-/**
- * Creates a screen with the form a user fills out to modify an existing task.
- * Contains a text field autofilled with the original task name, a modify
- * button and a cancel button.
- * Author: Anna Myllyniemi
- * Modified by:
- * Date created: Nov 20 2022
- * Last modified:
- */
 package screens;
 
 import modify_task_use_case.ModifyTaskController;
@@ -16,6 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * Creates a screen with the form a user fills out to modify an existing task.
+ * Contains a text field autofilled with the original task name, a modify
+ * button, and a cancel button.
+ * @author Anna Myllyniemi
+ */
 public class ModifyTaskScreen extends FormScreen{
     private final ModifyTaskController modifyTaskController;
     private String oldTitle = "";
@@ -37,6 +34,7 @@ public class ModifyTaskScreen extends FormScreen{
         addFormButtons(panel, c, 3, "Modify");
         this.add(panel);
     }
+
     /**
      * Reset the form values to the default
      */
@@ -78,11 +76,21 @@ public class ModifyTaskScreen extends FormScreen{
 
     }
 
+    /**
+     * Sets the oldTitle variable and sets the text on the JTextField for the title to the value pre-modification.
+     *
+     * @param oldTitle The title of the task pre-modification
+     */
     public void setOldTitle(String oldTitle) {
         this.oldTitle = oldTitle;
         this.title.setText(this.oldTitle);
     }
 
+    /**
+     * Sets the dayIndex variable.
+     *
+     * @param dayIndex The index of the day the task is on
+     */
     public void setDayIndex(int dayIndex) {
         this.dayIndex = dayIndex;
     }

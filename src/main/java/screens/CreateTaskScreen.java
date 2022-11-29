@@ -1,15 +1,3 @@
-/**
- * Creates a screen with the form a user fills out when making a new task consisting of 7 radio
- * buttons representing the days of the week; a text field for the task title; and create and cancel
- * buttons. When the user clicks either the window's x button or the cancel button, the fields of the
- * form reset in preparation for the next time the form is used and
- * the window is hidden.
- * Author: Anna Myllyniemi
- * Modified by:
- * Date created: Nov 20 2022
- * Last modified:
- */
-
 package screens;
 
 import create_task_use_case.CreateTaskController;
@@ -19,14 +7,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * Creates a screen with the form a user fills out when making a new task consisting of 7 radio
+ * buttons representing the days of the week; a text field for the task title; and create and cancel
+ * buttons. When the user clicks either the window's x button or the cancel button, the fields of the
+ * form reset in preparation for the next time the form is used and the window is hidden.
+ * @author Anna Myllyniemi
+ */
 public class CreateTaskScreen extends FormScreen{
-    // Array containing all the radio buttons representing the day of the week
+    /**
+     * Array containing all the radio buttons representing the day of the week.
+     */
     protected final JRadioButton[] daysOfTheWeekRadioButtons;
 
     private final CreateTaskController createTaskController;
 
     /**
-     * Creates a JPanel with 7 radio buttons, a JTextFields and its label, and two JButtons
+     * Creates a JPanel with 7 radio buttons, a JTextFields and its label, and two JButtons.
      *
      * @param controller the controller to call when the user hits the create button
      */
@@ -71,8 +68,9 @@ public class CreateTaskScreen extends FormScreen{
     }
 
     /**
-     * Create radio buttons for each day of the week with Sunday selected by default
-     * @return an array of JRadioButtons representng the days of the week
+     * Create radio buttons for each day of the week with Sunday selected by default.
+     *
+     * @return an array of JRadioButtons representing the days of the week
      */
     private JRadioButton[] createRadioButtons() {
         JRadioButton sundayButton = new JRadioButton("Sunday");
@@ -104,6 +102,7 @@ public class CreateTaskScreen extends FormScreen{
             // call controller
             CreateTaskOutputData outputData = createTaskController.create(day, title.getText());
             // TODO check my controller against Fardin's
+            // Fardin's is currently also taking in a boolean completed, but I feel this is unnecessary
 
             String message;
             if (outputData.isSuccessfullyCreated()) {
@@ -111,8 +110,7 @@ public class CreateTaskScreen extends FormScreen{
                 this.setVisible(false);
                 message = "Task successfully created";
             } else {
-                // TODO update message with Fardin's finalized use case and output data
-                message = "A task with the same title already exists on " + day;
+                message = outputData.getErrorMessage();
             }
             JFrame messageBox = new JFrame();
             JOptionPane.showMessageDialog(messageBox, message);
@@ -126,7 +124,7 @@ public class CreateTaskScreen extends FormScreen{
     }
 
     /**
-     * Reset the form values to the default
+     * Reset the form values to the default.
      */
     @Override
     protected void resetForm() {
@@ -145,6 +143,5 @@ public class CreateTaskScreen extends FormScreen{
         }
         return "Sunday";
     }
-
 
 }
