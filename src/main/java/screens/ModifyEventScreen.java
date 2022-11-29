@@ -1,15 +1,23 @@
-// TODO documentation
+/**
+ * Creates a screen with the form a user fills out when modifying an existing event, and is auto-populated with the
+ * current values of the event to be modified. When the user cancels or closes the form no changes are made. When the
+ * user submits the form the modify event use case is called. User can modify the start and end time of an event, along
+ * with its title. Form similar to when creating a new event.
+ * Author: Anna Myllyniemi
+ * Modified by:
+ * Date created: Nov 28 2022
+ * Last modified:
+ */
 package screens;
 
 import modify_event_use_case.ModifyEventController;
-import modify_task_use_case.ModifyTaskFailed;
+import modify_event_use_case.ModifyEventOutputData;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ModifyEventScreen extends FormScreen {
-    // TODO write class
     private final ModifyEventController modifyEventController;
 
     // Start time of the event
@@ -22,6 +30,9 @@ public class ModifyEventScreen extends FormScreen {
     private String oldEndTime = "";
     private int dayIndex = 0;
 
+    /** Saves the controller to use for this use case and creates the modify event form
+     * @param modifyEventController The controller for the modify event use case
+     */
     public ModifyEventScreen(ModifyEventController modifyEventController) {
         super("Modify Event");
         this.modifyEventController = modifyEventController;
@@ -37,6 +48,10 @@ public class ModifyEventScreen extends FormScreen {
         this.add(panel);
     }
 
+    /** Adds the time fields to the form
+     * @param panel The JPanel to and the start and end time to
+     * @param constraints The GridBagConstrains to use
+     */
     private void addTimeFields(JPanel panel, GridBagConstraints constraints) {
         JLabel startTimeLabel = new JLabel("Start time:");
         JLabel endTimeLabel = new JLabel("End time:");
@@ -85,12 +100,15 @@ public class ModifyEventScreen extends FormScreen {
             System.out.println("day: " + dayIndex);
 
             String message;
-            modifyEventController.modify(oldTitle, dayIndex, startTime.getText(), endTime.getText(),
-                    title.getText());
-            message = "Event successfully modified";
-            resetForm();
-            this.setVisible(false);
-            // TODO add checking for success and error message
+            ModifyEventOutputData outputData = modifyEventController.modify(oldTitle, dayIndex, startTime.getText(),
+                    endTime.getText(), title.getText());
+            if (outputData.getSuccessfullyModified()) {
+                message = "Event successfully modified";
+                resetForm();
+                this.setVisible(false);
+            } else {
+                message = outputData.getFailureMessage();
+            }
 
             JFrame messageBox = new JFrame();
             JOptionPane.showMessageDialog(messageBox, message);

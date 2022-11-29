@@ -51,6 +51,5 @@ public class WeekDataAccess implements Serializable {
     }
 
     protected void save(){
-        // TODO: Implement using Serializable once we understand the implementation.
     }
 }

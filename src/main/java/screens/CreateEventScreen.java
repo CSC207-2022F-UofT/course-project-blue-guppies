@@ -136,7 +136,6 @@ public class CreateEventScreen extends FormScreen {
                 message = "Event successfully created";
             } else {
                 message = outputData.getErrorMessage();
-                // TODO check against Daniel's implementation of output data for this use case
             }
             JFrame messageBox = new JFrame();
             JOptionPane.showMessageDialog(messageBox, message);
