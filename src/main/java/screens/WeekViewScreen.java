@@ -22,6 +22,8 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
     private final JPanel[][] panels = new JPanel[2][7];
 
 
+    // TODO documentation
+    // TODO refactor methods out of constructor
     public WeekViewScreen(Map<String, JFrame> screens, Map<String, Object> controllers) {
         super();
         setTitle("Clean Calendar");
@@ -55,16 +57,7 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
             }
         }
 
-        for (int j = 0; j < panels[0].length; j++) {
-            for (int k = 0; k < 20; k++) {
-                panels[0][j].add(new JButton("test " + k));
-            }
-        }
-        for (int j = 0; j < panels[1].length; j++) {
-            for (int k = 0; k < 20; k++) {
-                panels[1][j].add(new JButton("11:30-13:30 test " + k));
-            }
-        }
+        setupDummyEventsAndTasks();
 
         JPanel weekDayLabels = new JPanel(new GridLayout(1, 7));
         weekDayLabels.setPreferredSize(new Dimension(WIDTH * 7, 15));
@@ -100,6 +93,41 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
         panel.add(rowLabels, BorderLayout.WEST);
         this.add(panel);
     }
+
+    /**
+     * This method is temporary and should be replaced with one that populates it with tasks and events from a
+     * ViewModel.
+     */
+    private void setupDummyEventsAndTasks() {
+        for (int j = 0; j < panels[0].length; j++) {
+            for (int k = 0; k < 20; k++) {
+                JButton b = new JButton("task " + k);
+                b.addActionListener(this);
+                b.setActionCommand("task " + j + " 0 task " + k);
+                panels[0][j].add(b);
+            }
+        }
+        for (int j = 0; j < panels[1].length; j++) {
+            for (int k = 0; k < 20; k++) {
+                JButton b = new JButton("11:30-15:30 lunch");
+                b.addActionListener(this);
+                b.setActionCommand("event " + j + " 11:30 15:30 event " + k);
+                panels[1][j].add(b);
+            }
+        }
+    }
+
+    /* TODO write a method that populates the screen with all the tasks and events on startup.
+        Probably call this method from the constructor.
+     */
+
+    /*
+    TODO write a method that updates a specific box.
+     probably remove all the buttons from the JPanel and then get all the [tasks or events] for that day and
+     make new buttons. this would be called when the observer is made aware of a change to the view model.
+     completed tasks should have their button background changed to grey or strikethrough the text, or both.
+
+     */
 
     private void addButtons(JToolBar toolBar) {
         JButton newTask = new JButton("New Task");
