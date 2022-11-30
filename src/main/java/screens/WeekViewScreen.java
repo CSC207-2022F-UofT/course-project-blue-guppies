@@ -21,9 +21,15 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
     private final Map<String, JFrame> screens;
     private final JPanel[][] panels = new JPanel[2][7];
 
-
     // TODO documentation
     // TODO refactor methods out of constructor
+
+    /**
+     * Create the screen showing all tasks and events for every day of the week and all buttons for each use case.
+     *
+     * @param screens  Map of all the screens used throughout the program
+     * @param controllers Map of all the controllers that need to be used directly from the WeekViewScreen
+     */
     public WeekViewScreen(Map<String, JFrame> screens, Map<String, Object> controllers) {
         super();
         setTitle("Clean Calendar");
@@ -38,6 +44,54 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
         JToolBar toolBar = new JToolBar("Still draggable");
         addButtons(toolBar);
 
+        // Set up the main part of the panel with each day of the week and its tasks and event boxes.
+        JPanel dayBoxes = setupDayBoxes();
+        JPanel weekDayLabels = setupWeekDayLabels();
+        JPanel weekDayBoxesAndLabels = new JPanel(new BorderLayout());
+        weekDayBoxesAndLabels.add(weekDayLabels, BorderLayout.NORTH);
+        weekDayBoxesAndLabels.add(dayBoxes, BorderLayout.CENTER);
+
+        JPanel rowLabels = setupRowLabels();
+
+        setupDummyEventsAndTasks();
+
+        //Lay out the main panel.
+        panel.add(toolBar, BorderLayout.PAGE_START);
+        panel.add(weekDayBoxesAndLabels, BorderLayout.CENTER);
+        panel.add(rowLabels, BorderLayout.WEST);
+        this.add(panel);
+    }
+
+    private static JPanel setupRowLabels() {
+        JPanel rowLabels = new JPanel(new GridLayout(2, 1));
+
+        JPanel taskLabelHolder = new JPanel(new BorderLayout());
+        JLabel tasksLabel = new JLabel("TASKS", SwingConstants.CENTER);
+        taskLabelHolder.add(tasksLabel, BorderLayout.CENTER);
+        rowLabels.add(taskLabelHolder);
+
+        JPanel eventLabelHolder = new JPanel(new BorderLayout());
+        JLabel eventLabel = new JLabel("EVENTS", SwingConstants.CENTER);
+        eventLabelHolder.add(eventLabel, BorderLayout.CENTER);
+
+        rowLabels.add(eventLabelHolder);
+        return rowLabels;
+    }
+
+    private JPanel setupWeekDayLabels() {
+        JPanel weekDayLabels = new JPanel(new GridLayout(1, 7));
+        weekDayLabels.setPreferredSize(new Dimension(WIDTH * 7, 15));
+        weekDayLabels.add(new JLabel("SUNDAY", SwingConstants.CENTER));
+        weekDayLabels.add(new JLabel("MONDAY", SwingConstants.CENTER));
+        weekDayLabels.add(new JLabel("TUESDAY", SwingConstants.CENTER));
+        weekDayLabels.add(new JLabel("WEDNESDAY", SwingConstants.CENTER));
+        weekDayLabels.add(new JLabel("THURSDAY", SwingConstants.CENTER));
+        weekDayLabels.add(new JLabel("FRIDAY", SwingConstants.CENTER));
+        weekDayLabels.add(new JLabel("SATURDAY", SwingConstants.CENTER));
+        return weekDayLabels;
+    }
+
+    private JPanel setupDayBoxes() {
         JPanel week = new JPanel(new GridLayout(2, 7));
         for (int i = 0; i < panels.length; i++) {
             for (int j = 0; j < panels[i].length; j++) {
@@ -56,42 +110,7 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
                 week.add(scrollPane);
             }
         }
-
-        setupDummyEventsAndTasks();
-
-        JPanel weekDayLabels = new JPanel(new GridLayout(1, 7));
-        weekDayLabels.setPreferredSize(new Dimension(WIDTH * 7, 15));
-        weekDayLabels.add(new JLabel("SUNDAY", SwingConstants.CENTER));
-        weekDayLabels.add(new JLabel("MONDAY", SwingConstants.CENTER));
-        weekDayLabels.add(new JLabel("TUESDAY", SwingConstants.CENTER));
-        weekDayLabels.add(new JLabel("WEDNESDAY", SwingConstants.CENTER));
-        weekDayLabels.add(new JLabel("THURSDAY", SwingConstants.CENTER));
-        weekDayLabels.add(new JLabel("FRIDAY", SwingConstants.CENTER));
-        weekDayLabels.add(new JLabel("SATURDAY", SwingConstants.CENTER));
-
-        JPanel weekDayBoxesAndLabels = new JPanel(new BorderLayout());
-        weekDayBoxesAndLabels.add(weekDayLabels, BorderLayout.NORTH);
-        weekDayBoxesAndLabels.add(week, BorderLayout.CENTER);
-
-
-        JPanel rowLabels = new JPanel(new GridLayout(2, 1));
-
-        JPanel taskLabelHolder = new JPanel(new BorderLayout());
-        JLabel tasksLabel = new JLabel("TASKS", SwingConstants.CENTER);
-        taskLabelHolder.add(tasksLabel, BorderLayout.CENTER);
-        rowLabels.add(taskLabelHolder);
-
-        JPanel eventLabelHolder = new JPanel(new BorderLayout());
-        JLabel eventLabel = new JLabel("EVENTS", SwingConstants.CENTER);
-        eventLabelHolder.add(eventLabel, BorderLayout.CENTER);
-
-        rowLabels.add(eventLabelHolder);
-
-        //Lay out the main panel.
-        panel.add(toolBar, BorderLayout.PAGE_START);
-        panel.add(weekDayBoxesAndLabels, BorderLayout.CENTER);
-        panel.add(rowLabels, BorderLayout.WEST);
-        this.add(panel);
+        return week;
     }
 
     /**
@@ -165,6 +184,7 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
 
             if (confirmed == JOptionPane.YES_OPTION) {
                 ((ClearAllController)controllers.get("clear all")).clearAll();
+                JOptionPane.showMessageDialog(new JFrame(), "Week cleared");
             }
         } else if (e.getActionCommand().contains("event")) {
 
