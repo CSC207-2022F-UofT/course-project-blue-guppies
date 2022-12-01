@@ -13,9 +13,9 @@ public class CreateTaskInputData {
     private boolean completed;
     private int dayIndex;
 
-    public CreateTaskInputData(String title, boolean completed, int dayIndex){
+    public CreateTaskInputData(String title, int dayIndex){
         this.title = title;
-        this.completed = completed;
+        this.completed = false;
         this.dayIndex = dayIndex;
         }
 

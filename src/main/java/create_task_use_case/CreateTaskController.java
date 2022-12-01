@@ -15,8 +15,8 @@ public class CreateTaskController {
         this.inputBoundary = inputBoundary;
     }
 
-    CreateTaskOutputData createTask(String title, boolean completed, int dayIndex){
-        CreateTaskInputData taskInputData = new CreateTaskInputData(title, completed, dayIndex);
+    CreateTaskOutputData createTask(String title, int dayIndex){
+        CreateTaskInputData taskInputData = new CreateTaskInputData(title, dayIndex);
 
         return inputBoundary.create(taskInputData);
     }
