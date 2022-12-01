@@ -19,10 +19,11 @@ public class ModifyEventDataAccess extends WeekDataAccess implements ModifyEvent
     public void save(ModifyEventDsInputData dsInputData){
         HashMap<String, DataAccessEvent> eventsToChange = days.get(dsInputData.getDayIndex()).getEvents();
         DataAccessEvent eventToChange = eventsToChange.get(dsInputData.getTitle());
-        DataAccessEvent newEvent = new DataAccessEvent(dsInputData.getNewTitle(), dsInputData.getNewStartTime(),
-                dsInputData.getNewEndTime());
         eventsToChange.remove(eventToChange.getTitle());
-        eventsToChange.put(dsInputData.getNewTitle(), newEvent);
+        eventToChange.setTitle(dsInputData.getNewTitle());
+        eventToChange.setStartTime(dsInputData.getNewStartTime());
+        eventToChange.setEndTime(dsInputData.getNewEndTime());
+        eventsToChange.put(dsInputData.getNewTitle(), eventToChange);
         super.save();
     }
 
