@@ -16,7 +16,7 @@ public class CreateTaskControllerTest {
         );
         CreateTaskController controller = new CreateTaskController(interactor);
         CreateTaskOutputData outputData = controller.createTask(
-                "Sample Task", false, 0
+                "Sample Task",  0
         );
         assertEquals("Sample Task", outputData.getTitle());
         assertFalse(outputData.getCompleted());

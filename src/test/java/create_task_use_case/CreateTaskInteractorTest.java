@@ -15,7 +15,7 @@ public class CreateTaskInteractorTest {
     private final static TaskFactory taskFactory = new TaskFactory();
     @Test
     public void createTestSuccess(){
-        CreateTaskInputData inputData = new CreateTaskInputData("Finish Unit Test", false, 3);
+        CreateTaskInputData inputData = new CreateTaskInputData("Finish Unit Test", 3);
         CreateTaskInteractor createTaskInteractor = new CreateTaskInteractor(taskFactory, createTaskPresenter,
                 createTaskDataAccess);
         CreateTaskOutputData createTaskOutputData = createTaskInteractor.create(inputData);
@@ -29,7 +29,7 @@ public class CreateTaskInteractorTest {
     }
     @Test
     public void createTestFail(){
-        CreateTaskInputData inputData = new CreateTaskInputData("Update", false, 3);
+        CreateTaskInputData inputData = new CreateTaskInputData("Update", 3);
         CreateTaskInteractor createTaskInteractor = new CreateTaskInteractor(taskFactory, createTaskPresenter,
                 createTaskDataAccess);
         // Add Task twice to mock adding duplicate task on the same day
