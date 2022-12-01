@@ -41,7 +41,7 @@ public class ModifyEventInteractor implements ModifyEventInputBoundary{
         ModifyEventOutputData outputData = new ModifyEventOutputData(inputData.getTitle(), inputData.getDayIndex(),
                 inputData.getNewTitle(), newStartTime, newEndTime);
         if(newStartTime.isAfter(newEndTime) || newStartTime.equals(newEndTime)){
-            String failMessage = "The new start time is not before the new end time";
+            String failMessage = "The new start time is not before the new end time!";
             return outputBoundary.prepareFailView(outputData, failMessage);
         }
         if(!(inputData.getTitle().equals(inputData.getNewTitle())) &&
