@@ -25,7 +25,7 @@ public class ModifyTaskController {
      * @return A ModifyTaskOutputData instance which indicates whether the execution of
      * the use case was successful.
      */
-    ModifyTaskOutputData modifyTask(int dayIndex, String newTitle, String title) {
+    public ModifyTaskOutputData modifyTask(int dayIndex, String newTitle, String title) {
         ModifyTaskInputData inputData = new ModifyTaskInputData(
                 dayIndex, newTitle, title
         );
