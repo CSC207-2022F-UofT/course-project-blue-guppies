@@ -1,18 +1,19 @@
-/**
- * Task Modification Presenter Class.
+package modify_task_use_case;
+
+/** Task Modification Presenter Class. Implements the prepareSuccessView and prepareFailView
+ * methods in the output boundary, by mutating the ModifyTaskOutputData object that is
+ * passed on as a parameter, appropriately.
  * Author: Raghav Arora
  * Modified By: Raghav Arora
  * Created: Nov 12, 2022
- * Last Modified: Dec 1, 2022
+ * Last Modified: Dec 2, 2022
  */
-package modify_task_use_case;
-
 public class ModifyTaskPresenter implements ModifyTaskOutputBoundary {
-    /**
-     * @param outputData contains the newTitle of the task modified as well as the
+    /** Mutate the ModifyTaskOutputData instance provided by setting its
+     * isSuccessfullyModified attribute to true, and errorMessage to the empty string.
+     * @param outputData Contains the newTitle of the task modified as well as the
      * corresponding dayIndex.
-     *
-     * @return the same ModifyTaskOutputData object with its isSuccessfullyModified attribute
+     * @return The same ModifyTaskOutputData object with its isSuccessfullyModified attribute
      * set to True, and errorMessage set to an empty string.
      */
     @Override
@@ -22,11 +23,11 @@ public class ModifyTaskPresenter implements ModifyTaskOutputBoundary {
         return outputData;
     }
 
-    /**
-     * @param outputData contains the newTitle of the task modified as well as the
+    /** Mutate the ModifyTaskOutputData instance provided by setting its
+     * isSuccessfullyModified attribute to false, and errorMessage to a non-empty string.
+     * @param outputData Contains the newTitle of the task modified as well as the
      * corresponding dayIndex.
-     *
-     * @return the same ModifyTaskOutputData object with its isSuccessfullyModified attribute
+     * @return The same ModifyTaskOutputData object with its isSuccessfullyModified attribute
      * set to True, and errorMessage set to an empty string.
      */
     @Override

@@ -1,12 +1,13 @@
-/**
- * Task Modification Input Data Class.
+package modify_task_use_case;
+
+/** Task Modification Input Data Class. Parameters passed on to the method modifyTask
+ * of the Controller class are assembled into a ModifyTaskInputData object before invoking
+ * the implementation of modifyTask given by the interactor/input boundary.
  * Author: Raghav Arora
  * Modified By: Raghav Arora
  * Created: Nov 12, 2022
- * Last Modified: Dec 1, 2022
+ * Last Modified: Dec 2, 2022
  */
-package modify_task_use_case;
-
 public class ModifyTaskInputData {
     private final int dayIndex;
     private final String newTitle;

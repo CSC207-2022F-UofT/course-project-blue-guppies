@@ -1,10 +1,3 @@
-/**
- * Task Modification Interactor Test Cases.
- * Author: Raghav Arora
- * Modified By: Raghav Arora
- * Created: Nov 19, 2022
- * Last Modified: Dec 1, 2022
- */
 package modify_task_use_case;
 
 import data_access.DataAccessDay;
@@ -16,6 +9,12 @@ import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Task Modification Interactor Test Cases.
+ * Author: Raghav Arora
+ * Modified By: Raghav Arora
+ * Created: Nov 19, 2022
+ * Last Modified: Dec 2, 2022
+ */
 class ModifyTaskInteractorTest {
     private final static ModifyTaskInputData inputData1 = new ModifyTaskInputData(
             0,"Another Sample Task", "Sample Task"
@@ -50,7 +49,7 @@ class ModifyTaskInteractorTest {
                 inputData1
         );
         assertEquals(
-                "Task with name: Another Sample Task already exists for day 0",
+                "Task with name: 'Another Sample Task' already exists for Sunday",
                 outputData.getErrorMessage()
         );
         assertFalse(outputData.getIsSuccessfullyModified());

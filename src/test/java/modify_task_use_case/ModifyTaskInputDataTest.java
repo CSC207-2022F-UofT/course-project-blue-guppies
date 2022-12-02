@@ -1,15 +1,14 @@
-/**
- * Task Modification Input Data Test Cases.
- * Author: Raghav Arora
- * Modified By: Raghav Arora
- * Created: Nov 26, 2022
- * Last Modified: Dec 1, 2022
- */
 package modify_task_use_case;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Task Modification Input Data Test Cases.
+ * Author: Raghav Arora
+ * Modified By: Raghav Arora
+ * Created: Nov 26, 2022
+ * Last Modified: Dec 2, 2022
+ */
 public class ModifyTaskInputDataTest {
     private final static ModifyTaskInputData inputData = new ModifyTaskInputData(
             0, "New Title", "Title"

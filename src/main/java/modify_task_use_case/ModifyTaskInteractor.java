@@ -1,16 +1,17 @@
-/**
- * Task Modification Interactor Class.
+package modify_task_use_case;
+
+/** Task Modification Interactor Class. Implements the modifyTask method provides
+ * by the input boundary and orchestrates the application logic for the use case.
  * Author: Raghav Arora
  * Modified By: Raghav Arora
  * Created: Nov 12, 2022
- * Last Modified: Dec 1, 2022
+ * Last Modified: Dec 2, 2022
  */
-package modify_task_use_case;
-
 public class ModifyTaskInteractor implements ModifyTaskInputBoundary {
 
     private final ModifyTaskOutputBoundary outputBoundary;
     private final ModifyTaskDsGateway dsGateway;
+    private final String[] DAYSOFWEEK = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
     public ModifyTaskInteractor(
             ModifyTaskOutputBoundary outputBoundary,
@@ -20,10 +21,10 @@ public class ModifyTaskInteractor implements ModifyTaskInputBoundary {
         this.dsGateway = dsGateway;
     }
 
-    /**
-     * @param inputData contains the dayIndex which contains the Task to be modified,
+    /** Executes the application logic required to modify a given Task by calling the appropriate
+     * dsGateway and Output Boundary methods.
+     * @param inputData Contains the dayIndex which contains the Task to be modified,
      * the existing title of the Task, and the new title of the task.
-     *
      * @return A ModifyTaskOutputData instance which contains title, dayIndex, errorMessage
      * and isSuccessfully modified attributes, such that the latter two indicate whether the
      * use case was successful.
@@ -36,7 +37,7 @@ public class ModifyTaskInteractor implements ModifyTaskInputBoundary {
         if (dsGateway.taskExistsByTitle(inputData.getNewTitle(), inputData.getDayIndex())) {
             return outputBoundary.prepareFailView(
                     outputData,
-                    "Task with name: " + inputData.getNewTitle() + " already exists for day " + inputData.getDayIndex()
+                    "Task with name: '" + inputData.getNewTitle() + "' already exists for " + DAYSOFWEEK[inputData.getDayIndex()]
             );
         }
         ModifyTaskDsInputData dsInputData = new ModifyTaskDsInputData(
