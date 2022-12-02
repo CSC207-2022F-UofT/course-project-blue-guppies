@@ -24,4 +24,10 @@ public class CompleteTaskDataAccess extends WeekDataAccess implements CompleteTa
         task.setCompleted(!task.getCompleted());
         super.save();
     }
+    @Override
+    public boolean existsByTitle(String title, int dayIndex) {
+        DataAccessDay referenceDay = days.get(dayIndex);
+        HashMap<String, DataAccessTask> tasks = referenceDay.getTasks();
+        return tasks.containsKey(title);
+    }
 }

@@ -10,12 +10,14 @@ package complete_task_use_case;
 public class CompleteTaskPresenter implements CompleteTaskOutputBoundary {
     @Override
     public CompleteTaskOutputData prepareSuccessView(CompleteTaskOutputData task) {
+        // View Model Update
         task.setSuccessfullyCreated(true);
         return task;
     }
 
     @Override
     public CompleteTaskOutputData prepareFailView(CompleteTaskOutputData task, String error) {
+        // View Model Update
         task.setSuccessfullyCreated(false);
         task.setErrorMessage(error);
         return task;

@@ -20,7 +20,7 @@ public class CompleteTaskControllerTest {
         ArrayList<DataAccessDay> days = dataAccess.getDays();
         DataAccessDay day = days.get(0);
         day.getTasks().put(task.getTitle(), task);
-        controller.completeTask(0, "Daniel");
+        controller.complete("Sunday", "Daniel");
         assertTrue(task.getCompleted());
     }
 
