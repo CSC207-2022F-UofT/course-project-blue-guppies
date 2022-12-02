@@ -10,15 +10,13 @@ package create_task_use_case;
 public class CreateTaskOutputData {
 
     String title;
-    boolean completed;
     boolean isSuccessfullyCreated;
     int dayIndex;
     String errorMessage;
 
 
-    public CreateTaskOutputData(String title, boolean completed, int dayIndex, String errorMessage){
+    public CreateTaskOutputData(String title, int dayIndex, String errorMessage){
         this.title = title;
-        this.completed = completed;
         this.dayIndex = dayIndex;
         this.isSuccessfullyCreated = false;
         this.errorMessage = errorMessage;
@@ -26,10 +24,6 @@ public class CreateTaskOutputData {
 
     public String getTitle() {
         return title;
-    }
-
-    public boolean getCompleted() {
-        return completed;
     }
 
     public boolean isSuccessfullyCreated() {

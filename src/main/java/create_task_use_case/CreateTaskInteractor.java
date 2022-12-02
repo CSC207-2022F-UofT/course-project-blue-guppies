@@ -31,14 +31,13 @@ public class CreateTaskInteractor implements CreateTaskInputBoundary {
     @Override
     public CreateTaskOutputData create(CreateTaskInputData inputData) {
         Task task = taskFactory.createTask(inputData.getTitle());
-        CreateTaskOutputData createTaskData = new CreateTaskOutputData(task.getTitle(), task.getCompleted(),
-                inputData.getDayIndex(), "");
+        CreateTaskOutputData createTaskData = new CreateTaskOutputData(task.getTitle(), inputData.getDayIndex(),
+                "");
         if (dsGateway.existsByTitle(inputData.getTitle(), inputData.getDayIndex())){
             return outputBoundary.prepareFailView(createTaskData,"There already exists a task with name: " +
                     "'" + inputData.getTitle() +"' on " + DAYSOFWEEK[inputData.getDayIndex()]);
         }
-        CreateTaskDsInputData DsData = new CreateTaskDsInputData(task.getTitle(), task.getCompleted(),
-                inputData.getDayIndex());
+        CreateTaskDsInputData DsData = new CreateTaskDsInputData(task.getTitle(), inputData.getDayIndex());
         dsGateway.save(DsData);
         return outputBoundary.prepareSuccessView(createTaskData);
     }

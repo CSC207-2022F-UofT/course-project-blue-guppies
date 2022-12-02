@@ -9,12 +9,10 @@ package create_task_use_case;
 
 public class CreateTaskDsInputData {
     private String title;
-    private boolean completed;
     private int dayIndex;
 
-    public CreateTaskDsInputData(String title, boolean completed, int dayIndex){
+    public CreateTaskDsInputData(String title, int dayIndex){
         this.title = title;
-        this.completed = completed;
         this.dayIndex = dayIndex;
     }
 
@@ -24,14 +22,6 @@ public class CreateTaskDsInputData {
 
     public void setTitle(String title){
         this.title = title;
-    }
-
-    public boolean getCompleted(){
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
     }
 
     public int getDayIndex(){
