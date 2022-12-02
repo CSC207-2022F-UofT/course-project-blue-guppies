@@ -2,6 +2,7 @@ package screens;
 
 import modify_task_use_case.ModifyTaskController;
 import modify_task_use_case.ModifyTaskFailed;
+import modify_task_use_case.ModifyTaskOutputData;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,25 +52,20 @@ public class ModifyTaskScreen extends FormScreen{
     @Override
     public void actionPerformed(ActionEvent evt) {
         if ("Modify".equals(evt.getActionCommand())) {
-            System.out.println("modify");
-            System.out.println("new title: " + title.getText());
-            System.out.println("old title: " + this.oldTitle);
-            System.out.println("day: " + dayIndex);
-
+            ModifyTaskOutputData outputData = modifyTaskController.modifyTask(dayIndex, title.getText(),
+                    this.oldTitle);
             String message;
-            try {
-                modifyTaskController.modifyTask(dayIndex, title.getText(), this.oldTitle);
+            if (outputData.isSuccessfullyModified()) {
                 message = "Task successfully modified";
                 resetForm();
                 this.setVisible(false);
-            } catch (ModifyTaskFailed e) {
-                message = e.getMessage();
+            } else {
+                message = outputData.getErrorMessage();
             }
 
             JFrame messageBox = new JFrame();
             JOptionPane.showMessageDialog(messageBox, message);
         } else if ("Cancel".equals(evt.getActionCommand())) {
-            System.out.println("cancel");
             this.setVisible(false);
             resetForm();
         }

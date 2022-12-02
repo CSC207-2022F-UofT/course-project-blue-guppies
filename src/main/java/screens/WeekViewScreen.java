@@ -21,8 +21,6 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
     private final Map<String, JFrame> screens;
     private final JPanel[][] panels = new JPanel[2][7];
 
-    // TODO documentation
-    // TODO refactor methods out of constructor
 
     /**
      * Create the screen showing all tasks and events for every day of the week and all buttons for each use case.

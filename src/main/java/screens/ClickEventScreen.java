@@ -57,7 +57,6 @@ public class ClickEventScreen extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if ("modify".equals(e.getActionCommand())) {
-            System.out.println("modify");
 
             // Set the variables in modifyEventScreen to the values of the event clicked
             modifyEventScreen.setOldTitle(eventTitle);
@@ -67,7 +66,6 @@ public class ClickEventScreen extends JFrame implements ActionListener {
 
             modifyEventScreen.setVisible(true);
         } else if ("delete".equals(e.getActionCommand())) {
-            System.out.println("delete");
 
             // Confirm the user wants to delete
             int confirmed = JOptionPane.showConfirmDialog(null,

@@ -128,11 +128,6 @@ public class CreateEventScreen extends FormScreen {
     public void actionPerformed(ActionEvent evt) {
         if ("Create".equals(evt.getActionCommand())) {
             String day = getSelectedDay();
-            System.out.println("create");
-            System.out.println(title.getText());
-            System.out.println(day);
-            System.out.println(startTime.getText());
-            System.out.println(endTime.getText());
 
             CreateEventOutputData outputData = createEventController.create(day, title.getText(), startTime.getText(),
                     endTime.getText());
@@ -148,7 +143,6 @@ public class CreateEventScreen extends FormScreen {
             JFrame messageBox = new JFrame();
             JOptionPane.showMessageDialog(messageBox, message);
         } else if ("Cancel".equals(evt.getActionCommand())) {
-            System.out.println("cancel");
             this.setVisible(false);
             resetForm();
         }

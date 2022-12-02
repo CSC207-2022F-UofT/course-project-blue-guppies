@@ -33,7 +33,7 @@ public class ModifyTaskControllerTest extends WeekDataAccess {
         ModifyTaskOutputData outputData = controller.modifyTask(
                 dayId, newTitle, title
         );
-        assertEquals(0, outputData.getDayId());
+        assertEquals(0, outputData.getDayIndex());
         assertEquals("New Sample Task", outputData.getTitle());
     }
 }

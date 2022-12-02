@@ -35,7 +35,7 @@ class ModifyTaskInteractorTest extends WeekDataAccess {
         );
 
         assertEquals("New Sample Task", outputData.getTitle());
-        assertEquals(0, outputData.getDayId());
+        assertEquals(0, outputData.getDayIndex());
         assertEquals("New Sample Task", task.getTitle());
     }
 }

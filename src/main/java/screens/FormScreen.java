@@ -129,7 +129,6 @@ public abstract class FormScreen extends JFrame implements ActionListener, Windo
      */
     @Override
     public void windowClosing(WindowEvent e) {
-        System.out.println("\nx button");
         resetForm();
     }
 

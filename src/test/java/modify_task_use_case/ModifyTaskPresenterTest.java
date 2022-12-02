@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ModifyTaskPresenterTest {
     //task and event instances (and maps) to be used across tests.
     private final static ModifyTaskOutputData outputData = new ModifyTaskOutputData(
-            "Sample Task", 0
+            "Sample Task", 0, true, ""
     );
     private final static String error = "ERROR!";
 
@@ -17,7 +17,7 @@ class ModifyTaskPresenterTest {
         ModifyTaskOutputData response = outputBoundary.prepareSuccessView(
                 outputData
         );
-        assertEquals(0, response.getDayId());
+        assertEquals(0, response.getDayIndex());
         assertEquals("Sample Task", response.getTitle());
     }
 

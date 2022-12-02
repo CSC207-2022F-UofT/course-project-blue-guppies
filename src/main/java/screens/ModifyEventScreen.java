@@ -95,15 +95,6 @@ public class ModifyEventScreen extends FormScreen {
     @Override
     public void actionPerformed(ActionEvent evt) {
         if ("Modify".equals(evt.getActionCommand())) {
-            System.out.println("modify");
-            System.out.println("new title: " + title.getText());
-            System.out.println("old title: " + this.oldTitle);
-            System.out.println("new start time: " + startTime.getText());
-            System.out.println("old start time: " + this.oldStartTime);
-            System.out.println("new end time: " + endTime.getText());
-            System.out.println("old end time: " + this.oldEndTime);
-            System.out.println("day: " + dayIndex);
-
             String message;
             ModifyEventOutputData outputData = modifyEventController.modify(oldTitle, dayIndex, startTime.getText(),
                     endTime.getText(), title.getText());
@@ -118,7 +109,6 @@ public class ModifyEventScreen extends FormScreen {
             JFrame messageBox = new JFrame();
             JOptionPane.showMessageDialog(messageBox, message);
         } else if ("Cancel".equals(evt.getActionCommand())) {
-            System.out.println("cancel");
             this.setVisible(false);
             resetForm();
         }

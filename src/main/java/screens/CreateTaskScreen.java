@@ -95,14 +95,8 @@ public class CreateTaskScreen extends FormScreen{
         if ("Create".equals(evt.getActionCommand())) {
             String day = getSelectedDay();
 
-            System.out.println("create");
-            System.out.println(title.getText());
-            System.out.println(day);
-
             // call controller
             CreateTaskOutputData outputData = createTaskController.create(day, title.getText());
-            // TODO check my controller against Fardin's
-            // Fardin's is currently also taking in a boolean completed, but I feel this is unnecessary
 
             String message;
             if (outputData.isSuccessfullyCreated()) {
@@ -116,7 +110,6 @@ public class CreateTaskScreen extends FormScreen{
             JOptionPane.showMessageDialog(messageBox, message);
 
         } else if ("Cancel".equals(evt.getActionCommand())) {
-            System.out.println("cancel");
             this.setVisible(false);
             resetForm();
         }
