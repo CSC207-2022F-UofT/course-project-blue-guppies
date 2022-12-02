@@ -11,7 +11,7 @@ public class CompleteTaskInteractorTest {
     @Test
     public void testCompleteTask(){
         CompleteTaskInteractor interactor = new CompleteTaskInteractor(presenter, dataAccess);
-        CompleteTaskInputData inputData = new CompleteTaskInputData(0, "Cricket");
+        CompleteTaskInputData inputData = new CompleteTaskInputData("Sunday", "Cricket");
         CompleteTaskOutputData outputData = interactor.completeTask(inputData);
         assertTrue(outputData.isSuccessfullyCreated());
     }
