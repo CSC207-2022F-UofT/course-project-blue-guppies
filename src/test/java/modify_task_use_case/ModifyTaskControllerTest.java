@@ -3,7 +3,7 @@
  * Author: Raghav Arora
  * Modified By: Raghav Arora
  * Created: Nov 19, 2022
- * Last Modified: Nov 26, 2022
+ * Last Modified: Dec 1, 2022
  */
 package modify_task_use_case;
 
@@ -44,7 +44,7 @@ public class ModifyTaskControllerTest {
 
         // Day 0 should not have a task named "Sample Task", and instead
         // have "New Sample Task"
-        assertEquals(0, outputData.getDayID());
+        assertEquals(0, outputData.getDayIndex());
         assertEquals("New Sample Task", outputData.getTitle());
         DataAccessDay day0 = dataAccess.getDays().get(0);
         assertFalse(day0.getTasks().containsKey("Sample Task"));

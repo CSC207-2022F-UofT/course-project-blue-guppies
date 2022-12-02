@@ -3,7 +3,7 @@
  * Author: Raghav Arora
  * Modified By: Raghav Arora
  * Created: Nov 26, 2022
- * Last Modified: Nov 26, 2022
+ * Last Modified: Dec 1, 2022
  */
 package modify_task_use_case;
 
@@ -22,7 +22,7 @@ public class ModifyTaskInputDataTest {
 
     @Test
     void testGetDayID() {
-        assertEquals(0, inputData.getDayID());
+        assertEquals(0, inputData.getDayIndex());
     }
 
     @Test

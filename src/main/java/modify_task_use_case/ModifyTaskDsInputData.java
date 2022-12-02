@@ -3,24 +3,24 @@
  * Author: Raghav Arora
  * Modified By: Raghav Arora
  * Created: Nov 12, 2022
- * Last Modified: Nov 26, 2022
+ * Last Modified: Dec 1, 2022
  */
 package modify_task_use_case;
 
 public class ModifyTaskDsInputData {
-    private int dayID;
-    private String newTitle;
+    private final int dayIndex;
+    private final String newTitle;
     private String title;
 
-    public ModifyTaskDsInputData(int dayID, String newTitle, String title) {
-        this.dayID = dayID;
+    public ModifyTaskDsInputData(int dayIndex, String newTitle, String title) {
+        this.dayIndex = dayIndex;
         this.newTitle = newTitle;
         this.title = title;
     }
 
     public String getNewTitle() { return this.newTitle; }
 
-    public int getDayID() { return this.dayID; }
+    public int getDayIndex() { return this.dayIndex; }
 
     public String getTitle() { return this.title; }
 
