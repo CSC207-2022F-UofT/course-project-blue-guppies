@@ -21,11 +21,11 @@ public class CreateTaskInteractorTest {
         CreateTaskOutputData createTaskOutputData = createTaskInteractor.create(inputData);
         DataAccessDay day = createTaskDataAccess.getDays().get(3);
         HashMap<String, DataAccessTask> tasks = day.getTasks();
-        DataAccessTask refrenceTask = tasks.get("Finish Unit Test");
+        DataAccessTask referenceTask = tasks.get("Finish Unit Test");
         assertTrue(createTaskOutputData.isSuccessfullyCreated());
         assertEquals(3, createTaskOutputData.getDayIndex());
         assertTrue(createTaskDataAccess.existsByTitle("Finish Unit Test", 3));
-        assertEquals("Finish Unit Test", refrenceTask.getTitle());
+        assertEquals("Finish Unit Test", referenceTask.getTitle());
     }
     @Test
     public void createTestFail(){
