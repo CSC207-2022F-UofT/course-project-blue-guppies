@@ -11,12 +11,14 @@ public class CompleteTaskOutputData {
     String title;
     int dayIndex;
     boolean isSuccessfullyCreated;
+    String errorMessage;
 
 
-    public CompleteTaskOutputData(String title, int dayIndex){
+    public CompleteTaskOutputData(String title, int dayIndex, String errorMessage){
         this.title = title;
         this.dayIndex = dayIndex;
         this.isSuccessfullyCreated = false;
+        this.errorMessage = errorMessage;
     }
 
     public String getTitle() {
@@ -30,11 +32,20 @@ public class CompleteTaskOutputData {
     public int getDayIndex() {
         return dayIndex;
     }
+
     public boolean isSuccessfullyCreated() {
         return isSuccessfullyCreated;
     }
 
     public void setSuccessfullyCreated(boolean successfullyCreated) {
         isSuccessfullyCreated = successfullyCreated;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

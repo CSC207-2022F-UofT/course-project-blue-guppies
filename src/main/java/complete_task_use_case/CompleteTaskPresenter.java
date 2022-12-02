@@ -13,4 +13,11 @@ public class CompleteTaskPresenter implements CompleteTaskOutputBoundary {
         task.setSuccessfullyCreated(true);
         return task;
     }
+
+    @Override
+    public CompleteTaskOutputData prepareFailView(CompleteTaskOutputData task, String error) {
+        task.setSuccessfullyCreated(false);
+        task.setErrorMessage(error);
+        return task;
+    }
 }

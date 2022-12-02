@@ -6,6 +6,7 @@
  * Last Modified: N/A
  */
 package complete_task_use_case;
+
 public class CompleteTaskDsInputData {
     private int dayIndex;
     private String title;
