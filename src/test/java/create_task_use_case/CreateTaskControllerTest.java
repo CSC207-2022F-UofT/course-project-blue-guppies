@@ -19,7 +19,6 @@ public class CreateTaskControllerTest {
                 "Sample Task",  0
         );
         assertEquals("Sample Task", outputData.getTitle());
-        assertFalse(outputData.getCompleted());
         assertEquals(0, outputData.getDayIndex());
         assertTrue(outputData.isSuccessfullyCreated());
         assertTrue(dataAccess.existsByTitle("Sample Task", 0));

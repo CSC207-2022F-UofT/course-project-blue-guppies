@@ -16,17 +16,6 @@ public class CreateTaskInputDataTest {
         assertEquals(inputData.getTitle(), "Finish Use Case");
     }
     @Test
-    public void testGetCompleted(){
-        CreateTaskInputData inputData = new CreateTaskInputData("Hi Reviewer", 2);
-        assertFalse(inputData.getCompleted());
-    }
-    @Test
-    public void testSetCompleted(){
-        CreateTaskInputData inputData = new CreateTaskInputData("Get Some Friends", 5);
-        inputData.setCompleted(true);
-        assertTrue(inputData.getCompleted());
-    }
-    @Test
     public void testGetDayIndex(){
         CreateTaskInputData outputData = new CreateTaskInputData("Office Hours", 3);
         assertEquals(outputData.getDayIndex(), 3);
