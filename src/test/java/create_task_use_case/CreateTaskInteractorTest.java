@@ -15,27 +15,27 @@ public class CreateTaskInteractorTest {
     private final static TaskFactory taskFactory = new TaskFactory();
     @Test
     public void createTestSuccess(){
-        CreateTaskInputData inputData = new CreateTaskInputData("Finish Unit Test", 3);
+        CreateTaskInputData inputData = new CreateTaskInputData("Finish Unit Test", "Tuesday");
         CreateTaskInteractor createTaskInteractor = new CreateTaskInteractor(taskFactory, createTaskPresenter,
                 createTaskDataAccess);
         CreateTaskOutputData createTaskOutputData = createTaskInteractor.create(inputData);
-        DataAccessDay day = createTaskDataAccess.getDays().get(3);
+        DataAccessDay day = createTaskDataAccess.getDays().get(2);
         HashMap<String, DataAccessTask> tasks = day.getTasks();
         DataAccessTask referenceTask = tasks.get("Finish Unit Test");
         assertTrue(createTaskOutputData.isSuccessfullyCreated());
-        assertEquals(3, createTaskOutputData.getDayIndex());
-        assertTrue(createTaskDataAccess.existsByTitle("Finish Unit Test", 3));
+        assertEquals(2, createTaskOutputData.getDayIndex());
+        assertTrue(createTaskDataAccess.existsByTitle("Finish Unit Test", 2));
         assertEquals("Finish Unit Test", referenceTask.getTitle());
     }
     @Test
     public void createTestFail(){
-        CreateTaskInputData inputData = new CreateTaskInputData("Update", 3);
+        CreateTaskInputData inputData = new CreateTaskInputData("Update", "Tuesday");
         CreateTaskInteractor createTaskInteractor = new CreateTaskInteractor(taskFactory, createTaskPresenter,
                 createTaskDataAccess);
         // Add Task twice to mock adding duplicate task on the same day
         CreateTaskOutputData createTaskOutputDataTemp = createTaskInteractor.create(inputData);
         CreateTaskOutputData createTaskOutputData = createTaskInteractor.create(inputData);
-        assertEquals("There already exists a task with name: 'Update' on Wednesday",
+        assertEquals("There already exists a task with name: 'Update' on Tuesday",
                 createTaskOutputData.getErrorMessage());
     }
 }
