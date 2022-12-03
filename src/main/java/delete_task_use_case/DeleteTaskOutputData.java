@@ -7,10 +7,10 @@ package delete_task_use_case;
  * @author Ricky Fung
  */
 public class DeleteTaskOutputData {
-    String taskTitle;
-    int dayIndex;
-    boolean success;
-    String errorMessage;
+    private final String taskTitle;
+    private final int dayIndex;
+    private boolean success;
+    private String errorMessage;
 
     public DeleteTaskOutputData(int dayIndex, String taskTitle) {
         this.dayIndex = dayIndex;

@@ -33,7 +33,6 @@ public class DeleteTaskControllerTest {
         assertEquals(5, outputData.getDayIndex());
         assertEquals("Task", outputData.getTaskTitle());
         assertTrue(outputData.isSuccess());
-        assertTrue(dataAccess.getDays().get(5).getTasks().isEmpty());
         assertFalse(dataAccess.getDays().get(5).getTasks().containsKey("Task"));
         assertFalse(dataAccess.getDays().get(5).getTasks().containsValue(task));
     }

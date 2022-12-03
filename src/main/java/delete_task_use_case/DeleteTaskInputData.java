@@ -9,16 +9,16 @@ public class DeleteTaskInputData {
     private final int dayIndex;
     private final String taskTitle;
 
-    public DeleteTaskInputData(int dayIndex, String taskTitle) {
+    DeleteTaskInputData(int dayIndex, String taskTitle) {
         this.taskTitle = taskTitle;
         this.dayIndex = dayIndex;
     }
 
-    int getDayIndex() {
+    protected int getDayIndex() {
         return this.dayIndex;
     }
 
-    String getTaskTitle() {
+    protected String getTaskTitle() {
         return this.taskTitle;
     }
 }

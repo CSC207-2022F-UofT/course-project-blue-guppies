@@ -32,9 +32,8 @@ class DeleteTaskInteractorTest {
 
         assertEquals(5, outputData.getDayIndex());
         assertEquals("Task", outputData.getTaskTitle());
-        assertTrue(day.getTasks().isEmpty());
-        assertFalse(day.getTasks().containsKey("Task"));
-        assertFalse(day.getTasks().containsValue(task));
+        assertFalse(dataAccess.getDays().get(5).getTasks().containsKey("Task"));
+        assertFalse(dataAccess.getDays().get(5).getTasks().containsValue(task));
         assertTrue(outputData.isSuccess());
     }
 
