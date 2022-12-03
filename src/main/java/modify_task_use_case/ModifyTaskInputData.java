@@ -6,22 +6,22 @@ package modify_task_use_case;
  * the implementation of modifyTask given by the interactor/input boundary.
  * @author Raghav Arora
  */
-public class ModifyTaskInputData {
+class ModifyTaskInputData {
     private final int dayIndex;
     private final String newTitle;
     private String title;
 
-    public ModifyTaskInputData(int dayIndex, String newTitle, String title) {
+    ModifyTaskInputData(int dayIndex, String newTitle, String title) {
         this.dayIndex = dayIndex;
         this.newTitle = newTitle;
         this.title = title;
     }
 
-    public String getNewTitle() { return this.newTitle; }
+    protected String getNewTitle() { return this.newTitle; }
 
-    public int getDayIndex() { return this.dayIndex; }
+    protected int getDayIndex() { return this.dayIndex; }
 
-    public String getTitle() { return this.title; }
+    protected String getTitle() { return this.title; }
 
-    public void setTitle(String title) { this.title = title; }
+    protected void setTitle(String title) { this.title = title; }
 }

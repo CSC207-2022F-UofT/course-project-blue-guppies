@@ -22,7 +22,7 @@ public class ModifyTaskDataAccess extends WeekDataAccess implements ModifyTaskDs
      * @return whether there already exists a task in the given day with the same name
      */
     @Override
-    public boolean taskExistsByTitle(String title, int dayIndex) {
+     public boolean taskExistsByTitle(String title, int dayIndex) {
         DataAccessDay day = days.get(dayIndex);
         return day.getTasks().containsKey(title);
     }
