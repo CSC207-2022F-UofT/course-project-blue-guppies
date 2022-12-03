@@ -13,7 +13,7 @@ public class CreateTaskController {
         this.inputBoundary = inputBoundary;
     }
 
-    CreateTaskOutputData createTask(String title, String day){
+    CreateTaskOutputData createTask(String day, String title){
         CreateTaskInputData taskInputData = new CreateTaskInputData(title, day);
 
         return inputBoundary.create(taskInputData);
