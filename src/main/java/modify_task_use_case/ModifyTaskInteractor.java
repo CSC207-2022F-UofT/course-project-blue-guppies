@@ -32,7 +32,8 @@ public class ModifyTaskInteractor implements ModifyTaskInputBoundary {
         );
         dsGateway.save(dsInputData);
         ModifyTaskOutputData task = new ModifyTaskOutputData(
-                inputData.getNewTitle(), inputData.getDayID(), true, "");
+                inputData.getNewTitle(), inputData.getDayID()
+        );
         return outputBoundary.prepareSuccessView(task);
     }
 

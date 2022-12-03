@@ -10,14 +10,12 @@ package modify_task_use_case;
 public class ModifyTaskOutputData {
     private String title;
     private int dayIndex;
-    private boolean isSuccessfullyModified;
+    private boolean isSuccessfullyModified = true;
     private String errorMessage = "";
 
-    public ModifyTaskOutputData(String title, int dayIndex, boolean isSuccessfullyModified, String errorMessage) {
+    public ModifyTaskOutputData(String title, int dayIndex) {
         this.title = title;
         this.dayIndex = dayIndex;
-        this.isSuccessfullyModified = isSuccessfullyModified;
-        this.errorMessage = errorMessage;
     }
 
     public String getTitle() { return this.title; }
