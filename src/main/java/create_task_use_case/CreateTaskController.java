@@ -1,12 +1,11 @@
-/**
- * Create Task Controller Class.
- * Author: Fardin Faruk
- * Modified By: Fardin Faruk
- * Created: Nov 19, 2022
- * Last Modified: Nov 27, 2022
- */
 package create_task_use_case;
 
+/**
+ * Create Task Controller Class; invokes the implementation of createTask given
+ *  * by CreateTaskInteractor to execute the application logic.
+ *
+ * @author Fardin Faruk
+ */
 public class CreateTaskController {
 
     private final CreateTaskInputBoundary inputBoundary;
