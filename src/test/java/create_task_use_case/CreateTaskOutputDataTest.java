@@ -2,7 +2,7 @@ package create_task_use_case;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CreateTaskOutputDataTest {
     @Test
