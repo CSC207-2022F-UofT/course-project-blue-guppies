@@ -1,11 +1,10 @@
 package delete_event_use_case;
 
 /**
- * Delete Event Output Boundary interface.
- * @author : Khizer Ahmad
- * @created: November 19th 2022
- * @since : 2022-11-21, Mon.
- **/
+ * Output Boundary interface for deleting events.
+ * Contains methods for preparing success and failure views, implemented in DeleteEventPresenter.
+ * @author Khizer Ahmad
+ */
 public interface DeleteEventOutputBoundary {
     DeleteEventOutputData prepareSuccessView(DeleteEventOutputData eventOutputData);
 

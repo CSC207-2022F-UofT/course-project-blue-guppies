@@ -1,12 +1,10 @@
-/**
- * Delete Event OutputData class.
- * @author : Khizer Ahmad
- * @created: November 19th 2022
- * @since : 2022-11-28, Mon.
- **/
-
 package delete_event_use_case;
 
+/**
+ * Output Data that is sent back to controller.
+ * errorMessage and success status indicating the results of deletion.
+ * @author Khizer Ahmad
+ */
 public class DeleteEventOutputData {
     private String label;
     private int dayIndex;

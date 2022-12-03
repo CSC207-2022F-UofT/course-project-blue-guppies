@@ -1,11 +1,9 @@
-/**
- * Delete Event Input Data class.
- * @author : Khizer Ahmad
- * @created: November 19th 2022
- * @since : 2022-11-28, Mon.
- **/
-
 package delete_event_use_case;
+
+/**
+ *  Contains inputs for DeleteEventInputBoundary's delete method.
+ *  @author Khizer Ahmad
+ */
 public class DeleteEventInputData {
 
     private int dayIndex;
