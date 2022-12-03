@@ -11,13 +11,13 @@ public class CreateTaskDsInputDataTest {
 
     @Test
     public void testGetTitle(){
-        CreateTaskDsInputData outputData = new CreateTaskDsInputData("Exam", 0);
-        assertEquals(outputData.getTitle(), "Exam");
+        CreateTaskDsInputData inputData = new CreateTaskDsInputData("Exam", 0);
+        assertEquals("Exam", inputData.getTitle());
     }
     @Test
     public void testGetDayIndex(){
-        CreateTaskDsInputData outputData = new CreateTaskDsInputData("Meal Prep", 0);
-        assertEquals(outputData.getDayIndex(), 0);
+        CreateTaskDsInputData inputData = new CreateTaskDsInputData("Meal Prep", 0);
+        assertEquals(0, inputData.getDayIndex());
     }
 }
 

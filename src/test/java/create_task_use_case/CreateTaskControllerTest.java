@@ -8,14 +8,14 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Fardin Faruk
  */
 public class CreateTaskControllerTest {
-    private final static CreateTaskPresenter presenter = new CreateTaskPresenter();
-    private final static CreateTaskDataAccess dataAccess = new CreateTaskDataAccess();
-    private final static TaskFactory taskFactory = new TaskFactory();
+    private final static CreateTaskPresenter PRESENTER = new CreateTaskPresenter();
+    private final static CreateTaskDataAccess DATA_ACCESS = new CreateTaskDataAccess();
+    private final static TaskFactory TASK_FACTORY = new TaskFactory();
 
     @Test
     public void testCreateTask(){
         CreateTaskInteractor interactor = new CreateTaskInteractor(
-                taskFactory, presenter, dataAccess
+                TASK_FACTORY, PRESENTER, DATA_ACCESS
         );
         CreateTaskController controller = new CreateTaskController(interactor);
         CreateTaskOutputData outputData = controller.createTask(
@@ -24,6 +24,6 @@ public class CreateTaskControllerTest {
         assertEquals("Sample Task", outputData.getTitle());
         assertEquals(0, outputData.getDayIndex());
         assertTrue(outputData.isSuccessfullyCreated());
-        assertTrue(dataAccess.existsByTitle("Sample Task", 0));
+        assertTrue(DATA_ACCESS.existsByTitle("Sample Task", 0));
     }
 }

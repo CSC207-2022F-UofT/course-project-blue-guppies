@@ -14,7 +14,7 @@ public class CreateTaskInteractor implements CreateTaskInputBoundary {
     final CreateTaskOutputBoundary outputBoundary;
     final TaskFactory taskFactory;
 
-    final private String[] DAYSOFWEEK = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    final private String[] DAYS_OF_WEEK = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
     public CreateTaskInteractor(TaskFactory taskFactory, CreateTaskOutputBoundary outputBoundary,
                                 CreateTaskDsGateway dsGateway){
@@ -37,11 +37,10 @@ public class CreateTaskInteractor implements CreateTaskInputBoundary {
     @Override
     public CreateTaskOutputData create(CreateTaskInputData inputData) {
         Task task = taskFactory.createTask(inputData.getTitle());
-        CreateTaskOutputData createTaskData = new CreateTaskOutputData(task.getTitle(), inputData.getDayIndex(),
-                "");
+        CreateTaskOutputData createTaskData = new CreateTaskOutputData(task.getTitle(), inputData.getDayIndex());
         if (dsGateway.existsByTitle(inputData.getTitle(), inputData.getDayIndex())){
             return outputBoundary.prepareFailView(createTaskData,"There already exists a task with name: " +
-                    "'" + inputData.getTitle() +"' on " + DAYSOFWEEK[inputData.getDayIndex()]);
+                    "'" + inputData.getTitle() +"' on " + DAYS_OF_WEEK[inputData.getDayIndex()]);
         }
         CreateTaskDsInputData DsData = new CreateTaskDsInputData(task.getTitle(), inputData.getDayIndex());
         dsGateway.save(DsData);
