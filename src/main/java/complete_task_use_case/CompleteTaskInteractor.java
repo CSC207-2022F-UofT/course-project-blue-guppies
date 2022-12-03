@@ -20,7 +20,7 @@ public class CompleteTaskInteractor implements CompleteTaskInputBoundary {
     }
 
     /**
-     * Executes the application logic required to create a Task with a given dayIndex by calling the appropriate
+     * Executes the application logic required to complete a Task with a given dayIndex by calling the appropriate
      * dsGateway and Output Boundary methods.
      *
      * @param inputData A CompleteTaskOutputData instance which contains the dayIndex of the Day object which contains

@@ -23,7 +23,7 @@ public class CompleteTaskPresenter implements CompleteTaskOutputBoundary {
     }
 
     /**
-     * Mutate the CreateTaskOutputData instance provided by setting its
+     * Mutate the CompleteTaskOutputData instance provided by setting its
      * isSuccessfullyModified attribute to false, and errorMessage to a non-empty string.
      *
      * @param task A CompleteTaskOutputData instance which contains the title of the task modified
