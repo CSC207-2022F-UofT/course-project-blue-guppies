@@ -96,7 +96,7 @@ public class CreateTaskScreen extends FormScreen{
             String day = getSelectedDay();
 
             // call controller
-            CreateTaskOutputData outputData = createTaskController.create(day, title.getText());
+            CreateTaskOutputData outputData = createTaskController.createTask(day, title.getText());
 
             String message;
             if (outputData.isSuccessfullyCreated()) {

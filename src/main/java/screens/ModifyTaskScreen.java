@@ -1,7 +1,6 @@
 package screens;
 
 import modify_task_use_case.ModifyTaskController;
-import modify_task_use_case.ModifyTaskFailed;
 import modify_task_use_case.ModifyTaskOutputData;
 
 import javax.swing.*;
@@ -55,7 +54,7 @@ public class ModifyTaskScreen extends FormScreen{
             ModifyTaskOutputData outputData = modifyTaskController.modifyTask(dayIndex, title.getText(),
                     this.oldTitle);
             String message;
-            if (outputData.isSuccessfullyModified()) {
+            if (outputData.getIsSuccessfullyModified()) {
                 message = "Task successfully modified";
                 resetForm();
                 this.setVisible(false);
