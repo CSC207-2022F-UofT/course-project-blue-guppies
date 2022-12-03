@@ -1,19 +1,20 @@
 package modify_task_use_case;
-import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Task Modification Presenter Test Cases.
+ * Task Modification Output Boundary Test Cases.
  * @author Raghav Arora
  */
-class ModifyTaskPresenterTest {
+public class ModifyTaskOutputBoundaryTest {
+    // task and event instances (and maps) to be used across tests.
+    private final static ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter();
     private final static ModifyTaskOutputData outputData = new ModifyTaskOutputData(
             "Sample Task", 0
     );
     private final static String ERROR = "ERROR!";
-    private final static ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter();
 
     @Test
     public void testPrepareSuccessView(){

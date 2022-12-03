@@ -1,17 +1,18 @@
-/**
- * Task Modification Output Data Class.
- * Author: Raghav Arora
- * Modified By: Raghav Arora
- * Created: Nov 12, 2022
- * Last Modified: Nov 19, 2022
- */
 package modify_task_use_case;
 
+/**
+ * Task Modification Output Data Class. Instances of this class are returned upon the
+ * execution of the application logic for this use case. The errorMessage and
+ * isSuccessfullyModified instance attributes, in particular, represent whether the use
+ * case logic was successfully executed.
+ * @author Raghav Arora
+ */
 public class ModifyTaskOutputData {
-    private String title;
-    private int dayIndex;
-    private boolean isSuccessfullyModified = true;
-    private String errorMessage = "";
+    private final String title;
+    private final int dayIndex;
+    private String errorMessage;
+    private boolean isSuccessfullyModified;
+
 
     public ModifyTaskOutputData(String title, int dayIndex) {
         this.title = title;
@@ -22,11 +23,13 @@ public class ModifyTaskOutputData {
 
     public int getDayIndex() { return this.dayIndex; }
 
-    public boolean isSuccessfullyModified() {
-        return isSuccessfullyModified;
-    }
+    public String getErrorMessage() { return this.errorMessage; }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    protected void setErrorMessage(String errorMessage) { this.errorMessage = errorMessage; }
+
+    public boolean getIsSuccessfullyModified() { return this.isSuccessfullyModified; }
+
+    protected void setSuccessfullyModified(boolean isSuccessfullyModified) {
+        this.isSuccessfullyModified = isSuccessfullyModified;
     }
 }
