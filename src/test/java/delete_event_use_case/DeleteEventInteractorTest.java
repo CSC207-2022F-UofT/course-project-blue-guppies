@@ -13,11 +13,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteEventInteractorTest extends WeekDataAccess {
-    private final static DeleteEventInputData inputData = new DeleteEventInputData(
+    private final static DeleteEventInputData INPUT_DATA = new DeleteEventInputData(
             5, "Event");
 
-    private final static DeleteEventPresenter outputBoundary = new DeleteEventPresenter();
-    private final static DeleteEventDataAccess dsGateway = new DeleteEventDataAccess();
+    private final static DeleteEventPresenter OUTPUT_BOUNDARY = new DeleteEventPresenter();
+    private final static DeleteEventDataAccess DS_GATEWAY = new DeleteEventDataAccess();
 
     @Test
     public void testDeleteEventInteractor() {
@@ -28,8 +28,8 @@ class DeleteEventInteractorTest extends WeekDataAccess {
         DataAccessDay day = new DataAccessDay(tasks, events);
         WeekDataAccess.days.set(5, day);
 
-        DeleteEventInputBoundary inputBoundary = new DeleteEventInteractor(outputBoundary, dsGateway);
-        DeleteEventOutputData outputData = inputBoundary.delete(inputData);
+        DeleteEventInputBoundary inputBoundary = new DeleteEventInteractor(OUTPUT_BOUNDARY, DS_GATEWAY);
+        DeleteEventOutputData outputData = inputBoundary.delete(INPUT_DATA);
 
         assertEquals(5, outputData.getDayIndex());
         assertEquals("Event", outputData.getLabel());

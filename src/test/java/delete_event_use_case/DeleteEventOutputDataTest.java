@@ -4,37 +4,37 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteEventOutputDataTest {
-    private final static DeleteEventOutputData outputData = new DeleteEventOutputData(3, "CSC317 Mass Springs");
+    private final static DeleteEventOutputData OUTPUT_DATA = new DeleteEventOutputData(3, "CSC317 Mass Springs");
 
     @Test
     void testGetDayIndex() {
-        assertEquals(3, outputData.getDayIndex());
+        assertEquals(3, OUTPUT_DATA.getDayIndex());
     }
 
     @Test
     void testGetTaskTitle() {
-        assertEquals("CSC317 Mass Springs", outputData.getLabel());
+        assertEquals("CSC317 Mass Springs", OUTPUT_DATA.getLabel());
     }
 
     @Test
     void testGetSuccess() {
-        assertFalse(outputData.getSuccess());
+        assertFalse(OUTPUT_DATA.getSuccess());
     }
 
     @Test
     void testSetSuccess() {
-        outputData.setSuccess(true);
-        assertTrue(outputData.getSuccess());
+        OUTPUT_DATA.setSuccess(true);
+        assertTrue(OUTPUT_DATA.getSuccess());
     }
 
     @Test
     void testGetErrorMessage() {
-        assertNull(outputData.getErrorMessage());
+        assertNull(OUTPUT_DATA.getErrorMessage());
     }
 
     @Test
     void testSetErrorMessage() {
-        outputData.setErrorMessage("Error");
-        assertEquals("Error", outputData.getErrorMessage());
+        OUTPUT_DATA.setErrorMessage("Error");
+        assertEquals("Error", OUTPUT_DATA.getErrorMessage());
     }
 }

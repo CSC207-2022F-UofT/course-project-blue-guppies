@@ -4,18 +4,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DeleteEventControllerTest {
-    private final static DeleteEventPresenter outputBoundary = new DeleteEventPresenter();
-    private final static DeleteEventDataAccess dsGateway = new DeleteEventDataAccess();
-    private final static int dayIndex = 3;
-    private final static String eventTitle = "Event";
+    private final static DeleteEventPresenter OUTPUT_BOUNDARY = new DeleteEventPresenter();
+    private final static DeleteEventDataAccess DS_GATEWAY = new DeleteEventDataAccess();
+    private final static int DAY_INDEX = 3;
+    private final static String EVENT_TITLE = "Event";
 
     @Test
     public void testDeleteEvent() {
-        DeleteEventInteractor inputBoundary = new DeleteEventInteractor(outputBoundary, dsGateway);
+        DeleteEventInteractor inputBoundary = new DeleteEventInteractor(OUTPUT_BOUNDARY, DS_GATEWAY);
         DeleteEventController controller = new DeleteEventController(inputBoundary);
-        DeleteEventOutputData outputData = controller.delete(eventTitle, dayIndex);
+        DeleteEventOutputData outputData = controller.delete(EVENT_TITLE, DAY_INDEX);
 
-        assertFalse(dsGateway.getDays().get(1).getEvents().containsKey("Event"));
+        assertFalse(DS_GATEWAY.getDays().get(1).getEvents().containsKey("Event"));
         assertEquals(3, outputData.getDayIndex());
         assertEquals("Event", outputData.getLabel());
     }
