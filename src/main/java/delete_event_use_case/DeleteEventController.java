@@ -8,7 +8,7 @@ package delete_event_use_case;
  */
 public class DeleteEventController {
 
-    private DeleteEventInputBoundary deleteEventInput;
+    private final DeleteEventInputBoundary deleteEventInput;
 
     public DeleteEventController(DeleteEventInputBoundary deleteEventInput) {
         this.deleteEventInput = deleteEventInput;

@@ -20,6 +20,7 @@ public class DeleteEventControllerTest {
         DeleteEventController controller = new DeleteEventController(inputBoundary);
         DeleteEventOutputData outputData = controller.delete(eventTitle, dayIndex);
 
+        assertFalse(dsGateway.getDays().get(1).getEvents().containsKey("Event"));
         assertEquals(3, outputData.getDayIndex());
         assertEquals("Event", outputData.getLabel());
     }
