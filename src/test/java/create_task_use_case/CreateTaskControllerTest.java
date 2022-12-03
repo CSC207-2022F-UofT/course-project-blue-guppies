@@ -19,7 +19,7 @@ public class CreateTaskControllerTest {
         );
         CreateTaskController controller = new CreateTaskController(interactor);
         CreateTaskOutputData outputData = controller.createTask(
-                "Sample Task",  "Sunday"
+                "Sunday",  "Sample Task"
         );
         assertEquals("Sample Task", outputData.getTitle());
         assertEquals(0, outputData.getDayIndex());
