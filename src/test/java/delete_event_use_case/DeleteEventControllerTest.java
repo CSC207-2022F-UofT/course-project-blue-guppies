@@ -2,12 +2,7 @@ package delete_event_use_case;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-/**
- * Unit Testing for DeleteEventController class
- * @author : Khizer Ahmad
- * @created: November 19th 2022
- * @since : 2022-11-21, Mon.
- **/
+
 public class DeleteEventControllerTest {
     private final static DeleteEventPresenter outputBoundary = new DeleteEventPresenter();
     private final static DeleteEventDataAccess dsGateway = new DeleteEventDataAccess();
