@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 /**
- * Task Creation Input Data Test Cases.
+ * Task Creation Output Data Test Cases.
  * @author Fardin Faruk
  */
 public class CreateTaskOutputDataTest {

@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 /**
- * Task Creation Input Boundary Test Cases.
+ * Task Creation Interactor Test Cases.
  * @author Fardin Faruk
  */
 public class CreateTaskInteractorTest {
