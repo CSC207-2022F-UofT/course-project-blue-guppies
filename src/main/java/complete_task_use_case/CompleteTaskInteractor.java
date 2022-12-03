@@ -19,7 +19,16 @@ public class CompleteTaskInteractor implements CompleteTaskInputBoundary {
         this.dsGateway = dsGateway;
     }
 
-
+    /**
+     * Executes the application logic required to create a Task with a given dayIndex by calling the appropriate
+     * dsGateway and Output Boundary methods.
+     *
+     * @param inputData A CompleteTaskOutputData instance which contains the dayIndex of the Day object which contains
+     * the task and title of the Task.
+     * @return A CompleteTaskOutputData instance which contains title, dayIndex, errorMessage
+     * and isSuccessfully modified attributes, such that the latter two indicate whether the
+     * use case was successful.
+     */
     @Override
     public CompleteTaskOutputData completeTask(CompleteTaskInputData inputData) {
         CompleteTaskDsInputData dsInputData = new CompleteTaskDsInputData(

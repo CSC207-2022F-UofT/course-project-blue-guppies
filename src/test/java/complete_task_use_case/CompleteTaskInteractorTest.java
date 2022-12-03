@@ -1,11 +1,13 @@
 package complete_task_use_case;
 
-import data_access.DataAccessDay;
 import data_access.DataAccessTask;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+/**
+ * Task Completion Interactor Test Cases.
+ * @author Fardin Faruk
+ */
 public class CompleteTaskInteractorTest {
     public final static CompleteTaskOutputBoundary presenter = new CompleteTaskPresenter();
     public final static CompleteTaskDataAccess dataAccess = new CompleteTaskDataAccess();
