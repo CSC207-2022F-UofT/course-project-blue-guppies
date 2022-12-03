@@ -22,7 +22,8 @@ public class DeleteEventController {
      * @param dayIndex The index of the day the task is associated with for WeekDataAccess days.
      * @return An instance of DeleteEventOutputData which reveals if the task
      * for deletion was successful.
-     */    public DeleteEventOutputData delete(String eventTitle, int dayIndex){
+     */
+    public DeleteEventOutputData delete(String eventTitle, int dayIndex){
         DeleteEventInputData eventInputData = new DeleteEventInputData(dayIndex, eventTitle);
 
         return deleteEventInput.delete(eventInputData);
