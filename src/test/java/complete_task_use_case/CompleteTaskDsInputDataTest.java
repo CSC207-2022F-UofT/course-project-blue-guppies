@@ -13,6 +13,7 @@ public class CompleteTaskDsInputDataTest {
         CompleteTaskDsInputData dsInputData = new CompleteTaskDsInputData(0, "Lunch");
         assertEquals(dsInputData.getDayIndex(),0);
     }
+
     @Test
     public void testGetTitle(){
         CompleteTaskDsInputData dsInputData = new CompleteTaskDsInputData(2, "Dinner");

@@ -10,21 +10,20 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CompleteTaskPresenterTest {
     @Test
     public void TestPrepareSuccessView(){
-        CompleteTaskOutputData completeTaskOutputData = new CompleteTaskOutputData("Test Task",  2,
-                "");
+        CompleteTaskOutputData completeTaskOutputData = new CompleteTaskOutputData("Test Task",  2);
         CompleteTaskPresenter completeTaskPresenter = new CompleteTaskPresenter();
         CompleteTaskOutputData outputData = completeTaskPresenter.prepareSuccessView(completeTaskOutputData);
-        assertTrue(outputData.isSuccessfullyCreated);
+        assertTrue(outputData.isSuccessfullyCompleted());
     }
+
     @Test
     public void TestPrepareFailView(){
-        CompleteTaskOutputData completeTaskOutputData = new CompleteTaskOutputData("Test Task", 3,
-                "");
+        CompleteTaskOutputData completeTaskOutputData = new CompleteTaskOutputData("Test Task", 3);
         CompleteTaskPresenter completeTaskPresenter = new CompleteTaskPresenter();
         CompleteTaskOutputData outputData = completeTaskPresenter.prepareFailView(completeTaskOutputData,
-                "There does not exist a take with name: 'Test Task' on Wednesday");
-        assertFalse(outputData.isSuccessfullyCreated);
+                "There does not exist a task with name: 'Test Task' on Wednesday");
+        assertFalse(outputData.isSuccessfullyCompleted());
         assertEquals(outputData.getErrorMessage(),
-                "There does not exist a take with name: 'Test Task' on Wednesday");
+                "There does not exist a task with name: 'Test Task' on Wednesday");
     }
 }

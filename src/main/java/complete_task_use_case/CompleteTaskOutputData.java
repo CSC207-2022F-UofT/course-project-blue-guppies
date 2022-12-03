@@ -2,22 +2,22 @@ package complete_task_use_case;
 /**
  * Task Complete Output Data Class. Instances of this class are returned upon the
  * execution of the application logic for this use case. The errorMessage and
- * isSuccessfullyModified instance attributes, in particular, represent whether the use
+ * isSuccessfullyModified instance attributes, in particular, reports whether the use
  * case logic was successfully executed.
  * @author Fardin Faruk
  */
 public class CompleteTaskOutputData {
-    String title;
-    int dayIndex;
-    boolean isSuccessfullyCreated;
-    String errorMessage;
+    private final String title;
+    private final int dayIndex;
+    private boolean successfullyCompleted;
+    private String errorMessage;
 
 
-    public CompleteTaskOutputData(String title, int dayIndex, String errorMessage){
+    public CompleteTaskOutputData(String title, int dayIndex){
         this.title = title;
         this.dayIndex = dayIndex;
-        this.isSuccessfullyCreated = false;
-        this.errorMessage = errorMessage;
+        this.successfullyCompleted = false;
+        this.errorMessage = "";
     }
 
     public String getTitle() {
@@ -28,12 +28,12 @@ public class CompleteTaskOutputData {
         return dayIndex;
     }
 
-    public boolean isSuccessfullyCreated() {
-        return isSuccessfullyCreated;
+    public boolean isSuccessfullyCompleted() {
+        return successfullyCompleted;
     }
 
-    public void setSuccessfullyCreated(boolean successfullyCreated) {
-        isSuccessfullyCreated = successfullyCreated;
+    public void setSuccessfullyCreated(boolean successfullyComplete) {
+        this.successfullyCompleted = successfullyComplete;
     }
 
     public String getErrorMessage() {

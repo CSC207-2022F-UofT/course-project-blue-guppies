@@ -9,17 +9,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author Fardin Faruk
  */
 public class CompleteTaskInteractorTest {
-    public final static CompleteTaskOutputBoundary presenter = new CompleteTaskPresenter();
-    public final static CompleteTaskDataAccess dataAccess = new CompleteTaskDataAccess();
+    public final static CompleteTaskOutputBoundary PRESENTER = new CompleteTaskPresenter();
+    public final static CompleteTaskDataAccess DATA_ACCESS = new CompleteTaskDataAccess();
 
     @Test
     public void testCompleteTask(){
-        DataAccessTask task = new DataAccessTask("Cricket");
-        dataAccess.getDays().get(0).getTasks().put(task.getTitle(),task);
-        CompleteTaskInteractor interactor = new CompleteTaskInteractor(presenter, dataAccess);
-        CompleteTaskInputData inputData = new CompleteTaskInputData("Sunday", "Cricket");
+        DataAccessTask accessTask = new DataAccessTask("Cricket");
+        DATA_ACCESS.getDays().get(0).getTasks().put(accessTask.getTitle(),accessTask);
+        CompleteTaskInteractor interactor = new CompleteTaskInteractor(PRESENTER, DATA_ACCESS);
+        CompleteTaskInputData inputData = new CompleteTaskInputData(0, "Cricket");
         CompleteTaskOutputData outputData = interactor.completeTask(inputData);
-        assertTrue(outputData.isSuccessfullyCreated());
+        DataAccessTask referenceTask = DATA_ACCESS.getDays().get(0).getTasks().get(accessTask.getTitle());
+        assertTrue(accessTask.getCompleted());
+        assertTrue(outputData.isSuccessfullyCompleted());
     }
-
 }

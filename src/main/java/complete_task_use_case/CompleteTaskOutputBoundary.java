@@ -6,6 +6,7 @@ package complete_task_use_case;
  * @author Fardin Faruk
  */
 public interface CompleteTaskOutputBoundary {
-    CompleteTaskOutputData prepareSuccessView(CompleteTaskOutputData task);
-    CompleteTaskOutputData prepareFailView(CompleteTaskOutputData task, String error);
+    CompleteTaskOutputData prepareSuccessView(CompleteTaskOutputData outputData);
+
+    CompleteTaskOutputData prepareFailView(CompleteTaskOutputData outputData, String error);
 }
