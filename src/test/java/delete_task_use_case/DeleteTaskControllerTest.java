@@ -3,6 +3,7 @@ package delete_task_use_case;
 import data_access.DataAccessDay;
 import data_access.DataAccessEvent;
 import data_access.DataAccessTask;
+import entities.Task;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -10,9 +11,10 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DeleteTaskControllerTest {
-    private final static DeleteTaskPresenter outputBoundary = new DeleteTaskPresenter();
+    private final static DeleteTaskOutputBoundary outputBoundary = new DeleteTaskPresenter();
     private final static DeleteTaskDataAccess dataAccess = new DeleteTaskDataAccess();
-    private final static DeleteTaskInteractor inputBoundary = new DeleteTaskInteractor(outputBoundary, dataAccess);
+    private final static DeleteTaskDsGateway dsGateway = dataAccess;
+    private final static DeleteTaskInteractor inputBoundary = new DeleteTaskInteractor(outputBoundary, dsGateway);
     private final static DeleteTaskController controller = new DeleteTaskController(inputBoundary);
     private final static int dayIndex = 5;
     private final static String taskTitle = "Task";
@@ -32,5 +34,7 @@ public class DeleteTaskControllerTest {
         assertEquals("Task", outputData.getTaskTitle());
         assertTrue(outputData.isSuccess());
         assertTrue(dataAccess.getDays().get(5).getTasks().isEmpty());
+        assertFalse(dataAccess.getDays().get(5).getTasks().containsKey("Task"));
+        assertFalse(dataAccess.getDays().get(5).getTasks().containsValue(task));
     }
 }

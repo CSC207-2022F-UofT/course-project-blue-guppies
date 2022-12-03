@@ -15,7 +15,6 @@ public class DeleteTaskOutputData {
     public DeleteTaskOutputData(int dayIndex, String taskTitle) {
         this.dayIndex = dayIndex;
         this.taskTitle = taskTitle;
-        this.success = false;
     }
 
     public int getDayIndex() {
