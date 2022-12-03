@@ -1,16 +1,13 @@
-/**
- * Create Task Interactor Class.
- * Author: Fardin Faruk
- * Modified By: Fardin Faruk
- * Created: Nov 19, 2022
- * Last Modified: Nov 27, 2022
- */
 package create_task_use_case;
 
 import entities.Task;
 import entities.TaskFactory;
 
-import java.lang.reflect.Array;
+/**
+ * Task Creation Interactor Class. Implements the createTask method provides
+ * by the input boundary and orchestrates the application logic for the use case.
+ * @author Fardin Faruk
+ */
 
 public class CreateTaskInteractor implements CreateTaskInputBoundary {
     final CreateTaskDsGateway dsGateway;
@@ -27,7 +24,16 @@ public class CreateTaskInteractor implements CreateTaskInputBoundary {
     }
 
 
-
+    /**
+     * Executes the application logic required to create a Task with a given dayIndex by calling the appropriate
+     * dsGateway and Output Boundary methods.
+     *
+     * @param inputData A CreateTaskInputData instance which contains the dayIndex of the Day object which contains
+     * the task and title of the Task.
+     * @return A ModifyTaskOutputData instance which contains title, dayIndex, errorMessage
+     * and isSuccessfully modified attributes, such that the latter two indicate whether the
+     * use case was successful.
+     */
     @Override
     public CreateTaskOutputData create(CreateTaskInputData inputData) {
         Task task = taskFactory.createTask(inputData.getTitle());

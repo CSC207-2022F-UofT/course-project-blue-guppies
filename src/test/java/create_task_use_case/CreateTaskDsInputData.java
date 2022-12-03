@@ -1,12 +1,10 @@
-/**
- * Create Task DsInputData Class.
- * Author: Fardin Faruk
- * Modified By: Fardin Faruk
- * Created: Nov 19, 2022
- * Last Modified: Nov 27, 2022
- */
 package create_task_use_case;
 
+/**
+ * Task Creation DsInputData Class. Instances of type CreateTaskDsInputData are
+ * passed on to the gateway to execute the use case's application logic.
+ * @author Fardin Faruk
+ */
 public class CreateTaskDsInputData {
     private String title;
     private int dayIndex;

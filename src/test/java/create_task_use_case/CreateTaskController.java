@@ -1,9 +1,8 @@
 package create_task_use_case;
 
 /**
- * Create Task Controller Class; invokes the implementation of createTask given
- *  * by CreateTaskInteractor to execute the application logic.
- *
+ * Task Creation Controller Class; invokes the implementation of createTask given
+ * by CreateTaskInteractor to execute the application logic.
  * @author Fardin Faruk
  */
 public class CreateTaskController {
