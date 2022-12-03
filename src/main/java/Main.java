@@ -1,11 +1,12 @@
 import clear_all_use_case.ClearAllController;
 import complete_task_use_case.CompleteTaskController;
 import create_event_use_case.*;
-import create_task_use_case.CreateTaskController;
+import create_task_use_case.*;
 import data_access.DataAccess;
 import delete_event_use_case.DeleteEventController;
-import delete_task_use_case.DeleteTaskController;
+import delete_task_use_case.*;
 import entities.EventFactory;
+import entities.TaskFactory;
 import modify_event_use_case.ModifyEventController;
 import modify_task_use_case.*;
 import screens.*;
@@ -33,7 +34,12 @@ public class Main {
         DeleteEventController deleteEventController = new DeleteEventController();
 
         // initialize create task classes
-        CreateTaskController createTaskController = new CreateTaskController();
+        CreateTaskOutputBoundary createTaskOutputBoundary = new CreateTaskPresenter();
+        CreateTaskDsGateway createTaskDsGateway = new CreateTaskDataAccess();
+        TaskFactory taskFactory = new TaskFactory();
+        CreateTaskInputBoundary createTaskInputBoundary = new CreateTaskInteractor(taskFactory,
+                createTaskOutputBoundary, createTaskDsGateway);
+        CreateTaskController createTaskController = new CreateTaskController(createTaskInputBoundary);
 
         // initialize modify task classes
         ModifyTaskOutputBoundary modifyTaskPresenter = new ModifyTaskPresenter();
@@ -42,7 +48,11 @@ public class Main {
         ModifyTaskController modifyTaskController = new ModifyTaskController(modifyTaskInteractor);
 
         // initialize delete task classes
-        DeleteTaskController deleteTaskController = new DeleteTaskController();
+        DeleteTaskOutputBoundary deleteTaskOutputBoundary = new DeleteTaskPresenter();
+        DeleteTaskDsGateway deleteTaskDsGateway = new DeleteTaskDataAccess();
+        DeleteTaskInputBoundary deleteTaskInteractor = new DeleteTaskInteractor(deleteTaskOutputBoundary,
+                deleteTaskDsGateway);
+        DeleteTaskController deleteTaskController = new DeleteTaskController(deleteTaskInteractor);
 
         // initialize complete task classes
         CompleteTaskController completeTaskController = new CompleteTaskController();
