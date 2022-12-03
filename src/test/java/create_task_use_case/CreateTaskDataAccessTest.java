@@ -28,4 +28,14 @@ public class CreateTaskDataAccessTest {
         boolean actual = createTaskDataAccess.existsByTitle("Sample Task",0);
         assertTrue(actual);
     }
+
+    @Test
+    public void testSave(){
+        CreateTaskDsInputData task = new CreateTaskDsInputData("Franklin", 0);
+        CreateTaskDataAccess createTaskDataAccess = new CreateTaskDataAccess();
+        createTaskDataAccess.save(task);
+        HashMap<String, DataAccessTask> tasks = createTaskDataAccess.getDays().get(0).getTasks();
+        DataAccessTask taskCheck = tasks.get(task.getTitle());
+        assertEquals(task.getTitle(), taskCheck.getTitle());
+    }
 }

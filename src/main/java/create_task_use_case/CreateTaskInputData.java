@@ -8,8 +8,8 @@ package create_task_use_case;
  */
 public class CreateTaskInputData {
 
-    private String title;
-    private int dayIndex;
+    private final String title;
+    private final int dayIndex;
 
     public CreateTaskInputData(String title, String dayIndex){
         this.title = title;
@@ -29,10 +29,6 @@ public class CreateTaskInputData {
 
     String getTitle(){
         return title;
-    }
-
-    void setTitle(String title){
-        this.title = title;
     }
 
     int getDayIndex(){

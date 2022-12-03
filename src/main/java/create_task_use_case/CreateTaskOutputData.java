@@ -9,10 +9,10 @@ package create_task_use_case;
  */
 public class CreateTaskOutputData {
 
-    String title;
-    boolean isSuccessfullyCreated;
-    int dayIndex;
-    String errorMessage;
+    private final String title;
+    protected boolean isSuccessfullyCreated;
+    private final int dayIndex;
+    private String errorMessage;
 
 
     public CreateTaskOutputData(String title, int dayIndex, String errorMessage){
