@@ -4,19 +4,21 @@ import data_access.DataAccessDay;
 import data_access.DataAccessEvent;
 import data_access.DataAccessTask;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.HashMap;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Task Modification Data Access Test Cases.
+ * Task Modification Ds Gateway Test Cases.
  * @author Raghav Arora
  */
-class ModifyTaskDataAccessTest {
-    private final static ModifyTaskDataAccess dsGateway = new ModifyTaskDataAccess();
+class ModifyTaskDsGatewayTest {
+    private final static ModifyTaskDataAccess dataAccess = new ModifyTaskDataAccess();
+    private final static ModifyTaskDsGateway dsGateway = dataAccess;
     private final static ModifyTaskDsInputData dsInputData = new ModifyTaskDsInputData(
-        0, "New Sample Task 1", "Sample Task 1"
+            0, "New Sample Task 1", "Sample Task 1"
     );
 
     @Test
@@ -30,7 +32,7 @@ class ModifyTaskDataAccessTest {
         tasks.put("Sample Task 2", task2);
 
         DataAccessDay day = new DataAccessDay(tasks, events);
-        dsGateway.getDays().set(0, day);
+        dataAccess.getDays().set(0, day);
 
         assertFalse(dsGateway.taskExistsByTitle("New Sample Task 1", 0));
         assertTrue(dsGateway.taskExistsByTitle("Sample Task 2", 0));
@@ -47,11 +49,11 @@ class ModifyTaskDataAccessTest {
         tasks.put("Sample Task 2", task2);
 
         DataAccessDay day = new DataAccessDay(tasks, events);
-        dsGateway.getDays().set(0, day);
+        dataAccess.getDays().set(0, day);
 
         // change the name of "Sample Task 1" to "New Sample Task 1"
         dsGateway.save(dsInputData);
-        DataAccessDay day0 = dsGateway.getDays().get(0);
+        DataAccessDay day0 = dataAccess.getDays().get(0);
         assertFalse(day0.getTasks().containsKey("Sample Task 1"));
         assertTrue(day0.getTasks().containsKey("New Sample Task 1"));
     }
