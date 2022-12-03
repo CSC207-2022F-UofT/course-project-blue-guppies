@@ -6,8 +6,8 @@ package delete_event_use_case;
  * @author Khizer Ahmad
  */
 public class DeleteEventOutputData {
-    private String label;
-    private int dayIndex;
+    private final String label;
+    private final int dayIndex;
     private boolean success;
 
     private String errorMessage;

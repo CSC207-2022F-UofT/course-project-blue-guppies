@@ -6,8 +6,8 @@ package delete_event_use_case;
  */
 public class DeleteEventInputData {
 
-    private int dayIndex;
-    private String eventTitle;
+    private final int dayIndex;
+    private final String eventTitle;
 
     public DeleteEventInputData(int dayIndex, String eventTitle) {
         this.eventTitle = eventTitle;

@@ -7,8 +7,8 @@ package delete_event_use_case;
  */
 public class DeleteEventInteractor implements DeleteEventInputBoundary {
 
-    private DeleteEventOutputBoundary outputBoundary;
-    private DeleteEventDsGateway dsGateway;
+    private final DeleteEventOutputBoundary outputBoundary;
+    private final DeleteEventDsGateway dsGateway;
 
     public DeleteEventInteractor(
             DeleteEventOutputBoundary outputBoundary, DeleteEventDsGateway dsGateway) {
