@@ -7,27 +7,27 @@ package modify_task_use_case;
  * case logic was successfully executed.
  * @author Raghav Arora
  */
-class ModifyTaskOutputData {
+public class ModifyTaskOutputData {
     private final String title;
     private final int dayIndex;
     private String errorMessage;
     private boolean isSuccessfullyModified;
 
 
-    ModifyTaskOutputData(String title, int dayIndex) {
+    public ModifyTaskOutputData(String title, int dayIndex) {
         this.title = title;
         this.dayIndex = dayIndex;
     }
 
-    protected String getTitle() { return this.title; }
+    public String getTitle() { return this.title; }
 
-    protected int getDayIndex() { return this.dayIndex; }
+    public int getDayIndex() { return this.dayIndex; }
 
-    protected String getErrorMessage() { return this.errorMessage; }
+    public String getErrorMessage() { return this.errorMessage; }
 
     protected void setErrorMessage(String errorMessage) { this.errorMessage = errorMessage; }
 
-    protected boolean getIsSuccessfullyModified() { return this.isSuccessfullyModified; }
+    public boolean getIsSuccessfullyModified() { return this.isSuccessfullyModified; }
 
     protected void setSuccessfullyModified(boolean isSuccessfullyModified) {
         this.isSuccessfullyModified = isSuccessfullyModified;
