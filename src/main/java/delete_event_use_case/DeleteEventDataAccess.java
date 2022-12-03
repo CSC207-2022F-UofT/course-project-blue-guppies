@@ -1,11 +1,7 @@
 package delete_event_use_case;
 
 import data_access.DataAccessDay;
-import data_access.DataAccessEvent;
 import data_access.WeekDataAccess;
-
-import java.util.HashMap;
-import java.util.ArrayList;
 
 /**
  * Data Access Class. Interacts with the WeekDataAccess to save the effect of any deletions within data persistence.
