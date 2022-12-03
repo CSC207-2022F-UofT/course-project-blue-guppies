@@ -4,7 +4,7 @@ public class DeleteEventOutputData {
     private String label;
     private int dayIndex;
     private boolean success = true;
-    private String errorMessage = "";
+    private String errorMessage = null;
 
     protected DeleteEventOutputData(int dayIndex, String label) {
         this.dayIndex = dayIndex;

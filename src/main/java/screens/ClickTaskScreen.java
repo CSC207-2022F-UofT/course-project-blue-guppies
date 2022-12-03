@@ -1,6 +1,7 @@
 package screens;
 
 import complete_task_use_case.CompleteTaskController;
+import complete_task_use_case.CompleteTaskOutputData;
 import delete_task_use_case.DeleteTaskController;
 import delete_task_use_case.DeleteTaskOutputData;
 
@@ -74,11 +75,15 @@ public class ClickTaskScreen extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if ("toggle completion".equals(e.getActionCommand())) {
-            completeTaskController.complete(dayIndex, taskTitle);
-
+            CompleteTaskOutputData outputData = completeTaskController.completeTask(dayIndex, taskTitle);
+            String message;
+            if (outputData.isSuccess()) {
+                message = "Task marked as " + ((taskCompleted) ? "incomplete" : "completed");
+            } else {
+                message = outputData.getErrorMessage();
+            }
             JFrame messageBox = new JFrame();
-            JOptionPane.showMessageDialog(messageBox, "Task marked as " +
-                    ((taskCompleted) ? "incomplete" : "completed"));
+            JOptionPane.showMessageDialog(messageBox, message);
             setTaskCompleted(!taskCompleted);
         } else if ("modify".equals(e.getActionCommand())) {
 
@@ -103,7 +108,7 @@ public class ClickTaskScreen extends JFrame implements ActionListener {
                     this.setVisible(false);
                     message = "Task successfully deleted";
                 } else {
-                    message = "Task deletion failed";
+                    message = outputData.getErrorMessage();
                 }
 
                 // Show success or failure message for deletion
