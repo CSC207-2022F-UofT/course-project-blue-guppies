@@ -30,7 +30,7 @@ public class CreateTaskInteractor implements CreateTaskInputBoundary {
      *
      * @param inputData A CreateTaskInputData instance which contains the dayIndex of the Day object which contains
      * the task and title of the Task.
-     * @return A ModifyTaskOutputData instance which contains title, dayIndex, errorMessage
+     * @return A CreateTaskOutputData instance which contains title, dayIndex, errorMessage
      * and isSuccessfully modified attributes, such that the latter two indicate whether the
      * use case was successful.
      */

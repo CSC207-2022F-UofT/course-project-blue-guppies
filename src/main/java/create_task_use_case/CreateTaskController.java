@@ -16,7 +16,7 @@ public class CreateTaskController {
      * Assembles day, title into a CreateTaskInputData object and
      * calls the implementation of createTask given by the interactor/input boundary.
      *
-     * @param day The index in string representation of the Day object containing the Task instance we want to modify.
+     * @param day The index in string representation of the Day object which will contain a new task.
      * @param title The title of the Task which will be created.
      * @return A CreateTaskOutputData instance which indicates whether the execution of
      * the use case was successful.
