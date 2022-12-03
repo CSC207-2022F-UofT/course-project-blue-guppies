@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteTaskDataAccessTest {
 
-    private final static DeleteTaskDataAccess dataAccess = new DeleteTaskDataAccess();
-    private final static DeleteTaskDsInputData inputData = new DeleteTaskDsInputData(3, "Homework");
+    private final static DeleteTaskDataAccess DATA_ACCESS = new DeleteTaskDataAccess();
+    private final static DeleteTaskDsInputData INPUT_DATA = new DeleteTaskDsInputData(3, "Homework");
 
     @Test
     void testSave() {
@@ -22,11 +22,11 @@ class DeleteTaskDataAccessTest {
         tasks.put("Homework", task1);
         tasks.put("Test", task2);
         DataAccessDay day = new DataAccessDay(tasks, events);
-        dataAccess.getDays().set(3, day);
-        dataAccess.save(inputData);
+        DATA_ACCESS.getDays().set(3, day);
+        DATA_ACCESS.save(INPUT_DATA);
 
-        assertFalse(dataAccess.getDays().get(3).getTasks().containsKey("Homework"));
-        assertTrue(dataAccess.getDays().get(3).getTasks().containsKey("Test"));
+        assertFalse(DATA_ACCESS.getDays().get(3).getTasks().containsKey("Homework"));
+        assertTrue(DATA_ACCESS.getDays().get(3).getTasks().containsKey("Test"));
     }
 
     @Test
@@ -38,9 +38,9 @@ class DeleteTaskDataAccessTest {
         tasks.put("Homework", task1);
         tasks.put("Test", task2);
         DataAccessDay day = new DataAccessDay(tasks, events);
-        dataAccess.getDays().set(3, day);
+        DATA_ACCESS.getDays().set(3, day);
 
-        assertTrue(dataAccess.taskExistsInDay(3, "Homework"));
-        assertFalse(dataAccess.taskExistsInDay(3, "Clean Room"));
+        assertTrue(DATA_ACCESS.taskExistsInDay(3, "Homework"));
+        assertFalse(DATA_ACCESS.taskExistsInDay(3, "Clean Room"));
     }
 }

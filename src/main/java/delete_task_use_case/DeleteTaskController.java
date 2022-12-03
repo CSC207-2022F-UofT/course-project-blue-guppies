@@ -14,6 +14,7 @@ public class DeleteTaskController {
     /**
      * Implementation of deleteTask is called by the inputBoundary
      * to execute the steps needed for task deletion.
+     *
      * @param dayIndex The index of the day the task is associated with.
      * @param taskTitle The title for the task that is to be removed.
      * @return An instance of DeleteTaskOutputData which shows if the task

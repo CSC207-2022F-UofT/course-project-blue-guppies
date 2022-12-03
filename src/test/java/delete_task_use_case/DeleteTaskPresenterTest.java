@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteTaskPresenterTest {
-    private final static DeleteTaskOutputData outputData = new DeleteTaskOutputData(
+    private final static DeleteTaskOutputData OUTPUT_DATA = new DeleteTaskOutputData(
             5, "Task");
-    private final static DeleteTaskOutputBoundary outputBoundary = new DeleteTaskPresenter();
+    private final static DeleteTaskOutputBoundary OUTPUT_BOUNDARY = new DeleteTaskPresenter();
 
     @Test
     void testPrepareSuccessView() {
-        DeleteTaskOutputData response = outputBoundary.prepareSuccessView(outputData);
+        DeleteTaskOutputData response = OUTPUT_BOUNDARY.prepareSuccessView(OUTPUT_DATA);
 
         assertTrue(response.isSuccess());
         assertEquals(5, response.getDayIndex());
@@ -20,7 +20,7 @@ class DeleteTaskPresenterTest {
 
     @Test
     void testPrepareFailView(){
-        DeleteTaskOutputData response = outputBoundary.prepareFailView(outputData, "Error");
+        DeleteTaskOutputData response = OUTPUT_BOUNDARY.prepareFailView(OUTPUT_DATA, "Error");
 
         assertFalse(response.isSuccess());
         assertEquals(5, response.getDayIndex());

@@ -10,13 +10,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteTaskInteractorTest {
-    private final static DeleteTaskInputData inputData1 = new DeleteTaskInputData(
+    private final static DeleteTaskInputData INPUT_DATA_1 = new DeleteTaskInputData(
             5, "Task");
-    private final static DeleteTaskInputData inputData2 = new DeleteTaskInputData(
+    private final static DeleteTaskInputData INPUT_DATA_2 = new DeleteTaskInputData(
             0,"Task2");
-    private final static DeleteTaskDataAccess dataAccess = new DeleteTaskDataAccess();
-    private final static DeleteTaskDsGateway dsGateway = dataAccess;
-    private final static DeleteTaskPresenter outputBoundary = new DeleteTaskPresenter();
+    private final static DeleteTaskDataAccess DATA_ACCESS = new DeleteTaskDataAccess();
+    private final static DeleteTaskDsGateway DS_GATEWAY = DATA_ACCESS;
+    private final static DeleteTaskPresenter OUTPUT_BOUNDARY = new DeleteTaskPresenter();
 
     @Test
     void testDeleteTaskSuccess() {
@@ -25,15 +25,15 @@ class DeleteTaskInteractorTest {
         HashMap<String, DataAccessEvent> events = new HashMap<>();
         tasks.put("Task", task);
         DataAccessDay day = new DataAccessDay(tasks, events);
-        dataAccess.getDays().set(5, day);
+        DATA_ACCESS.getDays().set(5, day);
 
-        DeleteTaskInputBoundary inputBoundary = new DeleteTaskInteractor(outputBoundary, dsGateway);
-        DeleteTaskOutputData outputData = inputBoundary.deleteTask(inputData1);
+        DeleteTaskInputBoundary inputBoundary = new DeleteTaskInteractor(OUTPUT_BOUNDARY, DS_GATEWAY);
+        DeleteTaskOutputData outputData = inputBoundary.deleteTask(INPUT_DATA_1);
 
         assertEquals(5, outputData.getDayIndex());
         assertEquals("Task", outputData.getTaskTitle());
-        assertFalse(dataAccess.getDays().get(5).getTasks().containsKey("Task"));
-        assertFalse(dataAccess.getDays().get(5).getTasks().containsValue(task));
+        assertFalse(DATA_ACCESS.getDays().get(5).getTasks().containsKey("Task"));
+        assertFalse(DATA_ACCESS.getDays().get(5).getTasks().containsValue(task));
         assertTrue(outputData.isSuccess());
     }
 
@@ -45,13 +45,13 @@ class DeleteTaskInteractorTest {
         HashMap<String, DataAccessEvent> events = new HashMap<>();
         tasks.put("Task", task);
         DataAccessDay day = new DataAccessDay(tasks, events);
-        dataAccess.getDays().set(5, day);
+        DATA_ACCESS.getDays().set(5, day);
 
-        DeleteTaskInputBoundary inputBoundary = new DeleteTaskInteractor(outputBoundary, dsGateway);
-        DeleteTaskOutputData outputData = inputBoundary.deleteTask(inputData2);
+        DeleteTaskInputBoundary inputBoundary = new DeleteTaskInteractor(OUTPUT_BOUNDARY, DS_GATEWAY);
+        DeleteTaskOutputData outputData = inputBoundary.deleteTask(INPUT_DATA_2);
 
         assertEquals("Task Title: \"Task2\" does not exist for day Sunday", outputData.getErrorMessage());
         assertFalse(outputData.isSuccess());
-        assertTrue(dataAccess.getDays().get(5).getTasks().containsKey("Task"));
+        assertTrue(DATA_ACCESS.getDays().get(5).getTasks().containsKey("Task"));
     }
 }

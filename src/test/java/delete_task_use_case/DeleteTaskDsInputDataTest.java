@@ -4,16 +4,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteTaskDsInputDataTest {
-    private final static DeleteTaskDsInputData dsInputData = new DeleteTaskDsInputData(0, "Homework");
+    private final static DeleteTaskDsInputData DS_INPUT_DATA = new DeleteTaskDsInputData(0, "Homework");
 
     @Test
     void testGetTaskTitle() {
-        assertEquals("Homework", dsInputData.getTaskTitle());
+        assertEquals("Homework", DS_INPUT_DATA.getTaskTitle());
     }
 
     @Test
     void testGetDayIndex() {
-        assertEquals(0, dsInputData.getDayIndex());
+        assertEquals(0, DS_INPUT_DATA.getDayIndex());
     }
 
 }

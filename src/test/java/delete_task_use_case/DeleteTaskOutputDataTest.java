@@ -4,37 +4,37 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteTaskOutputDataTest {
-    private final static DeleteTaskOutputData outputData = new DeleteTaskOutputData(6, "Midterm");
+    private final static DeleteTaskOutputData OUTPUT_DATA = new DeleteTaskOutputData(6, "Midterm");
 
     @Test
     void testGetDayIndex() {
-        assertEquals(6, outputData.getDayIndex());
+        assertEquals(6, OUTPUT_DATA.getDayIndex());
     }
 
     @Test
     void testGetTaskTitle() {
-        assertEquals("Midterm", outputData.getTaskTitle());
+        assertEquals("Midterm", OUTPUT_DATA.getTaskTitle());
     }
 
     @Test
     void testGetSuccess() {
-        assertFalse(outputData.isSuccess());
+        assertFalse(OUTPUT_DATA.isSuccess());
     }
 
     @Test
     void testSetSuccess() {
-        outputData.setSuccess(true);
-        assertTrue(outputData.isSuccess());
+        OUTPUT_DATA.setSuccess(true);
+        assertTrue(OUTPUT_DATA.isSuccess());
     }
 
     @Test
     void testGetErrorMessage() {
-        assertNull(outputData.getErrorMessage());
+        assertNull(OUTPUT_DATA.getErrorMessage());
     }
 
     @Test
     void testSetErrorMessage() {
-        outputData.setErrorMessage("Error");
-        assertEquals("Error", outputData.getErrorMessage());
+        OUTPUT_DATA.setErrorMessage("Error");
+        assertEquals("Error", OUTPUT_DATA.getErrorMessage());
     }
 }

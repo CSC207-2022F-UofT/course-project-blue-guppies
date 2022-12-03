@@ -22,6 +22,7 @@ public class DeleteTaskInteractor implements DeleteTaskInputBoundary {
      * Checks the required needs to delete a given Task in a given dayIndex by calling
      * OutputBoundary and dsGateway methods.
      * Modifies a given Task by making calls to the OutputBoundary and dsGateway methods.
+     *
      * @param inputData Contains the dayIndex which contains the Task to be removed,
      *                  and title of the Task.
      * @return DeleteTaskOutputData instance attributes which contains the information
