@@ -19,7 +19,7 @@ public class ModifyEventPresenter implements ModifyEventOutputBoundary{
     /**
      * Sets the instance of OutputData to represent a failure state and returns it.
      * @param outputData The instance of OutputData for a failing modification.
-     * @return The same instance of outputData with successState changed to false
+     * @return The same instance of outputData with successState changed to false.
      */
     @Override
     public ModifyEventOutputData prepareFailView(ModifyEventOutputData outputData, String failureMessage) {
