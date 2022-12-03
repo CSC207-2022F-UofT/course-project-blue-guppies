@@ -37,7 +37,7 @@ public class DeleteEventDataAccess extends WeekDataAccess implements DeleteEvent
         int dayIndex = eventData.getDayIndex();
         String eventTitle = eventData.getLabel();
 
-        super.getDays().get(dayIndex).getEvents().remove(eventTitle);
+        days.get(dayIndex).getEvents().remove(eventTitle);
         super.save();
     }
 }
