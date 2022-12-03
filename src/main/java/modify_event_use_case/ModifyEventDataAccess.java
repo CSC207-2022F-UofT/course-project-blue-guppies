@@ -15,7 +15,7 @@ public class ModifyEventDataAccess extends WeekDataAccess implements ModifyEvent
     /**
      * Saves the modification specified in the dsInputData to an in-memory version of the week and a .ser file.
      *
-     * @param dsInputData specifies the current and desired new parameters of the task being changed.
+     * @param dsInputData Specifies the current and desired new parameters of the task being changed.
      */
     @Override
     public void save(ModifyEventDsInputData dsInputData){
@@ -32,9 +32,9 @@ public class ModifyEventDataAccess extends WeekDataAccess implements ModifyEvent
     /**
      * Checks whether an event titled with title exists in the in-memory week, in the day given by dayIndex.
      *
-     * @param dayIndex the index of the day we want to check for an event.
-     * @param title the title that we want to look for
-     * @return whether an event titled with title exists in the given day.
+     * @param dayIndex The index of the day we want to check for an event.
+     * @param title The title that we want to look for
+     * @return Whether an event titled with title exists in the given day.
      */
     @Override
     public boolean titleExistsInDay(int dayIndex, String title) {
@@ -45,11 +45,11 @@ public class ModifyEventDataAccess extends WeekDataAccess implements ModifyEvent
      * Checks the given day to see if the new desired start and end times conflict with the timing of any event,
      * other than the event titled with title (which we want to modify the times for).
      *
-     * @param dayIndex the index of the day to be checked
-     * @param title the title of the event we are trying to modify
-     * @param newStart the new desired start time of the event
-     * @param newEnd the new desired end time of the event
-     * @return whether the new desired start and end times for the event conflict with another event in the day
+     * @param dayIndex The index of the day to be checked
+     * @param title The title of the event we are trying to modify
+     * @param newStart The new desired start time of the event
+     * @param newEnd The new desired end time of the event
+     * @return Whether the new desired start and end times for the event conflict with another event in the day
      */
     @Override
     public boolean isTimeConflict(int dayIndex, String title, LocalTime newStart, LocalTime newEnd) {

@@ -6,6 +6,10 @@ import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * ModifyEventPresenter test cases.
+ * @author Daniel Livshits
+ */
 class ModifyEventPresenterTest {
     ModifyEventPresenter samplePresenter = new ModifyEventPresenter();
     ModifyEventOutputData outputData =  new ModifyEventOutputData("Team Mtg", 6, "Blue Guppies Meeting",

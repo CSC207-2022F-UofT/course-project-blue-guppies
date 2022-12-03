@@ -8,8 +8,8 @@ public class ModifyEventPresenter implements ModifyEventOutputBoundary{
     /**
      * Updates the ViewModel according to the parameters from the outputData.
      * TODO: implement after the view model is implemented. GUI Dependent.
-     * @param outputData - an instance of output data for successful modification.
-     * @return the instance of output data, after updating the view model.
+     * @param outputData - An instance of output data for successful modification.
+     * @return The instance of output data, after updating the view model.
      */
     @Override
     public ModifyEventOutputData prepareSuccessView(ModifyEventOutputData outputData) {
@@ -18,8 +18,8 @@ public class ModifyEventPresenter implements ModifyEventOutputBoundary{
 
     /**
      * Sets the instance of OutputData to represent a failure state and returns it.
-     * @param outputData the instance of OutputData for a failing modification.
-     * @return outputData with successState changed to false
+     * @param outputData The instance of OutputData for a failing modification.
+     * @return The same instance of outputData with successState changed to false
      */
     @Override
     public ModifyEventOutputData prepareFailView(ModifyEventOutputData outputData, String failureMessage) {

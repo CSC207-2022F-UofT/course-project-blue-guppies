@@ -6,6 +6,10 @@ import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * ModifyEventOutputData test cases.
+ * @author Daniel Livshits
+ */
 class ModifyEventOutputDataTest {
     ModifyEventOutputData outputData = new ModifyEventOutputData("207 tutorail", 1, "207 tutorial",
             LocalTime.parse("10:00:00"), LocalTime.parse("12:00:00"));

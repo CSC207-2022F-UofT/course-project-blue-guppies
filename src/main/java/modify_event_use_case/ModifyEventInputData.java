@@ -12,11 +12,11 @@ public class ModifyEventInputData {
     private final String newEndTime;
 
     /**
-     * @param title - the current title of the event to be modified
-     * @param dayIndex - the index for the day of the event being modified
-     * @param newTitle - the new desired title for the event
-     * @param newStartTime - the new desired starting time
-     * @param newEndTime - the new desired ending time
+     * @param title - The current title of the event to be modified
+     * @param dayIndex - The index for the day of the event being modified
+     * @param newTitle - The new desired title for the event
+     * @param newStartTime - The new desired starting time
+     * @param newEndTime - The new desired ending time
      */
     public ModifyEventInputData(String title, int dayIndex, String newTitle, String newStartTime, String newEndTime){
         this.title = title;

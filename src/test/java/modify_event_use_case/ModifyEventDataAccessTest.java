@@ -11,6 +11,10 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * ModifyEventDataAccess test cases.
+ * @author Daniel Livshits
+ */
 class ModifyEventDataAccessTest {
     ModifyEventDataAccess dataAccess = new ModifyEventDataAccess();
 
