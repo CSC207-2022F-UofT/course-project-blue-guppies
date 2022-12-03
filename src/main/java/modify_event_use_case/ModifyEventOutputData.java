@@ -1,20 +1,17 @@
-/**
- * Output data to be sent back through to the Controller.
- * Author: Daniel Livshits
- * Created: Nov 19, 2022
- * Modified by:
- * Last Modified: Nov 19, 2022
- */
 package modify_event_use_case;
 
 import java.time.LocalTime;
 
+/**
+ * Output data to be sent back through to the Controller.
+ * @author Daniel Livshits
+ */
 public class ModifyEventOutputData {
-    private String title;
-    private int dayIndex;
-    private String newTitle;
-    private LocalTime newStartTime;
-    private LocalTime newEndTime;
+    private final String title;
+    private final int dayIndex;
+    private final String newTitle;
+    private final LocalTime newStartTime;
+    private final LocalTime newEndTime;
     /**
      *true if the modification was successful, false if not.
      */

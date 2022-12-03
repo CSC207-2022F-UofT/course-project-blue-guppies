@@ -1,10 +1,3 @@
-/**
- * Data Access Class. Interacts with the in-memory week to "save" modifications.
- * Author: Daniel Livshits
- * Created: Nov 19, 2022
- * Modified by:
- * Last Modified: Nov 19, 2022
- */
 package modify_event_use_case;
 
 import data_access.WeekDataAccess;
@@ -14,7 +7,16 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * Data Access Class. Interacts with the in-memory week to "save" modifications.
+ * @author Daniel Livshits
+ */
 public class ModifyEventDataAccess extends WeekDataAccess implements ModifyEventDsGateway{
+    /**
+     * Saves the modification specified in the dsInputData to an in-memory version of the week and a .ser file.
+     *
+     * @param dsInputData specifies the current and desired new parameters of the task being changed.
+     */
     @Override
     public void save(ModifyEventDsInputData dsInputData){
         HashMap<String, DataAccessEvent> eventsToChange = days.get(dsInputData.getDayIndex()).getEvents();
@@ -27,11 +29,28 @@ public class ModifyEventDataAccess extends WeekDataAccess implements ModifyEvent
         super.save();
     }
 
+    /**
+     * Checks whether an event titled with title exists in the in-memory week, in the day given by dayIndex.
+     *
+     * @param dayIndex the index of the day we want to check for an event.
+     * @param title the title that we want to look for
+     * @return whether an event titled with title exists in the given day.
+     */
     @Override
     public boolean titleExistsInDay(int dayIndex, String title) {
         return days.get(dayIndex).getEvents().containsKey(title);
     }
 
+    /**
+     * Checks the given day to see if the new desired start and end times conflict with the timing of any event,
+     * other than the event titled with title (which we want to modify the times for).
+     *
+     * @param dayIndex the index of the day to be checked
+     * @param title the title of the event we are trying to modify
+     * @param newStart the new desired start time of the event
+     * @param newEnd the new desired end time of the event
+     * @return whether the new desired start and end times for the event conflict with another event in the day
+     */
     @Override
     public boolean isTimeConflict(int dayIndex, String title, LocalTime newStart, LocalTime newEnd) {
         HashMap<String, DataAccessEvent> eventsToCheck = days.get(dayIndex).getEvents();

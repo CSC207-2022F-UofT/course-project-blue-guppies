@@ -1,20 +1,17 @@
-/**
- * Input for the DsGateway save method.
- * Author: Daniel Livshits
- * Created: Nov 19, 2022
- * Modified by:
- * Last Modified: Nov 19, 2022
- */
 package modify_event_use_case;
 
 import java.time.LocalTime;
 
+/**
+ * Input for the DsGateway save method.
+ * @author Daniel Livshits
+ */
 public class ModifyEventDsInputData {
-    private int dayIndex;
-    private String title;
-    private String newTitle;
-    private LocalTime newStartTime;
-    private LocalTime newEndTime;
+    private final int dayIndex;
+    private final String title;
+    private final String newTitle;
+    private final LocalTime newStartTime;
+    private final LocalTime newEndTime;
 
     public ModifyEventDsInputData(int dayIndex, String title, String newTitle, LocalTime newStart, LocalTime newEnd){
         this.dayIndex = dayIndex;

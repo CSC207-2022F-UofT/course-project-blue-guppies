@@ -1,12 +1,9 @@
-/**
- * The presenter class. Takes in outputData and updates it as necessary.
- * Author: Daniel Livshits
- * Created: Nov 19, 2022
- * Modified by:
- * Last Modified: Nov 19, 2022
- */
 package modify_event_use_case;
 
+/**
+ * The presenter class. Takes in outputData and updates it as necessary.
+ * @author Daniel Livshits
+ */
 public class ModifyEventPresenter implements ModifyEventOutputBoundary{
     /**
      * Updates the ViewModel according to the parameters from the outputData.

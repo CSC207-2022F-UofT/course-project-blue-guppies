@@ -1,12 +1,9 @@
-/**
- * Input for the InputBoundary's modify method.
- * Author: Daniel Livshits
- * Created: Nov 19, 2022
- * Modified by:
- * Last Modified: Nov 19, 2022
- */
 package modify_event_use_case;
 
+/**
+ * Input for the InputBoundary's modify method.
+ * @author Daniel Livshits
+ */
 public class ModifyEventInputData {
     private final String title;
     private final int dayIndex;

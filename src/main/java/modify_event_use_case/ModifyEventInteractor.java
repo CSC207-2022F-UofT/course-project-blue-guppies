@@ -1,14 +1,11 @@
-/**
- * Interactor for the Modify Event use case. Calls the dsGateway and Output Boundary to modify the event.
- * Author: Daniel Livshits
- * Created: Nov 19, 2022
- * Modified by: Daniel Livshits
- * Last Modified: Nov 27, 2022
- */
 package modify_event_use_case;
 
 import java.time.LocalTime;
 
+/**
+ * Interactor for the Modify Event use case. Calls the dsGateway and Output Boundary to modify the event.
+ * @author Daniel Livshits
+ */
 public class ModifyEventInteractor implements ModifyEventInputBoundary{
     private final ModifyEventOutputBoundary outputBoundary;
     private final ModifyEventDsGateway dsGateway;
