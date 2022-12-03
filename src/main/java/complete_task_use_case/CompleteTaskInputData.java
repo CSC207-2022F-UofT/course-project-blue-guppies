@@ -8,7 +8,7 @@
 package complete_task_use_case;
 
 public class CompleteTaskInputData {
-    private int dayIndex;
+    private final int dayIndex;
     private String title;
 
     public CompleteTaskInputData(String dayIndex, String title){

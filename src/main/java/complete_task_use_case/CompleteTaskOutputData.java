@@ -25,10 +25,6 @@ public class CompleteTaskOutputData {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public int getDayIndex() {
         return dayIndex;
     }
