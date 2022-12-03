@@ -15,10 +15,4 @@ public class CompleteTaskDsInputDataTest {
         CompleteTaskDsInputData dsInputData = new CompleteTaskDsInputData(2, "Dinner");
         assertEquals(dsInputData.getTitle(),"Dinner");
     }
-    @Test
-    public void testSetTitle(){
-        CompleteTaskDsInputData dsInputData = new CompleteTaskDsInputData(4, "meal");
-        dsInputData.setTitle("Breakfast");
-        assertEquals(dsInputData.getTitle(), "Breakfast");
-    }
 }
