@@ -11,7 +11,7 @@ public class ModifyEventInteractor implements ModifyEventInputBoundary{
     private final ModifyEventOutputBoundary outputBoundary;
     private final ModifyEventDsGateway dsGateway;
 
-    private final String[] DAYSOFWEEK = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    private static final String[] DAYSOFWEEK = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
     public ModifyEventInteractor(ModifyEventOutputBoundary outputBoundary, ModifyEventDsGateway dsGateway){
         this.outputBoundary = outputBoundary;
