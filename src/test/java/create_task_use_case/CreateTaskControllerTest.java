@@ -19,11 +19,11 @@ public class CreateTaskControllerTest {
         );
         CreateTaskController controller = new CreateTaskController(interactor);
         CreateTaskOutputData outputData = controller.createTask(
-                "Sunday",  "Sample Task"
+                "Sunday",  "Sampled Task"
         );
-        assertEquals("Sample Task", outputData.getTitle());
+        assertEquals("Sampled Task", outputData.getTitle());
         assertEquals(0, outputData.getDayIndex());
         assertTrue(outputData.isSuccessfullyCreated());
-        assertTrue(DATA_ACCESS.existsByTitle("Sample Task", 0));
+        assertTrue(DATA_ACCESS.existsByTitle("Sampled Task", 0));
     }
 }
