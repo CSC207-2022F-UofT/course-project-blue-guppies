@@ -18,7 +18,7 @@ public class DeleteEventDataAccess extends WeekDataAccess implements DeleteEvent
 
     @Override
     public boolean eventExists(int dayIndex, String eventTitle) {
-        DataAccessDay day = super.getDays().get(dayIndex);
+        DataAccessDay day = days.get(dayIndex);
         return day.getEvents().containsKey(eventTitle);
     }
 

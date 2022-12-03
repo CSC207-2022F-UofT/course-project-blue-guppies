@@ -20,6 +20,16 @@ class DeleteEventPresenterTest {
 
         assertTrue(response.getSuccess());
         assertEquals(5, response.getDayIndex());
-        assertEquals("Event ", response.getLabel());
+        assertEquals("Event", response.getLabel());
+    }
+
+    @Test
+    public void testPrepareFailView() {
+        DeleteEventOutputBoundary outputBoundary = new DeleteEventPresenter();
+        DeleteEventOutputData response = outputBoundary.prepareFailureView(success, "ERROR: Event not found within database.");
+
+        assertFalse(response.getSuccess());
+        assertEquals(5, response.getDayIndex());
+        assertEquals("Event", response.getLabel());
     }
 }

@@ -12,7 +12,7 @@ public class DeleteEventOutputData {
     private int dayIndex;
     private boolean success;
 
-    private String errorMessage = "";
+    private String errorMessage;
 
     public DeleteEventOutputData(int dayIndex, String label) {
         this.dayIndex = dayIndex;
@@ -30,6 +30,8 @@ public class DeleteEventOutputData {
     public boolean getSuccess() {
         return success;
     }
+
+    public String getErrorMessage() {return errorMessage;}
 
     public void setSuccess(boolean success) {
         this.success = success;
