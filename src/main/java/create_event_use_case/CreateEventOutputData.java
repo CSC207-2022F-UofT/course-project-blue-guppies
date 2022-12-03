@@ -1,4 +1,55 @@
 package create_event_use_case;
 
+import java.time.LocalTime;
+
 public class CreateEventOutputData {
+    private final String title;
+    private final LocalTime startTime;
+    private final LocalTime endTime;
+    private final int dayIndex;
+    private boolean isSuccessfullyCreated;
+    private String errorMessage;
+
+    public CreateEventOutputData(
+            String title, LocalTime startTime, LocalTime endTime, int dayIndex
+    ) {
+        this.title = title;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.dayIndex = dayIndex;
+        this.isSuccessfullyCreated = false;
+        this.errorMessage = "";
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public int getDayIndex() {
+        return dayIndex;
+    }
+
+    public boolean isSuccessfullyCreated() {
+        return isSuccessfullyCreated;
+    }
+
+    public void setSuccessfullyCreated(boolean successfullyCreated) {
+        isSuccessfullyCreated = successfullyCreated;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 }
