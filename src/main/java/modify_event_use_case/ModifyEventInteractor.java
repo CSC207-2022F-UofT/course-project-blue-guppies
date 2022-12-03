@@ -29,6 +29,13 @@ public class ModifyEventInteractor implements ModifyEventInputBoundary{
      */
     @Override
     public ModifyEventOutputData modify(ModifyEventInputData inputData){
+        if(!dsGateway.titleExistsInDay(inputData.getDayIndex(), inputData.getTitle())){
+            String failMessage = "There is no event called " + inputData.getTitle() + " on " +
+                    DAYSOFWEEK[inputData.getDayIndex()] + "!";
+            ModifyEventOutputData outputData = new ModifyEventOutputData(inputData.getTitle(), inputData.getDayIndex(),
+                    inputData.getNewTitle(), null, null);
+            return outputBoundary.prepareFailView(outputData, failMessage);
+        }
         if(!(inputData.getNewStartTime().matches("[01][0-9]:[0-5][0-9]|2[0-3]:[0-5][0-9]"))) {
             ModifyEventOutputData outputData = new ModifyEventOutputData(inputData.getTitle(), inputData.getDayIndex(),
                     inputData.getNewTitle(), null, null);
@@ -49,7 +56,7 @@ public class ModifyEventInteractor implements ModifyEventInputBoundary{
                     DAYSOFWEEK[inputData.getDayIndex()] + ".";
             return outputBoundary.prepareFailView(outputData, failMessage);
         }
-        else if (dsGateway.isTimeConflict(inputData.getDayIndex(), inputData.getTitle(), newStartTime,
+        if (dsGateway.isTimeConflict(inputData.getDayIndex(), inputData.getTitle(), newStartTime,
                 newEndTime)){
             String failMessage = "The new times for the event " + inputData.getTitle() +
                     " conflict with another event on " + DAYSOFWEEK[inputData.getDayIndex()] + ".";

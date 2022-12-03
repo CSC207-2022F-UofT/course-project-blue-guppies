@@ -79,7 +79,7 @@ class ModifyEventInteractorTest {
         String originalTitle = originalEvent.getTitle();
         LocalTime originalStart = originalEvent.getStartTime();
         LocalTime originalEnd = originalEvent.getEndTime();
-        ModifyEventInputData faultyData = new ModifyEventInputData("CS Commons", 4, "TL;DR room",
+        ModifyEventInputData faultyData = new ModifyEventInputData("Mat237", 4, "TL;DR room",
                 "bad", "times");
         ModifyEventOutputData output = sampleInteractor.modify(faultyData);
         String failMessage = "The start and end times are not valid times!";
@@ -97,10 +97,28 @@ class ModifyEventInteractorTest {
         String originalTitle = originalEvent.getTitle();
         LocalTime originalStart = originalEvent.getStartTime();
         LocalTime originalEnd = originalEvent.getEndTime();
-        ModifyEventInputData faultyData = new ModifyEventInputData("Sleep", 4, "Time turner",
+        ModifyEventInputData faultyData = new ModifyEventInputData("Mat237", 4, "Time turner",
                 "04:00", "03:00");
         ModifyEventOutputData output = sampleInteractor.modify(faultyData);
         String failMessage = "The new start time is not before the new end time!";
+        assertEquals(failMessage, output.getFailureMessage());
+        assertFalse(output.getSuccessfullyModified());
+        DataAccessEvent currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        assertEquals(originalTitle, currentEvent.getTitle());
+        assertEquals(originalStart, currentEvent.getStartTime());
+        assertEquals(originalEnd, currentEvent.getEndTime());
+    }
+
+    @Test
+    void testModifyOriginalTaskNotInDay(){
+        DataAccessEvent originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        String originalTitle = originalEvent.getTitle();
+        LocalTime originalStart = originalEvent.getStartTime();
+        LocalTime originalEnd = originalEvent.getEndTime();
+        ModifyEventInputData faultyData = new ModifyEventInputData("Sleep", 4, "Time turner",
+                "04:00", "03:00");
+        ModifyEventOutputData output = sampleInteractor.modify(faultyData);
+        String failMessage = "There is no event called Sleep on Thursday!";
         assertEquals(failMessage, output.getFailureMessage());
         assertFalse(output.getSuccessfullyModified());
         DataAccessEvent currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
