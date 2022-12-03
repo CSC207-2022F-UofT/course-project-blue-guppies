@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 /**
- * Data Access Class. Interacts with the in-memory week to "save" modifications.
+ * Data Access Class. Implements methods from the DsGateway to interact with our database as needed.
  * @author Daniel Livshits
  */
 public class ModifyEventDataAccess extends WeekDataAccess implements ModifyEventDsGateway{

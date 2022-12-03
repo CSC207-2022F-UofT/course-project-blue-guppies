@@ -3,7 +3,8 @@ package modify_event_use_case;
 import java.time.LocalTime;
 
 /**
- * Interactor for the Modify Event use case. Calls the dsGateway and Output Boundary to modify the event.
+ * Interactor for the Modify Event use case. Calls the dsGateway and Output Boundary to appropriately execute
+ * application logic.
  * @author Daniel Livshits
  */
 public class ModifyEventInteractor implements ModifyEventInputBoundary{
@@ -19,8 +20,8 @@ public class ModifyEventInteractor implements ModifyEventInputBoundary{
 
     /**
      * Modifies the desired event by making calls to the outputBoundary and dsGateway, if there are no conflicts.
-     * If there is a naming conflict or time conflict, creates an instance of Output Data representing the corresponding
-     * failure state.
+     * If there is a naming conflict or time conflict, or if the times are invalid in some way,
+     * creates an instance of Output Data representing the corresponding failure state.
      *
      * @param inputData - The data required to modify the desired event.
      * @return An instance of output data, containing the necessary information about the success or failure of

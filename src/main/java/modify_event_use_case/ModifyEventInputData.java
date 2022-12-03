@@ -1,7 +1,7 @@
 package modify_event_use_case;
 
 /**
- * Input for the InputBoundary's modify method.
+ * Input for the InputBoundary's modify method. Contains the necessary information for an event to be modified.
  * @author Daniel Livshits
  */
 public class ModifyEventInputData {

@@ -3,7 +3,7 @@ package modify_event_use_case;
 import java.time.LocalTime;
 
 /**
- * Input for the DsGateway save method.
+ * Input for the DsGateway save method, specifying the parameters of the event to be modified in the database.
  * @author Daniel Livshits
  */
 public class ModifyEventDsInputData {

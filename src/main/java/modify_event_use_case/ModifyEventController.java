@@ -1,8 +1,8 @@
 package modify_event_use_case;
 
 /**
- * Controller Class. Will be used by the event modification screen to execute modification. Calls methods
- * from the input boundary.
+ * Controller Class. Will be used by the event modification screen to execute application logic for modification.
+ * Calls methods from the input boundary.
  * @author Daniel Livshits
  */
 public class ModifyEventController {

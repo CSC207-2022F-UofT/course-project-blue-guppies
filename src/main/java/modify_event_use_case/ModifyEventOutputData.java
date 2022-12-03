@@ -3,7 +3,8 @@ package modify_event_use_case;
 import java.time.LocalTime;
 
 /**
- * Output data to be sent back through to the Controller.
+ * Output data to be sent back through to the Controller. Contains information on the task to be modified,
+ * as well as whether that modification was successful, and, if not, why the modification failed.
  * @author Daniel Livshits
  */
 public class ModifyEventOutputData {
