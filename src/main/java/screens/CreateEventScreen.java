@@ -10,7 +10,9 @@
  * Last modified: Nov 15 2022
  */
 
-package create_event_use_case;
+package screens;
+
+import create_event_use_case.CreateEventController;
 
 import javax.swing.*;
 import java.awt.*;

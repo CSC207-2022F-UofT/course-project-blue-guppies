@@ -7,8 +7,8 @@ public class CreateEventOutputData {
     private final LocalTime startTime;
     private final LocalTime endTime;
     private final int dayIndex;
-    private boolean isSuccessfullyCreated;
-    private String errorMessage;
+    private boolean isSuccessfullyCreated = false;
+    private String errorMessage = "";
 
     public CreateEventOutputData(
             String title, LocalTime startTime, LocalTime endTime, int dayIndex
@@ -17,8 +17,10 @@ public class CreateEventOutputData {
         this.startTime = startTime;
         this.endTime = endTime;
         this.dayIndex = dayIndex;
-        this.isSuccessfullyCreated = false;
-        this.errorMessage = "";
+    }
+
+    public CreateEventOutputData() {
+
     }
 
     public String getTitle() {

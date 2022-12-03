@@ -3,47 +3,55 @@ package create_event_use_case;
 import java.time.LocalTime;
 
 public class CreateEventInputData {
-    private String title;
-    private LocalTime startTime;
-    private LocalTime endTime;
-    private int dayIndex;
+    private final String title;
+    private final String startTime;
+    private final String endTime;
+    private final int dayIndex;
 
-    public CreateEventInputData(String title, LocalTime startTime, LocalTime endTime, int dayIndex) {
+    public CreateEventInputData(String title, String startTime, String endTime, String day) {
         this.title = title;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.dayIndex = dayIndex;
+        switch (day){
+            case "Sunday":
+                this.dayIndex = 0;
+                break;
+            case "Monday":
+                this.dayIndex = 1;
+                break;
+            case "Tuesday":
+                this.dayIndex = 2;
+                break;
+            case "Wednesday":
+                this.dayIndex = 3;
+                break;
+            case "Thursday":
+                this.dayIndex = 4;
+                break;
+            case "Friday":
+                this.dayIndex = 5;
+                break;
+            default:
+                this.dayIndex = 6;
+                break; // if no match assume Saturday
+        }
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public LocalTime getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-    }
 
-    public LocalTime getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
-    }
 
     public int getDayIndex() {
         return dayIndex;
-    }
-
-    public void setDayIndex(int dayIndex) {
-        this.dayIndex = dayIndex;
     }
 }

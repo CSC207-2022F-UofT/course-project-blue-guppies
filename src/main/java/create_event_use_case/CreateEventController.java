@@ -1,7 +1,9 @@
 package create_event_use_case;
 
-import java.time.LocalTime;
-
+/**
+ *
+ * @author Anna Myllyniemi, Raghav Arora
+ */
 public class CreateEventController {
     private final CreateEventInputBoundary inputBoundary;
 
@@ -9,9 +11,9 @@ public class CreateEventController {
         this.inputBoundary = inputBoundary;
     }
 
-    public void create(String title, LocalTime startTime, LocalTime endTime, int dayIndex) {
+    public CreateEventOutputData create(String title, String startTime, String endTime, String day) {
         CreateEventInputData inputData = new CreateEventInputData(
-                title, startTime, endTime, dayIndex
+                title, startTime, endTime, day
         );
         return inputBoundary.create(inputData);
     }

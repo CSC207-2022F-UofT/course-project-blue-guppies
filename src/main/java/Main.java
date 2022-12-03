@@ -1,12 +1,13 @@
 import create_event_use_case.*;
 import entities.EventFactory;
+import screens.CreateEventScreen;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-        DataAccess gateway = new DataAccess();
+        CreateEventDsGateway gateway = new CreateEventDataAccess();
 
         // initialize create event classes
         CreateEventOutputBoundary createEventPresenter = new CreateEventPresenter();
