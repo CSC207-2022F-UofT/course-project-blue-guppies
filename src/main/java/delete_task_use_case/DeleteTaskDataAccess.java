@@ -31,6 +31,7 @@ public class DeleteTaskDataAccess extends WeekDataAccess implements DeleteTaskDs
 
     /**
      *  Checks whether the task exists of the specified day index.
+     *
      * @param dayIndex The index of the day instance the task belongs to.
      * @param taskTitle The title of the task user wants to remove.
      * @return True if the task exists in the given day, false otherwise.

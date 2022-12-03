@@ -9,6 +9,7 @@ public class DeleteTaskPresenter implements DeleteTaskOutputBoundary {
     /**
      * Sets success of the DeleteTaskOutputData instance to true,
      * with no ErrorMessage.
+     *
      * @param outputData An instance of DeleteTaskOutputData which contains the
      *                   taskTitle of the task for deletion as well as the corresponding
      *                   dayIndex.
