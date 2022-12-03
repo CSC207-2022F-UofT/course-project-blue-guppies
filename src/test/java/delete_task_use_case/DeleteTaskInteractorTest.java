@@ -1,0 +1,57 @@
+package delete_task_use_case;
+
+import data_access.DataAccessDay;
+import data_access.DataAccessEvent;
+import data_access.DataAccessTask;
+
+import java.util.HashMap;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+class DeleteTaskInteractorTest {
+    private final static DeleteTaskInputData INPUT_DATA_1 = new DeleteTaskInputData(
+            5, "Task");
+    private final static DeleteTaskInputData INPUT_DATA_2 = new DeleteTaskInputData(
+            0,"Task2");
+    private final static DeleteTaskDataAccess DATA_ACCESS = new DeleteTaskDataAccess();
+    private final static DeleteTaskDsGateway DS_GATEWAY = DATA_ACCESS;
+    private final static DeleteTaskPresenter OUTPUT_BOUNDARY = new DeleteTaskPresenter();
+
+    @Test
+    void testDeleteTaskSuccess() {
+        DataAccessTask task = new DataAccessTask("Task");
+        HashMap<String, DataAccessTask> tasks = new HashMap<>();
+        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        tasks.put("Task", task);
+        DataAccessDay day = new DataAccessDay(tasks, events);
+        DATA_ACCESS.getDays().set(5, day);
+
+        DeleteTaskInputBoundary inputBoundary = new DeleteTaskInteractor(OUTPUT_BOUNDARY, DS_GATEWAY);
+        DeleteTaskOutputData outputData = inputBoundary.deleteTask(INPUT_DATA_1);
+
+        assertEquals(5, outputData.getDayIndex());
+        assertEquals("Task", outputData.getTaskTitle());
+        assertFalse(DATA_ACCESS.getDays().get(5).getTasks().containsKey("Task"));
+        assertFalse(DATA_ACCESS.getDays().get(5).getTasks().containsValue(task));
+        assertTrue(outputData.isSuccess());
+    }
+
+    @Test
+    void testDeleteTaskFail() {
+
+        DataAccessTask task = new DataAccessTask("Task");
+        HashMap<String, DataAccessTask> tasks = new HashMap<>();
+        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        tasks.put("Task", task);
+        DataAccessDay day = new DataAccessDay(tasks, events);
+        DATA_ACCESS.getDays().set(5, day);
+
+        DeleteTaskInputBoundary inputBoundary = new DeleteTaskInteractor(OUTPUT_BOUNDARY, DS_GATEWAY);
+        DeleteTaskOutputData outputData = inputBoundary.deleteTask(INPUT_DATA_2);
+
+        assertEquals("Task Title: \"Task2\" does not exist for day Sunday", outputData.getErrorMessage());
+        assertFalse(outputData.isSuccess());
+        assertTrue(DATA_ACCESS.getDays().get(5).getTasks().containsKey("Task"));
+    }
+}
