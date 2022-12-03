@@ -1,28 +1,27 @@
-/**
- * Task Modification Input Data Class.
- * Author: Raghav Arora
- * Modified By: Raghav Arora
- * Created: Nov 12, 2022
- * Last Modified: Nov 19, 2022
- */
 package modify_task_use_case;
 
-public class ModifyTaskInputData {
-    private int dayID;
-    private String newTitle;
+/**
+ * Task Modification Input Data Class. Parameters passed on to the method modifyTask
+ * of the Controller class are assembled into a ModifyTaskInputData object before invoking
+ * the implementation of modifyTask given by the interactor/input boundary.
+ * @author Raghav Arora
+ */
+class ModifyTaskInputData {
+    private final int dayIndex;
+    private final String newTitle;
     private String title;
 
-    public ModifyTaskInputData(int dayId, String newTitle, String title) {
-        this.dayID = dayId;
+    ModifyTaskInputData(int dayIndex, String newTitle, String title) {
+        this.dayIndex = dayIndex;
         this.newTitle = newTitle;
         this.title = title;
     }
 
-    public String getNewTitle() { return this.newTitle; }
+    protected String getNewTitle() { return this.newTitle; }
 
-    public int getDayID() { return this.dayID; }
+    protected int getDayIndex() { return this.dayIndex; }
 
-    public String getTitle() { return this.title; }
+    protected String getTitle() { return this.title; }
 
-    public void setTitle(String title) { this.title = title; }
+    protected void setTitle(String title) { this.title = title; }
 }
