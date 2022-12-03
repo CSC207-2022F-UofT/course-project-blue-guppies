@@ -39,6 +39,8 @@ public class CreateTaskDataAccessTest {
         createTaskDataAccess.save(task);
         HashMap<String, DataAccessTask> tasks = createTaskDataAccess.getDays().get(0).getTasks();
         DataAccessTask taskCheck = tasks.get(task.getTitle());
+        boolean existence = tasks.containsKey(task.getTitle());
+        assertTrue(existence);
         assertEquals(task.getTitle(), taskCheck.getTitle());
     }
 }
