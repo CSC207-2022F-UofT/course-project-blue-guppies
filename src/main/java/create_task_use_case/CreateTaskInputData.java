@@ -15,13 +15,27 @@ public class CreateTaskInputData {
         this.title = title;
 
         switch (dayIndex) {
-            case "Sunday" -> this.dayIndex = 0;
-            case "Monday" -> this.dayIndex = 1;
-            case "Tuesday" -> this.dayIndex = 2;
-            case "Wednesday" -> this.dayIndex = 3;
-            case "Thursday" -> this.dayIndex = 4;
-            case "Friday" -> this.dayIndex = 5;
-            default -> this.dayIndex = 6;
+            case "Sunday":
+                this.dayIndex = 0;
+                break;
+            case "Monday":
+                this.dayIndex = 1;
+                break;
+            case "Tuesday":
+                this.dayIndex = 2;
+                break;
+            case "Wednesday":
+                this.dayIndex = 3;
+                break;
+            case "Thursday":
+                this.dayIndex = 4;
+                break;
+            case "Friday":
+                this.dayIndex = 5;
+                break;
+            default:
+                this.dayIndex = 6;
+                break;
             // if no match assume Saturday
         }
         }
