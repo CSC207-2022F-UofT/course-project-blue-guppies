@@ -1,7 +1,5 @@
 package create_event_use_case;
 
-import java.time.LocalTime;
-
 public class CreateEventInputData {
     private final String title;
     private final String startTime;
@@ -45,11 +43,9 @@ public class CreateEventInputData {
         return startTime;
     }
 
-
     public String getEndTime() {
         return endTime;
     }
-
 
     public int getDayIndex() {
         return dayIndex;
