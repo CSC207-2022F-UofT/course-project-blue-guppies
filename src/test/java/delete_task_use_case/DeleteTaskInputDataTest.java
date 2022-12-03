@@ -5,15 +5,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteTaskInputDataTest {
 
-    DeleteTaskInputData inputData = new DeleteTaskInputData(4, "Term Test");
+    private final static DeleteTaskInputData inputData = new DeleteTaskInputData(4, "Term Test");
 
     @Test
-    void getDayIndex() {
+    void testGetDayIndex() {
         assertEquals(4, inputData.getDayIndex());
     }
 
     @Test
-    void getTaskTitle() {
+    void testGetTaskTitle() {
         assertEquals("Term Test", inputData.getTaskTitle());
     }
 }

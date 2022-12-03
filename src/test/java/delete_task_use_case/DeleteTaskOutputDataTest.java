@@ -7,23 +7,34 @@ class DeleteTaskOutputDataTest {
     private final static DeleteTaskOutputData outputData = new DeleteTaskOutputData(6, "Midterm");
 
     @Test
-    void getDayIndex() {
+    void testGetDayIndex() {
         assertEquals(6, outputData.getDayIndex());
     }
 
     @Test
-    void getTaskTitle() {
+    void testGetTaskTitle() {
         assertEquals("Midterm", outputData.getTaskTitle());
     }
 
     @Test
-    void getSuccess() {
-        assertFalse(outputData.getSuccess());
+    void testGetSuccess() {
+        assertFalse(outputData.isSuccess());
     }
 
     @Test
-    void setSuccess() {
+    void testSetSuccess() {
         outputData.setSuccess(true);
-        assertTrue(outputData.getSuccess());
+        assertTrue(outputData.isSuccess());
+    }
+
+    @Test
+    void testGetErrorMessage() {
+        assertNull(outputData.getErrorMessage());
+    }
+
+    @Test
+    void testSetErrorMessage() {
+        outputData.setErrorMessage("Error");
+        assertEquals("Error", outputData.getErrorMessage());
     }
 }

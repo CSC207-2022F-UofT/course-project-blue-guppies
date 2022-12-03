@@ -1,12 +1,10 @@
-/**
- * Delete Task InputBoundary Interface.
- * Author: Ricky Fung
- * Modified By: Ricky Fung
- * Created: Nov 19, 2022
- * Last Modified: Nov 28, 2022
- */
 package delete_task_use_case;
 
+/**
+ * Contains deleteTask method. Method is invoked
+ * in DeleteTaskController, and implemented in DeleteTaskInteractor.
+ * @author Ricky Fung
+ */
 public interface DeleteTaskInputBoundary {
     DeleteTaskOutputData deleteTask(DeleteTaskInputData inputData);
 }

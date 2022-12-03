@@ -1,12 +1,12 @@
-/**
- * Delete Task OutputBoundary Interface.
- * Author: Ricky Fung
- * Modified By: Ricky Fung
- * Created: Nov 19, 2022
- * Last Modified: Nov 28, 2022
- */
 package delete_task_use_case;
 
+/**
+ * Contains prepareSuccessView and prepareFailView methods,
+ * which are implemented in DeleteTaskPresenter.
+ * @author Ricky Fung
+ */
 public interface DeleteTaskOutputBoundary {
-    DeleteTaskOutputData prepareSuccessView(DeleteTaskOutputData taskOutputData);
+    DeleteTaskOutputData prepareSuccessView(DeleteTaskOutputData outputData);
+
+    DeleteTaskOutputData prepareFailView(DeleteTaskOutputData outputData, String error);
 }

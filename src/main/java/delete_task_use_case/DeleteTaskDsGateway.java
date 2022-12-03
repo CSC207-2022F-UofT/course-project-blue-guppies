@@ -1,12 +1,13 @@
-/**
- * Delete Task DsGateway Interface.
- * Author: Ricky Fung
- * Modified By: Ricky Fung
- * Created: Nov 19, 2022
- * Last Modified: Nov 28, 2022
- */
 package delete_task_use_case;
 
+/**
+ * Contains save and taskExistsInDay methods. Methods are implemented in
+ * the DeleteTaskDataAccess class.
+ * to be implemented
+ * @author Ricky Fung
+ */
 public interface DeleteTaskDsGateway {
     void save(DeleteTaskDsInputData dataAccessInput);
+
+    boolean taskExistsInDay(int dayIndex, String taskTitle);
 }

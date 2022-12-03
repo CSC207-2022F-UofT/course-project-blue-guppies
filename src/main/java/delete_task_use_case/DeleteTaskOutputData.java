@@ -1,34 +1,44 @@
-/**
- * Delete Task OutputData Class.
- * Author: Ricky Fung
- * Modified By: Ricky Fung
- * Created: Nov 19, 2022
- * Last Modified: Nov 28, 2022
- */
 package delete_task_use_case;
 
+/**
+ * Instances of this class are returned and set back to
+ * the controller, with the errorMessage and success instance
+ * attributes indicating whether deletion conditions are met.
+ * @author Ricky Fung
+ */
 public class DeleteTaskOutputData {
-    private final String taskTitle;
-    private final int dayIndex;
-    private boolean success = false;
+    String taskTitle;
+    int dayIndex;
+    boolean success;
+    String errorMessage;
 
     public DeleteTaskOutputData(int dayIndex, String taskTitle) {
         this.dayIndex = dayIndex;
         this.taskTitle = taskTitle;
+        this.success = false;
     }
 
-    int getDayIndex() {
+    public int getDayIndex() {
         return dayIndex;
     }
 
-    String getTaskTitle() {
+    public String getTaskTitle() {
         return taskTitle;
     }
 
-    public boolean getSuccess() {
+    public boolean isSuccess() {
         return success;
     }
+
     public void setSuccess(boolean success) {
         this.success = success;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

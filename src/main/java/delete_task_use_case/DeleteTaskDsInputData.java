@@ -1,12 +1,9 @@
-/**
- * Delete Task DataAccessInput Class.
- * Author: Ricky Fung
- * Modified By: Ricky Fung
- * Created: Nov 19, 2022
- * Last Modified: Nov 28, 2022
- */
 package delete_task_use_case;
 
+/**
+ * Contains inputs for save method in DeleteTaskDataAccess.
+ * @author Ricky Fung
+ */
 public class DeleteTaskDsInputData {
     private final int dayIndex;
     private final String taskTitle;

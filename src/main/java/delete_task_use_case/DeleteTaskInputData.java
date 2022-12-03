@@ -1,12 +1,9 @@
-/**
- * Delete Task InputData Class.
- * Author: Ricky Fung
- * Modified By: Ricky Fung
- * Created: Nov 19, 2022
- * Last Modified: Nov 28, 2022
- */
 package delete_task_use_case;
 
+/**
+ * Contains inputs for InputBoundary's deleteTask method.
+ * @author Ricky Fung
+ */
 public class DeleteTaskInputData {
 
     private final int dayIndex;
@@ -17,11 +14,11 @@ public class DeleteTaskInputData {
         this.dayIndex = dayIndex;
     }
 
-    public int getDayIndex() {
+    int getDayIndex() {
         return this.dayIndex;
     }
 
-    public String getTaskTitle() {
+    String getTaskTitle() {
         return this.taskTitle;
     }
 }
