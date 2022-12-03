@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public class CompleteTaskDataAccess extends WeekDataAccess implements CompleteTaskDsGateway {
     /**
-     *
+     * Check whether a Task with the given title already exists for the specified day
      * @param title The title of the task will have its completed attribute mutated
      * @param dayIndex The index of the Day object where the task will be contained.
      * @return whether there are already an existing task of the same name in the dayIndex day
