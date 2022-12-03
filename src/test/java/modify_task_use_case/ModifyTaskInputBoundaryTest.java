@@ -10,11 +10,9 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/** Task Modification Input Boundary Test Cases.
- * Author: Raghav Arora
- * Modified By: Raghav Arora
- * Created: Nov 19, 2022
- * Last Modified: Dec 2, 2022
+/**
+ * Task Modification Input Boundary Test Cases.
+ * @author Raghav Arora
  */
 public class ModifyTaskInputBoundaryTest {
     private final static ModifyTaskPresenter presenter = new ModifyTaskPresenter();

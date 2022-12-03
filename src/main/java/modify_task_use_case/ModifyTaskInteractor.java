@@ -1,11 +1,9 @@
 package modify_task_use_case;
 
-/** Task Modification Interactor Class. Implements the modifyTask method provides
+/**
+ * Task Modification Interactor Class. Implements the modifyTask method provides
  * by the input boundary and orchestrates the application logic for the use case.
- * Author: Raghav Arora
- * Modified By: Raghav Arora
- * Created: Nov 12, 2022
- * Last Modified: Dec 2, 2022
+ * @author Raghav Arora
  */
 public class ModifyTaskInteractor implements ModifyTaskInputBoundary {
 
@@ -21,10 +19,12 @@ public class ModifyTaskInteractor implements ModifyTaskInputBoundary {
         this.dsGateway = dsGateway;
     }
 
-    /** Executes the application logic required to modify a given Task by calling the appropriate
+    /**
+     * Executes the application logic required to modify a given Task by calling the appropriate
      * dsGateway and Output Boundary methods.
-     * @param inputData Contains the dayIndex which contains the Task to be modified,
-     * the existing title of the Task, and the new title of the task.
+     *
+     * @param inputData A ModifyTaskInputData instance which contains the dayIndex of the Day object which
+     * contains the Task to be modified, the existing title of the Task, and the new title of the task.
      * @return A ModifyTaskOutputData instance which contains title, dayIndex, errorMessage
      * and isSuccessfully modified attributes, such that the latter two indicate whether the
      * use case was successful.

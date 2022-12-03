@@ -10,11 +10,9 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/** Task Modification Ds Gateway Test Cases.
- * Author: Raghav Arora
- * Modified By: Raghav Arora
- * Created: Nov 26, 2022
- * Last Modified: Dec 2, 2022
+/**
+ * Task Modification Ds Gateway Test Cases.
+ * @author Raghav Arora
  */
 class ModifyTaskDsGatewayTest {
     private final static ModifyTaskDataAccess dataAccess = new ModifyTaskDataAccess();

@@ -4,11 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/** Task Modification Output Boundary Test Cases.
- * Author: Raghav Arora
- * Modified By: Raghav Arora
- * Created: Nov 19, 2022
- * Last Modified: Dec 2, 2022
+/**
+ * Task Modification Output Boundary Test Cases.
+ * @author Raghav Arora
  */
 public class ModifyTaskOutputBoundaryTest {
     // task and event instances (and maps) to be used across tests.

@@ -9,11 +9,9 @@ import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-/** Task Modification Interactor Test Cases.
- * Author: Raghav Arora
- * Modified By: Raghav Arora
- * Created: Nov 19, 2022
- * Last Modified: Dec 2, 2022
+/**
+ * Task Modification Interactor Test Cases.
+ * @author Raghav Arora
  */
 class ModifyTaskInteractorTest {
     private final static ModifyTaskInputData inputData1 = new ModifyTaskInputData(
