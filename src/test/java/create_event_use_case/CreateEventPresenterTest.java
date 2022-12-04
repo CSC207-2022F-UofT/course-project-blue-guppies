@@ -7,17 +7,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Create Event Presenter Test Cases.
- * @author Raghav Arora
+ * @author Raghav Arora, Anna Myllyniemi
  */
 class CreateEventPresenterTest {
-    private final static CreateEventOutputBoundary outputBoundary = new CreateEventPresenter();
-    private final static CreateEventOutputData outputData = new CreateEventOutputData(
+    private final static CreateEventOutputBoundary OUTPUT_BOUNDARY = new CreateEventPresenter();
+    private final static CreateEventOutputData OUTPUT_DATA = new CreateEventOutputData(
             "Event", LocalTime.parse("09:00"), LocalTime.parse("10:00"), 0
     );
 
     @Test
     void testPrepareSuccessView() {
-        CreateEventOutputData result = outputBoundary.prepareSuccessView(outputData);
+        CreateEventOutputData result = OUTPUT_BOUNDARY.prepareSuccessView(OUTPUT_DATA);
         assertEquals("Event", result.getTitle());
         assertEquals(LocalTime.parse("09:00"), result.getStartTime());
         assertEquals(LocalTime.parse("10:00"), result.getEndTime());
@@ -27,11 +27,10 @@ class CreateEventPresenterTest {
 
     @Test
     void testPrepareFailView() {
-        CreateEventOutputData result = outputBoundary.prepareFailView(outputData, "Error");
-        assertEquals("Event", result.getTitle());
-        assertEquals(LocalTime.parse("09:00"), result.getStartTime());
-        assertEquals(LocalTime.parse("10:00"), result.getEndTime());
+        CreateEventOutputData result = OUTPUT_BOUNDARY.prepareFailView(new CreateEventOutputData(), "Error");
         assertFalse(result.isSuccess());
         assertEquals("Error", result.getErrorMessage());
     }
+
+    // add test for view model
 }

@@ -1,13 +1,14 @@
 package create_event_use_case;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalTime;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
  * Create Event Output Data Test Cases.
- * @author Raghav Arora
+ * @author Raghav Arora, Anna Myllyniemi
  */
 class CreateEventOutputDataTest {
     CreateEventOutputData outputData = new CreateEventOutputData(
@@ -15,9 +16,16 @@ class CreateEventOutputDataTest {
             LocalTime.parse("10:00"), 0
     );
 
+    CreateEventOutputData outputDataDefault = new CreateEventOutputData();
+
     @Test
     void testGetTitle() {
         assertEquals("Sample Event", outputData.getTitle());
+    }
+
+    @Test
+    void testGetTitleDefault() {
+        assertNull(outputDataDefault.getTitle());
     }
 
     @Test
@@ -26,8 +34,18 @@ class CreateEventOutputDataTest {
     }
 
     @Test
+    void testGetStartTimeDefault() {
+        assertNull(outputDataDefault.getStartTime());
+    }
+
+    @Test
     void testGetEndTime() {
         assertEquals(LocalTime.parse("10:00"), outputData.getEndTime());
+    }
+
+    @Test
+    void testGetEndTimeDefault() {
+        assertNull(outputDataDefault.getEndTime());
     }
 
     @Test
@@ -36,8 +54,18 @@ class CreateEventOutputDataTest {
     }
 
     @Test
+    void testGetDayIndexDefault() {
+        assertEquals(0, outputDataDefault.getDayIndex());
+    }
+
+    @Test
     void testGetIsSuccessfullyCreated() {
         assertFalse(outputData.isSuccess());
+    }
+
+    @Test
+    void testGetIsSuccessfullyCreatedDefault() {
+        assertFalse(outputDataDefault.isSuccess());
     }
 
     @Test
