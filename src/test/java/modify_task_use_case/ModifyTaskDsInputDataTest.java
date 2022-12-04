@@ -1,15 +1,12 @@
-/**
- * Task Modification Ds Input Data Test Cases.
- * Author: Raghav Arora
- * Modified By: Raghav Arora
- * Created: Nov 26, 2022
- * Last Modified: Nov 26, 2022
- */
 package modify_task_use_case;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Task Modification Ds Input Data Test Cases.
+ * @author Raghav Arora
+ */
 public class ModifyTaskDsInputDataTest {
     private final static ModifyTaskDsInputData dsInputData = new ModifyTaskDsInputData(
             0, "New Task", "Old Task"
@@ -22,7 +19,7 @@ public class ModifyTaskDsInputDataTest {
 
     @Test
     void testGetDayID() {
-        assertEquals(0, dsInputData.getDayID());
+        assertEquals(0, dsInputData.getDayIndex());
     }
 
     @Test

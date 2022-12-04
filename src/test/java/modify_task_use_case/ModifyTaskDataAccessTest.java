@@ -1,10 +1,3 @@
-/**
- * Task Modification Data Access Test Cases.
- * Author: Raghav Arora
- * Modified By: Raghav Arora
- * Created: Nov 19, 2022
- * Last Modified: Nov 26, 2022
- */
 package modify_task_use_case;
 
 import data_access.DataAccessDay;
@@ -16,6 +9,10 @@ import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Task Modification Data Access Test Cases.
+ * @author Raghav Arora
+ */
 class ModifyTaskDataAccessTest {
     private final static ModifyTaskDataAccess dsGateway = new ModifyTaskDataAccess();
     private final static ModifyTaskDsInputData dsInputData = new ModifyTaskDsInputData(

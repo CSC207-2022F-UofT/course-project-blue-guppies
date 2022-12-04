@@ -1,10 +1,3 @@
-/**
- * Task Modification Controller Test Cases.
- * Author: Raghav Arora
- * Modified By: Raghav Arora
- * Created: Nov 19, 2022
- * Last Modified: Nov 26, 2022
- */
 package modify_task_use_case;
 
 import data_access.DataAccessDay;
@@ -16,6 +9,10 @@ import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Task Modification Controller Test Cases.
+ * @author Raghav Arora
+ */
 public class ModifyTaskControllerTest {
     private final static ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter();
     private final static ModifyTaskDataAccess dataAccess = new ModifyTaskDataAccess();
@@ -44,7 +41,7 @@ public class ModifyTaskControllerTest {
 
         // Day 0 should not have a task named "Sample Task", and instead
         // have "New Sample Task"
-        assertEquals(0, outputData.getDayID());
+        assertEquals(0, outputData.getDayIndex());
         assertEquals("New Sample Task", outputData.getTitle());
         DataAccessDay day0 = dataAccess.getDays().get(0);
         assertFalse(day0.getTasks().containsKey("Sample Task"));

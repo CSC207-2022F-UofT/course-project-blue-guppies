@@ -1,5 +1,5 @@
 /**
- * The superclass for data access, with an static attribute and private method to be shared across all DataAccess
+ * The superclass for data access, with an static attribute and private method to be shared across all create_event_use_case.CreateEventPresenter.data_access.DataAccess
  * classes.
  * Author: Daniel Livshits
  * Modified by: Daniel Livshits
@@ -51,6 +51,5 @@ public class WeekDataAccess implements Serializable {
     }
 
     protected void save(){
-        // TODO: Implement using Serializable once we understand the implementation.
     }
 }

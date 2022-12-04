@@ -1,28 +1,26 @@
-/**
- * Task Modification DsInputData Class.
- * Author: Raghav Arora
- * Modified By: Raghav Arora
- * Created: Nov 12, 2022
- * Last Modified: Nov 26, 2022
- */
 package modify_task_use_case;
 
-public class ModifyTaskDsInputData {
-    private int dayID;
-    private String newTitle;
+/**
+ * Task Modification DsInputData Class. Instances of type ModifyTaskDsInputData are
+ * passed on to the gateway to execute the use case's application logic.
+ * @author Raghav Arora
+ */
+class ModifyTaskDsInputData {
+    private final int dayIndex;
+    private final String newTitle;
     private String title;
 
-    public ModifyTaskDsInputData(int dayID, String newTitle, String title) {
-        this.dayID = dayID;
+    ModifyTaskDsInputData(int dayIndex, String newTitle, String title) {
+        this.dayIndex = dayIndex;
         this.newTitle = newTitle;
         this.title = title;
     }
 
-    public String getNewTitle() { return this.newTitle; }
+    protected String getNewTitle() { return this.newTitle; }
 
-    public int getDayID() { return this.dayID; }
+    protected int getDayIndex() { return this.dayIndex; }
 
-    public String getTitle() { return this.title; }
+    protected String getTitle() { return this.title; }
 
-    public void setTitle(String title) { this.title = title; }
+    protected void setTitle(String title) { this.title = title; }
 }

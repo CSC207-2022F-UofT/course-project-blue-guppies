@@ -1,15 +1,12 @@
-/**
- * Task Modification Input Data Test Cases.
- * Author: Raghav Arora
- * Modified By: Raghav Arora
- * Created: Nov 26, 2022
- * Last Modified: Nov 26, 2022
- */
 package modify_task_use_case;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Task Modification Input Data Test Cases.
+ * @author Raghav Arora
+ */
 public class ModifyTaskInputDataTest {
     private final static ModifyTaskInputData inputData = new ModifyTaskInputData(
             0, "New Title", "Title"
@@ -22,7 +19,7 @@ public class ModifyTaskInputDataTest {
 
     @Test
     void testGetDayID() {
-        assertEquals(0, inputData.getDayID());
+        assertEquals(0, inputData.getDayIndex());
     }
 
     @Test
