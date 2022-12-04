@@ -1,9 +1,8 @@
-package clearing_use_case;
+package clear_all_use_case;
 
 import data_access.DataAccessDay;
 import data_access.DataAccessEvent;
 import data_access.DataAccessTask;
-import data_access.WeekDataAccess;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,24 +10,27 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-class ClearInteractorTest extends WeekDataAccess {
-    private final static ClearingPresenter outputBoundary = new ClearingPresenter();
-    private final static ClearingDataAccess dsGateway = new ClearingDataAccess();
+class ClearAllControllerTest {
+    private final static ClearAllPresenter OUTPUT_BOUNDARY = new ClearAllPresenter();
+    private final static ClearAllDataAccess DATA_ACCESS = new ClearAllDataAccess();
+    private final static ClearAllDsGateway DS_GATEWAY = DATA_ACCESS;
+    private final static ClearAllInteractor INPUT_BOUNDARY = new ClearAllInteractor(OUTPUT_BOUNDARY, DS_GATEWAY);
+    private final static ClearAllController CONTROLLER = new ClearAllController(INPUT_BOUNDARY);
 
     @Test
-    void testClearInteractor() {
-        ClearingInputBoundary inputBoundary = new ClearingInteractor(outputBoundary, dsGateway);
-        ClearingOutputData outputData = inputBoundary.clearing();
+    void testClearAll() {
+        ClearAllOutputData outputData = CONTROLLER.clearAll();
 
         assertTrue(outputData.getSuccess());
-        assertTrue(days.get(0).getTasks().isEmpty());
-        assertTrue(days.get(0).getEvents().isEmpty());
-        assertTrue(days.get(1).getTasks().isEmpty());
-        assertTrue(days.get(1).getEvents().isEmpty());
-        assertTrue(days.get(2).getTasks().isEmpty());
-        assertTrue(days.get(2).getEvents().isEmpty());
+        assertTrue(DATA_ACCESS.getDays().get(0).getTasks().isEmpty());
+        assertTrue(DATA_ACCESS.getDays().get(1).getTasks().isEmpty());
+        assertTrue(DATA_ACCESS.getDays().get(2).getTasks().isEmpty());
+
+        assertTrue(DATA_ACCESS.getDays().get(0).getEvents().isEmpty());
+        assertTrue(DATA_ACCESS.getDays().get(1).getEvents().isEmpty());
+        assertTrue(DATA_ACCESS.getDays().get(2).getEvents().isEmpty());
 
     }
 
@@ -64,6 +66,6 @@ class ClearInteractorTest extends WeekDataAccess {
         DataAccessDay tuesday = new DataAccessDay(tasks3, events3);
         days.add(tuesday);
 
-        ClearingDataAccess.setDays(days);
+        ClearAllDataAccess.setDays(days);
     }
 }
