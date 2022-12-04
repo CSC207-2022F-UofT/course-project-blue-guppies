@@ -1,29 +1,41 @@
 package delete_event_use_case;
 
+/**
+ * Output Data that is sent back to controller.
+ * errorMessage and success status indicating the results of deletion.
+ * @author Khizer Ahmad
+ */
 public class DeleteEventOutputData {
-    private String label;
-    private int dayIndex;
-    private boolean success = true;
-    private String errorMessage = null;
+    private final String label;
+    private final int dayIndex;
+    private boolean success;
 
-    protected DeleteEventOutputData(int dayIndex, String label) {
+    private String errorMessage;
+
+    public DeleteEventOutputData(int dayIndex, String label) {
         this.dayIndex = dayIndex;
         this.label = label;
     }
 
-    public String getLabel() {
-        return label;
-    }
-
-    public int getDayIndex() {
+    int getDayIndex() {
         return dayIndex;
     }
 
-    public boolean isSuccess() {
+    String getLabel() {
+        return label;
+    }
+
+    public boolean getSuccess() {
         return success;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public String getErrorMessage() {return errorMessage;}
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public void setErrorMessage(String message) {
+        this.errorMessage = message;
     }
 }
