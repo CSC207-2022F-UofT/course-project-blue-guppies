@@ -25,7 +25,7 @@ class CreateEventControllerTest {
                 dsGateway, outputBoundary, eventFactory
         );
         CreateEventController controller = new CreateEventController(inputBoundary);
-        CreateEventOutputData outputData = controller.createEvent(
+        CreateEventOutputData outputData = controller.create(
                 TITLE, START_TIME, END_TIME, DAY
         );
         assertEquals("Sample Event", outputData.getTitle());
