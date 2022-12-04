@@ -1,4 +1,6 @@
 package create_event_use_case;
 
-public interface CreateEventDataAccess {
+import data_access.WeekDataAccess;
+
+public class CreateEventDataAccess extends WeekDataAccess implements CreateEventDsGateway {
 }

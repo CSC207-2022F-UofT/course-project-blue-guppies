@@ -1,13 +1,12 @@
-import clear_all_use_case.ClearAllController;
-import complete_task_use_case.CompleteTaskController;
+import clear_all_use_case.*;
+import complete_task_use_case.*;
 import create_event_use_case.*;
 import create_task_use_case.*;
-import data_access.DataAccess;
-import delete_event_use_case.DeleteEventController;
+import delete_event_use_case.*;
 import delete_task_use_case.*;
 import entities.EventFactory;
 import entities.TaskFactory;
-import modify_event_use_case.ModifyEventController;
+import modify_event_use_case.*;
 import modify_task_use_case.*;
 import screens.*;
 
@@ -17,23 +16,30 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        // TODO Document everything
-        DataAccess gateway = new DataAccess();
 
-        // initialize create event classes
+        // Initialize create event classes
         CreateEventOutputBoundary createEventPresenter = new CreateEventPresenter();
+        CreateEventDsGateway createEventDsGateway = new CreateEventDataAccess();
         EventFactory eventFactory = new EventFactory();
         CreateEventInputBoundary createEventInteractor = new CreateEventInteractor(
-                gateway, createEventPresenter, eventFactory);
+                createEventDsGateway, createEventPresenter, eventFactory);
         CreateEventController createEventController = new CreateEventController(createEventInteractor);
 
-        // initialize modify event classes
-        ModifyEventController modifyEventController = new ModifyEventController();
+        // Initialize modify event classes
+        ModifyEventOutputBoundary modifyEventOutputBoundary = new ModifyEventPresenter();
+        ModifyEventDsGateway modifyEventDsGateway = new ModifyEventDataAccess();
+        ModifyEventInputBoundary modifyEventInputBoundary = new ModifyEventInteractor(modifyEventOutputBoundary,
+                modifyEventDsGateway);
+        ModifyEventController modifyEventController = new ModifyEventController(modifyEventInputBoundary);
 
-        // initialize delete event classes
-        DeleteEventController deleteEventController = new DeleteEventController();
+        // Initialize delete event classes
+        DeleteEventOutputBoundary deleteEventOutputBoundary = new DeleteEventPresenter();
+        DeleteEventDsGateway deleteEventDsGateway = new DeleteEventDataAccess();
+        DeleteEventInputBoundary deleteEventInputBoundary = new DeleteEventInteractor(deleteEventOutputBoundary,
+                deleteEventDsGateway);
+        DeleteEventController deleteEventController = new DeleteEventController(deleteEventInputBoundary);
 
-        // initialize create task classes
+        // Initialize create task classes
         CreateTaskOutputBoundary createTaskOutputBoundary = new CreateTaskPresenter();
         CreateTaskDsGateway createTaskDsGateway = new CreateTaskDataAccess();
         TaskFactory taskFactory = new TaskFactory();
@@ -41,26 +47,34 @@ public class Main {
                 createTaskOutputBoundary, createTaskDsGateway);
         CreateTaskController createTaskController = new CreateTaskController(createTaskInputBoundary);
 
-        // initialize modify task classes
+        // Initialize modify task classes
         ModifyTaskOutputBoundary modifyTaskPresenter = new ModifyTaskPresenter();
         ModifyTaskDataAccess dsGateway = new ModifyTaskDataAccess();
         ModifyTaskInputBoundary modifyTaskInteractor = new ModifyTaskInteractor(modifyTaskPresenter, dsGateway);
         ModifyTaskController modifyTaskController = new ModifyTaskController(modifyTaskInteractor);
 
-        // initialize delete task classes
+        // Initialize delete task classes
         DeleteTaskOutputBoundary deleteTaskOutputBoundary = new DeleteTaskPresenter();
         DeleteTaskDsGateway deleteTaskDsGateway = new DeleteTaskDataAccess();
         DeleteTaskInputBoundary deleteTaskInteractor = new DeleteTaskInteractor(deleteTaskOutputBoundary,
                 deleteTaskDsGateway);
         DeleteTaskController deleteTaskController = new DeleteTaskController(deleteTaskInteractor);
 
-        // initialize complete task classes
-        CompleteTaskController completeTaskController = new CompleteTaskController();
+        // Initialize complete task classes
+        CompleteTaskOutputBoundary completeTaskOutputBoundary = new CompleteTaskPresenter();
+        CompleteTaskDsGateway completeTaskDsGateway = new CompleteTaskDataAccess();
+        CompleteTaskInputBoundary completeTaskInputBoundary = new CompleteTaskInteractor(completeTaskOutputBoundary,
+                completeTaskDsGateway);
+        CompleteTaskController completeTaskController = new CompleteTaskController(completeTaskInputBoundary);
 
-        // initialize clear all tasks and events classes
-        ClearAllController clearAllController = new ClearAllController();
+        // Initialize clear all tasks and events classes
+        ClearAllOutputBoundary clearAllOutputBoundary = new ClearAllPresenter();
+        ClearAllDsGateway clearAllDsGateway = new ClearAllDataAccess();
+        ClearAllInputBoundary clearAllInputBoundary = new ClearAllInteractor(clearAllOutputBoundary,
+                clearAllDsGateway);
+        ClearAllController clearAllController = new ClearAllController(clearAllInputBoundary);
 
-        // initialize the screens
+        // Initialize the screens
         CreateEventScreen createEventScreen = new CreateEventScreen(createEventController);
         CreateTaskScreen createTaskScreen = new CreateTaskScreen(createTaskController);
         ModifyTaskScreen modifyTaskScreen = new ModifyTaskScreen(modifyTaskController);
@@ -68,7 +82,7 @@ public class Main {
         ClickTaskScreen taskMenu = new ClickTaskScreen(modifyTaskScreen, deleteTaskController, completeTaskController);
         ClickEventScreen eventMenu = new ClickEventScreen(modifyEventScreen, deleteEventController);
 
-        // could move below lines to their constructors
+        // Prepare screens
         createEventScreen.pack();
         createEventScreen.setVisible(false);
         createTaskScreen.pack();

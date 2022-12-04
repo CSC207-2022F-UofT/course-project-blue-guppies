@@ -77,7 +77,7 @@ public class ClickEventScreen extends JFrame implements ActionListener {
 
                 // Check success of use case
                 String message;
-                if (outputData.isSuccess()) {
+                if (outputData.getSuccess()) {
                     this.setVisible(false);
                     message = "Event successfully deleted";
                 } else {

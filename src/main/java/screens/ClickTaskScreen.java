@@ -77,14 +77,15 @@ public class ClickTaskScreen extends JFrame implements ActionListener {
         if ("toggle completion".equals(e.getActionCommand())) {
             CompleteTaskOutputData outputData = completeTaskController.completeTask(dayIndex, taskTitle);
             String message;
-            if (outputData.isSuccess()) {
+            if (outputData.isSuccessfullyCompleted()) {
                 message = "Task marked as " + ((taskCompleted) ? "incomplete" : "completed");
+                setTaskCompleted(!taskCompleted);
+                this.setVisible(false);
             } else {
                 message = outputData.getErrorMessage();
             }
             JFrame messageBox = new JFrame();
             JOptionPane.showMessageDialog(messageBox, message);
-            setTaskCompleted(!taskCompleted);
         } else if ("modify".equals(e.getActionCommand())) {
 
             // Set the variables in modifyTaskScreen to the values of the task clicked
@@ -92,6 +93,7 @@ public class ClickTaskScreen extends JFrame implements ActionListener {
             modifyTaskScreen.setDayIndex(dayIndex);
 
             modifyTaskScreen.setVisible(true);
+            //this.setVisible(false);
         } else if ("delete".equals(e.getActionCommand())) {
 
             // confirm the user wants to delete

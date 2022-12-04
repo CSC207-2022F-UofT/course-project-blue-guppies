@@ -1,6 +1,7 @@
 package screens;
 
 import clear_all_use_case.ClearAllController;
+import clear_all_use_case.ClearAllOutputData;
 
 import javax.swing.*;
 import java.awt.*;
@@ -146,6 +147,8 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
 
      */
 
+    // when a change happens set clickTaskScreen and clickEventScreen to not visible.
+
     private void addButtons(JToolBar toolBar) {
         JButton newTask = new JButton("New Task");
         newTask.addActionListener(this);
@@ -181,8 +184,14 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
                     JOptionPane.YES_NO_OPTION);
 
             if (confirmed == JOptionPane.YES_OPTION) {
-                ((ClearAllController)controllers.get("clear all")).clearAll();
-                JOptionPane.showMessageDialog(new JFrame(), "Week cleared");
+                ClearAllOutputData outputData = ((ClearAllController)controllers.get("clear all")).clearAll();
+                if (outputData.getSuccess()) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Week cleared");
+                } else {
+                    JOptionPane.showMessageDialog(new JFrame(), "Error. Please try again");
+
+                }
+
             }
         } else if (e.getActionCommand().contains("event")) {
 
