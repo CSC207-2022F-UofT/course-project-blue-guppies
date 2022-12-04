@@ -1,8 +1,8 @@
 package clear_all_use_case;
 
 /**
- * Implements the clearAll method and calls
- * outputBoundary and dsGateway to clear.
+ * Implements the clearAll method and
+ * calls outputBoundary and dsGateway to clear.
  * @author Ricky Fung
  */
 public class ClearAllInteractor implements ClearAllInputBoundary {

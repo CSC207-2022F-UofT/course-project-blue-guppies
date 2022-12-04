@@ -13,7 +13,7 @@ public class ClearAllDataAccess extends WeekDataAccess implements ClearAllDsGate
     /**
      * Mutates the day instance attribute of the parent class WeekDataAccess by removing
      * the Task and Event instance attributes of the Day object located each dayIndex. This then invokes
-     * the save() method of the parent class to save changes to serializable file.
+     * the save method of the parent class to save changes to serializable file.
      */
     @Override
     public void save() {

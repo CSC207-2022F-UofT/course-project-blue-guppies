@@ -1,7 +1,8 @@
 package clear_all_use_case;
 
 /**
- * Implements the prepareSuccessView methods in ClearAllOutputBoundary.
+ * Implements the prepareSuccessView methods in
+ * ClearAllOutputBoundary.
  * @author Ricky Fung
  */
 public class ClearAllPresenter implements ClearAllOutputBoundary {

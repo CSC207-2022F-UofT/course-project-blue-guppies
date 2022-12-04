@@ -1,7 +1,7 @@
 package clear_all_use_case;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class ClearAllPresenterTest {
 

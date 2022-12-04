@@ -4,13 +4,13 @@ import data_access.DataAccessDay;
 import data_access.DataAccessEvent;
 import data_access.DataAccessTask;
 import data_access.WeekDataAccess;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClearAllInteractorTest extends WeekDataAccess {

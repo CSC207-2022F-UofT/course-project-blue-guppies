@@ -3,13 +3,13 @@ package clear_all_use_case;
 import data_access.DataAccessDay;
 import data_access.DataAccessEvent;
 import data_access.DataAccessTask;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClearAllControllerTest {
