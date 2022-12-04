@@ -49,7 +49,7 @@ public class Main {
 
         // Initialize modify task classes
         ModifyTaskOutputBoundary modifyTaskPresenter = new ModifyTaskPresenter();
-        ModifyTaskDataAccess dsGateway = new ModifyTaskDataAccess();
+        ModifyTaskDsGateway dsGateway = new ModifyTaskDataAccess();
         ModifyTaskInputBoundary modifyTaskInteractor = new ModifyTaskInteractor(modifyTaskPresenter, dsGateway);
         ModifyTaskController modifyTaskController = new ModifyTaskController(modifyTaskInteractor);
 
