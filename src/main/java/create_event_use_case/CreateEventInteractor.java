@@ -5,6 +5,11 @@ import entities.Event;
 
 import java.time.LocalTime;
 
+/**
+ * Interactor for the Create Event use case. Calls the dsGateway and Output Boundary to appropriately execute
+ * application logic.
+ * @author Anna Myllyniemi
+ */
 public class CreateEventInteractor implements CreateEventInputBoundary {
     private final CreateEventDsGateway dsGateway;
     private final CreateEventOutputBoundary outputBoundary;
@@ -39,6 +44,9 @@ public class CreateEventInteractor implements CreateEventInputBoundary {
 
         if (!startTime.isBefore(endTime)) {
             return outputBoundary.prepareFailView(outputData, "Start time is not before end time.");
+        } else if (dsGateway.isTimeConflict(inputData.getDayIndex(), inputData.getTitle(), startTime, endTime)) {
+            return outputBoundary.prepareFailView(outputData,
+                    "This event conflicts with an existing event.");
         }
 
         Event event = factory.createEvent(inputData.getTitle(), startTime, endTime);
@@ -50,7 +58,7 @@ public class CreateEventInteractor implements CreateEventInputBoundary {
 
         CreateEventDsInputData dsInputData = new CreateEventDsInputData(
                 event.getTitle(), event.getStartTime(),
-                event.getEndTime(), inputData.getDayIndex()
+                event.getEndTime(), inputData.getDayIndex(), event
         );
         dsGateway.save(dsInputData);
         return outputBoundary.prepareSuccessView(outputData);

@@ -21,7 +21,7 @@ class CreateEventOutputBoundaryTest {
         assertEquals("Event", result.getTitle());
         assertEquals(LocalTime.parse("09:00"), result.getStartTime());
         assertEquals(LocalTime.parse("10:00"), result.getEndTime());
-        assertTrue(result.isSuccessfullyCreated());
+        assertTrue(result.isSuccess());
         assertEquals("", result.getErrorMessage());
     }
 
@@ -31,7 +31,7 @@ class CreateEventOutputBoundaryTest {
         assertEquals("Event", result.getTitle());
         assertEquals(LocalTime.parse("09:00"), result.getStartTime());
         assertEquals(LocalTime.parse("10:00"), result.getEndTime());
-        assertFalse(result.isSuccessfullyCreated());
+        assertFalse(result.isSuccess());
         assertEquals("Error", result.getErrorMessage());
     }
 }

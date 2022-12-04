@@ -32,7 +32,7 @@ class CreateEventControllerTest {
         assertEquals(LocalTime.parse("09:00"), outputData.getStartTime());
         assertEquals(LocalTime.parse("10:00"), outputData.getEndTime());
         assertEquals(0, outputData.getDayIndex());
-        assertTrue(outputData.isSuccessfullyCreated());
+        assertTrue(outputData.isSuccess());
 
         // check if an event by the name of "Sample Event" exists for day 0 i.e. Sunday
         assertTrue(dsGateway.eventExistsByTitle(TITLE, outputData.getDayIndex()));

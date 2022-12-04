@@ -37,13 +37,13 @@ class CreateEventOutputDataTest {
 
     @Test
     void testGetIsSuccessfullyCreated() {
-        assertFalse(outputData.isSuccessfullyCreated());
+        assertFalse(outputData.isSuccess());
     }
 
     @Test
     void testSetSuccessfullyCreated() {
-        outputData.setSuccessfullyCreated(true);
-        assertTrue(outputData.isSuccessfullyCreated());
+        outputData.setSuccess(true);
+        assertTrue(outputData.isSuccess());
     }
 
     @Test

@@ -1,7 +1,11 @@
 package create_event_use_case;
 
+import java.time.LocalTime;
+
 public interface CreateEventDsGateway {
     boolean eventExistsByTitle(String title, int dayIndex);
 
-    void save(CreateEventDsInputData event);
+    boolean isTimeConflict(int dayIndex, String title, LocalTime startTime, LocalTime endTime);
+
+    void save(CreateEventDsInputData dsInputData);
 }

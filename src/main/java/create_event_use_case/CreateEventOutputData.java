@@ -7,7 +7,7 @@ public class CreateEventOutputData {
     private LocalTime startTime;
     private LocalTime endTime;
     private int dayIndex;
-    private boolean isSuccessfullyCreated = false;
+    private boolean success = false;
     private String errorMessage = "";
 
     public CreateEventOutputData(
@@ -39,12 +39,12 @@ public class CreateEventOutputData {
         return dayIndex;
     }
 
-    public boolean isSuccessfullyCreated() {
-        return isSuccessfullyCreated;
+    public boolean isSuccess() {
+        return success;
     }
 
-    public void setSuccessfullyCreated(boolean successfullyCreated) {
-        isSuccessfullyCreated = successfullyCreated;
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
     public String getErrorMessage() {

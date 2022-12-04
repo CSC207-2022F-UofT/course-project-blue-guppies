@@ -42,7 +42,7 @@ class CreateEventInputBoundaryTest {
         assertEquals(0, outputData.getDayIndex());
         assertEquals(LocalTime.parse("09:00"), outputData.getStartTime());
         assertEquals(LocalTime.parse("10:00"), outputData.getEndTime());
-        assertTrue(outputData.isSuccessfullyCreated());
+        assertTrue(outputData.isSuccess());
 
         // check if an Event with the name "Sample Event" exists for day 0 i.e. Sunday
         assertTrue(dataAccess.getDays().get(0).getEvents().containsKey("Sample Event"));
@@ -71,7 +71,7 @@ class CreateEventInputBoundaryTest {
         assertEquals(1, outputData.getDayIndex());
         assertEquals(LocalTime.parse("09:00"), outputData.getStartTime());
         assertEquals(LocalTime.parse("10:00"), outputData.getEndTime());
-        assertTrue(outputData.isSuccessfullyCreated());
+        assertTrue(outputData.isSuccess());
 
         // check if an Event with the name "Sample Event" exists for day 1 i.e. Monday
         assertTrue(dataAccess.getDays().get(1).getEvents().containsKey("Sample Event"));
@@ -96,7 +96,7 @@ class CreateEventInputBoundaryTest {
         // We should NOT be able to create an event with name "Sample Event" for the same day (i.e. day 0/Sunday),
         // even if their times do not overlap.
         CreateEventOutputData outputData = inputBoundary.createEvent(inputData3);
-        assertFalse(outputData.isSuccessfullyCreated());
+        assertFalse(outputData.isSuccess());
 
         // An event with name "Sample Event" continues to exist for day 0, but
         // does NOT begin and end at 10:30 and 11:30 respectively.
@@ -136,7 +136,7 @@ class CreateEventInputBoundaryTest {
         // We should NOT be able to create an event with name "Another Sample Event" for the same day (i.e. day 0/Sunday),
         // if its timings overlap with that of "Sample Event"
         CreateEventOutputData outputData = inputBoundary.createEvent(inputData4);
-        assertFalse(outputData.isSuccessfullyCreated());
+        assertFalse(outputData.isSuccess());
 
         // An event with name "Another Sample Event" is not created for day 0/Sunday.
         assertFalse(dataAccess.getDays().get(0).getEvents().containsKey("Another Sample Event"));
