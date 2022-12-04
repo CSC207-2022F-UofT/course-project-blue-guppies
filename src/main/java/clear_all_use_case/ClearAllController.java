@@ -11,7 +11,6 @@ public class ClearAllController {
         this.inputBoundary = inputBoundary;
     }
 
-
     /**
      * Implementation of clearAll is called by the inputBoundary
      * to execute the steps needed for clearing.
