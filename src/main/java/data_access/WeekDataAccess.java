@@ -26,8 +26,8 @@ public class WeekDataAccess implements Serializable {
      */
     public WeekDataAccess() {
         if(days.isEmpty()){
-            DataAccessDay emptyDay = new DataAccessDay(new HashMap<>(), new HashMap<>());
             for(int i = 0; i < 7; i++){
+                DataAccessDay emptyDay = new DataAccessDay(new HashMap<>(), new HashMap<>());
                 days.add(emptyDay);
             }
         }

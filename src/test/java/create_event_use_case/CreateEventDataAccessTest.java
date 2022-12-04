@@ -13,15 +13,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Create Event Data Access Test Cases.
- * @author Raghav Arora
+ * @author Raghav Arora, Anna Myllyniemi
  */
 class CreateEventDataAccessTest {
-    private final static CreateEventDataAccess dataAccess = new CreateEventDataAccess();
-    private final static CreateEventDsGateway dsGateway = dataAccess;
+    private final static CreateEventDataAccess DATA_ACCESS = new CreateEventDataAccess();
+    private final static CreateEventDsGateway DS_GATEWAY = DATA_ACCESS;
 
     @Test
     void testEventDoesNotExistByTitle() {
-        assertFalse(dsGateway.eventExistsByTitle("New Event", 0));
+        assertFalse(DS_GATEWAY.eventExistsByTitle("New Event", 0));
     }
 
     @Test
@@ -34,26 +34,84 @@ class CreateEventDataAccessTest {
         // Make day 0 i.e. Sunday have an event called "Sample Event"
         HashMap<String, DataAccessEvent> events = new HashMap<>();
         events.put("Sample Event", event);
-        DataAccessDay day = dataAccess.getDays().get(0);
+        DataAccessDay day = DATA_ACCESS.getDays().get(0);
         day.setEvents(events);
 
-        assertTrue(dsGateway.eventExistsByTitle("Sample Event", 0));
+        assertTrue(DS_GATEWAY.eventExistsByTitle("Sample Event", 0));
     }
+
+    // use below test once DataAccess versions of entities are refactored to the normal entities
+//    @Test
+//    void testEventExistsByTitle() {
+//        EventFactory eventFactory = new EventFactory();
+//        Event event = eventFactory.createEvent("Sample Event",
+//                LocalTime.parse("09:00"),
+//                LocalTime.parse("10:00"));
+//        // Make day 0 i.e. Sunday have an event called "Sample Event"
+//        HashMap<String, Event> events = new HashMap<>();
+//        events.put("Sample Event", event);
+//        Day day = DATA_ACCESS.getDays().get(0);
+//        day.setEvents(events);
+//
+//        assertTrue(DS_GATEWAY.eventExistsByTitle("Sample Event", 0));
+//    }
 
     @Test
     void testSave() {
         EventFactory eventFactory = new EventFactory();
         Event event = eventFactory.createEvent("Sample Event", LocalTime.parse("09:00"),
                 LocalTime.parse("10:00"));
-        CreateEventDsInputData dsInputData =  new CreateEventDsInputData(event.getTitle(), event.getStartTime(),
-                event.getEndTime(), 0, event);
-        dsGateway.save(dsInputData);
+        CreateEventDsInputData dsInputData =  new CreateEventDsInputData(0, event);
+        DS_GATEWAY.save(dsInputData);
 
-        // check whether an Event by the name "Sample Event" was created for day 0 i.e Sunday
-        assertTrue(dataAccess.getDays().get(0).getEvents().containsKey("Sample Event"));
-        assertEquals(
-                dsInputData.getTitle(),
-                dataAccess.getDays().get(0).getEvents().get("Sample Event").getTitle()
-        );
+        // check whether an Event by the name "Sample Event" was created for day 0 i.e. Sunday
+        assertTrue(DATA_ACCESS.getDays().get(0).getEvents().containsKey("Sample Event"));
+        //assertEquals(dsInputData.getNewEvent(), DATA_ACCESS.getDays().get(0).getEvents().get("Sample Event"));
+        assertEquals("Sample Event", DATA_ACCESS.getDays().get(0).getEvents().get("Sample Event").getTitle());
+        assertEquals(LocalTime.parse("09:00"),
+                DATA_ACCESS.getDays().get(0).getEvents().get("Sample Event").getStartTime());
+        assertEquals(LocalTime.parse("10:00"),
+                DATA_ACCESS.getDays().get(0).getEvents().get("Sample Event").getEndTime());
+    }
+
+    @Test
+    void testIsTimeConflictNoExistingEvents() {
+        assertFalse(DS_GATEWAY.isTimeConflict(3, LocalTime.parse("11:30"), LocalTime.parse("12:30")));
+    }
+
+    @Test
+    void testIsTimeConflictNoConflictingEvents() {
+        EventFactory eventFactory = new EventFactory();
+        Event event = eventFactory.createEvent("Study", LocalTime.parse("09:00"),
+                LocalTime.parse("10:00"));
+        DS_GATEWAY.save(new CreateEventDsInputData(2, event));
+        assertFalse(DS_GATEWAY.isTimeConflict(2, LocalTime.parse("11:30"), LocalTime.parse("12:30")));
+    }
+
+    @Test
+    void testIsTimeConflictConflictingEventBefore() {
+        EventFactory eventFactory = new EventFactory();
+        Event event = eventFactory.createEvent("Study", LocalTime.parse("09:00"),
+                LocalTime.parse("12:00"));
+        DS_GATEWAY.save(new CreateEventDsInputData(5, event));
+        assertTrue(DS_GATEWAY.isTimeConflict(5, LocalTime.parse("11:30"), LocalTime.parse("12:30")));
+    }
+
+    @Test
+    void testIsTimeConflictConsecutiveEvents() {
+        EventFactory eventFactory = new EventFactory();
+        Event event = eventFactory.createEvent("Study", LocalTime.parse("09:00"),
+                LocalTime.parse("12:00"));
+        DS_GATEWAY.save(new CreateEventDsInputData(6, event));
+        assertFalse(DS_GATEWAY.isTimeConflict(6, LocalTime.parse("08:30"), LocalTime.parse("09:00")));
+    }
+
+    @Test
+    void testIsTimeConflictConflictingEventAfter() {
+        EventFactory eventFactory = new EventFactory();
+        Event event = eventFactory.createEvent("Study", LocalTime.parse("09:00"),
+                LocalTime.parse("12:00"));
+        DS_GATEWAY.save(new CreateEventDsInputData(1, event));
+        assertTrue(DS_GATEWAY.isTimeConflict(1, LocalTime.parse("08:30"), LocalTime.parse("09:01")));
     }
 }

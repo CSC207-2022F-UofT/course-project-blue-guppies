@@ -11,6 +11,7 @@ public class CreateEventPresenter implements CreateEventOutputBoundary {
     @Override
     public CreateEventOutputData prepareFailView(CreateEventOutputData outputData, String errorMessage) {
         outputData.setErrorMessage(errorMessage);
+        outputData.setSuccess(false);
         return outputData;
     }
 }

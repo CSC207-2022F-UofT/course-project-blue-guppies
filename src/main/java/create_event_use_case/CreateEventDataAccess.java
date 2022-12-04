@@ -7,18 +7,19 @@ import java.time.LocalTime;
 import java.util.HashMap;
 
 public class CreateEventDataAccess extends WeekDataAccess implements CreateEventDsGateway {
+
     @Override
     public boolean eventExistsByTitle(String title, int dayIndex) {
         return days.get(dayIndex).getEvents().containsKey(title);
     }
 
     @Override
-    public boolean isTimeConflict(int dayIndex, String title, LocalTime startTime, LocalTime endTime) {
+    public boolean isTimeConflict(int dayIndex, LocalTime startTime, LocalTime endTime) {
         HashMap<String, DataAccessEvent> eventsToCheck = days.get(dayIndex).getEvents();
         for(String existingEventTitle: eventsToCheck.keySet()){
             LocalTime start = eventsToCheck.get(existingEventTitle).getStartTime();
             LocalTime end = eventsToCheck.get(existingEventTitle).getEndTime();
-            if(!(startTime.isAfter(end) || endTime.isBefore(start))){
+            if(startTime.isBefore(end) && endTime.isAfter(start)){
                 return true;
             }
         }
@@ -30,7 +31,7 @@ public class CreateEventDataAccess extends WeekDataAccess implements CreateEvent
         days.get(dsInputData.getDayIndex()).getEvents().put(dsInputData.getTitle(),
                 new DataAccessEvent(dsInputData.getTitle(), dsInputData.getStartTime(), dsInputData.getEndTime()));
         // use below once DataAccessEvents are switched to Events.
-        // days.get(dsInputData.getDayIndex()).getEvents().put(dsInputData.getNewEvent().getTitle(),dsInputData.getNewEvent());
+        // days.get(dsInputData.getDayIndex()).getEvents().put(dsInputData.getTitle(),dsInputData.getNewEvent());
         super.save();
     }
 }

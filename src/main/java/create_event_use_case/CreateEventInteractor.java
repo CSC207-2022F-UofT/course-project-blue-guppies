@@ -44,7 +44,7 @@ public class CreateEventInteractor implements CreateEventInputBoundary {
 
         if (!startTime.isBefore(endTime)) {
             return outputBoundary.prepareFailView(outputData, "Start time is not before end time.");
-        } else if (dsGateway.isTimeConflict(inputData.getDayIndex(), inputData.getTitle(), startTime, endTime)) {
+        } else if (dsGateway.isTimeConflict(inputData.getDayIndex(), startTime, endTime)) {
             return outputBoundary.prepareFailView(outputData,
                     "This event conflicts with an existing event.");
         }
@@ -56,10 +56,7 @@ public class CreateEventInteractor implements CreateEventInputBoundary {
                 endTime, inputData.getDayIndex()
         );
 
-        CreateEventDsInputData dsInputData = new CreateEventDsInputData(
-                event.getTitle(), event.getStartTime(),
-                event.getEndTime(), inputData.getDayIndex(), event
-        );
+        CreateEventDsInputData dsInputData = new CreateEventDsInputData(inputData.getDayIndex(), event);
         dsGateway.save(dsInputData);
         return outputBoundary.prepareSuccessView(outputData);
     }

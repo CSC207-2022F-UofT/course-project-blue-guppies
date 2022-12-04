@@ -1,7 +1,10 @@
 package create_event_use_case;
 
+import data_access.DataAccessDay;
+import data_access.DataAccessEvent;
 import entities.EventFactory;
 import java.time.LocalTime;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,22 +14,28 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Raghav Arora
  */
 class CreateEventControllerTest {
-    private final static CreateEventOutputBoundary outputBoundary = new CreateEventPresenter();
-    private final static CreateEventDsGateway dsGateway = new CreateEventDataAccess();
-    private final static EventFactory eventFactory = new EventFactory();
+    private final static CreateEventOutputBoundary OUTPUT_BOUNDARY = new CreateEventPresenter();
+    private final static CreateEventDataAccess DATA_ACCESS = new CreateEventDataAccess();
+    private final static CreateEventDsGateway DS_GATEWAY = DATA_ACCESS;
+    private final static EventFactory EVENT_FACTORY = new EventFactory();
     private final static String TITLE = "Sample Event";
     private final static String START_TIME = "09:00";
     private final static String END_TIME = "10:00";
     private final static String DAY = "Sunday";
 
     @Test
-    void testCreateEvent() {
+    void testCreate() {
+        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        DataAccessDay referenceDay = DATA_ACCESS.getDays().get(0);
+        referenceDay.setEvents(events);
+        DATA_ACCESS.getDays().set(0, referenceDay);
+
         CreateEventInputBoundary inputBoundary = new CreateEventInteractor(
-                dsGateway, outputBoundary, eventFactory
+                DS_GATEWAY, OUTPUT_BOUNDARY, EVENT_FACTORY
         );
         CreateEventController controller = new CreateEventController(inputBoundary);
         CreateEventOutputData outputData = controller.create(
-                TITLE, START_TIME, END_TIME, DAY
+                DAY, TITLE, START_TIME, END_TIME
         );
         assertEquals("Sample Event", outputData.getTitle());
         assertEquals(LocalTime.parse("09:00"), outputData.getStartTime());
@@ -35,6 +44,6 @@ class CreateEventControllerTest {
         assertTrue(outputData.isSuccess());
 
         // check if an event by the name of "Sample Event" exists for day 0 i.e. Sunday
-        assertTrue(dsGateway.eventExistsByTitle(TITLE, outputData.getDayIndex()));
+        assertTrue(DS_GATEWAY.eventExistsByTitle(TITLE, outputData.getDayIndex()));
     }
 }

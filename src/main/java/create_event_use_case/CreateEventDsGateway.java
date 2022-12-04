@@ -5,7 +5,7 @@ import java.time.LocalTime;
 public interface CreateEventDsGateway {
     boolean eventExistsByTitle(String title, int dayIndex);
 
-    boolean isTimeConflict(int dayIndex, String title, LocalTime startTime, LocalTime endTime);
+    boolean isTimeConflict(int dayIndex, LocalTime startTime, LocalTime endTime);
 
     void save(CreateEventDsInputData dsInputData);
 }

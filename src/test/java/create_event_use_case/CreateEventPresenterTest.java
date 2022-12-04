@@ -26,11 +26,23 @@ class CreateEventPresenterTest {
     }
 
     @Test
-    void testPrepareFailView() {
+    void testPrepareFailViewDefault() {
         CreateEventOutputData result = OUTPUT_BOUNDARY.prepareFailView(new CreateEventOutputData(), "Error");
         assertFalse(result.isSuccess());
         assertEquals("Error", result.getErrorMessage());
     }
+
+    @Test
+    void testPrepareFailView() {
+        CreateEventOutputData result = OUTPUT_BOUNDARY.prepareFailView(OUTPUT_DATA, "Error");
+        assertEquals("Event", result.getTitle());
+        assertEquals(LocalTime.parse("09:00"), result.getStartTime());
+        assertEquals(LocalTime.parse("10:00"), result.getEndTime());
+        assertFalse(result.isSuccess());
+        assertEquals("Error", result.getErrorMessage());
+        assertEquals(0, result.getDayIndex());
+    }
+
 
     // add test for view model
 }
