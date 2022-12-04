@@ -200,7 +200,7 @@ public class CreateEventScreen extends JPanel implements ActionListener, WindowL
             System.out.println(endTime.getText());
 
             // call controller
-            createEventController.create(day, title.getText(), startTime.getText(), endTime.getText());
+            createEventController.createEvent(day, title.getText(), startTime.getText(), endTime.getText());
 
             // clear fields in form (only if successful)
             // add success check etc.

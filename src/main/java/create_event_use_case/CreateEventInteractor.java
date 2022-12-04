@@ -19,7 +19,7 @@ public class CreateEventInteractor implements CreateEventInputBoundary {
     }
 
     @Override
-    public CreateEventOutputData create(CreateEventInputData inputData) {
+    public CreateEventOutputData createEvent(CreateEventInputData inputData) {
         CreateEventOutputData outputData;
         if (!(inputData.getStartTime().matches("[01][0-9]:[0-5][0-9]|2[0-3]:[0-5][0-9]"))) {
             outputData = new CraateEventOutputData();
