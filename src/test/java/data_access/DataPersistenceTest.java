@@ -120,6 +120,6 @@ public class DataPersistenceTest {
         assertFalse(WeekDataAccess.days.get(4).getEvents().containsKey("Mat237"));
         assertFalse(WeekDataAccess.days.get(5).getTasks().containsKey("Feed dog"));
         assertFalse(WeekDataAccess.days.get(5).getEvents().containsKey("Csc236"));
-
+        assertFalse(WeekDataAccess.days.get(1).getTasks().containsKey("Feed dog"));
     }
 }
