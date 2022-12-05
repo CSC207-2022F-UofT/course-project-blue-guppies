@@ -75,7 +75,7 @@ public class ClickTaskScreen extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if ("toggle completion".equals(e.getActionCommand())) {
-            CompleteTaskOutputData outputData = completeTaskController.completeTask(dayIndex, taskTitle);
+            CompleteTaskOutputData outputData = completeTaskController.completeTask(dayIndex, taskTitle, taskCompleted);
             String message;
             if (outputData.isSuccessfullyCompleted()) {
                 message = "Task marked as " + ((taskCompleted) ? "incomplete" : "completed");
