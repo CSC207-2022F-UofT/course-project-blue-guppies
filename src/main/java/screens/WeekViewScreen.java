@@ -9,18 +9,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
  * The screen for the main week view. Links all use cases together.
  * @author Anna Myllyniemi
  */
-public class WeekViewScreen extends JFrame implements WindowListener, ActionListener {
+public class WeekViewScreen extends JFrame implements WindowListener, ActionListener, ViewModelObserver{
     private static final int HEIGHT = 550 / 2;
     private static final int WIDTH = 1100 / 7;
     private final Map<String, Object> controllers;
     private final Map<String, JFrame> screens;
     private final JPanel[][] panels = new JPanel[2][7];
+    private final ViewModelBoundary viewModel;
 
 
     /**
@@ -29,18 +31,19 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
      * @param screens  Map of all the screens used throughout the program
      * @param controllers Map of all the controllers that need to be used directly from the WeekViewScreen
      */
-    public WeekViewScreen(Map<String, JFrame> screens, Map<String, Object> controllers) {
+    public WeekViewScreen(Map<String, JFrame> screens, Map<String, Object> controllers, ViewModelBoundary viewModel) {
         super();
         setTitle("Clean Calendar");
         addWindowListener(this);
 
         this.controllers = controllers;
         this.screens = screens;
+        this.viewModel = viewModel;
 
         JPanel panel = new JPanel(new BorderLayout());
 
         //Create the toolbar.
-        JToolBar toolBar = new JToolBar("Still draggable");
+        JToolBar toolBar = new JToolBar("Toolbar popout");
         addButtons(toolBar);
 
         // Set up the main part of the panel with each day of the week and its tasks and event boxes.
@@ -135,19 +138,43 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
         }
     }
 
-    /* TODO write a method that populates the screen with all the tasks and events on startup.
-        Probably call this method from the constructor.
-     */
+    @Override
+    public void updateEventSectionOnDay(int dayIndex, ArrayList<String> eventTitles, ArrayList<String> startTimes,
+                                        ArrayList<String> endTimes) {
+        panels[1][dayIndex].removeAll();
+        for (int i = 0; i < eventTitles.size(); i++) {
+            JButton b = new JButton();
+            b.setText(startTimes.get(i) + "-" + endTimes.get(i) + " " + eventTitles.get(i));
+            b.addActionListener(this);
+            b.setActionCommand(dayIndex + "event" + eventTitles.get(i));
 
-    /*
-    TODO write a method that updates a specific box.
-     probably remove all the buttons from the JPanel and then get all the [tasks or events] for that day and
-     make new buttons. this would be called when the observer is made aware of a change to the view model.
-     completed tasks should have their button background changed to grey or strikethrough the text, or both.
+            panels[1][dayIndex].add(b);
+        }
+        screens.get("click event").setVisible(false);
+        SwingUtilities.updateComponentTreeUI(this);
+    }
 
-     */
+    @Override
+    public void updateTaskSectionOnDay(int dayIndex, ArrayList<String> taskTitles,
+                                       ArrayList<Boolean> taskCompletionStatuses) {
+        panels[0][dayIndex].removeAll();
+        for (int i = 0; i < taskTitles.size(); i++) {
+            JButton b = new JButton(taskTitles.get(i));
+            b.addActionListener(this);
+            b.setActionCommand(dayIndex + "task" + taskTitles.get(i));
 
-    // when a change happens set clickTaskScreen and clickEventScreen to not visible.
+            // Make buttons for completed tasks have a lighter background and italicized font.
+            if (taskCompletionStatuses.get(i)) {
+                b.setBackground(new Color(240, 240, 240));
+                Font italics = new Font (b.getFont().toString(), Font.ITALIC, b.getFont().getSize());
+                b.setFont(italics);
+            }
+            panels[0][dayIndex].add(b);
+        }
+        screens.get("click task").setVisible(false);
+        SwingUtilities.updateComponentTreeUI(this);
+    }
+
 
     private void addButtons(JToolBar toolBar) {
         JButton newTask = new JButton("New Task");
@@ -194,20 +221,25 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
 
             }
         } else if (e.getActionCommand().contains("event")) {
-
-            // the following should be later changed to get all these values from the view model but at present they are
-            // encoded in a string that is saved as the action command for a task or event.
-            ((ClickEventScreen)screens.get("click event")).setDayIndex(e.getActionCommand().charAt(6) - 48);
-            ((ClickEventScreen)screens.get("click event")).setStartTime(e.getActionCommand().substring(8,13));
-            ((ClickEventScreen)screens.get("click event")).setEndTime(e.getActionCommand().substring(14,19));
-            ((ClickEventScreen)screens.get("click event")).setEventTitle(e.getActionCommand().substring(20));
+            String eventTitle = e.getActionCommand().substring(6);
+            int dayIndex = e.getActionCommand().charAt(0) - 48;
+            ((ClickEventScreen)screens.get("click event")).setDayIndex(dayIndex);
+            ((ClickEventScreen)screens.get("click event")).setStartTime(((ViewModel)viewModel).getEventStartTime(
+                    dayIndex, eventTitle));
+            System.out.println(((ViewModel)viewModel).getEventStartTime(
+                    dayIndex, eventTitle));
+            ((ClickEventScreen)screens.get("click event")).setEndTime(((ViewModel)viewModel).getEventEndTime(
+                    dayIndex, eventTitle));
+            ((ClickEventScreen)screens.get("click event")).setEventTitle(eventTitle);
 
             screens.get("click event").setVisible(true);
         } else if (e.getActionCommand().contains("task")) {
-            ((ClickTaskScreen)screens.get("click task")).setDayIndex(e.getActionCommand().charAt(5) - 48);
-            ((ClickTaskScreen)screens.get("click task")).setTaskCompleted(
-                    Boolean.parseBoolean(e.getActionCommand().substring(7, 8)));
-            ((ClickTaskScreen)screens.get("click task")).setTaskTitle(e.getActionCommand().substring(9));
+            String taskTitle = e.getActionCommand().substring(5);
+            int dayIndex = e.getActionCommand().charAt(0) - 48;
+            ((ClickTaskScreen)screens.get("click task")).setDayIndex(dayIndex);
+            ((ClickTaskScreen)screens.get("click task")).setTaskCompleted(((ViewModel)viewModel).getTaskCompletion(
+                    dayIndex, taskTitle));
+            ((ClickTaskScreen)screens.get("click task")).setTaskTitle(taskTitle);
 
             screens.get("click task").setVisible(true);
         }
@@ -250,7 +282,8 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
      */
     @Override
     public void windowClosed(WindowEvent e) {
-
+        // TODO uncomment line
+        // WeekDataAccess.writeObject(WeekDataAccess.days);
     }
 
     /**

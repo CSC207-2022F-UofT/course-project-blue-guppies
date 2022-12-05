@@ -10,6 +10,7 @@ public class DeleteEventOutputData {
     private final int dayIndex;
     private boolean success;
 
+
     private String errorMessage;
 
     public DeleteEventOutputData(int dayIndex, String label) {

@@ -1,5 +1,7 @@
 package modify_task_use_case;
 
+import screens.ViewModelBoundary;
+
 /**
  * Task Modification Presenter Class. Implements the prepareSuccessView and prepareFailView
  * methods in the output boundary, by mutating the ModifyTaskOutputData object that is
@@ -7,6 +9,16 @@ package modify_task_use_case;
  * @author Raghav Arora
  */
 public class ModifyTaskPresenter implements ModifyTaskOutputBoundary {
+    private final ViewModelBoundary viewModelBoundary;
+
+    public ModifyTaskPresenter() {
+        viewModelBoundary = null;
+    }
+
+    public ModifyTaskPresenter(ViewModelBoundary viewModelBoundary) {
+        this.viewModelBoundary = viewModelBoundary;
+    }
+
     /**
      * Mutate the ModifyTaskOutputData instance provided by setting its
      * isSuccessfullyModified attribute to true, and errorMessage to the empty string.
@@ -20,6 +32,9 @@ public class ModifyTaskPresenter implements ModifyTaskOutputBoundary {
     public ModifyTaskOutputData prepareSuccessView(ModifyTaskOutputData outputData) {
         outputData.setSuccessfullyModified(true);
         outputData.setErrorMessage("");
+        if (viewModelBoundary != null) {
+            viewModelBoundary.modifyTask(outputData.getDayIndex(), outputData.getOldTitle(), outputData.getTitle());
+        }
         return outputData;
     }
 

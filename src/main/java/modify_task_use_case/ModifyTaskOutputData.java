@@ -8,15 +8,17 @@ package modify_task_use_case;
  * @author Raghav Arora
  */
 public class ModifyTaskOutputData {
+    private final String oldTitle;
     private final String title;
     private final int dayIndex;
     private String errorMessage;
     private boolean isSuccessfullyModified;
 
 
-    public ModifyTaskOutputData(String title, int dayIndex) {
+    public ModifyTaskOutputData(String title, int dayIndex, String oldTitle) {
         this.title = title;
         this.dayIndex = dayIndex;
+        this.oldTitle = oldTitle;
     }
 
     public String getTitle() { return this.title; }
@@ -31,5 +33,9 @@ public class ModifyTaskOutputData {
 
     protected void setSuccessfullyModified(boolean isSuccessfullyModified) {
         this.isSuccessfullyModified = isSuccessfullyModified;
+    }
+
+    protected String getOldTitle() {
+        return oldTitle;
     }
 }

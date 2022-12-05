@@ -96,8 +96,8 @@ public class ModifyEventScreen extends FormScreen {
     public void actionPerformed(ActionEvent evt) {
         if ("Modify".equals(evt.getActionCommand())) {
             String message;
-            ModifyEventOutputData outputData = modifyEventController.modify(oldTitle, dayIndex, startTime.getText(),
-                    endTime.getText(), title.getText());
+            ModifyEventOutputData outputData = modifyEventController.modify(oldTitle, dayIndex, title.getText(), startTime.getText(),
+                    endTime.getText());
             if (outputData.getSuccessfullyModified()) {
                 message = "Event successfully modified";
                 resetForm();

@@ -32,7 +32,7 @@ public class ModifyTaskInteractor implements ModifyTaskInputBoundary {
     @Override
     public ModifyTaskOutputData modifyTask(ModifyTaskInputData inputData) {
         ModifyTaskOutputData outputData = new ModifyTaskOutputData(
-                inputData.getNewTitle(), inputData.getDayIndex()
+                inputData.getNewTitle(), inputData.getDayIndex(), inputData.getTitle()
         );
         if (dsGateway.taskExistsByTitle(inputData.getNewTitle(), inputData.getDayIndex())) {
             return outputBoundary.prepareFailView(

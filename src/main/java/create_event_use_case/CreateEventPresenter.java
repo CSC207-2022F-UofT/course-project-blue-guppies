@@ -1,5 +1,7 @@
 package create_event_use_case;
 
+import screens.ViewModelBoundary;
+
 /**
  * Presenter class for the Create Event use case. Implements the methods provided
  * by the Output Boundary, which address the scenarios where event creation is either
@@ -8,6 +10,15 @@ package create_event_use_case;
  * @author Anna Myllyniemi
  */
 public class CreateEventPresenter implements CreateEventOutputBoundary {
+
+    private final ViewModelBoundary viewModelBoundary;
+    public CreateEventPresenter() {
+        viewModelBoundary = null;
+    }
+
+    public CreateEventPresenter(ViewModelBoundary viewModelBoundary) {
+        this.viewModelBoundary = viewModelBoundary;
+    }
 
     /**
      * Mark the successful creation of an event by setting the 'success' instance attribute
@@ -20,7 +31,10 @@ public class CreateEventPresenter implements CreateEventOutputBoundary {
     @Override
     public CreateEventOutputData prepareSuccessView(CreateEventOutputData outputData) {
         outputData.setSuccess(true);
-        // view model call
+        if (viewModelBoundary != null) {
+            viewModelBoundary.newEvent(outputData.getDayIndex(), outputData.getTitle(), outputData.getStartTime(),
+                    outputData.getEndTime());
+        }
         return outputData;
     }
 

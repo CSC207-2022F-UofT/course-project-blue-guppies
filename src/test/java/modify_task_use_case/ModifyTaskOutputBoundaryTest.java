@@ -12,7 +12,7 @@ public class ModifyTaskOutputBoundaryTest {
     // task and event instances (and maps) to be used across tests.
     private final static ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter();
     private final static ModifyTaskOutputData outputData = new ModifyTaskOutputData(
-            "Sample Task", 0
+            "Sample Task", 0, "old sample task"
     );
     private final static String ERROR = "ERROR!";
 
@@ -23,6 +23,7 @@ public class ModifyTaskOutputBoundaryTest {
         );
         assertEquals(0, response.getDayIndex());
         assertEquals("Sample Task", response.getTitle());
+        assertEquals("old sample task", response.getOldTitle());
         assertEquals("", response.getErrorMessage());
         assertTrue(response.getIsSuccessfullyModified());
     }
@@ -34,6 +35,7 @@ public class ModifyTaskOutputBoundaryTest {
         );
         assertEquals(0, response.getDayIndex());
         assertEquals("Sample Task", response.getTitle());
+        assertEquals("old sample task", response.getOldTitle());
         assertEquals("ERROR!", response.getErrorMessage());
         assertFalse(response.getIsSuccessfullyModified());
     }
