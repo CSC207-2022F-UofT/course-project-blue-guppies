@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class ModifyTaskPresenterTest {
     private final static ModifyTaskOutputData outputData = new ModifyTaskOutputData(
-            "Sample Task", 0
+            "Sample Task", 0, "old sample task"
     );
     private final static String ERROR = "ERROR!";
     private final static ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter();
@@ -22,6 +22,7 @@ class ModifyTaskPresenterTest {
         );
         assertEquals(0, response.getDayIndex());
         assertEquals("Sample Task", response.getTitle());
+        assertEquals("old sample task", response.getOldTitle());
         assertEquals("", response.getErrorMessage());
         assertTrue(response.getIsSuccessfullyModified());
     }
@@ -33,6 +34,7 @@ class ModifyTaskPresenterTest {
         );
         assertEquals(0, response.getDayIndex());
         assertEquals("Sample Task", response.getTitle());
+        assertEquals("old sample task", response.getOldTitle());
         assertEquals("ERROR!", response.getErrorMessage());
         assertFalse(response.getIsSuccessfullyModified());
     }

@@ -1,4 +1,7 @@
 package complete_task_use_case;
+
+import screens.ViewModelBoundary;
+
 /**
  * Task Completion Presenter Class. Implements the prepareSuccessView and prepareFailView
  * methods in the output boundary, by mutating the CompleteTaskOutputData object that is
@@ -6,6 +9,16 @@ package complete_task_use_case;
  * @author Fardin Faruk
  */
 public class CompleteTaskPresenter implements CompleteTaskOutputBoundary {
+    private final ViewModelBoundary viewModel;
+
+    public CompleteTaskPresenter() {
+        viewModel = null;
+    }
+
+    public CompleteTaskPresenter(ViewModelBoundary viewModel) {
+        this.viewModel = viewModel;
+    }
+
     /**
      * Mutate the CompleteTaskOutputData instance provided by setting its
      * isSuccessfullyModified attribute to true, and errorMessage to the empty string.
@@ -17,8 +30,11 @@ public class CompleteTaskPresenter implements CompleteTaskOutputBoundary {
      */
     @Override
     public CompleteTaskOutputData prepareSuccessView(CompleteTaskOutputData task) {
-        // View Model Update
+        task.setTaskCompleted(!task.isTaskCompleted());
         task.setSuccessfullyCreated(true);
+        if (viewModel != null) {
+            viewModel.completeTask(task.getDayIndex(), task.getTitle(), task.isTaskCompleted());
+        }
         return task;
     }
 

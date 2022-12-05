@@ -1,18 +1,34 @@
 package modify_event_use_case;
 
+import screens.ViewModelBoundary;
+
 /**
  * The presenter class. Takes in outputData and updates it as necessary to prepare a Success or Failure view.
  * @author Daniel Livshits
  */
 public class ModifyEventPresenter implements ModifyEventOutputBoundary{
+    private final ViewModelBoundary viewModelBoundary;
+
+    public ModifyEventPresenter() {
+        viewModelBoundary = null;
+    }
+
+    public ModifyEventPresenter(ViewModelBoundary viewModelBoundary) {
+        this.viewModelBoundary = viewModelBoundary;
+    }
+
     /**
      * Updates the ViewModel according to the parameters from the outputData.
-     * TODO: implement after the view model is implemented. GUI Dependent.
+     *
      * @param outputData - An instance of output data for successful modification.
      * @return The instance of output data, after updating the view model.
      */
     @Override
     public ModifyEventOutputData prepareSuccessView(ModifyEventOutputData outputData) {
+        if (viewModelBoundary != null) {
+            viewModelBoundary.modifyEvent(outputData.getDayIndex(), outputData.getTitle(), outputData.getNewTitle(),
+                    outputData.getNewStartTime(), outputData.getNewEndTime());
+        }
         return outputData;
     }
 

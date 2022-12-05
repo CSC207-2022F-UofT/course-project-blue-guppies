@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CompleteTaskInputDataTest {
     @Test
     public void testGetDayIndex(){
-        CompleteTaskDsInputData dsInputData = new CompleteTaskDsInputData(1, "Orange");
+        CompleteTaskDsInputData dsInputData = new CompleteTaskDsInputData(1, "Orange", false);
         assertEquals(dsInputData.getDayIndex(),1);
     }
 
     @Test
     public void testGetTitle(){
-        CompleteTaskDsInputData dsInputData = new CompleteTaskDsInputData(3, "Apple");
+        CompleteTaskDsInputData dsInputData = new CompleteTaskDsInputData(3, "Apple",true);
         assertEquals(dsInputData.getTitle(),"Apple");
     }
 }

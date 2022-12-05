@@ -23,7 +23,7 @@ public class CompleteTaskControllerTest {
         ArrayList<Day> days = DATA_ACCESS.getDays();
         Day day = days.get(0);
         day.getTasks().put(task.getTitle(), task);
-        CompleteTaskOutputData outputData = controller.completeTask(0, "Daniel");
+        CompleteTaskOutputData outputData = controller.completeTask(0, "Daniel", false);
         assertTrue(task.getCompleted());
         assertEquals(task.getCompleted(), outputData.isSuccessfullyCompleted());
 

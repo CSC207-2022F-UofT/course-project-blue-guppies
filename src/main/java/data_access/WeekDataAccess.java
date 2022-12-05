@@ -43,7 +43,7 @@ public class WeekDataAccess implements Serializable {
         days = dataDays;
     }
 
-    public ArrayList<Day> getDays() {
+    public static ArrayList<Day> getDays() {
         return days;
     }
 
