@@ -8,6 +8,10 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test cases for the DayFactory class.
+ * @author Daniel Livshits
+ */
 class DayFactoryTest {
     //task and event instances (and maps) to be used across tests.
     private final static HashMap<String, Event>eventMap = new HashMap<>();

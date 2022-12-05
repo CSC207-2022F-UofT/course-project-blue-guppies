@@ -1,8 +1,8 @@
 package delete_event_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessEvent;
-import data_access.DataAccessTask;
+import entities.Day;
+import entities.Event;
+import entities.Task;
 import data_access.WeekDataAccess;
 
 import java.time.LocalTime;
@@ -21,11 +21,11 @@ class DeleteEventInteractorTest extends WeekDataAccess {
 
     @Test
     public void testDeleteEventInteractor() {
-        DataAccessEvent event = new DataAccessEvent("Event", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
-        HashMap<String, DataAccessTask> tasks = new HashMap<>();
-        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        Event event = new Event("Event", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
+        HashMap<String, Task> tasks = new HashMap<>();
+        HashMap<String, Event> events = new HashMap<>();
         events.put("Event", event);
-        DataAccessDay day = new DataAccessDay(tasks, events);
+        Day day = new Day(tasks, events);
         WeekDataAccess.days.set(5, day);
 
         DeleteEventInputBoundary inputBoundary = new DeleteEventInteractor(OUTPUT_BOUNDARY, DS_GATEWAY);

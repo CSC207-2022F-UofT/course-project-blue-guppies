@@ -1,8 +1,8 @@
 package modify_task_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessEvent;
-import data_access.DataAccessTask;
+import entities.Day;
+import entities.Event;
+import entities.Task;
 
 import java.util.HashMap;
 
@@ -27,11 +27,11 @@ public class ModifyTaskControllerTest {
 
     @Test
     public void testModifyTask() {
-        DataAccessTask task = new DataAccessTask("Sample Task");
-        HashMap<String, DataAccessTask> tasks = new HashMap<>();
-        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        Task task = new Task("Sample Task");
+        HashMap<String, Task> tasks = new HashMap<>();
+        HashMap<String, Event> events = new HashMap<>();
         tasks.put("Sample Task", task);
-        DataAccessDay day = new DataAccessDay(tasks, events);
+        Day day = new Day(tasks, events);
         dataAccess.getDays().set(0, day);
 
 
@@ -43,7 +43,7 @@ public class ModifyTaskControllerTest {
         // have "New Sample Task"
         assertEquals(0, outputData.getDayIndex());
         assertEquals("New Sample Task", outputData.getTitle());
-        DataAccessDay day0 = dataAccess.getDays().get(0);
+        Day day0 = dataAccess.getDays().get(0);
         assertFalse(day0.getTasks().containsKey("Sample Task"));
         assertTrue(day0.getTasks().containsKey("New Sample Task"));
     }

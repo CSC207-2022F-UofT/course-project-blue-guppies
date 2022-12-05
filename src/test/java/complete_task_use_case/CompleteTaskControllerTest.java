@@ -1,7 +1,7 @@
 package complete_task_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessTask;
+import entities.Day;
+import entities.Task;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -19,9 +19,9 @@ public class CompleteTaskControllerTest {
     public void testCompleteTask(){
         CompleteTaskInteractor interactor = new CompleteTaskInteractor(PRESENTER, DATA_ACCESS);
         CompleteTaskController controller = new CompleteTaskController(interactor);
-        DataAccessTask task = new DataAccessTask("Daniel");
-        ArrayList<DataAccessDay> days = DATA_ACCESS.getDays();
-        DataAccessDay day = days.get(0);
+        Task task = new Task("Daniel");
+        ArrayList<Day> days = DATA_ACCESS.getDays();
+        Day day = days.get(0);
         day.getTasks().put(task.getTitle(), task);
         CompleteTaskOutputData outputData = controller.completeTask(0, "Daniel");
         assertTrue(task.getCompleted());

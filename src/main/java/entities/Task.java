@@ -1,17 +1,19 @@
-/**
- * Task class.
- * Author: Fardin Faruk
- * Modified by: NA
- * Date created: Nov 10, 2022
- * Last Modified: NA
- */
 package entities;
 
-public class Task {
+import java.io.Serializable;
+
+/**
+ * Task class for use in data access.
+ * @author Fardin Faruk
+ */
+public class Task implements Serializable {
     private String title;
     private boolean completed;
 
-    protected Task(String title) {
+    /**
+     * @param title the title of this task
+     */
+    public Task(String title) {
         this.title = title;
         this.completed = false;
     }

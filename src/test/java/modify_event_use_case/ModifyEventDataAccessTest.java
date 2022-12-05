@@ -1,7 +1,7 @@
 package modify_event_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessEvent;
+import entities.Day;
+import entities.Event;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -84,29 +84,29 @@ class ModifyEventDataAccessTest {
     @BeforeEach
     void setUp() {
         // This could be replicated more cleanly with a file once file reading is implemented
-        ArrayList<DataAccessDay> days = new ArrayList<>();
-        DataAccessDay emptyDay = new DataAccessDay(new HashMap<>(), new HashMap<>());
+        ArrayList<Day> days = new ArrayList<>();
+        Day emptyDay = new Day(new HashMap<>(), new HashMap<>());
         days.add(emptyDay);
-        DataAccessEvent math1 = new DataAccessEvent("MAT237", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
-        DataAccessEvent math = new DataAccessEvent("Mat237", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
-        DataAccessEvent stats = new DataAccessEvent("Sta247", LocalTime.parse("14:00"), LocalTime.parse("16:00"));
-        DataAccessEvent theory = new DataAccessEvent("Csc236", LocalTime.parse("12:00"), LocalTime.parse("13:00"));
-        HashMap<String, DataAccessEvent> events1 = new HashMap<>();
-        HashMap<String, DataAccessEvent> events2 = new HashMap<>();
-        HashMap<String, DataAccessEvent> events3 = new HashMap<>();
+        Event math1 = new Event("MAT237", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
+        Event math = new Event("Mat237", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
+        Event stats = new Event("Sta247", LocalTime.parse("14:00"), LocalTime.parse("16:00"));
+        Event theory = new Event("Csc236", LocalTime.parse("12:00"), LocalTime.parse("13:00"));
+        HashMap<String, Event> events1 = new HashMap<>();
+        HashMap<String, Event> events2 = new HashMap<>();
+        HashMap<String, Event> events3 = new HashMap<>();
         events1.put("MAT237", math1);
         events2.put("Mat237", math);
         events2.put("Sta247", stats);
         events3.put("Csc236", theory);
-        DataAccessDay sampleMonday = new DataAccessDay(new HashMap<>(), events1);
+        Day sampleMonday = new Day(new HashMap<>(), events1);
         days.add(sampleMonday);
-        DataAccessDay sampleTuesday = new DataAccessDay(new HashMap<>(), events2);
+        Day sampleTuesday = new Day(new HashMap<>(), events2);
         days.add(sampleTuesday);
-        DataAccessDay sampleWednesday = new DataAccessDay(new HashMap<>(), events3);
+        Day sampleWednesday = new Day(new HashMap<>(), events3);
         days.add(sampleWednesday);
-        DataAccessDay sampleThursday = new DataAccessDay(new HashMap<>(), events2);
+        Day sampleThursday = new Day(new HashMap<>(), events2);
         days.add(sampleThursday);
-        DataAccessDay sampleFriday = new DataAccessDay(new HashMap<>(), events3);
+        Day sampleFriday = new Day(new HashMap<>(), events3);
         days.add(sampleFriday);
         days.add(emptyDay);
         ModifyEventDataAccess.setDays(days);

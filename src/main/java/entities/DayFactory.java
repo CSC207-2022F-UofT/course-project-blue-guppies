@@ -1,13 +1,11 @@
-/**
- * DayFactory Creates a new Day Object.
- * Author: Daniel Livshits
- * Created: Nov 9, 2022
- * Last Modified: Nov 9, 2022
- */
 package entities;
 
 import java.util.HashMap;
 
+/**
+ * DayFactory Creates a new Day Object.
+ * @author Daniel Livshits
+ */
 public class DayFactory {
 
     /**

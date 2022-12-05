@@ -9,11 +9,10 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test cases for the Week class.
+ * Test cases for the WeekFactory class.
  * @author Daniel Livshits
  */
-public class WeekTest {
-    //task and event instances (and maps) to be used across tests.
+class WeekFactoryTest {
     private final static HashMap<String, Event> eventMap = new HashMap<>();
     private final static HashMap<String, Task> taskMap = new HashMap<>();
     private final static Event event1 = new Event("1", LocalTime.parse("00:01"), LocalTime.parse("01:00"));
@@ -22,18 +21,7 @@ public class WeekTest {
     private final static Task task2 = new Task("World!");
 
     @Test
-    public void testGetDaysConstructorWithEmptyDays(){
-        Day emptyDay = new Day(new HashMap<>(), new HashMap<>());
-        ArrayList<Day> dayList = new ArrayList<>();
-        for(int i = 0; i < 7; i++){
-            dayList.add(emptyDay);
-        }
-        Week exampleWeek = new Week(dayList);
-        assertEquals(dayList, exampleWeek.getDays());
-    }
-    
-    @Test
-    public void testGetDaysConstructorWithParameters(){
+    void testCreateWeek() {
         Day day0 = new Day(taskMap, eventMap);
         taskMap.put("Hello,", task1);
         Day day1 = new Day(taskMap, eventMap);
@@ -52,6 +40,9 @@ public class WeekTest {
         daysList.add(new Day(new HashMap<>(), new HashMap<>()));
         daysList.add(new Day(new HashMap<>(), new HashMap<>()));
         Week exampleWeek = new Week(daysList);
-        assertEquals(daysList, exampleWeek.getDays());
+        WeekFactory factory = new WeekFactory();
+        Week factoryWeek = factory.createWeek(daysList);
+        assertEquals(daysList, factoryWeek.getDays());
+        assertEquals(exampleWeek.getDays(), factoryWeek.getDays());
     }
 }

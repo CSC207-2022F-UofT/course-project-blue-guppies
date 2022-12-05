@@ -1,17 +1,20 @@
-/**
- * Week Class. This may not be used (aside from an equivalent class for serialization) in the current specification,
- * but would be helpful if we extended the project to support multiple weeks instead of just one.
- * Author: Daniel Livshits
- * Created: Nov 9, 2022
- * Last Modified: Nov 9, 2022
- */
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Week {
+/**
+ * Week class for use in data access. We'll only use one of these at a time in our current implementation.
+ * @author Daniel Livshits
+ */
+public class Week implements Serializable {
     private final ArrayList<Day> days;
 
+    /**
+     * @param days the list of days that this week contains.
+     * Precondition: days.size() == 7
+     * Note the precondition could be enforced with an array but an arraylist is necessary here.
+     */
     public Week(ArrayList<Day> days) {
         this.days = days;
     }

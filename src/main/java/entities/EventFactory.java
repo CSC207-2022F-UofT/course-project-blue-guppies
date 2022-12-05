@@ -1,15 +1,11 @@
-/**
- * EventFactory creates a new Event object.
- * Author: Anna Myllyniemi
- * Modified by: Daniel Livshits
- * Date created: Nov 9 2022
- * Last modified: Nov 9 2022
- */
-
 package entities;
 
 import java.time.LocalTime;
 
+/**
+ * EventFactory creates a new Event object.
+ * @author Anna Myllyniemi
+ */
 public class EventFactory {
     /**
      * Creates a new Event.
