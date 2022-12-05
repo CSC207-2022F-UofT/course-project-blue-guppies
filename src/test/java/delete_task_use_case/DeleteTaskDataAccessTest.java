@@ -1,8 +1,8 @@
 package delete_task_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessEvent;
-import data_access.DataAccessTask;
+import entities.Day;
+import entities.Event;
+import entities.Task;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -15,13 +15,13 @@ class DeleteTaskDataAccessTest {
 
     @Test
     void testSave() {
-        DataAccessTask task1 = new DataAccessTask("Homework");
-        DataAccessTask task2 = new DataAccessTask("Test");
-        HashMap<String, DataAccessTask> tasks = new HashMap<>();
-        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        Task task1 = new Task("Homework");
+        Task task2 = new Task("Test");
+        HashMap<String, Task> tasks = new HashMap<>();
+        HashMap<String, Event> events = new HashMap<>();
         tasks.put("Homework", task1);
         tasks.put("Test", task2);
-        DataAccessDay day = new DataAccessDay(tasks, events);
+        Day day = new Day(tasks, events);
         DATA_ACCESS.getDays().set(3, day);
         DATA_ACCESS.save(INPUT_DATA);
 
@@ -31,13 +31,13 @@ class DeleteTaskDataAccessTest {
 
     @Test
     void testTaskExistsInDay() {
-        DataAccessTask task1 = new DataAccessTask("Homework");
-        DataAccessTask task2 = new DataAccessTask("Test");
-        HashMap<String, DataAccessTask> tasks = new HashMap<>();
-        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        Task task1 = new Task("Homework");
+        Task task2 = new Task("Test");
+        HashMap<String, Task> tasks = new HashMap<>();
+        HashMap<String, Event> events = new HashMap<>();
         tasks.put("Homework", task1);
         tasks.put("Test", task2);
-        DataAccessDay day = new DataAccessDay(tasks, events);
+        Day day = new Day(tasks, events);
         DATA_ACCESS.getDays().set(3, day);
 
         assertTrue(DATA_ACCESS.taskExistsInDay(3, "Homework"));

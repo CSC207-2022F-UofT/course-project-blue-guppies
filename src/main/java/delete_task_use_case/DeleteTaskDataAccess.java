@@ -1,7 +1,7 @@
 package delete_task_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessTask;
+import entities.Day;
+import entities.Task;
 import data_access.WeekDataAccess;
 import java.util.HashMap;
 
@@ -23,9 +23,9 @@ public class DeleteTaskDataAccess extends WeekDataAccess implements DeleteTaskDs
      */
     @Override
     public void save(DeleteTaskDsInputData dsInputData) {
-        DataAccessDay day = days.get(dsInputData.getDayIndex());
-        HashMap<String, DataAccessTask> tasks = day.getTasks();
-        DataAccessTask deleted = tasks.remove(dsInputData.getTaskTitle());
+        Day day = days.get(dsInputData.getDayIndex());
+        HashMap<String, Task> tasks = day.getTasks();
+        Task deleted = tasks.remove(dsInputData.getTaskTitle());
         super.save();
     }
 

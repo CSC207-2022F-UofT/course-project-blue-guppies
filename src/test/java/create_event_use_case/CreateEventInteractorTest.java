@@ -1,7 +1,7 @@
 package create_event_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessEvent;
+import entities.Day;
+import entities.Event;
 import entities.EventFactory;
 import org.junit.jupiter.api.Test;
 
@@ -37,8 +37,8 @@ class CreateEventInteractorTest {
 
     @Test
     void testCreateEvent() {
-        HashMap<String, DataAccessEvent> events = new HashMap<>();
-        DataAccessDay referenceDay = DATA_ACCESS.getDays().get(0);
+        HashMap<String, Event> events = new HashMap<>();
+        Day referenceDay = DATA_ACCESS.getDays().get(0);
         referenceDay.setEvents(events);
         DATA_ACCESS.getDays().set(0, referenceDay);
 
@@ -58,17 +58,17 @@ class CreateEventInteractorTest {
     @Test
     void testCreateEventSameTitleDifferentDay() {
         // Suppose an event with the name "Sample Event" already exists on day 0/Sunday.
-        DataAccessEvent event = new DataAccessEvent(
+        Event event = new Event(
                 "Sample Event", LocalTime.parse("09:00"), LocalTime.parse("10:00")
         );
-        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        HashMap<String, Event> events = new HashMap<>();
         events.put("Sample Event", event);
-        DataAccessDay referenceDay = DATA_ACCESS.getDays().get(0);
+        Day referenceDay = DATA_ACCESS.getDays().get(0);
         referenceDay.setEvents(events);
         DATA_ACCESS.getDays().set(0, referenceDay);
 
-        HashMap<String, DataAccessEvent> eventsMonday = new HashMap<>();
-        DataAccessDay referenceDayMonday = DATA_ACCESS.getDays().get(1);
+        HashMap<String, Event> eventsMonday = new HashMap<>();
+        Day referenceDayMonday = DATA_ACCESS.getDays().get(1);
         referenceDayMonday.setEvents(eventsMonday);
         DATA_ACCESS.getDays().set(1, referenceDayMonday);
 
@@ -92,12 +92,12 @@ class CreateEventInteractorTest {
     @Test
     void testCreateEventSameTitleSameDayDifferentTime() {
         // Suppose an event with the name "Sample Event" already exists on day 0/Sunday.
-        DataAccessEvent event = new DataAccessEvent(
+        Event event = new Event(
                 "Sample Event", LocalTime.parse("09:00"), LocalTime.parse("10:00")
         );
-        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        HashMap<String, Event> events = new HashMap<>();
         events.put("Sample Event", event);
-        DataAccessDay referenceDay = DATA_ACCESS.getDays().get(0);
+        Day referenceDay = DATA_ACCESS.getDays().get(0);
         referenceDay.setEvents(events);
         DATA_ACCESS.getDays().set(0, referenceDay);
 
@@ -133,12 +133,12 @@ class CreateEventInteractorTest {
     @Test
     void testCreateEventDifferentTitleSameDayConflictingTime() {
         // Suppose an event with the name "Sample Event" already exists on day 0/Sunday.
-        DataAccessEvent event = new DataAccessEvent(
+        Event event = new Event(
                 "Sample Event", LocalTime.parse("09:00"), LocalTime.parse("10:00")
         );
-        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        HashMap<String, Event> events = new HashMap<>();
         events.put("Sample Event", event);
-        DataAccessDay referenceDay = DATA_ACCESS.getDays().get(0);
+        Day referenceDay = DATA_ACCESS.getDays().get(0);
         referenceDay.setEvents(events);
         DATA_ACCESS.getDays().set(0, referenceDay);
 

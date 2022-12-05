@@ -4,6 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test cases for the Task class.
+ * @author Fardin Faruk
+ */
 public class TaskTest {
 
     @Test

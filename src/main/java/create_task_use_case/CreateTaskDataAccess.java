@@ -1,7 +1,7 @@
 package create_task_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessTask;
+import entities.Day;
+import entities.Task;
 import data_access.WeekDataAccess;
 
 import java.util.HashMap;
@@ -23,8 +23,8 @@ public class CreateTaskDataAccess extends WeekDataAccess implements CreateTaskDs
      */
     @Override
     public boolean existsByTitle(String title, int dayIndex) {
-        DataAccessDay referenceDay = days.get(dayIndex);
-        HashMap<String, DataAccessTask> tasks = referenceDay.getTasks();
+        Day referenceDay = days.get(dayIndex);
+        HashMap<String, Task> tasks = referenceDay.getTasks();
         return tasks.containsKey(title);
     }
 
@@ -37,9 +37,9 @@ public class CreateTaskDataAccess extends WeekDataAccess implements CreateTaskDs
      */
     @Override
     public void save(CreateTaskDsInputData taskData) {
-        DataAccessDay referenceDay = days.get(taskData.getDayIndex());
-        HashMap<String, DataAccessTask> tasks = referenceDay.getTasks();
-        DataAccessTask newTask = new DataAccessTask(taskData.getTitle());
+        Day referenceDay = days.get(taskData.getDayIndex());
+        HashMap<String, Task> tasks = referenceDay.getTasks();
+        Task newTask = new Task(taskData.getTitle());
         tasks.put(taskData.getTitle(), newTask);
         super.save();
     }

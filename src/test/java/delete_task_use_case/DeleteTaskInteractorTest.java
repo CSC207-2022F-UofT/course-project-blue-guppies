@@ -1,8 +1,8 @@
 package delete_task_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessEvent;
-import data_access.DataAccessTask;
+import entities.Day;
+import entities.Event;
+import entities.Task;
 
 import java.util.HashMap;
 
@@ -20,11 +20,11 @@ class DeleteTaskInteractorTest {
 
     @Test
     void testDeleteTaskSuccess() {
-        DataAccessTask task = new DataAccessTask("Task");
-        HashMap<String, DataAccessTask> tasks = new HashMap<>();
-        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        Task task = new Task("Task");
+        HashMap<String, Task> tasks = new HashMap<>();
+        HashMap<String, Event> events = new HashMap<>();
         tasks.put("Task", task);
-        DataAccessDay day = new DataAccessDay(tasks, events);
+        Day day = new Day(tasks, events);
         DATA_ACCESS.getDays().set(5, day);
 
         DeleteTaskInputBoundary inputBoundary = new DeleteTaskInteractor(OUTPUT_BOUNDARY, DS_GATEWAY);
@@ -40,11 +40,11 @@ class DeleteTaskInteractorTest {
     @Test
     void testDeleteTaskFail() {
 
-        DataAccessTask task = new DataAccessTask("Task");
-        HashMap<String, DataAccessTask> tasks = new HashMap<>();
-        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        Task task = new Task("Task");
+        HashMap<String, Task> tasks = new HashMap<>();
+        HashMap<String, Event> events = new HashMap<>();
         tasks.put("Task", task);
-        DataAccessDay day = new DataAccessDay(tasks, events);
+        Day day = new Day(tasks, events);
         DATA_ACCESS.getDays().set(5, day);
 
         DeleteTaskInputBoundary inputBoundary = new DeleteTaskInteractor(OUTPUT_BOUNDARY, DS_GATEWAY);

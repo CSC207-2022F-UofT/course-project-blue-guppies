@@ -1,7 +1,7 @@
 package create_task_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessTask;
+import entities.Day;
+import entities.Task;
 import entities.TaskFactory;
 import org.junit.jupiter.api.Test;
 
@@ -22,9 +22,9 @@ public class CreateTaskInteractorTest {
         CreateTaskInteractor createTaskInteractor = new CreateTaskInteractor(TASK_FACTORY, PRESENTER,
                 DATA_ACCESS );
         CreateTaskOutputData createTaskOutputData = createTaskInteractor.create(inputData);
-        DataAccessDay day = DATA_ACCESS .getDays().get(2);
-        HashMap<String, DataAccessTask> tasks = day.getTasks();
-        DataAccessTask referenceTask = tasks.get("Finish Unit Test");
+        Day day = DATA_ACCESS .getDays().get(2);
+        HashMap<String, Task> tasks = day.getTasks();
+        Task referenceTask = tasks.get("Finish Unit Test");
         assertTrue(createTaskOutputData.isSuccessfullyCreated());
         assertEquals(2, createTaskOutputData.getDayIndex());
         assertTrue(DATA_ACCESS.existsByTitle("Finish Unit Test", 2));

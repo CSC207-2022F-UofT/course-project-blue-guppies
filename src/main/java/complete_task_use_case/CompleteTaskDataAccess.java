@@ -1,7 +1,7 @@
 package complete_task_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessTask;
+import entities.Day;
+import entities.Task;
 import data_access.WeekDataAccess;
 
 import java.util.HashMap;
@@ -21,8 +21,8 @@ public class CompleteTaskDataAccess extends WeekDataAccess implements CompleteTa
      */
     @Override
     public boolean existsByTitle(String title, int dayIndex) {
-        DataAccessDay referenceDay = days.get(dayIndex);
-        HashMap<String, DataAccessTask> tasks = referenceDay.getTasks();
+        Day referenceDay = days.get(dayIndex);
+        HashMap<String, Task> tasks = referenceDay.getTasks();
         return tasks.containsKey(title);
     }
     /**
@@ -35,9 +35,9 @@ public class CompleteTaskDataAccess extends WeekDataAccess implements CompleteTa
     @Override
     public void save(CompleteTaskDsInputData dsInputData) {
         int dayIndex = dsInputData.getDayIndex();
-        DataAccessDay day = this.getDays().get(dayIndex);
-        HashMap<String, DataAccessTask> tasksList = day.getTasks();
-        DataAccessTask task = tasksList.get(dsInputData.getTitle());
+        Day day = this.getDays().get(dayIndex);
+        HashMap<String, Task> tasksList = day.getTasks();
+        Task task = tasksList.get(dsInputData.getTitle());
         task.setCompleted(!task.getCompleted());
         super.save();
     }

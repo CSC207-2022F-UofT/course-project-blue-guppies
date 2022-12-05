@@ -1,8 +1,8 @@
 package modify_event_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessEvent;
-import data_access.DataAccessTask;
+import entities.Day;
+import entities.Event;
+import entities.Task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -39,7 +39,7 @@ class ModifyEventInteractorTest {
 
     @Test
     void testModifyTitleConflict(){
-        DataAccessEvent originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
         String originalTitle = originalEvent.getTitle();
         LocalTime originalStart = originalEvent.getStartTime();
         LocalTime originalEnd = originalEvent.getEndTime();
@@ -49,7 +49,7 @@ class ModifyEventInteractorTest {
         String failMessage = "The title Sta247 was already used for another event on Tuesday.";
         assertEquals(failMessage, output.getFailureMessage());
         assertFalse(output.getSuccessfullyModified());
-        DataAccessEvent currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
         assertEquals(originalTitle, currentEvent.getTitle());
         assertEquals(originalStart, currentEvent.getStartTime());
         assertEquals(originalEnd, currentEvent.getEndTime());
@@ -57,7 +57,7 @@ class ModifyEventInteractorTest {
 
     @Test
     void testModifyTimeConflict(){
-        DataAccessEvent originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
         String originalTitle = originalEvent.getTitle();
         LocalTime originalStart = originalEvent.getStartTime();
         LocalTime originalEnd = originalEvent.getEndTime();
@@ -67,7 +67,7 @@ class ModifyEventInteractorTest {
         String failMessage = "The new times for the event Mat237 conflict with another event on Tuesday.";
         assertEquals(failMessage, output.getFailureMessage());
         assertFalse(output.getSuccessfullyModified());
-        DataAccessEvent currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
         assertEquals(originalTitle, currentEvent.getTitle());
         assertEquals(originalStart, currentEvent.getStartTime());
         assertEquals(originalEnd, currentEvent.getEndTime());
@@ -75,7 +75,7 @@ class ModifyEventInteractorTest {
 
     @Test
     void testModifyInvalidTimes(){
-        DataAccessEvent originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
         String originalTitle = originalEvent.getTitle();
         LocalTime originalStart = originalEvent.getStartTime();
         LocalTime originalEnd = originalEvent.getEndTime();
@@ -85,7 +85,7 @@ class ModifyEventInteractorTest {
         String failMessage = "The start and end times are not valid times!";
         assertEquals(failMessage, output.getFailureMessage());
         assertFalse(output.getSuccessfullyModified());
-        DataAccessEvent currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
         assertEquals(originalTitle, currentEvent.getTitle());
         assertEquals(originalStart, currentEvent.getStartTime());
         assertEquals(originalEnd, currentEvent.getEndTime());
@@ -93,7 +93,7 @@ class ModifyEventInteractorTest {
 
     @Test
     void testModifyTimesOutOfOrder(){
-        DataAccessEvent originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
         String originalTitle = originalEvent.getTitle();
         LocalTime originalStart = originalEvent.getStartTime();
         LocalTime originalEnd = originalEvent.getEndTime();
@@ -103,7 +103,7 @@ class ModifyEventInteractorTest {
         String failMessage = "The new start time is not before the new end time!";
         assertEquals(failMessage, output.getFailureMessage());
         assertFalse(output.getSuccessfullyModified());
-        DataAccessEvent currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
         assertEquals(originalTitle, currentEvent.getTitle());
         assertEquals(originalStart, currentEvent.getStartTime());
         assertEquals(originalEnd, currentEvent.getEndTime());
@@ -111,7 +111,7 @@ class ModifyEventInteractorTest {
 
     @Test
     void testModifyOriginalTaskNotInDay(){
-        DataAccessEvent originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
         String originalTitle = originalEvent.getTitle();
         LocalTime originalStart = originalEvent.getStartTime();
         LocalTime originalEnd = originalEvent.getEndTime();
@@ -121,7 +121,7 @@ class ModifyEventInteractorTest {
         String failMessage = "There is no event called Sleep on Thursday!";
         assertEquals(failMessage, output.getFailureMessage());
         assertFalse(output.getSuccessfullyModified());
-        DataAccessEvent currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
         assertEquals(originalTitle, currentEvent.getTitle());
         assertEquals(originalStart, currentEvent.getStartTime());
         assertEquals(originalEnd, currentEvent.getEndTime());
@@ -129,32 +129,32 @@ class ModifyEventInteractorTest {
 
     @BeforeEach
     void setUp() {
-        ArrayList<DataAccessDay> days = new ArrayList<>();
-        DataAccessDay emptyDay = new DataAccessDay(new HashMap<>(), new HashMap<>());
+        ArrayList<Day> days = new ArrayList<>();
+        Day emptyDay = new Day(new HashMap<>(), new HashMap<>());
         days.add(emptyDay);
-        DataAccessEvent math1 = new DataAccessEvent("MAT237", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
-        DataAccessEvent math = new DataAccessEvent("Mat237", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
-        DataAccessEvent stats = new DataAccessEvent("Sta247", LocalTime.parse("14:00"), LocalTime.parse("16:00"));
-        DataAccessEvent theory = new DataAccessEvent("Csc236", LocalTime.parse("12:00"), LocalTime.parse("13:00"));
-        DataAccessTask winterBreak = new DataAccessTask("Feed dog");
-        HashMap<String, DataAccessEvent> events1 = new HashMap<>();
-        HashMap<String, DataAccessEvent> events2 = new HashMap<>();
-        HashMap<String, DataAccessEvent> events3 = new HashMap<>();
-        HashMap<String, DataAccessTask> tasks = new HashMap<>();
+        Event math1 = new Event("MAT237", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
+        Event math = new Event("Mat237", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
+        Event stats = new Event("Sta247", LocalTime.parse("14:00"), LocalTime.parse("16:00"));
+        Event theory = new Event("Csc236", LocalTime.parse("12:00"), LocalTime.parse("13:00"));
+        Task winterBreak = new Task("Feed dog");
+        HashMap<String, Event> events1 = new HashMap<>();
+        HashMap<String, Event> events2 = new HashMap<>();
+        HashMap<String, Event> events3 = new HashMap<>();
+        HashMap<String, Task> tasks = new HashMap<>();
         events1.put("MAT237", math1);
         events2.put("Mat237", math);
         events2.put("Sta247", stats);
         events3.put("Csc236", theory);
         tasks.put("Feed dog", winterBreak);
-        DataAccessDay sampleMonday = new DataAccessDay(new HashMap<>(), events1);
+        Day sampleMonday = new Day(new HashMap<>(), events1);
         days.add(sampleMonday);
-        DataAccessDay sampleTuesday = new DataAccessDay(new HashMap<>(), events2);
+        Day sampleTuesday = new Day(new HashMap<>(), events2);
         days.add(sampleTuesday);
-        DataAccessDay sampleWednesday = new DataAccessDay(tasks, events3);
+        Day sampleWednesday = new Day(tasks, events3);
         days.add(sampleWednesday);
-        DataAccessDay sampleThursday = new DataAccessDay(new HashMap<>(), events2);
+        Day sampleThursday = new Day(new HashMap<>(), events2);
         days.add(sampleThursday);
-        DataAccessDay sampleFriday = new DataAccessDay(tasks, events3);
+        Day sampleFriday = new Day(tasks, events3);
         days.add(sampleFriday);
         days.add(emptyDay);
         ModifyEventDataAccess.setDays(days);

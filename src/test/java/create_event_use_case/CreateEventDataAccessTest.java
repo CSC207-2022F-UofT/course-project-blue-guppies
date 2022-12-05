@@ -1,7 +1,6 @@
 package create_event_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessEvent;
+import entities.Day;
 import entities.Event;
 import entities.EventFactory;
 import org.junit.jupiter.api.Test;
@@ -26,15 +25,15 @@ class CreateEventDataAccessTest {
 
     @Test
     void testEventExistsByTitle() {
-        DataAccessEvent event = new DataAccessEvent(
+        Event event = new Event(
                 "Sample Event",
                 LocalTime.parse("09:00"),
                 LocalTime.parse("10:00")
         );
         // Make day 0 i.e. Sunday have an event called "Sample Event"
-        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        HashMap<String, Event> events = new HashMap<>();
         events.put("Sample Event", event);
-        DataAccessDay day = DATA_ACCESS.getDays().get(0);
+        Day day = DATA_ACCESS.getDays().get(0);
         day.setEvents(events);
 
         assertTrue(DS_GATEWAY.eventExistsByTitle("Sample Event", 0));
