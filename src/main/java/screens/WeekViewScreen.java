@@ -226,6 +226,8 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
             ((ClickEventScreen)screens.get("click event")).setDayIndex(dayIndex);
             ((ClickEventScreen)screens.get("click event")).setStartTime(((ViewModel)viewModel).getEventStartTime(
                     dayIndex, eventTitle));
+            System.out.println(((ViewModel)viewModel).getEventStartTime(
+                    dayIndex, eventTitle));
             ((ClickEventScreen)screens.get("click event")).setEndTime(((ViewModel)viewModel).getEventEndTime(
                     dayIndex, eventTitle));
             ((ClickEventScreen)screens.get("click event")).setEventTitle(eventTitle);

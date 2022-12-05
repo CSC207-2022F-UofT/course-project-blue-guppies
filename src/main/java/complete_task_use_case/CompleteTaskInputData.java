@@ -9,7 +9,7 @@ class CompleteTaskInputData {
     private final int dayIndex;
     private String title;
 
-    CompleteTaskInputData(int dayIndex, String title){
+    CompleteTaskInputData(int dayIndex, String title, boolean taskCompleted){
         this.title = title;
         this.dayIndex = dayIndex;
         }
