@@ -1,11 +1,3 @@
-/**
- * The superclass for data access, with an static attribute and private method to be shared across all create_event_use_case.CreateEventPresenter.data_access.DataAccess
- * classes.
- * Author: Daniel Livshits
- * Modified by: Daniel Livshits
- * Created: Nov 14, 2022
- * Last Modified: Nov 19, 2022
- */
 package data_access;
 
 import entities.Day;
@@ -14,6 +6,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * The superclass for data access, with a static attribute and private method to be shared across all create_event_use_case.CreateEventPresenter.data_access.DataAccess
+ * classes.
+ * @author Daniel Livshits
+ */
 public class WeekDataAccess implements Serializable {
 
     /**
