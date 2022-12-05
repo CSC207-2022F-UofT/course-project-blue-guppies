@@ -55,5 +55,13 @@ public class DataPersistenceTest {
         assertTrue(WeekDataAccess.days.get(2).getEvents().containsKey("Mat237"));
         assertTrue(WeekDataAccess.days.get(3).getEvents().containsKey("Csc236"));
         assertTrue(WeekDataAccess.days.get(4).getEvents().containsKey("Mat237"));
+        assertTrue(WeekDataAccess.days.get(5).getTasks().containsKey("Feed dog"));
+        assertTrue(WeekDataAccess.days.get(5).getEvents().containsKey("Csc236"));
+
+        days = new ArrayList<>();
+        WeekDataAccess.writeObject(days);
+        WeekDataAccess.readObject();
+
+        assertEquals(WeekDataAccess.days, days);
     }
 }
