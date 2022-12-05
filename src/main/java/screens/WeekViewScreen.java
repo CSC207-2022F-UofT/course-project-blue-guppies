@@ -15,7 +15,7 @@ import java.util.Map;
  * The screen for the main week view. Links all use cases together.
  * @author Anna Myllyniemi
  */
-public class WeekViewScreen extends JFrame implements WindowListener, ActionListener {
+public class WeekViewScreen extends JFrame implements WindowListener, ActionListener, ViewModelObserver {
     private static final int HEIGHT = 550 / 2;
     private static final int WIDTH = 1100 / 7;
     private final Map<String, Object> controllers;
@@ -308,4 +308,8 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
 
     }
 
+    @Override
+    public void update(String event) {
+
+    }
 }

@@ -2,6 +2,7 @@ import clear_all_use_case.*;
 import complete_task_use_case.*;
 import create_event_use_case.*;
 import create_task_use_case.*;
+import data_access.WeekDataAccess;
 import delete_event_use_case.*;
 import delete_task_use_case.*;
 import entities.EventFactory;
@@ -16,6 +17,7 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
+        WeekDataAccess weekDataAccess = new WeekDataAccess();
 
         // Initialize create event classes
         CreateEventOutputBoundary createEventPresenter = new CreateEventPresenter();
@@ -107,6 +109,8 @@ public class Main {
         screens.put("modify task", modifyTaskScreen);
         screens.put("click task", taskMenu);
         screens.put("click event", eventMenu);
+
+        ViewModel viewModel = new ViewModel(weekDataAccess.getDays());
 
         WeekViewScreen view = new WeekViewScreen(screens, controllers);
         view.pack();
