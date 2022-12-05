@@ -33,7 +33,7 @@ public class ModifyTaskPresenter implements ModifyTaskOutputBoundary {
         outputData.setSuccessfullyModified(true);
         outputData.setErrorMessage("");
         if (viewModelBoundary != null) {
-            viewModelBoundary.modifyTask(outputData.getDayIndex(), outputData.getTitle(), outputData.getOldTitle());
+            viewModelBoundary.modifyTask(outputData.getDayIndex(), outputData.getOldTitle(), outputData.getTitle());
         }
         return outputData;
     }
