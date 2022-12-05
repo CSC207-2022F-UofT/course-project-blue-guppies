@@ -8,10 +8,12 @@ package complete_task_use_case;
 class CompleteTaskInputData {
     private final int dayIndex;
     private String title;
+    private boolean taskCompleted;
 
     CompleteTaskInputData(int dayIndex, String title, boolean taskCompleted){
         this.title = title;
         this.dayIndex = dayIndex;
+        this.taskCompleted = taskCompleted;
         }
 
     protected int getDayIndex() {
@@ -20,6 +22,10 @@ class CompleteTaskInputData {
 
     protected String getTitle() {
         return title;
+    }
+
+    protected boolean isTaskCompleted(){
+        return taskCompleted;
     }
 
 }

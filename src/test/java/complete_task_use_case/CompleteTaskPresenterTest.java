@@ -10,7 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CompleteTaskPresenterTest {
     @Test
     public void TestPrepareSuccessView(){
-        CompleteTaskOutputData completeTaskOutputData = new CompleteTaskOutputData("Test Task",  2);
+        CompleteTaskOutputData completeTaskOutputData = new CompleteTaskOutputData("Test Task",  2,
+                true);
         CompleteTaskPresenter completeTaskPresenter = new CompleteTaskPresenter();
         CompleteTaskOutputData outputData = completeTaskPresenter.prepareSuccessView(completeTaskOutputData);
         assertTrue(outputData.isSuccessfullyCompleted());
@@ -18,7 +19,8 @@ public class CompleteTaskPresenterTest {
 
     @Test
     public void TestPrepareFailView(){
-        CompleteTaskOutputData completeTaskOutputData = new CompleteTaskOutputData("Test Task", 3);
+        CompleteTaskOutputData completeTaskOutputData = new CompleteTaskOutputData("Test Task", 3,
+                true);
         CompleteTaskPresenter completeTaskPresenter = new CompleteTaskPresenter();
         CompleteTaskOutputData outputData = completeTaskPresenter.prepareFailView(completeTaskOutputData,
                 "There does not exist a task with name: 'Test Task' on Wednesday");

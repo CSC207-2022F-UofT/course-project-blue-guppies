@@ -17,7 +17,7 @@ public class CompleteTaskInteractorTest {
         Task accessTask = new Task("Cricket");
         DATA_ACCESS.getDays().get(0).getTasks().put(accessTask.getTitle(),accessTask);
         CompleteTaskInteractor interactor = new CompleteTaskInteractor(PRESENTER, DATA_ACCESS);
-        CompleteTaskInputData inputData = new CompleteTaskInputData(0, "Cricket", taskCompleted);
+        CompleteTaskInputData inputData = new CompleteTaskInputData(0, "Cricket", false);
         CompleteTaskOutputData outputData = interactor.completeTask(inputData);
         assertTrue(accessTask.getCompleted());
         assertTrue(outputData.isSuccessfullyCompleted());
@@ -27,7 +27,7 @@ public class CompleteTaskInteractorTest {
         Task accessTask = new Task("Cricket1");
         DATA_ACCESS.getDays().get(0).getTasks().clear();
         CompleteTaskInteractor interactor = new CompleteTaskInteractor(PRESENTER, DATA_ACCESS);
-        CompleteTaskInputData inputData = new CompleteTaskInputData(0, "Cricket", taskCompleted);
+        CompleteTaskInputData inputData = new CompleteTaskInputData(0, "Cricket", true);
         CompleteTaskOutputData outputData = interactor.completeTask(inputData);
         assertFalse(outputData.isSuccessfullyCompleted());
     }
