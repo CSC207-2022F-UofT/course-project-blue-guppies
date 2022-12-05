@@ -11,4 +11,5 @@ public interface ViewModelBoundary {
     void deleteEvent(int dayIndex, String title);
     void deleteTask(int dayIndex, String title);
     void clearAll();
+
 }

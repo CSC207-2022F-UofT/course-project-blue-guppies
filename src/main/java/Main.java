@@ -111,7 +111,7 @@ public class Main {
         screens.put("click task", taskMenu);
         screens.put("click event", eventMenu);
 
-        WeekViewScreen view = new WeekViewScreen(screens, controllers);
+        WeekViewScreen view = new WeekViewScreen(screens, controllers, viewModel);
         viewModel.addObserver(view);
         view.pack();
         view.setVisible(true);
