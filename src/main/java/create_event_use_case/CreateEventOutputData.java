@@ -2,6 +2,12 @@ package create_event_use_case;
 
 import java.time.LocalTime;
 
+/**
+ * Output Data class for the Create Event use case. Instances of this class are
+ * returned when the Controller's create() methods is invoked.
+ *
+ * @author Anna Myllyniemi, Raghav Arora
+ */
 public class CreateEventOutputData {
     private String title;
     private LocalTime startTime;

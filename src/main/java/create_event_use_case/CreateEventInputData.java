@@ -1,5 +1,12 @@
 package create_event_use_case;
 
+/**
+ * Input Data class for the Create Event use case. An instance of this class is initialized
+ * in the Controller class before the input boundary's implementation of create() is called with
+ * the instance as a parameter.
+ *
+ * @author Anna Myllyniemi, Raghav Arora
+ */
 public class CreateEventInputData {
     private final String title;
     private final String startTime;

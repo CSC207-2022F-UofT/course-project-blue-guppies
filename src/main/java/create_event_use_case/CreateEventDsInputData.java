@@ -4,6 +4,12 @@ import entities.Event;
 
 import java.time.LocalTime;
 
+/**
+ * Ds Input Data class for the Create Event use case. Instances of this class
+ * are passed on to the Ds Gateway to execute the application logic.
+ *
+ * @author Anna Myllyniemi, Raghav Arora
+ */
 class CreateEventDsInputData {
     private final String title;
     private final LocalTime startTime;

@@ -8,6 +8,7 @@ import java.time.LocalTime;
 /**
  * Interactor for the Create Event use case. Calls the dsGateway and Output Boundary to appropriately execute
  * application logic.
+ *
  * @author Anna Myllyniemi
  */
 public class CreateEventInteractor implements CreateEventInputBoundary {
@@ -26,6 +27,17 @@ public class CreateEventInteractor implements CreateEventInputBoundary {
         this.factory = factory;
     }
 
+    /**
+     * Performs the core application logic for the Create Event use case: check whether there already exists
+     * an event with the title given, check for time conflicts (if any), and proceed with creation of an event, if
+     * appropriate.
+     *
+     * @param inputData The Input Data instance which contains the title of the Event the user
+     * wants to create, its start and end times, and the index of the Day object the Event will
+     * be created for, if at all.
+     * @return An instance of CreateEventOutputData whose instance attributes indicate
+     * whether the event was successfully created.
+     */
     @Override
     public CreateEventOutputData createEvent(CreateEventInputData inputData) {
         CreateEventOutputData outputData = new CreateEventOutputData();
