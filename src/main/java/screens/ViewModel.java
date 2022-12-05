@@ -149,6 +149,17 @@ public class ViewModel implements ViewModelBoundary {
         updateInfoForAllTasksOnDay(dayIndex);
     }
 
+    @Override
+    public void clearAll() {
+         for (int i = 0; i < 7; i++) {
+             tasks.get(i).clear();
+             events.get(i).clear();
+             updateInfoForAllTasksOnDay(i);
+             updateInfoForAllEventsOnDay(i);
+         }
+
+    }
+
     private void updateInfoForAllEventsOnDay(int dayIndex) {
         ArrayList<String> titles = new ArrayList<>();
         ArrayList<String> startTimes = new ArrayList<>();
