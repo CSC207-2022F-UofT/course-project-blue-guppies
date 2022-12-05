@@ -36,7 +36,8 @@ public class ModifyEventInteractor implements ModifyEventInputBoundary{
                     inputData.getNewTitle(), null, null);
             return outputBoundary.prepareFailView(outputData, failMessage);
         }
-        if(!(inputData.getNewStartTime().matches("[01][0-9]:[0-5][0-9]|2[0-3]:[0-5][0-9]"))) {
+        if(!(inputData.getNewStartTime().matches("[01][0-9]:[0-5][0-9]|2[0-3]:[0-5][0-9]")) ||
+                !(inputData.getNewEndTime().matches("[01][0-9]:[0-5][0-9]|2[0-3]:[0-5][0-9]"))) {
             ModifyEventOutputData outputData = new ModifyEventOutputData(inputData.getTitle(), inputData.getDayIndex(),
                     inputData.getNewTitle(), null, null);
             String failMessage = "The start and end times are not valid times!";

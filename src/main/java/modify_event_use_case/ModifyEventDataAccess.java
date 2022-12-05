@@ -58,7 +58,7 @@ public class ModifyEventDataAccess extends WeekDataAccess implements ModifyEvent
             if(!Objects.equals(name, title)){
                 LocalTime start = eventsToCheck.get(name).getStartTime();
                 LocalTime end = eventsToCheck.get(name).getEndTime();
-                if(!(newStart.isAfter(end) || newEnd.isBefore(start))){
+                if(newStart.isBefore(end) &&  newEnd.isAfter(start)){
                     return true;
                 }
             }
