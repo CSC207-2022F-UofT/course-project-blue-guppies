@@ -79,6 +79,7 @@ public class WeekDataAccess implements Serializable {
             objectInputStream.close();
         }
         else { //initializing program for the very first time, so file days with empty days
+            WeekDataAccess.days = new ArrayList<>();
             for(int i = 0; i < 7; i++) {
                 Day emptyDay = new Day(new HashMap<>(), new HashMap<>());
                 days.add(emptyDay);
