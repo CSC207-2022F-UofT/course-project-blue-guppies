@@ -31,7 +31,7 @@ public class CompleteTaskPresenter implements CompleteTaskOutputBoundary {
     @Override
     public CompleteTaskOutputData prepareSuccessView(CompleteTaskOutputData task) {
         if (viewModel != null) {
-            viewModel.completeTask(task.getDayIndex(), task.getTitle(), task.isSuccessfullyCompleted());
+            viewModel.completeTask(task.getDayIndex(), task.getTitle(), task.isTaskCompleted());
         }
 
         task.setSuccessfullyCreated(true);

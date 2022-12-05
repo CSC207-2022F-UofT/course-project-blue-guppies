@@ -151,6 +151,7 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
             panels[1][dayIndex].add(b);
         }
         screens.get("click event").setVisible(false);
+        SwingUtilities.updateComponentTreeUI(this);
     }
 
     @Override
@@ -171,6 +172,7 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
             panels[0][dayIndex].add(b);
         }
         screens.get("click task").setVisible(false);
+        SwingUtilities.updateComponentTreeUI(this);
     }
 
 
@@ -219,7 +221,7 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
 
             }
         } else if (e.getActionCommand().contains("event")) {
-            String eventTitle = e.getActionCommand().substring(5);
+            String eventTitle = e.getActionCommand().substring(6);
             int dayIndex = e.getActionCommand().charAt(0) - 48;
             ((ClickEventScreen)screens.get("click event")).setDayIndex(dayIndex);
             ((ClickEventScreen)screens.get("click event")).setStartTime(((ViewModel)viewModel).getEventStartTime(
@@ -230,7 +232,7 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
 
             screens.get("click event").setVisible(true);
         } else if (e.getActionCommand().contains("task")) {
-            String taskTitle = e.getActionCommand().substring(6);
+            String taskTitle = e.getActionCommand().substring(5);
             int dayIndex = e.getActionCommand().charAt(0) - 48;
             ((ClickTaskScreen)screens.get("click task")).setDayIndex(dayIndex);
             ((ClickTaskScreen)screens.get("click task")).setTaskCompleted(((ViewModel)viewModel).getTaskCompletion(
