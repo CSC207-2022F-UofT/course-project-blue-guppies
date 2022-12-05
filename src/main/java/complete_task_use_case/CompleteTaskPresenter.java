@@ -19,6 +19,7 @@ public class CompleteTaskPresenter implements CompleteTaskOutputBoundary {
     public CompleteTaskOutputData prepareSuccessView(CompleteTaskOutputData task) {
         // View Model Update
         task.setSuccessfullyCreated(true);
+        task.setTaskCompleted(!task.isTaskCompleted());
         return task;
     }
 
