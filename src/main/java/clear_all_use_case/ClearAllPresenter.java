@@ -1,11 +1,17 @@
 package clear_all_use_case;
 
+import screens.ViewModelBoundary;
+
 /**
  * Implements the prepareSuccessView methods in
  * ClearAllOutputBoundary.
  * @author Ricky Fung
  */
 public class ClearAllPresenter implements ClearAllOutputBoundary {
+    ViewModelBoundary viewModel;
+    public ClearAllPresenter(ViewModelBoundary viewModel) {
+        this.viewModel = viewModel;
+    }
 
     /**
      * Sets success of the ClearAllOutputData instance to true.
@@ -15,6 +21,7 @@ public class ClearAllPresenter implements ClearAllOutputBoundary {
     @Override
     public ClearAllOutputData prepareSuccessView(ClearAllOutputData outputData) {
         outputData.setSuccess(true);
+        viewModel.clearAll();
         return outputData;
     }
 }

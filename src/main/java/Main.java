@@ -17,7 +17,8 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        WeekDataAccess weekDataAccess = new WeekDataAccess();
+        WeekDataAccess weekDataAccess = new WeekDataAccess(); // load data from files
+        ViewModel viewModel = new ViewModel(weekDataAccess.getDays());
 
         // Initialize create event classes
         CreateEventOutputBoundary createEventPresenter = new CreateEventPresenter();
@@ -70,7 +71,7 @@ public class Main {
         CompleteTaskController completeTaskController = new CompleteTaskController(completeTaskInputBoundary);
 
         // Initialize clear all tasks and events classes
-        ClearAllOutputBoundary clearAllOutputBoundary = new ClearAllPresenter();
+        ClearAllOutputBoundary clearAllOutputBoundary = new ClearAllPresenter(viewModel);
         ClearAllDsGateway clearAllDsGateway = new ClearAllDataAccess();
         ClearAllInputBoundary clearAllInputBoundary = new ClearAllInteractor(clearAllOutputBoundary,
                 clearAllDsGateway);
@@ -110,10 +111,8 @@ public class Main {
         screens.put("click task", taskMenu);
         screens.put("click event", eventMenu);
 
-        ViewModel viewModel = new ViewModel(weekDataAccess.getDays());
-
         WeekViewScreen view = new WeekViewScreen(screens, controllers);
-        viewModel.addObserver((ViewModelObserver) view);
+        viewModel.addObserver(view);
         view.pack();
         view.setVisible(true);
 
