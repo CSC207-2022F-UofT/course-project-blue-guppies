@@ -10,7 +10,7 @@ import java.util.HashMap;
  * Data access class for the Create Event use case. Implements the methods given
  * in the Ds Gateway.
  *
- * @author Anna Myllyniemi, Raghav Arora
+ * @author Anna Myllyniemi
  */
 public class CreateEventDataAccess extends WeekDataAccess implements CreateEventDsGateway {
 

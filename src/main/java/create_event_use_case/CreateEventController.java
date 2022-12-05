@@ -4,7 +4,7 @@ package create_event_use_case;
  * Controller class for the Create Event use case. Invokes the application logic
  * given by the input boundary.
  *
- * @author Anna Myllyniemi, Raghav Arora
+ * @author Anna Myllyniemi
  */
 public class CreateEventController {
     private final CreateEventInputBoundary inputBoundary;

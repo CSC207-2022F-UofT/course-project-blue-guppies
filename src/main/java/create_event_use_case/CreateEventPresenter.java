@@ -5,7 +5,7 @@ package create_event_use_case;
  * by the Output Boundary, which address the scenarios where event creation is either
  * successful or unsuccessful.
  *
- * @author Anna Myllyniemi, Raghav Arora
+ * @author Anna Myllyniemi
  */
 public class CreateEventPresenter implements CreateEventOutputBoundary {
 

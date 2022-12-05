@@ -6,7 +6,7 @@ import java.time.LocalTime;
  * Output Data class for the Create Event use case. Instances of this class are
  * returned when the Controller's create() methods is invoked.
  *
- * @author Anna Myllyniemi, Raghav Arora
+ * @author Anna Myllyniemi
  */
 public class CreateEventOutputData {
     private String title;

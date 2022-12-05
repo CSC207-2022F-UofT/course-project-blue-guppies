@@ -6,7 +6,7 @@ import java.time.LocalTime;
  * Ds Gateway for the Create Event use case. Methods in this interface are
  * implemented by the Data Access class.
  *
- * @author Anna Myllyniemi, Raghav Arora
+ * @author Anna Myllyniemi
  */
 public interface CreateEventDsGateway {
     boolean eventExistsByTitle(String title, int dayIndex);
