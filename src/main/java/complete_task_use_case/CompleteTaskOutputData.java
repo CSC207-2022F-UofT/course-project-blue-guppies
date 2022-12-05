@@ -51,6 +51,6 @@ public class CompleteTaskOutputData {
     }
 
     public void setTaskCompleted(boolean completed) {
-        this.taskCompleted = taskCompleted;
+        this.taskCompleted = completed;
     }
 }
