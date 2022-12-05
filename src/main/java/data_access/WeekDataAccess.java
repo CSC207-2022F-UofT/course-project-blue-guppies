@@ -50,6 +50,7 @@ public class WeekDataAccess implements Serializable {
     public static void setDays(ArrayList<Day> days) {
         WeekDataAccess.days = days;
     }
+
     public static void writeObject(ArrayList<Day> days) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream("storage.txt");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -59,10 +60,19 @@ public class WeekDataAccess implements Serializable {
     }
 
     public static void readObject() throws ClassNotFoundException, IOException {
-        FileInputStream fileInputStream = new FileInputStream("storage.txt");
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        WeekDataAccess.days = (ArrayList<Day>) objectInputStream.readObject();
-        objectInputStream.close();
+        File file = new File("storage.txt");
+        if (file.length() != 0) {//program has been initialized, assuming some content has been added
+            FileInputStream fileInputStream = new FileInputStream("storage.txt");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            WeekDataAccess.days = (ArrayList<Day>) objectInputStream.readObject();
+            objectInputStream.close();
+        }
+        else { //initializing program for the very first time, so file days with empty days
+            for(int i = 0; i < 7; i++) {
+                Day emptyDay = new Day(new HashMap<>(), new HashMap<>());
+                days.add(emptyDay);
+            }
+        }
     }
 
     protected void save() {

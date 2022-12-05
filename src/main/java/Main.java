@@ -9,13 +9,17 @@ import entities.TaskFactory;
 import modify_event_use_case.*;
 import modify_task_use_case.*;
 import screens.*;
+import data_access.*;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        //deserializing gateway to restore data
+        WeekDataAccess.readObject();
 
         // Initialize create event classes
         CreateEventOutputBoundary createEventPresenter = new CreateEventPresenter();
