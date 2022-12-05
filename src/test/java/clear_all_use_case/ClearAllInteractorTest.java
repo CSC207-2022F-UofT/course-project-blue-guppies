@@ -1,8 +1,8 @@
 package clear_all_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessEvent;
-import data_access.DataAccessTask;
+import entities.Day;
+import entities.Event;
+import entities.Task;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -43,46 +43,46 @@ class ClearAllInteractorTest {
 
     @BeforeEach
     void setUp() {
-        ArrayList<DataAccessDay> days = new ArrayList<>();
+        ArrayList<Day> days = new ArrayList<>();
 
-        DataAccessTask task1 = new DataAccessTask("Sample Task1");
-        DataAccessTask task2 = new DataAccessTask("Sample Task2");
-        DataAccessTask task3 = new DataAccessTask("Sample Task3");
-        DataAccessTask task4 = new DataAccessTask("Sample Task4");
-        DataAccessTask task5 = new DataAccessTask("Sample Task5");
-        DataAccessTask task6 = new DataAccessTask("Sample Task6");
-        DataAccessTask task7 = new DataAccessTask("Sample Task7");
+        Task task1 = new Task("Sample Task1");
+        Task task2 = new Task("Sample Task2");
+        Task task3 = new Task("Sample Task3");
+        Task task4 = new Task("Sample Task4");
+        Task task5 = new Task("Sample Task5");
+        Task task6 = new Task("Sample Task6");
+        Task task7 = new Task("Sample Task7");
 
-        DataAccessEvent event1 = new DataAccessEvent(
+        Event event1 = new Event(
                 "Sample Event1", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
-        DataAccessEvent event2 = new DataAccessEvent(
+        Event event2 = new Event(
                 "Sample Event2", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
-        DataAccessEvent event3 = new DataAccessEvent(
+        Event event3 = new Event(
                 "Sample Event3", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
-        DataAccessEvent event4 = new DataAccessEvent(
+        Event event4 = new Event(
                 "Sample Event4", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
-        DataAccessEvent event5 = new DataAccessEvent(
+        Event event5 = new Event(
                 "Sample Event5", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
-        DataAccessEvent event6 = new DataAccessEvent(
+        Event event6 = new Event(
                 "Sample Event6", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
-        DataAccessEvent event7 = new DataAccessEvent(
+        Event event7 = new Event(
                 "Sample Event7", LocalTime.parse("09:00"), LocalTime.parse("10:00"));
 
-        HashMap<String, DataAccessTask> tasks1 = new HashMap<>();
-        HashMap<String, DataAccessTask> tasks2 = new HashMap<>();
-        HashMap<String, DataAccessTask> tasks3 = new HashMap<>();
-        HashMap<String, DataAccessTask> tasks4 = new HashMap<>();
-        HashMap<String, DataAccessTask> tasks5 = new HashMap<>();
-        HashMap<String, DataAccessTask> tasks6 = new HashMap<>();
-        HashMap<String, DataAccessTask> tasks7 = new HashMap<>();
+        HashMap<String, Task> tasks1 = new HashMap<>();
+        HashMap<String, Task> tasks2 = new HashMap<>();
+        HashMap<String, Task> tasks3 = new HashMap<>();
+        HashMap<String, Task> tasks4 = new HashMap<>();
+        HashMap<String, Task> tasks5 = new HashMap<>();
+        HashMap<String, Task> tasks6 = new HashMap<>();
+        HashMap<String, Task> tasks7 = new HashMap<>();
 
-        HashMap<String, DataAccessEvent> events1 = new HashMap<>();
-        HashMap<String, DataAccessEvent> events2 = new HashMap<>();
-        HashMap<String, DataAccessEvent> events3 = new HashMap<>();
-        HashMap<String, DataAccessEvent> events4 = new HashMap<>();
-        HashMap<String, DataAccessEvent> events5 = new HashMap<>();
-        HashMap<String, DataAccessEvent> events6 = new HashMap<>();
-        HashMap<String, DataAccessEvent> events7 = new HashMap<>();
+        HashMap<String, Event> events1 = new HashMap<>();
+        HashMap<String, Event> events2 = new HashMap<>();
+        HashMap<String, Event> events3 = new HashMap<>();
+        HashMap<String, Event> events4 = new HashMap<>();
+        HashMap<String, Event> events5 = new HashMap<>();
+        HashMap<String, Event> events6 = new HashMap<>();
+        HashMap<String, Event> events7 = new HashMap<>();
 
         tasks1.put("Sample Task1", task1);
         tasks2.put("Sample Task2", task2);
@@ -100,19 +100,19 @@ class ClearAllInteractorTest {
         events6.put("Sample Event6", event6);
         events7.put("Sample Event7", event7);
 
-        DataAccessDay sunday = new DataAccessDay(tasks1, events1);
+        Day sunday = new Day(tasks1, events1);
         days.add(sunday);
-        DataAccessDay monday = new DataAccessDay(tasks2, events2);
+        Day monday = new Day(tasks2, events2);
         days.add(monday);
-        DataAccessDay tuesday = new DataAccessDay(tasks3, events3);
+        Day tuesday = new Day(tasks3, events3);
         days.add(tuesday);
-        DataAccessDay wednesday = new DataAccessDay(tasks4, events4);
+        Day wednesday = new Day(tasks4, events4);
         days.add(wednesday);
-        DataAccessDay thursday = new DataAccessDay(tasks5, events5);
+        Day thursday = new Day(tasks5, events5);
         days.add(thursday);
-        DataAccessDay friday = new DataAccessDay(tasks6, events6);
+        Day friday = new Day(tasks6, events6);
         days.add(friday);
-        DataAccessDay saturday = new DataAccessDay(tasks7, events7);
+        Day saturday = new Day(tasks7, events7);
         days.add(saturday);
 
 

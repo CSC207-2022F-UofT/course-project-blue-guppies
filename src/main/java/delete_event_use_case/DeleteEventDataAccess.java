@@ -1,6 +1,6 @@
 package delete_event_use_case;
 
-import data_access.DataAccessDay;
+import entities.Day;
 import data_access.WeekDataAccess;
 
 /**
@@ -18,7 +18,7 @@ public class DeleteEventDataAccess extends WeekDataAccess implements DeleteEvent
      */
     @Override
     public boolean eventExists(int dayIndex, String eventTitle) {
-        DataAccessDay day = days.get(dayIndex);
+        Day day = days.get(dayIndex);
         return day.getEvents().containsKey(eventTitle);
     }
 

@@ -1,20 +1,21 @@
 /**
- * Event class.
- * Author: Anna Myllyniemi
+ * Event class for use in data access.
+ * Author: Daniel Livshits
  * Modified by: Daniel Livshits
- * Date created: Nov 9 2022
- * Last modified: Nov 9 2022
+ * Date created: Nov 14, 2022
+ * Last modified: Nov 19, 2022
  */
 package entities;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 
-public class Event{
+public class Event implements Serializable {
     private String title;
     private LocalTime startTime;
     private LocalTime endTime;
 
-    protected Event(String title, LocalTime startTime, LocalTime endTime) {
+    public Event(String title, LocalTime startTime, LocalTime endTime) {
         this.title = title;
         this.startTime = startTime;
         this.endTime = endTime;

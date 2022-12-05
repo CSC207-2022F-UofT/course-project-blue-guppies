@@ -1,6 +1,6 @@
 package clear_all_use_case;
 
-import data_access.DataAccessDay;
+import entities.Day;
 import data_access.WeekDataAccess;
 
 /**
@@ -17,7 +17,7 @@ public class ClearAllDataAccess extends WeekDataAccess implements ClearAllDsGate
      */
     @Override
     public void save() {
-        for(DataAccessDay day : days){
+        for(Day day : days){
             day.getEvents().clear();
             day.getTasks().clear();
         }

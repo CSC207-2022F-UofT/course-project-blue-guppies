@@ -1,7 +1,7 @@
 package modify_event_use_case;
 
 import data_access.WeekDataAccess;
-import data_access.DataAccessEvent;
+import entities.Event;
 
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -19,8 +19,8 @@ public class ModifyEventDataAccess extends WeekDataAccess implements ModifyEvent
      */
     @Override
     public void save(ModifyEventDsInputData dsInputData){
-        HashMap<String, DataAccessEvent> eventsToChange = days.get(dsInputData.getDayIndex()).getEvents();
-        DataAccessEvent eventToChange = eventsToChange.get(dsInputData.getTitle());
+        HashMap<String, Event> eventsToChange = days.get(dsInputData.getDayIndex()).getEvents();
+        Event eventToChange = eventsToChange.get(dsInputData.getTitle());
         eventsToChange.remove(eventToChange.getTitle());
         eventToChange.setTitle(dsInputData.getNewTitle());
         eventToChange.setStartTime(dsInputData.getNewStartTime());
@@ -53,7 +53,7 @@ public class ModifyEventDataAccess extends WeekDataAccess implements ModifyEvent
      */
     @Override
     public boolean isTimeConflict(int dayIndex, String title, LocalTime newStart, LocalTime newEnd) {
-        HashMap<String, DataAccessEvent> eventsToCheck = days.get(dayIndex).getEvents();
+        HashMap<String, Event> eventsToCheck = days.get(dayIndex).getEvents();
         for(String name: eventsToCheck.keySet()){
             if(!Objects.equals(name, title)){
                 LocalTime start = eventsToCheck.get(name).getStartTime();

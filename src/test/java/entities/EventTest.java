@@ -7,11 +7,10 @@ import java.time.LocalTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EventTest {
-
     @Test
     void testGetTitle() {
-        Event mathEvent = new Event("math", LocalTime.parse("12:30"), LocalTime.parse("01:53:20"));
-        assertEquals("math", mathEvent.getTitle());
+        Event mathEvent = new Event("mat237", LocalTime.parse("12:30"), LocalTime.parse("01:53:20"));
+        assertEquals("mat237", mathEvent.getTitle());
     }
 
     @Test
@@ -51,7 +50,7 @@ class EventTest {
 
     @Test
     void testToString() {
-        Event mathEvent = new Event("math", LocalTime.parse("00:00:45"), LocalTime.parse("00:08:20"));
-        assertEquals("math", mathEvent.toString());
+        Event mathEvent = new Event("mat157", LocalTime.parse("00:00:45"), LocalTime.parse("00:08:20"));
+        assertEquals("mat157", mathEvent.toString());
     }
 }

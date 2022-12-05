@@ -1,6 +1,6 @@
 package create_event_use_case;
 
-import data_access.DataAccessEvent;
+import entities.Event;
 import data_access.WeekDataAccess;
 
 import java.time.LocalTime;
@@ -40,7 +40,7 @@ public class CreateEventDataAccess extends WeekDataAccess implements CreateEvent
      */
     @Override
     public boolean isTimeConflict(int dayIndex, LocalTime startTime, LocalTime endTime) {
-        HashMap<String, DataAccessEvent> eventsToCheck = days.get(dayIndex).getEvents();
+        HashMap<String, Event> eventsToCheck = days.get(dayIndex).getEvents();
         for(String existingEventTitle: eventsToCheck.keySet()){
             LocalTime start = eventsToCheck.get(existingEventTitle).getStartTime();
             LocalTime end = eventsToCheck.get(existingEventTitle).getEndTime();
@@ -60,7 +60,7 @@ public class CreateEventDataAccess extends WeekDataAccess implements CreateEvent
     @Override
     public void save(CreateEventDsInputData dsInputData) {
         days.get(dsInputData.getDayIndex()).getEvents().put(dsInputData.getTitle(),
-                new DataAccessEvent(dsInputData.getTitle(), dsInputData.getStartTime(), dsInputData.getEndTime()));
+                new Event(dsInputData.getTitle(), dsInputData.getStartTime(), dsInputData.getEndTime()));
         // use below once DataAccessEvents are switched to Events.
         // days.get(dsInputData.getDayIndex()).getEvents().put(dsInputData.getTitle(),dsInputData.getNewEvent());
         super.save();

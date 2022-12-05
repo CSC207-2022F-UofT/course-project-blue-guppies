@@ -1,7 +1,7 @@
 package create_event_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessEvent;
+import entities.Day;
+import entities.Event;
 import entities.EventFactory;
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -25,8 +25,8 @@ class CreateEventControllerTest {
 
     @Test
     void testCreate() {
-        HashMap<String, DataAccessEvent> events = new HashMap<>();
-        DataAccessDay referenceDay = DATA_ACCESS.getDays().get(0);
+        HashMap<String, Event> events = new HashMap<>();
+        Day referenceDay = DATA_ACCESS.getDays().get(0);
         referenceDay.setEvents(events);
         DATA_ACCESS.getDays().set(0, referenceDay);
 

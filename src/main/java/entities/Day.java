@@ -1,20 +1,22 @@
 /**
- * Day Class.
+ * Day Class for use in data access.
  * Author: Daniel Livshits
- * Created: Nov 9, 2022
- * Last Modified: Nov 9, 2022
+ * Modified By: Daniel Livshits
+ * Created: Nov 14, 2022
+ * Last Modified: Nov 19, 2022
  */
 package entities;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Day {
-    private final HashMap<String, Task> tasks;
+public class Day implements Serializable {
+    private HashMap<String, Task> tasks;
 
-    private final HashMap<String, Event> events;
+    private HashMap<String, Event> events;
 
     //this constructor will be useful for data persistence later.
-    protected Day(HashMap<String, Task> tasks, HashMap<String, Event> events) {
+    public Day(HashMap<String, Task> tasks, HashMap<String, Event> events) {
         this.tasks = tasks;
         this.events = events;
     }
@@ -25,5 +27,13 @@ public class Day {
 
     public HashMap<String, Event> getEvents() {
         return events;
+    }
+
+    public void setTasks(HashMap<String, Task> tasks){
+        this.tasks = tasks;
+    }
+
+    public void setEvents(HashMap<String, Event> events) {
+        this.events = events;
     }
 }

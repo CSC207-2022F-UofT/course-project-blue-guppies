@@ -1,6 +1,6 @@
 package complete_task_use_case;
 
-import data_access.DataAccessTask;
+import entities.Task;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,7 +14,7 @@ public class CompleteTaskInteractorTest {
 
     @Test
     public void testSuccessCompleteTask(){
-        DataAccessTask accessTask = new DataAccessTask("Cricket");
+        Task accessTask = new Task("Cricket");
         DATA_ACCESS.getDays().get(0).getTasks().put(accessTask.getTitle(),accessTask);
         CompleteTaskInteractor interactor = new CompleteTaskInteractor(PRESENTER, DATA_ACCESS);
         CompleteTaskInputData inputData = new CompleteTaskInputData(0, "Cricket");
@@ -24,7 +24,7 @@ public class CompleteTaskInteractorTest {
     }
     @Test
     public void testFailCompleteTask(){
-        DataAccessTask accessTask = new DataAccessTask("Cricket1");
+        Task accessTask = new Task("Cricket1");
         DATA_ACCESS.getDays().get(0).getTasks().clear();
         CompleteTaskInteractor interactor = new CompleteTaskInteractor(PRESENTER, DATA_ACCESS);
         CompleteTaskInputData inputData = new CompleteTaskInputData(0, "Cricket");

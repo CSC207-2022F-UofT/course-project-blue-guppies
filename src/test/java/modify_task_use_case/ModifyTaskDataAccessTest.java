@@ -1,8 +1,8 @@
 package modify_task_use_case;
 
-import data_access.DataAccessDay;
-import data_access.DataAccessEvent;
-import data_access.DataAccessTask;
+import entities.Day;
+import entities.Event;
+import entities.Task;
 
 import java.util.HashMap;
 
@@ -21,15 +21,15 @@ class ModifyTaskDataAccessTest {
 
     @Test
     void testTaskExistsByTitle() {
-        DataAccessTask task1 = new DataAccessTask("Sample Task 1");
-        DataAccessTask task2 = new DataAccessTask("Sample Task 2");
+        Task task1 = new Task("Sample Task 1");
+        Task task2 = new Task("Sample Task 2");
 
-        HashMap<String, DataAccessTask> tasks = new HashMap<>();
-        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        HashMap<String, Task> tasks = new HashMap<>();
+        HashMap<String, Event> events = new HashMap<>();
         tasks.put("Sample Task 1", task1);
         tasks.put("Sample Task 2", task2);
 
-        DataAccessDay day = new DataAccessDay(tasks, events);
+        Day day = new Day(tasks, events);
         dsGateway.getDays().set(0, day);
 
         assertFalse(dsGateway.taskExistsByTitle("New Sample Task 1", 0));
@@ -38,20 +38,20 @@ class ModifyTaskDataAccessTest {
 
     @Test
     void testSave() {
-        DataAccessTask task1 = new DataAccessTask("Sample Task 1");
-        DataAccessTask task2 = new DataAccessTask("Sample Task 2");
+        Task task1 = new Task("Sample Task 1");
+        Task task2 = new Task("Sample Task 2");
 
-        HashMap<String, DataAccessTask> tasks = new HashMap<>();
-        HashMap<String, DataAccessEvent> events = new HashMap<>();
+        HashMap<String, Task> tasks = new HashMap<>();
+        HashMap<String, Event> events = new HashMap<>();
         tasks.put("Sample Task 1", task1);
         tasks.put("Sample Task 2", task2);
 
-        DataAccessDay day = new DataAccessDay(tasks, events);
+        Day day = new Day(tasks, events);
         dsGateway.getDays().set(0, day);
 
         // change the name of "Sample Task 1" to "New Sample Task 1"
         dsGateway.save(dsInputData);
-        DataAccessDay day0 = dsGateway.getDays().get(0);
+        Day day0 = dsGateway.getDays().get(0);
         assertFalse(day0.getTasks().containsKey("Sample Task 1"));
         assertTrue(day0.getTasks().containsKey("New Sample Task 1"));
     }
