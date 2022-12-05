@@ -2,14 +2,15 @@ package data_access;
 
 import entities.Day;
 
-import java.io.Serializable;
+import java.io.*;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * The superclass for data access, with a static attribute and private method to be shared across all create_event_use_case.CreateEventPresenter.data_access.DataAccess
  * classes.
- * @author Daniel Livshits
+ * @author Daniel Livshits, Khizer Ahmad
  */
 public class WeekDataAccess implements Serializable {
 
@@ -17,7 +18,8 @@ public class WeekDataAccess implements Serializable {
      * The ArrayList of days to be used for data persistence. The state of this data structure is saved
      * to a .ser file.
      */
-    protected static ArrayList<Day> days = new ArrayList<>();
+    protected static ArrayList<Day> days = new ArrayList<Day>();
+    private static final long serialVersionUID = 1L;
 
 
     /**
@@ -48,7 +50,22 @@ public class WeekDataAccess implements Serializable {
     public static void setDays(ArrayList<Day> days) {
         WeekDataAccess.days = days;
     }
+    public static void writeObject(ArrayList<Day> days) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream("storage.txt");
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(new ArrayList<Day>(days));
+        objectOutputStream.flush();
+        objectOutputStream.close();
+    }
 
-    protected void save(){
+    public static void readObject() throws ClassNotFoundException, IOException {
+        FileInputStream fileInputStream = new FileInputStream("storage.txt");
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        WeekDataAccess.days = (ArrayList<Day>) objectInputStream.readObject();
+        objectInputStream.close();
+    }
+
+    protected void save() {
+
     }
 }
