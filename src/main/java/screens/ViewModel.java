@@ -32,16 +32,23 @@ public class ViewModel implements ViewModelBoundary {
     public ViewModel(ArrayList<Day> days) {
         for (int i = 0; i < 7; i++) {
             HashMap<String, Event> loadedEvents = days.get(i).getEvents();
+            events.add(i, new ArrayList<>());
             for (String title: loadedEvents.keySet()) {
                 this.events.get(i).add(new ViewModelEvent(title, loadedEvents.get(title).getStartTime(),
                         loadedEvents.get(title).getEndTime()));
             }
             HashMap<String, Task> loadedTasks = days.get(i).getTasks();
+            tasks.add(i, new ArrayList<>());
             for (String title: loadedTasks.keySet()) {
                 this.tasks.get(i).add(new ViewModelTask(title, loadedTasks.get(title).getCompleted()));
             }
             Collections.sort(events.get(i));
             Collections.sort(tasks.get(i));
+        }
+    }
+
+    public void initializeWeekViewScreen() {
+        for (int i = 0; i < 7; i++) {
             updateInfoForAllEventsOnDay(i);
             updateInfoForAllTasksOnDay(i);
         }

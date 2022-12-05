@@ -113,6 +113,7 @@ public class Main {
 
         WeekViewScreen view = new WeekViewScreen(screens, controllers, viewModel);
         viewModel.addObserver(view);
+        viewModel.initializeWeekViewScreen();
         view.pack();
         view.setVisible(true);
 
