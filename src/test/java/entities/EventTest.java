@@ -6,6 +6,10 @@ import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test cases for the Event class.
+ * @author Anna Myllyniemi
+ */
 class EventTest {
     @Test
     void testGetTitle() {

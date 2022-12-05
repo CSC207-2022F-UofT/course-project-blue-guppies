@@ -8,6 +8,10 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test cases for the Week class.
+ * @author Daniel Livshits
+ */
 public class WeekTest {
     //task and event instances (and maps) to be used across tests.
     private final static HashMap<String, Event> eventMap = new HashMap<>();
