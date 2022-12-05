@@ -15,7 +15,7 @@ import java.util.Map;
  * The screen for the main week view. Links all use cases together.
  * @author Anna Myllyniemi
  */
-public class WeekViewScreen extends JFrame implements WindowListener, ActionListener, ViewModelObserver {
+public class WeekViewScreen extends JFrame implements WindowListener, ActionListener{
     private static final int HEIGHT = 550 / 2;
     private static final int WIDTH = 1100 / 7;
     private final Map<String, Object> controllers;
@@ -40,7 +40,7 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
         JPanel panel = new JPanel(new BorderLayout());
 
         //Create the toolbar.
-        JToolBar toolBar = new JToolBar("Still draggable");
+        JToolBar toolBar = new JToolBar("Toolbar popout");
         addButtons(toolBar);
 
         // Set up the main part of the panel with each day of the week and its tasks and event boxes.
@@ -197,8 +197,8 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
 
             // the following should be later changed to get all these values from the view model but at present they are
             // encoded in a string that is saved as the action command for a task or event.
-            ((ClickEventScreen)screens.get("click event")).setDayIndex(e.getActionCommand().charAt(6) - 48);
-            ((ClickEventScreen)screens.get("click event")).setStartTime(e.getActionCommand().substring(8,13));
+            ((ClickEventScreen)screens.get("click event")).setDayIndex(e.getActionCommand().charAt(0) - 48);
+            ((ClickEventScreen)screens.get("click event")).setStartTime(e.getActionCommand().substring(1));
             ((ClickEventScreen)screens.get("click event")).setEndTime(e.getActionCommand().substring(14,19));
             ((ClickEventScreen)screens.get("click event")).setEventTitle(e.getActionCommand().substring(20));
 
@@ -308,8 +308,5 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
 
     }
 
-    @Override
-    public void update(String event) {
 
-    }
 }

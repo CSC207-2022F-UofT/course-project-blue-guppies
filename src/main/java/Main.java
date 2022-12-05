@@ -113,6 +113,7 @@ public class Main {
         ViewModel viewModel = new ViewModel(weekDataAccess.getDays());
 
         WeekViewScreen view = new WeekViewScreen(screens, controllers);
+        viewModel.addObserver((ViewModelObserver) view);
         view.pack();
         view.setVisible(true);
 
