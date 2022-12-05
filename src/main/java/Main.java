@@ -21,7 +21,7 @@ public class Main {
         ViewModel viewModel = new ViewModel(weekDataAccess.getDays());
 
         // Initialize create event classes
-        CreateEventOutputBoundary createEventPresenter = new CreateEventPresenter();
+        CreateEventOutputBoundary createEventPresenter = new CreateEventPresenter(viewModel);
         CreateEventDsGateway createEventDsGateway = new CreateEventDataAccess();
         EventFactory eventFactory = new EventFactory();
         CreateEventInputBoundary createEventInteractor = new CreateEventInteractor(
@@ -29,21 +29,21 @@ public class Main {
         CreateEventController createEventController = new CreateEventController(createEventInteractor);
 
         // Initialize modify event classes
-        ModifyEventOutputBoundary modifyEventOutputBoundary = new ModifyEventPresenter();
+        ModifyEventOutputBoundary modifyEventOutputBoundary = new ModifyEventPresenter(viewModel);
         ModifyEventDsGateway modifyEventDsGateway = new ModifyEventDataAccess();
         ModifyEventInputBoundary modifyEventInputBoundary = new ModifyEventInteractor(modifyEventOutputBoundary,
                 modifyEventDsGateway);
         ModifyEventController modifyEventController = new ModifyEventController(modifyEventInputBoundary);
 
         // Initialize delete event classes
-        DeleteEventOutputBoundary deleteEventOutputBoundary = new DeleteEventPresenter();
+        DeleteEventOutputBoundary deleteEventOutputBoundary = new DeleteEventPresenter(viewModel);
         DeleteEventDsGateway deleteEventDsGateway = new DeleteEventDataAccess();
         DeleteEventInputBoundary deleteEventInputBoundary = new DeleteEventInteractor(deleteEventOutputBoundary,
                 deleteEventDsGateway);
         DeleteEventController deleteEventController = new DeleteEventController(deleteEventInputBoundary);
 
         // Initialize create task classes
-        CreateTaskOutputBoundary createTaskOutputBoundary = new CreateTaskPresenter();
+        CreateTaskOutputBoundary createTaskOutputBoundary = new CreateTaskPresenter(viewModel);
         CreateTaskDsGateway createTaskDsGateway = new CreateTaskDataAccess();
         TaskFactory taskFactory = new TaskFactory();
         CreateTaskInputBoundary createTaskInputBoundary = new CreateTaskInteractor(taskFactory,
@@ -51,20 +51,20 @@ public class Main {
         CreateTaskController createTaskController = new CreateTaskController(createTaskInputBoundary);
 
         // Initialize modify task classes
-        ModifyTaskOutputBoundary modifyTaskPresenter = new ModifyTaskPresenter();
+        ModifyTaskOutputBoundary modifyTaskPresenter = new ModifyTaskPresenter(viewModel);
         ModifyTaskDsGateway dsGateway = new ModifyTaskDataAccess();
         ModifyTaskInputBoundary modifyTaskInteractor = new ModifyTaskInteractor(modifyTaskPresenter, dsGateway);
         ModifyTaskController modifyTaskController = new ModifyTaskController(modifyTaskInteractor);
 
         // Initialize delete task classes
-        DeleteTaskOutputBoundary deleteTaskOutputBoundary = new DeleteTaskPresenter();
+        DeleteTaskOutputBoundary deleteTaskOutputBoundary = new DeleteTaskPresenter(viewModel);
         DeleteTaskDsGateway deleteTaskDsGateway = new DeleteTaskDataAccess();
         DeleteTaskInputBoundary deleteTaskInteractor = new DeleteTaskInteractor(deleteTaskOutputBoundary,
                 deleteTaskDsGateway);
         DeleteTaskController deleteTaskController = new DeleteTaskController(deleteTaskInteractor);
 
         // Initialize complete task classes
-        CompleteTaskOutputBoundary completeTaskOutputBoundary = new CompleteTaskPresenter();
+        CompleteTaskOutputBoundary completeTaskOutputBoundary = new CompleteTaskPresenter(viewModel);
         CompleteTaskDsGateway completeTaskDsGateway = new CompleteTaskDataAccess();
         CompleteTaskInputBoundary completeTaskInputBoundary = new CompleteTaskInteractor(completeTaskOutputBoundary,
                 completeTaskDsGateway);

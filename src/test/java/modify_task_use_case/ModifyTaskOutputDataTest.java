@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ModifyTaskOutputDataTest {
     private final static ModifyTaskOutputData outputData = new ModifyTaskOutputData(
-            "Title", 0
+            "Title", 0, "old title"
     );
 
     @Test

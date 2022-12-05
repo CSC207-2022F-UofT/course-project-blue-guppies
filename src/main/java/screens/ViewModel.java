@@ -103,8 +103,8 @@ public class ViewModel implements ViewModelBoundary {
         updateInfoForAllEventsOnDay(dayIndex);
     }
 
-    public void newTask(int dayIndex, String title, boolean complete) {
-        tasks.get(dayIndex).add(new ViewModelTask(title, complete));
+    public void newTask(int dayIndex, String title) {
+        tasks.get(dayIndex).add(new ViewModelTask(title, false));
         Collections.sort(tasks.get(dayIndex));
         updateInfoForAllTasksOnDay(dayIndex);
     }

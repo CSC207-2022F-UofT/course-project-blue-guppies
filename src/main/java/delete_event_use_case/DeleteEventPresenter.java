@@ -1,10 +1,22 @@
 package delete_event_use_case;
 
+import screens.ViewModelBoundary;
+
 /**
  * Implements the prepareSuccessView and prepareFailView methods in DeleteTaskOutputBoundary.
  * @author Khizer Ahmad
  */
 public class DeleteEventPresenter implements DeleteEventOutputBoundary {
+    private final ViewModelBoundary viewModelBoundary;
+
+    public DeleteEventPresenter() {
+        viewModelBoundary = null;
+    }
+
+    public DeleteEventPresenter(ViewModelBoundary viewModelBoundary) {
+        this.viewModelBoundary = viewModelBoundary;
+    }
+
     /**
      * Sets success of the DeleteEventOutputData instance to true, errorMessage left unmodified.
      * @param eventOutputData An instance of DeleteEventOutputData which contains the
@@ -13,6 +25,9 @@ public class DeleteEventPresenter implements DeleteEventOutputBoundary {
      */
     @Override
     public DeleteEventOutputData prepareSuccessView(DeleteEventOutputData eventOutputData) {
+        if (viewModelBoundary != null) {
+            viewModelBoundary.deleteEvent(eventOutputData.getDayIndex(), eventOutputData.getLabel());
+        }
         eventOutputData.setSuccess(true);
         return eventOutputData;
     }

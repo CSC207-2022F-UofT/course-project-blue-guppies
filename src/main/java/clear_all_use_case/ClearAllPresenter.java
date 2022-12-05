@@ -8,9 +8,13 @@ import screens.ViewModelBoundary;
  * @author Ricky Fung
  */
 public class ClearAllPresenter implements ClearAllOutputBoundary {
-    ViewModelBoundary viewModel;
+    private final ViewModelBoundary viewModel;
     public ClearAllPresenter(ViewModelBoundary viewModel) {
         this.viewModel = viewModel;
+    }
+
+    public ClearAllPresenter() {
+        viewModel = null;
     }
 
     /**
@@ -20,8 +24,10 @@ public class ClearAllPresenter implements ClearAllOutputBoundary {
      */
     @Override
     public ClearAllOutputData prepareSuccessView(ClearAllOutputData outputData) {
+        if (viewModel != null) {
+            viewModel.clearAll();
+        }
         outputData.setSuccess(true);
-        viewModel.clearAll();
         return outputData;
     }
 }

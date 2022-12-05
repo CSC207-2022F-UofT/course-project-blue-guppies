@@ -1,5 +1,7 @@
 package create_task_use_case;
 
+import screens.ViewModelBoundary;
+
 /**
  * Task Creation Presenter Class. Implements the prepareSuccessView and prepareFailView
  * methods in the output boundary, by mutating the CreateTaskOutputData object that is
@@ -7,6 +9,16 @@ package create_task_use_case;
  * @author Fardin Faruk
  */
 public class CreateTaskPresenter implements CreateTaskOutputBoundary {
+    private final ViewModelBoundary viewModelBoundary;
+
+    public CreateTaskPresenter() {
+        viewModelBoundary = null;
+    }
+
+    public CreateTaskPresenter(ViewModelBoundary viewModelBoundary) {
+        this.viewModelBoundary = viewModelBoundary;
+    }
+
     /**
      * Mutate the CreateTaskOutputData instance provided by setting its
      * isSuccessfullyModified attribute to true, and errorMessage to the empty string.
@@ -18,7 +30,9 @@ public class CreateTaskPresenter implements CreateTaskOutputBoundary {
      */
     @Override
     public CreateTaskOutputData prepareSuccessView(CreateTaskOutputData response) {
-        //View Model Update
+        if (viewModelBoundary != null) {
+            viewModelBoundary.newTask(response.getDayIndex(), response.getTitle());
+        }
         response.setSuccessfullyCreated(true);
         return response;
     }
