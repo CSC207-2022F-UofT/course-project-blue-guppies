@@ -1,17 +1,21 @@
-/**
- * Task class.
- * Author: Fardin Faruk
- * Modified by: NA
- * Date created: Nov 10, 2022
- * Last Modified: NA
- */
 package entities;
 
-public class Task {
-    private String title;
+import java.io.Serializable;
 
-    protected Task(String title) {
+/**
+ * Task class for use in data access.
+ * @author Fardin Faruk
+ */
+public class Task implements Serializable {
+    private String title;
+    private boolean completed;
+
+    /**
+     * @param title the title of this task
+     */
+    public Task(String title) {
         this.title = title;
+        this.completed = false;
     }
 
     public String getTitle() {
@@ -20,6 +24,14 @@ public class Task {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public boolean getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
     @Override

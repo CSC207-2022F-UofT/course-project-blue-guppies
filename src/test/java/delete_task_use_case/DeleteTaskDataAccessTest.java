@@ -1,0 +1,46 @@
+package delete_task_use_case;
+
+import entities.Day;
+import entities.Event;
+import entities.Task;
+import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+import static org.junit.jupiter.api.Assertions.*;
+
+class DeleteTaskDataAccessTest {
+
+    private final static DeleteTaskDataAccess DATA_ACCESS = new DeleteTaskDataAccess();
+    private final static DeleteTaskDsInputData INPUT_DATA = new DeleteTaskDsInputData(3, "Homework");
+
+    @Test
+    void testSave() {
+        Task task1 = new Task("Homework");
+        Task task2 = new Task("Test");
+        HashMap<String, Task> tasks = new HashMap<>();
+        HashMap<String, Event> events = new HashMap<>();
+        tasks.put("Homework", task1);
+        tasks.put("Test", task2);
+        Day day = new Day(tasks, events);
+        DATA_ACCESS.getDays().set(3, day);
+        DATA_ACCESS.save(INPUT_DATA);
+
+        assertFalse(DATA_ACCESS.getDays().get(3).getTasks().containsKey("Homework"));
+        assertTrue(DATA_ACCESS.getDays().get(3).getTasks().containsKey("Test"));
+    }
+
+    @Test
+    void testTaskExistsInDay() {
+        Task task1 = new Task("Homework");
+        Task task2 = new Task("Test");
+        HashMap<String, Task> tasks = new HashMap<>();
+        HashMap<String, Event> events = new HashMap<>();
+        tasks.put("Homework", task1);
+        tasks.put("Test", task2);
+        Day day = new Day(tasks, events);
+        DATA_ACCESS.getDays().set(3, day);
+
+        assertTrue(DATA_ACCESS.taskExistsInDay(3, "Homework"));
+        assertFalse(DATA_ACCESS.taskExistsInDay(3, "Clean Room"));
+    }
+}
