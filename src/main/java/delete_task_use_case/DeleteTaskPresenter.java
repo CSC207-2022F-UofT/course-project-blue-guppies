@@ -1,10 +1,22 @@
 package delete_task_use_case;
 
+import screens.ViewModelBoundary;
+
 /**
  * Implements the prepareSuccessView and prepareFailView methods in DeleteTaskOutputBoundary.
  * @author Ricky Fung
  */
 public class DeleteTaskPresenter implements DeleteTaskOutputBoundary {
+
+    private final ViewModelBoundary viewModelBoundary;
+
+    public DeleteTaskPresenter() {
+        viewModelBoundary = null;
+    }
+
+    public DeleteTaskPresenter(ViewModelBoundary viewModelBoundary) {
+        this.viewModelBoundary = viewModelBoundary;
+    }
 
     /**
      * Sets success of the DeleteTaskOutputData instance to true,
@@ -17,6 +29,9 @@ public class DeleteTaskPresenter implements DeleteTaskOutputBoundary {
      */
     @Override
     public DeleteTaskOutputData prepareSuccessView(DeleteTaskOutputData outputData) {
+        if (viewModelBoundary != null) {
+            viewModelBoundary.deleteTask(outputData.getDayIndex(), outputData.getTaskTitle());
+        }
         outputData.setSuccess(true);
         return outputData;
     }

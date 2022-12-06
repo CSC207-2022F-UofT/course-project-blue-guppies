@@ -31,10 +31,10 @@ public class CompleteTaskInteractor implements CompleteTaskInputBoundary {
     @Override
     public CompleteTaskOutputData completeTask(CompleteTaskInputData inputData) {
         CompleteTaskDsInputData dsInputData = new CompleteTaskDsInputData(
-                inputData.getDayIndex(), inputData.getTitle()
+                inputData.getDayIndex(), inputData.getTitle(), inputData.isTaskCompleted()
         );
         CompleteTaskOutputData task = new CompleteTaskOutputData(
-                inputData.getTitle(), inputData.getDayIndex()
+                inputData.getTitle(), inputData.getDayIndex(), inputData.isTaskCompleted()
         );
         if(!dsGateway.existsByTitle(inputData.getTitle(), inputData.getDayIndex())){
             return outputBoundary.prepareFailView(task,"There does not exist a task with name: " +

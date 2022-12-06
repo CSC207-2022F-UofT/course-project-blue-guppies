@@ -43,13 +43,20 @@ public class WeekDataAccess implements Serializable {
         days = dataDays;
     }
 
-    public ArrayList<Day> getDays() {
+    public static ArrayList<Day> getDays() {
         return days;
     }
 
     public static void setDays(ArrayList<Day> days) {
         WeekDataAccess.days = days;
     }
+
+    /**
+     * Writes the contents of the days class variable onto a .ser file, persisting data
+     * @param days an ArrayList whose indices contain two hashmaps that contain events and tasks separately, representing the
+     *             week schedule
+     * @throws IOException
+     */
     public static void writeObject(ArrayList<Day> days) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream("storage.txt");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -58,11 +65,26 @@ public class WeekDataAccess implements Serializable {
         objectOutputStream.close();
     }
 
+    /**
+     * Reads the object from the .ser file and reinitialized day
+     * @throws ClassNotFoundException
+     * @throws IOException
+     */
     public static void readObject() throws ClassNotFoundException, IOException {
-        FileInputStream fileInputStream = new FileInputStream("storage.txt");
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        WeekDataAccess.days = (ArrayList<Day>) objectInputStream.readObject();
-        objectInputStream.close();
+        File file = new File("storage.txt");
+        if (file.length() != 0) {//program has been initialized, assuming some content has been added
+            FileInputStream fileInputStream = new FileInputStream("storage.txt");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            WeekDataAccess.days = (ArrayList<Day>) objectInputStream.readObject();
+            objectInputStream.close();
+        }
+        else { //initializing program for the very first time, so file days with empty days
+            WeekDataAccess.days = new ArrayList<>();
+            for(int i = 0; i < 7; i++) {
+                Day emptyDay = new Day(new HashMap<>(), new HashMap<>());
+                days.add(emptyDay);
+            }
+        }
     }
 
     protected void save() {

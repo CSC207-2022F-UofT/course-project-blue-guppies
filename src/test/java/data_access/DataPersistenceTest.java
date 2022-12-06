@@ -58,10 +58,70 @@ public class DataPersistenceTest {
         assertTrue(WeekDataAccess.days.get(5).getTasks().containsKey("Feed dog"));
         assertTrue(WeekDataAccess.days.get(5).getEvents().containsKey("Csc236"));
 
-        days = new ArrayList<>();
+        PrintWriter pw = new PrintWriter("storage.txt"); //deleting the contents of the file
+        pw.close();
+        WeekDataAccess.readObject();
+
+        assertFalse(WeekDataAccess.days.get(1).getEvents().containsKey("MAT237"));
+        assertFalse(WeekDataAccess.days.get(2).getEvents().containsKey("Mat237"));
+        assertFalse(WeekDataAccess.days.get(3).getEvents().containsKey("Csc236"));
+        assertFalse(WeekDataAccess.days.get(4).getEvents().containsKey("Mat237"));
+        assertFalse(WeekDataAccess.days.get(5).getTasks().containsKey("Feed dog"));
+        assertFalse(WeekDataAccess.days.get(5).getEvents().containsKey("Csc236"));
+
+        days.add(sampleMonday);
+        days.add(sampleTuesday);
+        days.add(sampleWednesday);
+        days.add(sampleThursday);
+        days.add(sampleFriday);
+        days.add(emptyDay);
+
         WeekDataAccess.writeObject(days);
         WeekDataAccess.readObject();
 
-        assertEquals(WeekDataAccess.days, days);
+        assertTrue(WeekDataAccess.days.get(1).getEvents().containsKey("MAT237"));
+        assertTrue(WeekDataAccess.days.get(2).getEvents().containsKey("Mat237"));
+        assertTrue(WeekDataAccess.days.get(3).getEvents().containsKey("Csc236"));
+        assertTrue(WeekDataAccess.days.get(4).getEvents().containsKey("Mat237"));
+        assertTrue(WeekDataAccess.days.get(5).getTasks().containsKey("Feed dog"));
+        assertTrue(WeekDataAccess.days.get(5).getEvents().containsKey("Csc236"));
+        assertFalse(WeekDataAccess.days.get(1).getTasks().containsKey("Feed dog"));
+
+        days.get(1).getTasks().put("Feed dog", winterBreak);
+        WeekDataAccess.writeObject(days);
+        WeekDataAccess.readObject();
+
+        assertTrue(WeekDataAccess.days.get(1).getEvents().containsKey("MAT237"));
+        assertTrue(WeekDataAccess.days.get(2).getEvents().containsKey("Mat237"));
+        assertTrue(WeekDataAccess.days.get(3).getEvents().containsKey("Csc236"));
+        assertTrue(WeekDataAccess.days.get(4).getEvents().containsKey("Mat237"));
+        assertTrue(WeekDataAccess.days.get(5).getTasks().containsKey("Feed dog"));
+        assertTrue(WeekDataAccess.days.get(5).getEvents().containsKey("Csc236"));
+        assertTrue(WeekDataAccess.days.get(1).getTasks().containsKey("Feed dog"));
+
+        WeekDataAccess.writeObject(WeekDataAccess.days);
+        WeekDataAccess.readObject();
+
+        assertTrue(WeekDataAccess.days.get(1).getEvents().containsKey("MAT237"));
+        assertTrue(WeekDataAccess.days.get(2).getEvents().containsKey("Mat237"));
+        assertTrue(WeekDataAccess.days.get(3).getEvents().containsKey("Csc236"));
+        assertTrue(WeekDataAccess.days.get(4).getEvents().containsKey("Mat237"));
+        assertTrue(WeekDataAccess.days.get(5).getTasks().containsKey("Feed dog"));
+        assertTrue(WeekDataAccess.days.get(5).getEvents().containsKey("Csc236"));
+        assertTrue(WeekDataAccess.days.get(1).getTasks().containsKey("Feed dog"));
+
+//        pw = new PrintWriter("storage.txt"); //deleting the contents of the file
+//        pw.close();
+//        WeekDataAccess.readObject();
+//
+//        assertFalse(WeekDataAccess.days.get(1).getEvents().containsKey("MAT237"));
+//        assertFalse(WeekDataAccess.days.get(2).getEvents().containsKey("Mat237"));
+//        assertFalse(WeekDataAccess.days.get(3).getEvents().containsKey("Csc236"));
+//        assertFalse(WeekDataAccess.days.get(4).getEvents().containsKey("Mat237"));
+//        assertFalse(WeekDataAccess.days.get(5).getTasks().containsKey("Feed dog"));
+//        assertFalse(WeekDataAccess.days.get(5).getEvents().containsKey("Csc236"));
+//        assertFalse(WeekDataAccess.days.get(1).getTasks().containsKey("Feed dog"));
+//        assertNotNull(WeekDataAccess.days);
+
     }
 }

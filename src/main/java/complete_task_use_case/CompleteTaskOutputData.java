@@ -11,13 +11,15 @@ public class CompleteTaskOutputData {
     private final int dayIndex;
     private boolean successfullyCompleted;
     private String errorMessage;
+    private boolean taskCompleted;
 
 
-    public CompleteTaskOutputData(String title, int dayIndex){
+    public CompleteTaskOutputData(String title, int dayIndex, boolean taskCompleted){
         this.title = title;
         this.dayIndex = dayIndex;
         this.successfullyCompleted = false;
         this.errorMessage = "";
+        this.taskCompleted = taskCompleted;
     }
 
     public String getTitle() {
@@ -42,5 +44,13 @@ public class CompleteTaskOutputData {
 
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
+    }
+
+    public boolean isTaskCompleted() {
+        return taskCompleted;
+    }
+
+    public void setTaskCompleted(boolean completed) {
+        this.taskCompleted = completed;
     }
 }
