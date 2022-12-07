@@ -1,5 +1,6 @@
 package create_task_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Task;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ public class CreateTaskDataAccessTest {
     @Test
     public void testExistsByTitleWithDuplicateTask(){
         CreateTaskDataAccess createTaskDataAccess = new CreateTaskDataAccess();
-        ArrayList<Day> days = createTaskDataAccess.getDays();
+        ArrayList<Day> days = WeekDataAccess.getDays();
         Day referenceDay = days.get(0);
         HashMap<String, Task> tasks = referenceDay.getTasks();
         Task newTask = new Task("Sample Task");
@@ -34,13 +35,14 @@ public class CreateTaskDataAccessTest {
 
     @Test
     public void testSave(){
-        CreateTaskDsInputData task = new CreateTaskDsInputData("Franklin", 0);
+        Task franklin = new Task("Franklin");
+        CreateTaskDsInputData inputData = new CreateTaskDsInputData(franklin, 0);
         CreateTaskDataAccess createTaskDataAccess = new CreateTaskDataAccess();
-        createTaskDataAccess.save(task);
-        HashMap<String, Task> tasks = createTaskDataAccess.getDays().get(0).getTasks();
-        Task taskCheck = tasks.get(task.getTitle());
-        boolean existence = tasks.containsKey(task.getTitle());
+        createTaskDataAccess.save(inputData);
+        HashMap<String, Task> tasks = WeekDataAccess.getDays().get(0).getTasks();
+        Task taskCheck = inputData.getTask();
+        boolean existence = tasks.containsKey(inputData.getTask().getTitle());
         assertTrue(existence);
-        assertEquals(task.getTitle(), taskCheck.getTitle());
+        assertEquals(franklin, taskCheck);
     }
 }
