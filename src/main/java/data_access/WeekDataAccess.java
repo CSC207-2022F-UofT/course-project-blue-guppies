@@ -3,7 +3,6 @@ package data_access;
 import entities.Day;
 
 import java.io.*;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -88,6 +87,10 @@ public class WeekDataAccess implements Serializable {
     }
 
     protected void save() {
-
+        try{
+            WeekDataAccess.writeObject(WeekDataAccess.days);
+        } catch (IOException e) {
+            return;
+        }
     }
 }
