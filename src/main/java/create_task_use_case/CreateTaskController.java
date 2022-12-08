@@ -22,8 +22,33 @@ public class CreateTaskController {
      * the use case was successful.
      */
     public CreateTaskOutputData createTask(String day, String title){
-        CreateTaskInputData taskInputData = new CreateTaskInputData(title, day);
-
+        int dayIndex;
+        switch (day) {
+            case "Sunday":
+                dayIndex = 0;
+                break;
+            case "Monday":
+                dayIndex = 1;
+                break;
+            case "Tuesday":
+                dayIndex = 2;
+                break;
+            case "Wednesday":
+                dayIndex = 3;
+                break;
+            case "Thursday":
+                dayIndex = 4;
+                break;
+            case "Friday":
+                dayIndex = 5;
+                break;
+            default:
+                dayIndex = 6;
+                break;
+            // if no match assume Saturday
+        }
+        CreateTaskInputData taskInputData = new CreateTaskInputData(title, dayIndex);
         return inputBoundary.create(taskInputData);
     }
+
 }
