@@ -10,11 +10,6 @@ import screens.ViewModelBoundary;
  */
 public class CompleteTaskPresenter implements CompleteTaskOutputBoundary {
     private final ViewModelBoundary viewModel;
-
-    public CompleteTaskPresenter() {
-        viewModel = null;
-    }
-
     public CompleteTaskPresenter(ViewModelBoundary viewModel) {
         this.viewModel = viewModel;
     }
@@ -32,9 +27,7 @@ public class CompleteTaskPresenter implements CompleteTaskOutputBoundary {
     public CompleteTaskOutputData prepareSuccessView(CompleteTaskOutputData task) {
         task.setTaskCompleted(!task.isTaskCompleted());
         task.setSuccessfullyCreated(true);
-        if (viewModel != null) {
-            viewModel.completeTask(task.getDayIndex(), task.getTitle(), task.isTaskCompleted());
-        }
+        viewModel.completeTask(task.getDayIndex(), task.getTitle(), task.isTaskCompleted());
         return task;
     }
 

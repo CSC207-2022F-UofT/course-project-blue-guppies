@@ -9,12 +9,10 @@ class CompleteTaskDsInputData {
     private final int dayIndex;
     private final String title;
 
-    private final boolean taskCompleted;
 
     CompleteTaskDsInputData(int dayIndex, String title, boolean taskCompleted){
         this.dayIndex = dayIndex;
         this.title = title;
-        this.taskCompleted = taskCompleted;
 
     }
 
@@ -25,7 +23,5 @@ class CompleteTaskDsInputData {
     protected String getTitle(){
         return this.title;
     }
-
-    protected boolean isTaskCompleted() {return this.taskCompleted; }
 
 }
