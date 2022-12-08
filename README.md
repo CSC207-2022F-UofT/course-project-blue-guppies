@@ -9,7 +9,7 @@ Our program allows the user to Create Tasks and Events, Modify Tasks and Events,
 
 # Instructions
 
-Clone the ```main``` branch of the code base. Invoke ```Main.java``` in the ```src/main/java``` directory.
+Clone the ```main``` branch of the code base. Invoke ```Main.java``` in the ```src/main/java``` directory. We have provided the following GIFs, which demonstrate each use case, for the user's convenience.
 
 ### Create Event
 
