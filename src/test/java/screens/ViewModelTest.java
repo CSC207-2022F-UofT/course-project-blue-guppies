@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 class ViewModelTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    static ViewModel VIEW_MODEL = getViewModel();
+    static ViewModelObserver observer = new testingObserver();
+
     @BeforeAll
     static void testSetup() {
         VIEW_MODEL = getViewModel();
@@ -22,9 +24,9 @@ class ViewModelTest {
         return new ViewModel(days);
     }
 
-
     @Test
     void testInitializeWeekViewScreen() {
+        VIEW_MODEL.addObserver();
     }
 
     @Test
@@ -73,5 +75,20 @@ class ViewModelTest {
 
     @Test
     void testGetTaskCompletion() {
+    }
+
+    private static class testingObserver implements ViewModelObserver {
+
+        @Override
+        public void updateEventSectionOnDay(int dayIndex, ArrayList<String> eventTitles, ArrayList<String> startTimes,
+                                            ArrayList<String> endTimes) {
+            // Left empty on purpose.
+        }
+
+        @Override
+        public void updateTaskSectionOnDay(int dayIndex, ArrayList<String> taskTitles,
+                                           ArrayList<Boolean> taskCompletionStatuses) {
+            // Left empty on purpose.
+        }
     }
 }

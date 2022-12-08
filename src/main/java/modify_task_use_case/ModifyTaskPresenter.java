@@ -7,7 +7,7 @@ import screens.ViewModelBoundary;
  * methods in the output boundary, by mutating the ModifyTaskOutputData object that is
  * passed on as a parameter, appropriately.
  *
- * @author Raghav Arora
+ * @author Raghav Arora, Anna Myllyniemi
  */
 public class ModifyTaskPresenter implements ModifyTaskOutputBoundary {
     private final ViewModelBoundary viewModelBoundary;

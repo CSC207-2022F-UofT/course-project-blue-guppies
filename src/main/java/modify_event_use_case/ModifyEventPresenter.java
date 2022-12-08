@@ -5,7 +5,7 @@ import screens.ViewModelBoundary;
 /**
  * The presenter class. Takes in outputData and updates it as necessary to prepare a Success or Failure view.
  *
- * @author Daniel Livshits
+ * @author Daniel Livshits, Anna Myllyniemi
  */
 public class ModifyEventPresenter implements ModifyEventOutputBoundary {
     private final ViewModelBoundary viewModelBoundary;

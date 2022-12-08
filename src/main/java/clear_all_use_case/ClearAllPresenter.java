@@ -6,7 +6,7 @@ import screens.ViewModelBoundary;
  * Implements the prepareSuccessView methods in
  * ClearAllOutputBoundary.
  *
- * @author Ricky Fung
+ * @author Ricky Fung, Anna Myllyniemi
  */
 public class ClearAllPresenter implements ClearAllOutputBoundary {
     private final ViewModelBoundary viewModel;

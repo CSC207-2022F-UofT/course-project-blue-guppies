@@ -7,7 +7,7 @@ import screens.ViewModelBoundary;
  * methods in the output boundary, by mutating the CompleteTaskOutputData object that is
  * passed on as a parameter, appropriately.
  *
- * @author Fardin Faruk
+ * @author Fardin Faruk, Anna Myllyniemi
  */
 public class CompleteTaskPresenter implements CompleteTaskOutputBoundary {
     private final ViewModelBoundary viewModel;
