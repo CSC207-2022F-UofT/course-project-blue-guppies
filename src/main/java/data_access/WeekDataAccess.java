@@ -32,15 +32,6 @@ public class WeekDataAccess implements Serializable {
         }
     }
 
-    /**
-     * Sets days to the week specified by dataDays
-     * Precondition: dataDays is an ArrayList containing 7 dataDay instances
-     * @param dataDays - a representation of a week.
-     */
-    public WeekDataAccess(ArrayList<Day> dataDays){
-        days = dataDays;
-    }
-
     public ArrayList<Day> getDays() {
         return days;
     }

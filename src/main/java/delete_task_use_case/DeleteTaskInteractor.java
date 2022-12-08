@@ -9,7 +9,8 @@ public class DeleteTaskInteractor implements DeleteTaskInputBoundary {
 
     private final DeleteTaskOutputBoundary outputBoundary;
     private final DeleteTaskDsGateway dsGateway;
-    private final String[] DAYSOFWEEK = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+    private final String[] WEEK = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
     public DeleteTaskInteractor(
             DeleteTaskOutputBoundary outputBoundary, DeleteTaskDsGateway dsGateway) {
@@ -34,7 +35,7 @@ public class DeleteTaskInteractor implements DeleteTaskInputBoundary {
         if (!dsGateway.taskExistsInDay(inputData.getDayIndex(),inputData.getTaskTitle())){
             return outputBoundary.prepareFailView(outputData,
                     "Task Title: " + "\"" + inputData.getTaskTitle() + "\"" + " does not exist for day " +
-                            DAYSOFWEEK[inputData.getDayIndex()]);
+                            WEEK[inputData.getDayIndex()]);
 
         }
 
