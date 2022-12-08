@@ -40,8 +40,8 @@ public class CreateTaskDataAccess extends WeekDataAccess implements CreateTaskDs
     public void save(CreateTaskDsInputData taskData) {
         Day referenceDay = days.get(taskData.getDayIndex());
         HashMap<String, Task> tasks = referenceDay.getTasks();
-        Task newTask = new Task(taskData.getTitle());
-        tasks.put(taskData.getTitle(), newTask);
+        Task newTask = taskData.getTask();
+        tasks.put(newTask.getTitle(), newTask);
         super.save();
     }
 }

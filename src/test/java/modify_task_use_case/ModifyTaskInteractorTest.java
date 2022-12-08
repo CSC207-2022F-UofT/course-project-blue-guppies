@@ -5,8 +5,11 @@ import entities.Event;
 import entities.Task;
 
 import java.util.ArrayList;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import screens.ViewModel;
 import screens.ViewModelBoundary;
@@ -92,5 +95,16 @@ class ModifyTaskInteractorTest {
         Day day0 = dataAccess.getDays().get(0);
         assertFalse(day0.getTasks().containsKey("Sample Task"));
         assertTrue(day0.getTasks().containsKey("New Sample Task"));
+    }
+
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
     }
 }

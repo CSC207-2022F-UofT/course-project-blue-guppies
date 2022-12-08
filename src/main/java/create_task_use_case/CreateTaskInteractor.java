@@ -43,7 +43,7 @@ public class CreateTaskInteractor implements CreateTaskInputBoundary {
             return outputBoundary.prepareFailView(createTaskData, "There already exists a task with name: " +
                     "'" + inputData.getTitle() + "' on " + DAYS_OF_WEEK[inputData.getDayIndex()]);
         }
-        CreateTaskDsInputData DsData = new CreateTaskDsInputData(task.getTitle(), inputData.getDayIndex());
+        CreateTaskDsInputData DsData = new CreateTaskDsInputData(task, inputData.getDayIndex());
         dsGateway.save(DsData);
         return outputBoundary.prepareSuccessView(createTaskData);
     }

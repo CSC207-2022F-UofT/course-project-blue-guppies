@@ -3,10 +3,13 @@ package create_event_use_case;
 import entities.Day;
 import entities.Event;
 import entities.EventFactory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import screens.ViewModel;
 import screens.ViewModelBoundary;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -194,4 +197,14 @@ class CreateEventInteractorTest {
 
     }
 
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
+    }
 }

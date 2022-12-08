@@ -5,8 +5,11 @@ import entities.Event;
 import entities.Task;
 
 import java.util.ArrayList;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import screens.ViewModel;
 import screens.ViewModelBoundary;
@@ -14,7 +17,7 @@ import screens.ViewModelBoundary;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteTaskInteractorTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
 
     private final static DeleteTaskInputData INPUT_DATA_1 = new DeleteTaskInputData(
             5, "Task");
@@ -67,5 +70,16 @@ class DeleteTaskInteractorTest {
         assertEquals("Task Title: \"Task2\" does not exist for day Sunday", outputData.getErrorMessage());
         assertFalse(outputData.isSuccess());
         assertTrue(DATA_ACCESS.getDays().get(5).getTasks().containsKey("Task"));
+    }
+
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
     }
 }

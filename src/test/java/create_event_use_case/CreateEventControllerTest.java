@@ -3,10 +3,14 @@ package create_event_use_case;
 import entities.Day;
 import entities.Event;
 import entities.EventFactory;
+
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import screens.ViewModel;
 import screens.ViewModelBoundary;
@@ -58,5 +62,16 @@ class CreateEventControllerTest {
 
         // check if an event by the name of "Sample Event" exists for day 0 i.e. Sunday
         assertTrue(DS_GATEWAY.eventExistsByTitle(TITLE, outputData.getDayIndex()));
+    }
+
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
     }
 }

@@ -3,10 +3,13 @@ package create_task_use_case;
 import entities.Day;
 import entities.Task;
 import entities.TaskFactory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import screens.ViewModel;
 import screens.ViewModelBoundary;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,8 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Fardin Faruk
  */
 public class CreateTaskInteractorTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
-
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     private final static CreateTaskOutputBoundary PRESENTER = new CreateTaskPresenter(VIEW_MODEL);
     private final static CreateTaskDataAccess DATA_ACCESS = new CreateTaskDataAccess();
     private final static TaskFactory TASK_FACTORY = new TaskFactory();
@@ -53,5 +55,16 @@ public class CreateTaskInteractorTest {
         CreateTaskOutputData createTaskOutputData = createTaskInteractor.create(inputData);
         assertEquals("There already exists a task with name: 'Update' on Tuesday",
                 createTaskOutputData.getErrorMessage());
+    }
+
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
     }
 }

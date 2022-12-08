@@ -3,17 +3,20 @@ package delete_task_use_case;
 import entities.Day;
 import entities.Event;
 import entities.Task;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import screens.ViewModel;
 import screens.ViewModelBoundary;
 
 import java.util.ArrayList;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DeleteTaskControllerTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     private final static DeleteTaskOutputBoundary OUTPUT_BOUNDARY = new DeleteTaskPresenter(VIEW_MODEL);
     private final static DeleteTaskDataAccess DATA_ACCESS = new DeleteTaskDataAccess();
     private final static DeleteTaskDsGateway DS_GATEWAY = DATA_ACCESS;
@@ -46,5 +49,16 @@ public class DeleteTaskControllerTest {
         assertTrue(outputData.isSuccess());
         assertFalse(DATA_ACCESS.getDays().get(5).getTasks().containsKey("Task"));
         assertFalse(DATA_ACCESS.getDays().get(5).getTasks().containsValue(task));
+    }
+
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
     }
 }

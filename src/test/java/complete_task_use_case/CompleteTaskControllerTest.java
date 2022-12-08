@@ -2,10 +2,13 @@ package complete_task_use_case;
 
 import entities.Day;
 import entities.Task;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import screens.ViewModel;
 import screens.ViewModelBoundary;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -40,5 +43,14 @@ public class CompleteTaskControllerTest {
         assertEquals(task.getCompleted(), outputData.isSuccessfullyCompleted());
 
     }
-
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
+    }
 }

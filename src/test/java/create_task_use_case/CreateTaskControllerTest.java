@@ -2,12 +2,17 @@ package create_task_use_case;
 
 import entities.Day;
 import entities.TaskFactory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import screens.ViewModel;
 import screens.ViewModelBoundary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import static org.junit.jupiter.api.Assertions.*;
 /**
@@ -41,5 +46,16 @@ public class CreateTaskControllerTest {
         assertEquals(0, outputData.getDayIndex());
         assertTrue(outputData.isSuccessfullyCreated());
         assertTrue(DATA_ACCESS.existsByTitle("Sampled Task", 0));
+    }
+
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
     }
 }

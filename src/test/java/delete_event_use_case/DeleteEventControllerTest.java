@@ -1,6 +1,7 @@
 package delete_event_use_case;
 
 import entities.Day;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import screens.ViewModel;
 import screens.ViewModelBoundary;
@@ -8,10 +9,14 @@ import screens.ViewModelBoundary;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DeleteEventControllerTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     private final static DeleteEventPresenter OUTPUT_BOUNDARY = new DeleteEventPresenter(VIEW_MODEL);
     private final static DeleteEventDataAccess DS_GATEWAY = new DeleteEventDataAccess();
     private final static int DAY_INDEX = 3;
@@ -34,5 +39,16 @@ public class DeleteEventControllerTest {
         assertFalse(DS_GATEWAY.getDays().get(1).getEvents().containsKey("Event"));
         assertEquals(3, outputData.getDayIndex());
         assertEquals("Event", outputData.getLabel());
+    }
+
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
     }
 }

@@ -7,18 +7,22 @@ import delete_event_use_case.*;
 import delete_task_use_case.*;
 import entities.EventFactory;
 import entities.TaskFactory;
+import data_access.*;
+import entities.Week;
 import modify_event_use_case.*;
 import modify_task_use_case.*;
 import screens.*;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
-    public static void main(String[] args) {
-        WeekDataAccess weekDataAccess = new WeekDataAccess(); // load data from files
-        ViewModel viewModel = new ViewModel(weekDataAccess.getDays());
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+
+        WeekDataAccess.readObject();
+        ViewModel viewModel = new ViewModel(WeekDataAccess.getDays());
 
         // Initialize create event classes
         CreateEventOutputBoundary createEventPresenter = new CreateEventPresenter(viewModel);
