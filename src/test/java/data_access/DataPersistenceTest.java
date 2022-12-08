@@ -109,19 +109,5 @@ public class DataPersistenceTest {
         assertTrue(WeekDataAccess.days.get(5).getTasks().containsKey("Feed dog"));
         assertTrue(WeekDataAccess.days.get(5).getEvents().containsKey("Csc236"));
         assertTrue(WeekDataAccess.days.get(1).getTasks().containsKey("Feed dog"));
-
-//        pw = new PrintWriter("storage.txt"); //deleting the contents of the file
-//        pw.close();
-//        WeekDataAccess.readObject();
-//
-//        assertFalse(WeekDataAccess.days.get(1).getEvents().containsKey("MAT237"));
-//        assertFalse(WeekDataAccess.days.get(2).getEvents().containsKey("Mat237"));
-//        assertFalse(WeekDataAccess.days.get(3).getEvents().containsKey("Csc236"));
-//        assertFalse(WeekDataAccess.days.get(4).getEvents().containsKey("Mat237"));
-//        assertFalse(WeekDataAccess.days.get(5).getTasks().containsKey("Feed dog"));
-//        assertFalse(WeekDataAccess.days.get(5).getEvents().containsKey("Csc236"));
-//        assertFalse(WeekDataAccess.days.get(1).getTasks().containsKey("Feed dog"));
-//        assertNotNull(WeekDataAccess.days);
-
     }
 }

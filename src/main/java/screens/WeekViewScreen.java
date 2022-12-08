@@ -271,11 +271,6 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
 
         if (confirmed == JOptionPane.YES_OPTION) {
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            try {
-                WeekDataAccess.writeObject(WeekDataAccess.getDays());
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
         } else {
             this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         }
@@ -289,7 +284,6 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
      */
     @Override
     public void windowClosed(WindowEvent e) {
-        // TODO uncomment line
     }
 
     /**

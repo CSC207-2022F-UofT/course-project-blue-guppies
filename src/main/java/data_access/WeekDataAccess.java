@@ -17,8 +17,8 @@ public class WeekDataAccess implements Serializable {
      * The ArrayList of days to be used for data persistence. The state of this data structure is saved
      * to a .ser file.
      */
-    protected static ArrayList<Day> days = new ArrayList<Day>();
-    private static final long serialVersionUID = 1L;
+    protected static ArrayList<Day> days = new ArrayList<>();
+    private static long serialVersionUID = 1L;
 
 
     /**
@@ -31,15 +31,6 @@ public class WeekDataAccess implements Serializable {
                 days.add(emptyDay);
             }
         }
-    }
-
-    /**
-     * Sets days to the week specified by dataDays
-     * Precondition: dataDays is an ArrayList containing 7 dataDay instances
-     * @param dataDays - a representation of a week.
-     */
-    public WeekDataAccess(ArrayList<Day> dataDays){
-        days = dataDays;
     }
 
     public static ArrayList<Day> getDays() {
@@ -56,7 +47,7 @@ public class WeekDataAccess implements Serializable {
      *             week schedule
      * @throws IOException
      */
-    public static void writeObject(ArrayList<Day> days) throws IOException {
+    protected static void writeObject(ArrayList<Day> days) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream("CleanCalendarStorage.txt");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(new ArrayList<Day>(days));
