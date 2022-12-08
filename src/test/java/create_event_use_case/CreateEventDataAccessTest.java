@@ -3,8 +3,11 @@ package create_event_use_case;
 import entities.Day;
 import entities.Event;
 import entities.EventFactory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalTime;
 import java.util.HashMap;
 
@@ -96,5 +99,16 @@ class CreateEventDataAccessTest {
                 LocalTime.parse("12:00"));
         DS_GATEWAY.save(new CreateEventDsInputData(1, event));
         assertTrue(DS_GATEWAY.isTimeConflict(1, LocalTime.parse("08:30"), LocalTime.parse("09:01")));
+    }
+
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
     }
 }

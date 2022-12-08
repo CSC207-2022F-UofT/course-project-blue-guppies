@@ -3,8 +3,11 @@ package delete_task_use_case;
 import entities.Day;
 import entities.Event;
 import entities.Task;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,5 +37,16 @@ public class DeleteTaskControllerTest {
         assertTrue(outputData.isSuccess());
         assertFalse(DATA_ACCESS.getDays().get(5).getTasks().containsKey("Task"));
         assertFalse(DATA_ACCESS.getDays().get(5).getTasks().containsValue(task));
+    }
+
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
     }
 }

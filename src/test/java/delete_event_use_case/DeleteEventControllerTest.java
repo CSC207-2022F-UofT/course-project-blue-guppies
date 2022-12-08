@@ -1,6 +1,11 @@
 package delete_event_use_case;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DeleteEventControllerTest {
@@ -18,5 +23,16 @@ public class DeleteEventControllerTest {
         assertFalse(DS_GATEWAY.getDays().get(1).getEvents().containsKey("Event"));
         assertEquals(3, outputData.getDayIndex());
         assertEquals("Event", outputData.getLabel());
+    }
+
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
     }
 }
