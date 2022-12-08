@@ -282,8 +282,6 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
      */
     @Override
     public void windowClosed(WindowEvent e) {
-        // TODO uncomment line
-        // WeekDataAccess.writeObject(WeekDataAccess.days);
     }
 
     /**

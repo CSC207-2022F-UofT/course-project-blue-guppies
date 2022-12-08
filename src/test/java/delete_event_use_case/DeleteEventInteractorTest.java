@@ -5,10 +5,13 @@ import entities.Event;
 import entities.Task;
 import data_access.WeekDataAccess;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalTime;
 
 import java.util.HashMap;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,5 +38,16 @@ class DeleteEventInteractorTest extends WeekDataAccess {
         assertEquals("Event", outputData.getLabel());
         assertTrue(day.getTasks().isEmpty());
         assertTrue(outputData.getSuccess());
+    }
+
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
     }
 }

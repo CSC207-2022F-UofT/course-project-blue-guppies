@@ -1,5 +1,6 @@
 package create_task_use_case;
 
+import entities.Task;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,12 +12,14 @@ public class CreateTaskDsInputDataTest {
 
     @Test
     public void testGetTitle(){
-        CreateTaskDsInputData inputData = new CreateTaskDsInputData("Exam", 0);
-        assertEquals("Exam", inputData.getTitle());
+        Task exam = new Task("Exam");
+        CreateTaskDsInputData inputData = new CreateTaskDsInputData(exam, 0);
+        assertEquals("Exam", inputData.getTask().getTitle());
     }
     @Test
     public void testGetDayIndex(){
-        CreateTaskDsInputData inputData = new CreateTaskDsInputData("Meal Prep", 0);
+        Task mealPrep = new Task("Meal Prep");
+        CreateTaskDsInputData inputData = new CreateTaskDsInputData(mealPrep, 0);
         assertEquals(0, inputData.getDayIndex());
     }
 }

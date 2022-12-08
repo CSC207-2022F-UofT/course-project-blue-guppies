@@ -2,8 +2,11 @@ package complete_task_use_case;
 
 import entities.Day;
 import entities.Task;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -42,5 +45,16 @@ public class CompleteTaskDataAccessTest {
         HashMap<String, Task> tasks = dataAccess.getDays().get(0).getTasks();
         Task taskCheck = tasks.get(task.getTitle());
         assertTrue(taskCheck.getCompleted());
+    }
+
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
     }
 }

@@ -2,9 +2,12 @@ package modify_event_use_case;
 
 import entities.Day;
 import entities.Event;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -110,5 +113,16 @@ class ModifyEventDataAccessTest {
         days.add(sampleFriday);
         days.add(emptyDay);
         ModifyEventDataAccess.setDays(days);
+    }
+
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
     }
 }
