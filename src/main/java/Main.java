@@ -20,8 +20,7 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        // WeekDataAccess weekDataAccess = new WeekDataAccess(); // load data from files
-        // ViewModel viewModel = new ViewModel(weekDataAccess.getDays());
+
         WeekDataAccess.readObject();
         ViewModel viewModel = new ViewModel(WeekDataAccess.getDays());
 

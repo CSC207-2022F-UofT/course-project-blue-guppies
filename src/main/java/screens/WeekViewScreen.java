@@ -2,7 +2,6 @@ package screens;
 
 import clear_all_use_case.ClearAllController;
 import clear_all_use_case.ClearAllOutputData;
-import data_access.WeekDataAccess;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
