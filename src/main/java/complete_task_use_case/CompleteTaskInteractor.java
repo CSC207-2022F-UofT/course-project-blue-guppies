@@ -31,7 +31,7 @@ public class CompleteTaskInteractor implements CompleteTaskInputBoundary {
     @Override
     public CompleteTaskOutputData completeTask(CompleteTaskInputData inputData) {
         CompleteTaskDsInputData dsInputData = new CompleteTaskDsInputData(
-                inputData.getDayIndex(), inputData.getTitle(), inputData.isTaskCompleted()
+                inputData.getDayIndex(), inputData.getTitle()
         );
         CompleteTaskOutputData task = new CompleteTaskOutputData(
                 inputData.getTitle(), inputData.getDayIndex(), inputData.isTaskCompleted()

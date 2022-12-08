@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteEventDataAccessTest {
-    DeleteEventDataAccess dataAccess = new DeleteEventDataAccess();
+    final DeleteEventDataAccess dataAccess = new DeleteEventDataAccess();
 
     @Test
     void testSave() {

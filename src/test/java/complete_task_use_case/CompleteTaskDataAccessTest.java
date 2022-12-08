@@ -39,7 +39,7 @@ public class CompleteTaskDataAccessTest {
     public void testSave(){
         CompleteTaskDataAccess dataAccess = new CompleteTaskDataAccess();
         Task dataAccessTask = new Task("Watch World Cup");
-        CompleteTaskDsInputData task = new CompleteTaskDsInputData(0, "Watch World Cup", false);
+        CompleteTaskDsInputData task = new CompleteTaskDsInputData(0, "Watch World Cup");
         dataAccess.getDays().get(0).getTasks().put(dataAccessTask.getTitle(), dataAccessTask);
         dataAccess.save(task);
         HashMap<String, Task> tasks = dataAccess.getDays().get(0).getTasks();

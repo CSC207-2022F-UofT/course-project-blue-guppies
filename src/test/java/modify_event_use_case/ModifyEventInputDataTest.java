@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Daniel Livshits
  */
 class ModifyEventInputDataTest {
-    ModifyEventInputData inputData = new ModifyEventInputData("207 tutorail", 1, "207 tutorial",
+    final ModifyEventInputData inputData = new ModifyEventInputData("207 tutorial", 1, "207 tutorial",
             "10:00:00", "12:00:00");
 
     @Test
     void testGetTitle() {
-        assertEquals("207 tutorail", inputData.getTitle());
+        assertEquals("207 tutorial", inputData.getTitle());
     }
 
     @Test

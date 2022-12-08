@@ -7,8 +7,8 @@ package complete_task_use_case;
  */
 class CompleteTaskInputData {
     private final int dayIndex;
-    private String title;
-    private boolean taskCompleted;
+    private final String title;
+    private final boolean taskCompleted;
 
     CompleteTaskInputData(int dayIndex, String title, boolean taskCompleted){
         this.title = title;

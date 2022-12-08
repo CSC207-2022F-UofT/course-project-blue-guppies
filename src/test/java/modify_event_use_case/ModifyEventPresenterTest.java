@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Daniel Livshits
  */
 class ModifyEventPresenterTest {
-    ModifyEventPresenter samplePresenter = new ModifyEventPresenter();
-    ModifyEventOutputData outputData =  new ModifyEventOutputData("Team Mtg", 6, "Blue Guppies Meeting",
+    final ModifyEventPresenter samplePresenter = new ModifyEventPresenter();
+    final ModifyEventOutputData outputData =  new ModifyEventOutputData("Team Mtg", 6, "Blue Guppies Meeting",
                 LocalTime.parse("15:00"), LocalTime.parse("16:00"));
 
 

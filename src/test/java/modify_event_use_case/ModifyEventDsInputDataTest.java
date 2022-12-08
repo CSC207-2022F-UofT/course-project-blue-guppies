@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Daniel Livshits
  */
 class ModifyEventDsInputDataTest {
-    ModifyEventDsInputData dsInputData = new ModifyEventDsInputData(2, "MAT224 Lecture", "Lunch",
+    final ModifyEventDsInputData dsInputData = new ModifyEventDsInputData(2, "MAT224 Lecture", "Lunch",
             LocalTime.parse("13:00:00"), LocalTime.parse("14:00:00"));
 
     @Test

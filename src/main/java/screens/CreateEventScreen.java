@@ -85,6 +85,10 @@ public class CreateEventScreen extends FormScreen {
      * @return an array of JRadioButtons representing the days of the week
      */
     private JRadioButton[] createRadioButtons() {
+        return getRadioButtons();
+    }
+
+    static JRadioButton[] getRadioButtons() {
         JRadioButton sundayButton = new JRadioButton("Sunday");
         JRadioButton mondayButton = new JRadioButton("Monday");
         JRadioButton tuesdayButton = new JRadioButton("Tuesday");

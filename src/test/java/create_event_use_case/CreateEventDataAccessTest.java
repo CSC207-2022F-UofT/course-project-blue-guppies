@@ -42,22 +42,6 @@ class CreateEventDataAccessTest {
         assertTrue(DS_GATEWAY.eventExistsByTitle("Sample Event", 0));
     }
 
-    // use below test once DataAccess versions of entities are refactored to the normal entities
-//    @Test
-//    void testEventExistsByTitle() {
-//        EventFactory eventFactory = new EventFactory();
-//        Event event = eventFactory.createEvent("Sample Event",
-//                LocalTime.parse("09:00"),
-//                LocalTime.parse("10:00"));
-//        // Make day 0 i.e. Sunday have an event called "Sample Event"
-//        HashMap<String, Event> events = new HashMap<>();
-//        events.put("Sample Event", event);
-//        Day day = DATA_ACCESS.getDays().get(0);
-//        day.setEvents(events);
-//
-//        assertTrue(DS_GATEWAY.eventExistsByTitle("Sample Event", 0));
-//    }
-
     @Test
     void testSave() {
         EventFactory eventFactory = new EventFactory();
