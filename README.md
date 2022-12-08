@@ -1,4 +1,4 @@
-# Project Template
+# Clean Calendar
 
 This repository contains code for our groups CSC207 project, a Task and Event Management application. Through our program, a user can
 manage their weekly
@@ -17,28 +17,28 @@ Clone the ```main``` branch of the code base. Invoke ```Main.java``` in the ```s
 
 ### Create Task
 
-![Create Event](images/CreateTask.gif)
+![Create Task](images/CreateTask.gif)
 
 ### Modify Event
 
-![Create Event](images/ModifyEvent.gif)
+![Modify Event](images/ModifyEvent.gif)
 
 ### Modify Task
 
-![Create Event](images/ModifyTask.gif)
+![Modify Task](images/ModifyTask.gif)
 
 ### Delete Event
 
-![Create Event](images/DeleteEvent.gif)
+![Delete Event](images/DeleteEvent.gif)
 
 ### Delete Task
 
-![Create Event](images/DeleteTask.gif)
+![Delete Task](images/DeleteTask.gif)
 
 ### Complete Task
 
-![Create Event](images/CompleteTask.gif)
+![Complete Task](images/CompleteTask.gif)
 
 ### Clear All
 
-![Create All](images/ClearWeek.gif)
+![Clear All](images/ClearWeek.gif)
