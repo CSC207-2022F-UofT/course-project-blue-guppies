@@ -43,7 +43,8 @@ public class WeekDataAccess implements Serializable {
 
     /**
      * Writes the contents of the days class variable onto a .ser file, persisting data
-     * @param days an ArrayList whose indices contain two hashmaps that contain events and tasks separately, representing the
+     * @param days an ArrayList whose indices contain Day objects that contain
+     *             two hashmaps that contain events and tasks separately, representing the
      *             week schedule
      * @throws IOException
      */
@@ -68,7 +69,7 @@ public class WeekDataAccess implements Serializable {
             WeekDataAccess.days = (ArrayList<Day>) objectInputStream.readObject();
             objectInputStream.close();
         }
-        else { //initializing program for the very first time, so file days with empty days
+        else {
             WeekDataAccess.days = new ArrayList<>();
             for(int i = 0; i < 7; i++) {
                 Day emptyDay = new Day(new HashMap<>(), new HashMap<>());
