@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
  * end time; and create and cancel buttons. When the user clicks either the window's x button or the
  * cancel button, the fields of the form reset in preparation for the next time the form is used and
  * the window is hidden.
+ *
  * @author Anna Myllyniemi
  */
 public class CreateEventScreen extends FormScreen {
@@ -99,9 +100,10 @@ public class CreateEventScreen extends FormScreen {
                 wednesdayButton, thursdayButton, fridayButton, saturdayButton};
     }
 
-    /** Adds the time fields to the form.
+    /**
+     * Adds the time fields to the form.
      *
-     * @param panel The JPanel to and the start and end time to
+     * @param panel       The JPanel to and the start and end time to
      * @param constraints The GridBagConstrains to use
      */
     private void addTimeFields(JPanel panel, GridBagConstraints constraints) {
@@ -164,7 +166,7 @@ public class CreateEventScreen extends FormScreen {
     }
 
     private String getSelectedDay() {
-        for (JRadioButton radioButton: daysOfTheWeekRadioButtons) {
+        for (JRadioButton radioButton : daysOfTheWeekRadioButtons) {
             if (radioButton.isSelected()) {
                 return radioButton.getText();
             }

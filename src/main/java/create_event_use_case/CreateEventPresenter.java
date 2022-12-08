@@ -12,9 +12,6 @@ import screens.ViewModelBoundary;
 public class CreateEventPresenter implements CreateEventOutputBoundary {
 
     private final ViewModelBoundary viewModelBoundary;
-    public CreateEventPresenter() {
-        viewModelBoundary = null;
-    }
 
     public CreateEventPresenter(ViewModelBoundary viewModelBoundary) {
         this.viewModelBoundary = viewModelBoundary;
@@ -25,16 +22,14 @@ public class CreateEventPresenter implements CreateEventOutputBoundary {
      * of the Output Data object provided to true.
      *
      * @param outputData The OutputData object whose 'success' instance attribute will
-     * be set to true.
+     *                   be set to true.
      * @return The mutated OutputData object.
      */
     @Override
     public CreateEventOutputData prepareSuccessView(CreateEventOutputData outputData) {
         outputData.setSuccess(true);
-        if (viewModelBoundary != null) {
-            viewModelBoundary.newEvent(outputData.getDayIndex(), outputData.getTitle(), outputData.getStartTime(),
-                    outputData.getEndTime());
-        }
+        viewModelBoundary.newEvent(outputData.getDayIndex(), outputData.getTitle(), outputData.getStartTime(),
+                outputData.getEndTime());
         return outputData;
     }
 
@@ -43,8 +38,8 @@ public class CreateEventPresenter implements CreateEventOutputBoundary {
      * of the Output Data object provided to false, and setting the errorMessage attribute
      * to an appropriate error message.
      *
-     * @param outputData The OutputData object whose 1. 'success' instance attribute will
-     * be set to false, and, 2. 'errorMessage' attribute will be set to errorMessage.
+     * @param outputData   The OutputData object whose 1. 'success' instance attribute will
+     *                     be set to false, and, 2. 'errorMessage' attribute will be set to errorMessage.
      * @param errorMessage The error message representing why event creation failed.
      * @return The mutated OutputData object.
      */

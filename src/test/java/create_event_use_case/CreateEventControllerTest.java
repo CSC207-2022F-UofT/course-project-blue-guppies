@@ -4,9 +4,13 @@ import entities.Day;
 import entities.Event;
 import entities.EventFactory;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
+import screens.ViewModel;
+import screens.ViewModelBoundary;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -14,7 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Raghav Arora
  */
 class CreateEventControllerTest {
-    private final static CreateEventOutputBoundary OUTPUT_BOUNDARY = new CreateEventPresenter();
+    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static CreateEventOutputBoundary OUTPUT_BOUNDARY = new CreateEventPresenter(VIEW_MODEL);
     private final static CreateEventDataAccess DATA_ACCESS = new CreateEventDataAccess();
     private final static CreateEventDsGateway DS_GATEWAY = DATA_ACCESS;
     private final static EventFactory EVENT_FACTORY = new EventFactory();
@@ -22,6 +27,14 @@ class CreateEventControllerTest {
     private final static String START_TIME = "09:00";
     private final static String END_TIME = "10:00";
     private final static String DAY = "Sunday";
+
+    private static ViewModel getViewModel() {
+        ArrayList<Day> days = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            days.add(new Day(new HashMap<>(), new HashMap<>()));
+        }
+        return new ViewModel(days);
+    }
 
     @Test
     void testCreate() {

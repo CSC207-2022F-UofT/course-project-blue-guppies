@@ -9,6 +9,7 @@ import java.util.HashMap;
 /**
  * The superclass for data access, with a static attribute and private method to be shared across all create_event_use_case.CreateEventPresenter.data_access.DataAccess
  * classes.
+ *
  * @author Daniel Livshits
  */
 public class WeekDataAccess implements Serializable {
@@ -24,8 +25,8 @@ public class WeekDataAccess implements Serializable {
      * Initializes days to a week with 7 empty days if it hasn't already been initialized.
      */
     public WeekDataAccess() {
-        if(days.isEmpty()){
-            for(int i = 0; i < 7; i++){
+        if (days.isEmpty()) {
+            for (int i = 0; i < 7; i++) {
                 Day emptyDay = new Day(new HashMap<>(), new HashMap<>());
                 days.add(emptyDay);
             }
@@ -35,9 +36,10 @@ public class WeekDataAccess implements Serializable {
     /**
      * Sets days to the week specified by dataDays
      * Precondition: dataDays is an ArrayList containing 7 dataDay instances
+     *
      * @param dataDays - a representation of a week.
      */
-    public WeekDataAccess(ArrayList<Day> dataDays){
+    public WeekDataAccess(ArrayList<Day> dataDays) {
         days = dataDays;
     }
 
@@ -49,6 +51,6 @@ public class WeekDataAccess implements Serializable {
         WeekDataAccess.days = days;
     }
 
-    protected void save(){
+    protected void save() {
     }
 }

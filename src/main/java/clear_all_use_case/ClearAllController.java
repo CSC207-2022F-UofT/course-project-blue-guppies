@@ -2,6 +2,7 @@ package clear_all_use_case;
 
 /**
  * Invokes the implementations of clearAll given by ClearAllInteractor to execute application logic.
+ *
  * @author Ricky Fung
  */
 public class ClearAllController {

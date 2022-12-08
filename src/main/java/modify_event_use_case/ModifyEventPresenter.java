@@ -4,9 +4,10 @@ import screens.ViewModelBoundary;
 
 /**
  * The presenter class. Takes in outputData and updates it as necessary to prepare a Success or Failure view.
+ *
  * @author Daniel Livshits
  */
-public class ModifyEventPresenter implements ModifyEventOutputBoundary{
+public class ModifyEventPresenter implements ModifyEventOutputBoundary {
     private final ViewModelBoundary viewModelBoundary;
 
     public ModifyEventPresenter() {
@@ -34,6 +35,7 @@ public class ModifyEventPresenter implements ModifyEventOutputBoundary{
 
     /**
      * Sets the instance of OutputData to represent a failure state and returns it.
+     *
      * @param outputData The instance of OutputData for a failing modification.
      * @return The same instance of outputData with successState changed to false.
      */

@@ -5,15 +5,16 @@ import java.time.LocalTime;
 /**
  * Interactor for the Modify Event use case. Calls the dsGateway and Output Boundary to appropriately execute
  * application logic.
+ *
  * @author Daniel Livshits
  */
-public class ModifyEventInteractor implements ModifyEventInputBoundary{
+public class ModifyEventInteractor implements ModifyEventInputBoundary {
     private final ModifyEventOutputBoundary outputBoundary;
     private final ModifyEventDsGateway dsGateway;
 
     private static final String[] DAYSOFWEEK = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
-    public ModifyEventInteractor(ModifyEventOutputBoundary outputBoundary, ModifyEventDsGateway dsGateway){
+    public ModifyEventInteractor(ModifyEventOutputBoundary outputBoundary, ModifyEventDsGateway dsGateway) {
         this.outputBoundary = outputBoundary;
         this.dsGateway = dsGateway;
     }
@@ -28,15 +29,15 @@ public class ModifyEventInteractor implements ModifyEventInputBoundary{
      * the modification.
      */
     @Override
-    public ModifyEventOutputData modify(ModifyEventInputData inputData){
-        if(!dsGateway.titleExistsInDay(inputData.getDayIndex(), inputData.getTitle())){
+    public ModifyEventOutputData modify(ModifyEventInputData inputData) {
+        if (!dsGateway.titleExistsInDay(inputData.getDayIndex(), inputData.getTitle())) {
             String failMessage = "There is no event called " + inputData.getTitle() + " on " +
                     DAYSOFWEEK[inputData.getDayIndex()] + "!";
             ModifyEventOutputData outputData = new ModifyEventOutputData(inputData.getTitle(), inputData.getDayIndex(),
                     inputData.getNewTitle(), null, null);
             return outputBoundary.prepareFailView(outputData, failMessage);
         }
-        if(!(inputData.getNewStartTime().matches("[01][0-9]:[0-5][0-9]|2[0-3]:[0-5][0-9]")) ||
+        if (!(inputData.getNewStartTime().matches("[01][0-9]:[0-5][0-9]|2[0-3]:[0-5][0-9]")) ||
                 !(inputData.getNewEndTime().matches("[01][0-9]:[0-5][0-9]|2[0-3]:[0-5][0-9]"))) {
             ModifyEventOutputData outputData = new ModifyEventOutputData(inputData.getTitle(), inputData.getDayIndex(),
                     inputData.getNewTitle(), null, null);
@@ -47,24 +48,24 @@ public class ModifyEventInteractor implements ModifyEventInputBoundary{
         LocalTime newEndTime = LocalTime.parse(inputData.getNewEndTime());
         ModifyEventOutputData outputData = new ModifyEventOutputData(inputData.getTitle(), inputData.getDayIndex(),
                 inputData.getNewTitle(), newStartTime, newEndTime);
-        if(newStartTime.isAfter(newEndTime) || newStartTime.equals(newEndTime)){
+        if (newStartTime.isAfter(newEndTime) || newStartTime.equals(newEndTime)) {
             String failMessage = "The new start time is not before the new end time!";
             return outputBoundary.prepareFailView(outputData, failMessage);
         }
-        if(!(inputData.getTitle().equals(inputData.getNewTitle())) &&
-                dsGateway.titleExistsInDay(inputData.getDayIndex(), inputData.getNewTitle())){
+        if (!(inputData.getTitle().equals(inputData.getNewTitle())) &&
+                dsGateway.titleExistsInDay(inputData.getDayIndex(), inputData.getNewTitle())) {
             String failMessage = "The title " + inputData.getNewTitle() + " was already used for another event on " +
                     DAYSOFWEEK[inputData.getDayIndex()] + ".";
             return outputBoundary.prepareFailView(outputData, failMessage);
         }
         if (dsGateway.isTimeConflict(inputData.getDayIndex(), inputData.getTitle(), newStartTime,
-                newEndTime)){
+                newEndTime)) {
             String failMessage = "The new times for the event " + inputData.getTitle() +
                     " conflict with another event on " + DAYSOFWEEK[inputData.getDayIndex()] + ".";
             return outputBoundary.prepareFailView(outputData, failMessage);
         }
         ModifyEventDsInputData dataAccessInput = new ModifyEventDsInputData(inputData.getDayIndex(), inputData.getTitle(),
-                inputData.getNewTitle(), newStartTime,newEndTime);
+                inputData.getNewTitle(), newStartTime, newEndTime);
         dsGateway.save(dataAccessInput);
 
         return outputBoundary.prepareSuccessView(outputData);

@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 /**
  * The menu a user sees when they click on a task in the week view with the options to delete, modify or toggle
  * the completion status of a task.
+ *
  * @author Anna Myllyniemi
  */
 public class ClickTaskScreen extends JFrame implements ActionListener {
@@ -36,8 +37,8 @@ public class ClickTaskScreen extends JFrame implements ActionListener {
     /**
      * Creates a menu with delete button, modify button, and complete or uncomplete task button.
      *
-     * @param modifyTaskScreen Screen used for task modification
-     * @param deleteTaskController Controller for delete task use case
+     * @param modifyTaskScreen       Screen used for task modification
+     * @param deleteTaskController   Controller for delete task use case
      * @param completeTaskController Controller for complete task use case
      */
     public ClickTaskScreen(ModifyTaskScreen modifyTaskScreen, DeleteTaskController deleteTaskController,

@@ -5,6 +5,7 @@ package modify_task_use_case;
  * execution of the application logic for this use case. The errorMessage and
  * isSuccessfullyModified instance attributes, in particular, represent whether the use
  * case logic was successfully executed.
+ *
  * @author Raghav Arora
  */
 public class ModifyTaskOutputData {
@@ -21,15 +22,25 @@ public class ModifyTaskOutputData {
         this.oldTitle = oldTitle;
     }
 
-    public String getTitle() { return this.title; }
+    public String getTitle() {
+        return this.title;
+    }
 
-    public int getDayIndex() { return this.dayIndex; }
+    public int getDayIndex() {
+        return this.dayIndex;
+    }
 
-    public String getErrorMessage() { return this.errorMessage; }
+    public String getErrorMessage() {
+        return this.errorMessage;
+    }
 
-    protected void setErrorMessage(String errorMessage) { this.errorMessage = errorMessage; }
+    protected void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
-    public boolean getIsSuccessfullyModified() { return this.isSuccessfullyModified; }
+    public boolean getIsSuccessfullyModified() {
+        return this.isSuccessfullyModified;
+    }
 
     protected void setSuccessfullyModified(boolean isSuccessfullyModified) {
         this.isSuccessfullyModified = isSuccessfullyModified;

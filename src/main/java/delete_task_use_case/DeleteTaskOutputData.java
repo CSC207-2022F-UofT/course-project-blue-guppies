@@ -4,6 +4,7 @@ package delete_task_use_case;
  * Instances of this class are returned and set back to
  * the controller, with the errorMessage and success instance
  * attributes indicating whether deletion conditions are met.
+ *
  * @author Ricky Fung
  */
 public class DeleteTaskOutputData {

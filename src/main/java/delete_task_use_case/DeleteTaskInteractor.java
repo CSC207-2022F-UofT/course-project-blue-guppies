@@ -3,6 +3,7 @@ package delete_task_use_case;
 /**
  * Implements the deleteTask method and calls
  * outputBoundary and dsGateway to delete task.
+ *
  * @author Ricky Fung
  */
 public class DeleteTaskInteractor implements DeleteTaskInputBoundary {
@@ -31,7 +32,7 @@ public class DeleteTaskInteractor implements DeleteTaskInputBoundary {
     @Override
     public DeleteTaskOutputData deleteTask(DeleteTaskInputData inputData) {
         DeleteTaskOutputData outputData = new DeleteTaskOutputData(inputData.getDayIndex(), inputData.getTaskTitle());
-        if (!dsGateway.taskExistsInDay(inputData.getDayIndex(),inputData.getTaskTitle())){
+        if (!dsGateway.taskExistsInDay(inputData.getDayIndex(), inputData.getTaskTitle())) {
             return outputBoundary.prepareFailView(outputData,
                     "Task Title: " + "\"" + inputData.getTaskTitle() + "\"" + " does not exist for day " +
                             DAYSOFWEEK[inputData.getDayIndex()]);

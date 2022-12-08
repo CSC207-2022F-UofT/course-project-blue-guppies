@@ -12,9 +12,10 @@ import java.awt.event.ActionEvent;
  * buttons representing the days of the week; a text field for the task title; and create and cancel
  * buttons. When the user clicks either the window's x button or the cancel button, the fields of the
  * form reset in preparation for the next time the form is used and the window is hidden.
+ *
  * @author Anna Myllyniemi
  */
-public class CreateTaskScreen extends FormScreen{
+public class CreateTaskScreen extends FormScreen {
     /**
      * Array containing all the radio buttons representing the day of the week.
      */
@@ -129,7 +130,7 @@ public class CreateTaskScreen extends FormScreen{
     }
 
     private String getSelectedDay() {
-        for (JRadioButton radioButton: daysOfTheWeekRadioButtons) {
+        for (JRadioButton radioButton : daysOfTheWeekRadioButtons) {
             if (radioButton.isSelected()) {
                 return radioButton.getText();
             }

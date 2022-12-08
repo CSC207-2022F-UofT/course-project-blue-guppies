@@ -4,7 +4,10 @@ import entities.Day;
 import entities.Task;
 import entities.TaskFactory;
 import org.junit.jupiter.api.Test;
+import screens.ViewModel;
+import screens.ViewModelBoundary;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,9 +16,19 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Fardin Faruk
  */
 public class CreateTaskInteractorTest {
-    private final static CreateTaskOutputBoundary PRESENTER = new CreateTaskPresenter();
+    static ViewModelBoundary VIEW_MODEL = getViewModel();
+
+    private final static CreateTaskOutputBoundary PRESENTER = new CreateTaskPresenter(VIEW_MODEL);
     private final static CreateTaskDataAccess DATA_ACCESS = new CreateTaskDataAccess();
     private final static TaskFactory TASK_FACTORY = new TaskFactory();
+
+    private static ViewModel getViewModel() {
+        ArrayList<Day> days = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            days.add(new Day(new HashMap<>(), new HashMap<>()));
+        }
+        return new ViewModel(days);
+    }
     @Test
     public void createTestSuccess(){
         CreateTaskInputData inputData = new CreateTaskInputData("Finish Unit Test", "Tuesday");

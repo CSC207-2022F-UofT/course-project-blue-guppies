@@ -3,12 +3,14 @@ package delete_task_use_case;
 import entities.Day;
 import entities.Task;
 import data_access.WeekDataAccess;
+
 import java.util.HashMap;
 
 /**
  * Implements the save and taskExistsInDay methods in DeleteTaskDsGateway. Save method mutates day instance
  * attribute of WeekDataAccess by deleting the taskTitle of the given day. TaskExistsInDay method checks whether
  * the Task exists in the given day for deletion.
+ *
  * @author Ricky Fung
  */
 public class DeleteTaskDataAccess extends WeekDataAccess implements DeleteTaskDsGateway {
@@ -30,9 +32,9 @@ public class DeleteTaskDataAccess extends WeekDataAccess implements DeleteTaskDs
     }
 
     /**
-     *  Checks whether the task exists of the specified day index.
+     * Checks whether the task exists of the specified day index.
      *
-     * @param dayIndex The index of the day instance the task belongs to.
+     * @param dayIndex  The index of the day instance the task belongs to.
      * @param taskTitle The title of the task user wants to remove.
      * @return True if the task exists in the given day, false otherwise.
      */

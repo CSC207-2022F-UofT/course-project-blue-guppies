@@ -1,8 +1,14 @@
 package create_event_use_case;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 
+import entities.Day;
 import org.junit.jupiter.api.Test;
+import screens.ViewModel;
+import screens.ViewModelBoundary;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -10,10 +16,19 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Raghav Arora, Anna Myllyniemi
  */
 class CreateEventPresenterTest {
-    private final static CreateEventOutputBoundary OUTPUT_BOUNDARY = new CreateEventPresenter();
+    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static CreateEventOutputBoundary OUTPUT_BOUNDARY = new CreateEventPresenter(VIEW_MODEL);
     private final static CreateEventOutputData OUTPUT_DATA = new CreateEventOutputData(
             "Event", LocalTime.parse("09:00"), LocalTime.parse("10:00"), 0
     );
+
+    private static ViewModel getViewModel() {
+        ArrayList<Day> days = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            days.add(new Day(new HashMap<>(), new HashMap<>()));
+        }
+        return new ViewModel(days);
+    }
 
     @Test
     void testPrepareSuccessView() {

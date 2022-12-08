@@ -5,6 +5,7 @@ import java.time.LocalTime;
 
 /**
  * Event class for use in data access.
+ *
  * @author Anna Myllyniemi
  */
 public class Event implements Serializable {
@@ -13,9 +14,9 @@ public class Event implements Serializable {
     private LocalTime endTime;
 
     /**
-     * @param title the title of this event
+     * @param title     the title of this event
      * @param startTime the time that this event starts at
-     * @param endTime the time that this event ends at
+     * @param endTime   the time that this event ends at
      */
     public Event(String title, LocalTime startTime, LocalTime endTime) {
         this.title = title;

@@ -2,6 +2,7 @@ package delete_task_use_case;
 
 /**
  * Contains inputs for InputBoundary's deleteTask method.
+ *
  * @author Ricky Fung
  */
 public class DeleteTaskInputData {

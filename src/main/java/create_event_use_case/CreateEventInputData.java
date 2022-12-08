@@ -17,7 +17,7 @@ public class CreateEventInputData {
         this.title = title;
         this.startTime = startTime;
         this.endTime = endTime;
-        switch (day){
+        switch (day) {
             case "Sunday":
                 this.dayIndex = 0;
                 break;

@@ -4,6 +4,7 @@ import screens.ViewModelBoundary;
 
 /**
  * Implements the prepareSuccessView and prepareFailView methods in DeleteTaskOutputBoundary.
+ *
  * @author Ricky Fung
  */
 public class DeleteTaskPresenter implements DeleteTaskOutputBoundary {

@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 /**
  * The menu a user sees when they click on an event in the week view with the options to delete or modify the event.
+ *
  * @author Anna Myllyniemi
  */
 public class ClickEventScreen extends JFrame implements ActionListener {
@@ -24,7 +25,7 @@ public class ClickEventScreen extends JFrame implements ActionListener {
     /**
      * Creates the menu with delete button and modify button
      *
-     * @param modifyEventScreen Screen used for event modification
+     * @param modifyEventScreen     Screen used for event modification
      * @param deleteEventController Controller for delete event use case
      */
     public ClickEventScreen(ModifyEventScreen modifyEventScreen, DeleteEventController deleteEventController) {

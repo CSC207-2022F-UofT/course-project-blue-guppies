@@ -1,9 +1,11 @@
 package complete_task_use_case;
+
 /**
  * Task Complete Output Data Class. Instances of this class are returned upon the
  * execution of the application logic for this use case. The errorMessage and
  * isSuccessfullyModified instance attributes, in particular, reports whether the use
  * case logic was successfully executed.
+ *
  * @author Fardin Faruk
  */
 public class CompleteTaskOutputData {
@@ -14,7 +16,7 @@ public class CompleteTaskOutputData {
     private boolean taskCompleted;
 
 
-    public CompleteTaskOutputData(String title, int dayIndex, boolean taskCompleted){
+    public CompleteTaskOutputData(String title, int dayIndex, boolean taskCompleted) {
         this.title = title;
         this.dayIndex = dayIndex;
         this.successfullyCompleted = false;
