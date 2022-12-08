@@ -1,22 +1,16 @@
 package screens;
 
 import entities.Day;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ViewModelTest {
-    static ViewModel VIEW_MODEL = getViewModel();
     static TestingObserver observer = new TestingObserver();
-
-    @BeforeAll
-    static void testSetup() {
-        VIEW_MODEL = getViewModel();
-    }
 
     private static ViewModel getViewModel() {
         ArrayList<Day> days = new ArrayList<>();
@@ -30,7 +24,9 @@ class ViewModelTest {
 
     @Test
     void testInitializeWeekViewScreen() {
-        VIEW_MODEL.initializeWeekViewScreen();
+        ViewModel viewModel = getViewModel();
+
+        viewModel.initializeWeekViewScreen();
         assertEquals(6, observer.getDayIndex());
         assertEquals(new ArrayList<String>(), observer.getStartTimes());
         assertEquals(new ArrayList<String>(), observer.getEndTimes());
@@ -41,10 +37,28 @@ class ViewModelTest {
 
     @Test
     void testNewEvent() {
+        ViewModel viewModel = getViewModel();
+
+        viewModel.newEvent(1, "Relax", LocalTime.parse("15:30"), LocalTime.parse("19:45"));
+        assertEquals(1, observer.getDayIndex());
+        assertEquals(1, observer.getEventTitles().size());
+        assertEquals(1, observer.getStartTimes().size());
+        assertEquals(1, observer.getEndTimes().size());
+        assertEquals("15:30", observer.getStartTimes().get(0));
+        assertEquals("19:45", observer.getEndTimes().get(0));
+        assertEquals("Relax", observer.getEventTitles().get(0));
     }
 
     @Test
     void testNewTask() {
+        ViewModel viewModel = getViewModel();
+
+        viewModel.newTask(3, "Unlock the secrets of the universe");
+        assertEquals(3, observer.getDayIndex());
+        assertEquals(1, observer.getTaskTitles().size());
+        assertEquals(1, observer.getTaskCompletionStatuses().size());
+        assertEquals(false, observer.getTaskCompletionStatuses().get(0));
+        assertEquals("Unlock the secrets of the universe", observer.getTaskTitles().get(0));
     }
 
     @Test
@@ -53,6 +67,15 @@ class ViewModelTest {
 
     @Test
     void testModifyTask() {
+        ViewModel viewModel = getViewModel();
+
+        viewModel.newTask(3, "Unlock the secrets of the universe");
+        viewModel.modifyTask(3, "Unlock the secrets of the universe", "Clean room :(");
+        assertEquals(3, observer.getDayIndex());
+        assertEquals(1, observer.getTaskTitles().size());
+        assertEquals(1, observer.getTaskCompletionStatuses().size());
+        assertEquals(false, observer.getTaskCompletionStatuses().get(0));
+        assertEquals("Clean room :(", observer.getTaskTitles().get(0));
     }
 
     @Test
@@ -133,4 +156,5 @@ class ViewModelTest {
             return taskCompletionStatuses;
         }
     }
+
 }
