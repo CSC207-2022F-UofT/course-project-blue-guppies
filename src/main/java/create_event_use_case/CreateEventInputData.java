@@ -5,7 +5,7 @@ package create_event_use_case;
  * in the Controller class before the input boundary's implementation of create() is called with
  * the instance as a parameter.
  *
- * @author Anna Myllyniemi
+ * @author Anna Myllyniemi, Fardin Faruk
  */
 public class CreateEventInputData {
     private final String title;

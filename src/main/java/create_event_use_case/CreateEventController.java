@@ -1,12 +1,10 @@
 package create_event_use_case;
 
-import create_task_use_case.CreateTaskController;
-
 /**
  * Controller class for the Create Event use case. Invokes the application logic
  * given by the input boundary.
  *
- * @author Anna Myllyniemi
+ * @author Anna Myllyniemi, Fardin Faruk
  */
 public class CreateEventController {
     private final CreateEventInputBoundary inputBoundary;
