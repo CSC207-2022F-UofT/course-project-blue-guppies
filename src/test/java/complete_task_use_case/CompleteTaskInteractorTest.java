@@ -24,7 +24,6 @@ public class CompleteTaskInteractorTest {
     }
     @Test
     public void testFailCompleteTask(){
-        Task accessTask = new Task("Cricket1");
         DATA_ACCESS.getDays().get(0).getTasks().clear();
         CompleteTaskInteractor interactor = new CompleteTaskInteractor(PRESENTER, DATA_ACCESS);
         CompleteTaskInputData inputData = new CompleteTaskInputData(0, "Cricket", true);

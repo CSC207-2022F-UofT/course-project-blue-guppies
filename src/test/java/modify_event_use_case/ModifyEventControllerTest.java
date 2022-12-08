@@ -16,10 +16,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Daniel Livshits
  */
 class ModifyEventControllerTest {
-    ModifyEventDataAccess sampleDataAccess = new ModifyEventDataAccess();
-    ModifyEventPresenter samplePresenter = new ModifyEventPresenter();
-    ModifyEventInteractor sampleInteractor = new ModifyEventInteractor(samplePresenter, sampleDataAccess);
-    ModifyEventController sampleController = new ModifyEventController(sampleInteractor);
+    final ModifyEventDataAccess sampleDataAccess = new ModifyEventDataAccess();
+    final ModifyEventPresenter samplePresenter = new ModifyEventPresenter();
+    final ModifyEventInteractor sampleInteractor = new ModifyEventInteractor(samplePresenter, sampleDataAccess);
+    final ModifyEventController sampleController = new ModifyEventController(sampleInteractor);
 
     @Test
     void testModify() {

@@ -26,6 +26,4 @@ class CompleteTaskDsInputData {
         return this.title;
     }
 
-    protected boolean isTaskCompleted() {return this.taskCompleted; }
-
 }

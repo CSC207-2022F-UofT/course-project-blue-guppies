@@ -85,6 +85,10 @@ public class CreateEventScreen extends FormScreen {
      * @return an array of JRadioButtons representing the days of the week
      */
     private JRadioButton[] createRadioButtons() {
+        return getRadioButtons();
+    }
+
+    static JRadioButton[] getRadioButtons() {
         JRadioButton sundayButton = new JRadioButton("Sunday");
         JRadioButton mondayButton = new JRadioButton("Monday");
         JRadioButton tuesdayButton = new JRadioButton("Tuesday");
@@ -112,6 +116,10 @@ public class CreateEventScreen extends FormScreen {
         constraints.gridwidth = 1; // component spans 1 column
         constraints.gridy = 3; // row 3
         constraints.gridx = 1; // col 1
+        addPanel(panel, constraints, startTimeLabel, endTimeLabel, startTime, endTime);
+    }
+
+    static void addPanel(JPanel panel, GridBagConstraints constraints, JLabel startTimeLabel, JLabel endTimeLabel, JTextField startTime, JTextField endTime) {
         panel.add(startTimeLabel, constraints);
         constraints.gridx = 4; // col 4
         panel.add(endTimeLabel, constraints);

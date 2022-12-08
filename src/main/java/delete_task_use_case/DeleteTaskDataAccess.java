@@ -25,7 +25,7 @@ public class DeleteTaskDataAccess extends WeekDataAccess implements DeleteTaskDs
     public void save(DeleteTaskDsInputData dsInputData) {
         Day day = days.get(dsInputData.getDayIndex());
         HashMap<String, Task> tasks = day.getTasks();
-        Task deleted = tasks.remove(dsInputData.getTaskTitle());
+        tasks.remove(dsInputData.getTaskTitle());
         super.save();
     }
 

@@ -34,7 +34,7 @@ public class ClickTaskScreen extends JFrame implements ActionListener {
     private boolean taskCompleted = false;
 
     /**
-     * Creates a menu with delete button, modify button, and complete or uncomplete task button.
+     * Creates a menu with delete button, modify button, and complete or uncompleted task button.
      *
      * @param modifyTaskScreen Screen used for task modification
      * @param deleteTaskController Controller for delete task use case

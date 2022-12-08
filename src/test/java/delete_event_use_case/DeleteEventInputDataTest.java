@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteEventInputDataTest {
-    DeleteEventInputData inputData = new DeleteEventInputData(1, "CSC317 Kinematics");
+    final DeleteEventInputData inputData = new DeleteEventInputData(1, "CSC317 Kinematics");
 
     @Test
     void testGetTitle() {

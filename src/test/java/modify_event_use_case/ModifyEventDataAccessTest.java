@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Daniel Livshits
  */
 class ModifyEventDataAccessTest {
-    ModifyEventDataAccess dataAccess = new ModifyEventDataAccess();
+    final ModifyEventDataAccess dataAccess = new ModifyEventDataAccess();
 
     @Test
     void testSave() {
