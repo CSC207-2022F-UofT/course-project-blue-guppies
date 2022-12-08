@@ -4,10 +4,13 @@ import entities.Day;
 import entities.Event;
 import entities.Task;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -117,5 +120,16 @@ class ClearAllInteractorTest {
 
 
         ClearAllDataAccess.setDays(days);
+    }
+
+    @AfterEach
+    public void clearStorage(){
+        try {
+            PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
+            pw.close();
+        }
+        catch(IOException e){
+            return;
+        }
     }
 }

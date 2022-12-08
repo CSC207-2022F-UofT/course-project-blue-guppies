@@ -58,7 +58,7 @@ public class DataPersistenceTest {
         assertTrue(WeekDataAccess.days.get(5).getTasks().containsKey("Feed dog"));
         assertTrue(WeekDataAccess.days.get(5).getEvents().containsKey("Csc236"));
 
-        PrintWriter pw = new PrintWriter("storage.txt"); //deleting the contents of the file
+        PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
         pw.close();
         WeekDataAccess.readObject();
 

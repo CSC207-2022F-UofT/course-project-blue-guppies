@@ -57,7 +57,7 @@ public class WeekDataAccess implements Serializable {
      * @throws IOException
      */
     public static void writeObject(ArrayList<Day> days) throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream("storage.txt");
+        FileOutputStream fileOutputStream = new FileOutputStream("CleanCalendarStorage.txt");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(new ArrayList<Day>(days));
         objectOutputStream.flush();
@@ -70,9 +70,9 @@ public class WeekDataAccess implements Serializable {
      * @throws IOException
      */
     public static void readObject() throws ClassNotFoundException, IOException {
-        File file = new File("storage.txt");
+        File file = new File("CleanCalendarStorage.txt");
         if (file.length() != 0) {//program has been initialized, assuming some content has been added
-            FileInputStream fileInputStream = new FileInputStream("storage.txt");
+            FileInputStream fileInputStream = new FileInputStream("CleanCalendarStorage.txt");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             WeekDataAccess.days = (ArrayList<Day>) objectInputStream.readObject();
             objectInputStream.close();
@@ -86,6 +86,9 @@ public class WeekDataAccess implements Serializable {
         }
     }
 
+    /**
+     * Save method. Saves the contents of days into a .ser file to enforce data persistence.
+     */
     protected void save() {
         try{
             WeekDataAccess.writeObject(WeekDataAccess.days);
