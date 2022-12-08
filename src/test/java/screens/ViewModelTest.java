@@ -7,9 +7,11 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class ViewModelTest {
     static ViewModel VIEW_MODEL = getViewModel();
-    static ViewModelObserver observer = new testingObserver();
+    static TestingObserver observer = new TestingObserver();
 
     @BeforeAll
     static void testSetup() {
@@ -21,16 +23,20 @@ class ViewModelTest {
         for (int i = 0; i < 7; i++) {
             days.add(new Day(new HashMap<>(), new HashMap<>()));
         }
-        return new ViewModel(days);
+        ViewModel v = new ViewModel(days);
+        v.addObserver(observer);
+        return v;
     }
 
     @Test
     void testInitializeWeekViewScreen() {
-        VIEW_MODEL.addObserver();
-    }
-
-    @Test
-    void testAddObserver() {
+        VIEW_MODEL.initializeWeekViewScreen();
+        assertEquals(6, observer.getDayIndex());
+        assertEquals(new ArrayList<String>(), observer.getStartTimes());
+        assertEquals(new ArrayList<String>(), observer.getEndTimes());
+        assertEquals(new ArrayList<String>(), observer.getEventTitles());
+        assertEquals(new ArrayList<String>(), observer.getTaskTitles());
+        assertEquals(new ArrayList<Boolean>(), observer.getTaskCompletionStatuses());
     }
 
     @Test
@@ -77,18 +83,54 @@ class ViewModelTest {
     void testGetTaskCompletion() {
     }
 
-    private static class testingObserver implements ViewModelObserver {
+    private static class TestingObserver implements ViewModelObserver {
+        int dayIndex;
+        ArrayList<String> eventTitles;
+        ArrayList<String> startTimes;
+        ArrayList<String> endTimes;
+        ArrayList<String> taskTitles;
+        ArrayList<Boolean> taskCompletionStatuses;
+
 
         @Override
         public void updateEventSectionOnDay(int dayIndex, ArrayList<String> eventTitles, ArrayList<String> startTimes,
                                             ArrayList<String> endTimes) {
-            // Left empty on purpose.
+            this.dayIndex = dayIndex;
+            this.eventTitles = eventTitles;
+            this.startTimes = startTimes;
+            this.endTimes = endTimes;
         }
 
         @Override
         public void updateTaskSectionOnDay(int dayIndex, ArrayList<String> taskTitles,
                                            ArrayList<Boolean> taskCompletionStatuses) {
-            // Left empty on purpose.
+            this.dayIndex = dayIndex;
+            this.taskTitles = taskTitles;
+            this.taskCompletionStatuses = taskCompletionStatuses;
+        }
+
+        public int getDayIndex() {
+            return dayIndex;
+        }
+
+        public ArrayList<String> getEventTitles() {
+            return eventTitles;
+        }
+
+        public ArrayList<String> getStartTimes() {
+            return startTimes;
+        }
+
+        public ArrayList<String> getEndTimes() {
+            return endTimes;
+        }
+
+        public ArrayList<String> getTaskTitles() {
+            return taskTitles;
+        }
+
+        public ArrayList<Boolean> getTaskCompletionStatuses() {
+            return taskCompletionStatuses;
         }
     }
 }
