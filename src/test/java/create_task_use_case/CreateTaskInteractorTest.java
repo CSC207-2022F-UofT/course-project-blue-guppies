@@ -36,6 +36,7 @@ public class CreateTaskInteractorTest {
         CreateTaskInteractor createTaskInteractor = new CreateTaskInteractor(TASK_FACTORY, PRESENTER,
                 DATA_ACCESS);
         // Add Task twice to mock adding duplicate task on the same day
+        createTaskInteractor.create(inputData);
         CreateTaskOutputData createTaskOutputData = createTaskInteractor.create(inputData);
         assertEquals("There already exists a task with name: 'Update' on Tuesday",
                 createTaskOutputData.getErrorMessage());
