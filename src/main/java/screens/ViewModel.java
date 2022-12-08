@@ -176,7 +176,7 @@ public class ViewModel implements ViewModelBoundary {
             startTimes.add(event.startTime);
             endTimes.add(event.endTime);
         }
-        observers.get(0).updateEventSectionOnDay(dayIndex, titles, startTimes, endTimes);
+        //observers.get(0).updateEventSectionOnDay(dayIndex, titles, startTimes, endTimes);
     }
 
     private void updateInfoForAllTasksOnDay(int dayIndex) {
@@ -186,7 +186,7 @@ public class ViewModel implements ViewModelBoundary {
             titles.add(task.title);
             completionStatuses.add(task.completed);
         }
-        observers.get(0).updateTaskSectionOnDay(dayIndex, titles, completionStatuses);
+        //observers.get(0).updateTaskSectionOnDay(dayIndex, titles, completionStatuses);
     }
 
     private ViewModelEvent getEventByDayAndTitle(int dayIndex, String title) {

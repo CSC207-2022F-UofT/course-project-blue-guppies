@@ -13,10 +13,6 @@ public class ClearAllPresenter implements ClearAllOutputBoundary {
         this.viewModel = viewModel;
     }
 
-    public ClearAllPresenter() {
-        viewModel = null;
-    }
-
     /**
      * Sets success of the ClearAllOutputData instance to true.
      * @param outputData An instance of ClearAllOutputData.
@@ -24,9 +20,7 @@ public class ClearAllPresenter implements ClearAllOutputBoundary {
      */
     @Override
     public ClearAllOutputData prepareSuccessView(ClearAllOutputData outputData) {
-        if (viewModel != null) {
-            viewModel.clearAll();
-        }
+        viewModel.clearAll();
         outputData.setSuccess(true);
         return outputData;
     }
