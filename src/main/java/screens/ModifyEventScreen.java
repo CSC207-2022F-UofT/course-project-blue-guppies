@@ -65,7 +65,13 @@ public class ModifyEventScreen extends FormScreen {
         constraints.gridwidth = 1; // component spans 1 column
         constraints.gridy = 2; // row 2
         constraints.gridx = 0; // col 0
-        CreateEventScreen.addPanel(panel, constraints, startTimeLabel, endTimeLabel, startTime, endTime);
+        panel.add(startTimeLabel, constraints);
+        constraints.gridx = 4; // col 4
+        panel.add(endTimeLabel, constraints);
+        constraints.gridx = 2; // col 2
+        panel.add(startTime, constraints);
+        constraints.gridx = 5; // col 5
+        panel.add(endTime, constraints);
     }
 
 
