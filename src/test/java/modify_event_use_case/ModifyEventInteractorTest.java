@@ -5,6 +5,8 @@ import entities.Event;
 import entities.Task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import screens.ViewModel;
+import screens.ViewModelBoundary;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -17,9 +19,19 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Daniel Livshits
  */
 class ModifyEventInteractorTest {
+    static ViewModelBoundary VIEW_MODEL = getViewModel();
+
     ModifyEventDataAccess sampleDataAccess = new ModifyEventDataAccess();
-    ModifyEventPresenter samplePresenter = new ModifyEventPresenter();
+    ModifyEventPresenter samplePresenter = new ModifyEventPresenter(VIEW_MODEL);
     ModifyEventInteractor sampleInteractor = new ModifyEventInteractor(samplePresenter, sampleDataAccess);
+
+    private static ViewModel getViewModel() {
+        ArrayList<Day> days = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            days.add(new Day(new HashMap<>(), new HashMap<>()));
+        }
+        return new ViewModel(days);
+    }
 
     @Test
     void testModify() {

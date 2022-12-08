@@ -4,19 +4,31 @@ import entities.Day;
 import entities.Event;
 import entities.Task;
 import org.junit.jupiter.api.Test;
+import screens.ViewModel;
+import screens.ViewModelBoundary;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DeleteTaskControllerTest {
-    private final static DeleteTaskOutputBoundary OUTPUT_BOUNDARY = new DeleteTaskPresenter();
+    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static DeleteTaskOutputBoundary OUTPUT_BOUNDARY = new DeleteTaskPresenter(VIEW_MODEL);
     private final static DeleteTaskDataAccess DATA_ACCESS = new DeleteTaskDataAccess();
     private final static DeleteTaskDsGateway DS_GATEWAY = DATA_ACCESS;
     private final static DeleteTaskInteractor INPUT_BOUNDARY = new DeleteTaskInteractor(OUTPUT_BOUNDARY, DS_GATEWAY);
     private final static DeleteTaskController CONTROLLER = new DeleteTaskController(INPUT_BOUNDARY);
     private final static int DAY_INDEX = 5;
     private final static String TASK_TITLE = "Task";
+
+    private static ViewModel getViewModel() {
+        ArrayList<Day> days = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            days.add(new Day(new HashMap<>(), new HashMap<>()));
+        }
+        return new ViewModel(days);
+    }
 
     @Test
     void testDeleteTaskController() {

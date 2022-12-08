@@ -10,10 +10,6 @@ import screens.ViewModelBoundary;
 public class ModifyEventPresenter implements ModifyEventOutputBoundary {
     private final ViewModelBoundary viewModelBoundary;
 
-    public ModifyEventPresenter() {
-        viewModelBoundary = null;
-    }
-
     public ModifyEventPresenter(ViewModelBoundary viewModelBoundary) {
         this.viewModelBoundary = viewModelBoundary;
     }
@@ -26,10 +22,8 @@ public class ModifyEventPresenter implements ModifyEventOutputBoundary {
      */
     @Override
     public ModifyEventOutputData prepareSuccessView(ModifyEventOutputData outputData) {
-        if (viewModelBoundary != null) {
-            viewModelBoundary.modifyEvent(outputData.getDayIndex(), outputData.getTitle(), outputData.getNewTitle(),
-                    outputData.getNewStartTime(), outputData.getNewEndTime());
-        }
+        viewModelBoundary.modifyEvent(outputData.getDayIndex(), outputData.getTitle(), outputData.getNewTitle(),
+                outputData.getNewStartTime(), outputData.getNewEndTime());
         return outputData;
     }
 

@@ -11,6 +11,7 @@ import screens.ViewModelBoundary;
  */
 public class CreateTaskPresenter implements CreateTaskOutputBoundary {
     private final ViewModelBoundary viewModelBoundary;
+
     public CreateTaskPresenter(ViewModelBoundary viewModelBoundary) {
         this.viewModelBoundary = viewModelBoundary;
     }

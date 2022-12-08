@@ -4,9 +4,13 @@ import entities.Day;
 import entities.Event;
 import entities.Task;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
+import screens.ViewModel;
+import screens.ViewModelBoundary;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -14,6 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Raghav Arora
  */
 class ModifyTaskInteractorTest {
+    static ViewModelBoundary VIEW_MODEL = getViewModel();
+
     private final static ModifyTaskInputData inputData1 = new ModifyTaskInputData(
             0,"Another Sample Task", "Sample Task"
     );
@@ -23,11 +29,18 @@ class ModifyTaskInteractorTest {
     );
     private final static ModifyTaskDataAccess dataAccess = new ModifyTaskDataAccess();
     private final static ModifyTaskDsGateway dsGateway = dataAccess;
-    private final static ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter();
+    private final static ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter(VIEW_MODEL);
     private final static ModifyTaskInputBoundary inputBoundary = new ModifyTaskInteractor(
             outputBoundary, dsGateway
     );
 
+    private static ViewModel getViewModel() {
+        ArrayList<Day> days = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            days.add(new Day(new HashMap<>(), new HashMap<>()));
+        }
+        return new ViewModel(days);
+    }
 
     @Test
     public void testModifyTaskFailed(){

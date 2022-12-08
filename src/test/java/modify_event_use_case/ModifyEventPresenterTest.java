@@ -1,8 +1,13 @@
 package modify_event_use_case;
 
+import entities.Day;
 import org.junit.jupiter.api.Test;
+import screens.ViewModel;
+import screens.ViewModelBoundary;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,10 +16,19 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Daniel Livshits
  */
 class ModifyEventPresenterTest {
-    ModifyEventPresenter samplePresenter = new ModifyEventPresenter();
+    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    ModifyEventPresenter samplePresenter = new ModifyEventPresenter(VIEW_MODEL);
     ModifyEventOutputData outputData =  new ModifyEventOutputData("Team Mtg", 6, "Blue Guppies Meeting",
                 LocalTime.parse("15:00"), LocalTime.parse("16:00"));
 
+
+    private static ViewModel getViewModel() {
+        ArrayList<Day> days = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            days.add(new Day(new HashMap<>(), new HashMap<>()));
+        }
+        return new ViewModel(days);
+    }
 
     @Test
     void testPrepareSuccessView() {

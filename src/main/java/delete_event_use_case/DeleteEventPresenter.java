@@ -10,10 +10,6 @@ import screens.ViewModelBoundary;
 public class DeleteEventPresenter implements DeleteEventOutputBoundary {
     private final ViewModelBoundary viewModelBoundary;
 
-    public DeleteEventPresenter() {
-        viewModelBoundary = null;
-    }
-
     public DeleteEventPresenter(ViewModelBoundary viewModelBoundary) {
         this.viewModelBoundary = viewModelBoundary;
     }
@@ -27,9 +23,7 @@ public class DeleteEventPresenter implements DeleteEventOutputBoundary {
      */
     @Override
     public DeleteEventOutputData prepareSuccessView(DeleteEventOutputData eventOutputData) {
-        if (viewModelBoundary != null) {
-            viewModelBoundary.deleteEvent(eventOutputData.getDayIndex(), eventOutputData.getLabel());
-        }
+        viewModelBoundary.deleteEvent(eventOutputData.getDayIndex(), eventOutputData.getLabel());
         eventOutputData.setSuccess(true);
         return eventOutputData;
     }

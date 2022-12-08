@@ -12,10 +12,6 @@ import screens.ViewModelBoundary;
 public class ModifyTaskPresenter implements ModifyTaskOutputBoundary {
     private final ViewModelBoundary viewModelBoundary;
 
-    public ModifyTaskPresenter() {
-        viewModelBoundary = null;
-    }
-
     public ModifyTaskPresenter(ViewModelBoundary viewModelBoundary) {
         this.viewModelBoundary = viewModelBoundary;
     }
@@ -33,9 +29,7 @@ public class ModifyTaskPresenter implements ModifyTaskOutputBoundary {
     public ModifyTaskOutputData prepareSuccessView(ModifyTaskOutputData outputData) {
         outputData.setSuccessfullyModified(true);
         outputData.setErrorMessage("");
-        if (viewModelBoundary != null) {
-            viewModelBoundary.modifyTask(outputData.getDayIndex(), outputData.getOldTitle(), outputData.getTitle());
-        }
+        viewModelBoundary.modifyTask(outputData.getDayIndex(), outputData.getOldTitle(), outputData.getTitle());
         return outputData;
     }
 
