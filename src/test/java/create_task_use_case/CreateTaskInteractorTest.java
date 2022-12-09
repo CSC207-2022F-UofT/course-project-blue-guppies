@@ -33,7 +33,7 @@ public class CreateTaskInteractorTest {
     }
     @Test
     public void createTestSuccess(){
-        CreateTaskInputData inputData = new CreateTaskInputData("Finish Unit Test", "Tuesday");
+        CreateTaskInputData inputData = new CreateTaskInputData("Finish Unit Test", 2);
         CreateTaskInteractor createTaskInteractor = new CreateTaskInteractor(TASK_FACTORY, PRESENTER,
                 DATA_ACCESS );
         CreateTaskOutputData createTaskOutputData = createTaskInteractor.create(inputData);
@@ -47,11 +47,11 @@ public class CreateTaskInteractorTest {
     }
     @Test
     public void createTestFail(){
-        CreateTaskInputData inputData = new CreateTaskInputData("Update", "Tuesday");
+        CreateTaskInputData inputData = new CreateTaskInputData("Update", 2);
         CreateTaskInteractor createTaskInteractor = new CreateTaskInteractor(TASK_FACTORY, PRESENTER,
                 DATA_ACCESS);
         // Add Task twice to mock adding duplicate task on the same day
-        CreateTaskOutputData createTaskOutputDataTemp = createTaskInteractor.create(inputData);
+        createTaskInteractor.create(inputData);
         CreateTaskOutputData createTaskOutputData = createTaskInteractor.create(inputData);
         assertEquals("There already exists a task with name: 'Update' on Tuesday",
                 createTaskOutputData.getErrorMessage());

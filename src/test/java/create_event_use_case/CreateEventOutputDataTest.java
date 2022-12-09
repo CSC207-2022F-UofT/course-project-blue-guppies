@@ -11,12 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Raghav Arora, Anna Myllyniemi
  */
 class CreateEventOutputDataTest {
-    CreateEventOutputData outputData = new CreateEventOutputData(
+    final CreateEventOutputData outputData = new CreateEventOutputData(
             "Sample Event", LocalTime.parse("09:00"),
             LocalTime.parse("10:00"), 0
     );
 
-    CreateEventOutputData outputDataDefault = new CreateEventOutputData();
+    final CreateEventOutputData outputDataDefault = new CreateEventOutputData();
 
     @Test
     void testGetTitle() {

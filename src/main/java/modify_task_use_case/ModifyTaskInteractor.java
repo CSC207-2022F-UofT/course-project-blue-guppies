@@ -10,7 +10,7 @@ public class ModifyTaskInteractor implements ModifyTaskInputBoundary {
 
     private final ModifyTaskOutputBoundary outputBoundary;
     private final ModifyTaskDsGateway dsGateway;
-    private final String[] DAYSOFWEEK = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    private final String[] DAYS_OF_WEEK = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
     public ModifyTaskInteractor(
             ModifyTaskOutputBoundary outputBoundary,
@@ -38,7 +38,8 @@ public class ModifyTaskInteractor implements ModifyTaskInputBoundary {
         if (dsGateway.taskExistsByTitle(inputData.getNewTitle(), inputData.getDayIndex())) {
             return outputBoundary.prepareFailView(
                     outputData,
-                    "Task with name: '" + inputData.getNewTitle() + "' already exists for " + DAYSOFWEEK[inputData.getDayIndex()]
+                    "Task with name: '" + inputData.getNewTitle() + "' already exists for " +
+                            DAYS_OF_WEEK[inputData.getDayIndex()]
             );
         }
         ModifyTaskDsInputData dsInputData = new ModifyTaskDsInputData(

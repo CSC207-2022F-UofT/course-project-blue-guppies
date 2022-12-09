@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class CreateEventInputDataTest {
     private final static CreateEventInputData INPUT_DATA = new CreateEventInputData(
-            "Sample Event", "09:00", "10:00", "Sunday"
+            "Sample Event", "09:00", "10:00", 0
     );
 
     @Test
@@ -36,7 +36,7 @@ class CreateEventInputDataTest {
     @Test
     void testGetDayIndexMonday() {
         CreateEventInputData inputData1 = new CreateEventInputData(
-                "Sample Event", "09:00", "10:00", "Monday"
+                "Sample Event", "09:00", "10:00", 1
         );
         assertEquals(1, inputData1.getDayIndex());
     }
@@ -44,7 +44,7 @@ class CreateEventInputDataTest {
     @Test
     void testGetDayIndexTuesday() {
         CreateEventInputData inputData1 = new CreateEventInputData(
-                "Sample Event", "09:00", "10:00", "Tuesday"
+                "Sample Event", "09:00", "10:00", 2
         );
         assertEquals(2, inputData1.getDayIndex());
     }
@@ -52,7 +52,7 @@ class CreateEventInputDataTest {
     @Test
     void testGetDayIndexWednesday() {
         CreateEventInputData inputData1 = new CreateEventInputData(
-                "Sample Event", "09:00", "10:00", "Wednesday"
+                "Sample Event", "09:00", "10:00", 3
         );
         assertEquals(3, inputData1.getDayIndex());
     }
@@ -60,7 +60,7 @@ class CreateEventInputDataTest {
     @Test
     void testGetDayIndexThursday() {
         CreateEventInputData inputData1 = new CreateEventInputData(
-                "Sample Event", "09:00", "10:00", "Thursday"
+                "Sample Event", "09:00", "10:00", 4
         );
         assertEquals(4, inputData1.getDayIndex());
     }
@@ -68,7 +68,7 @@ class CreateEventInputDataTest {
     @Test
     void testGetDayIndexFriday() {
         CreateEventInputData inputData1 = new CreateEventInputData(
-                "Sample Event", "09:00", "10:00", "Friday"
+                "Sample Event", "09:00", "10:00", 5
         );
         assertEquals(5, inputData1.getDayIndex());
     }
@@ -76,7 +76,7 @@ class CreateEventInputDataTest {
     @Test
     void testGetDayIndexSaturday() {
         CreateEventInputData inputData1 = new CreateEventInputData(
-                "Sample Event", "09:00", "10:00", "Saturday"
+                "Sample Event", "09:00", "10:00", 6
         );
         assertEquals(6, inputData1.getDayIndex());
     }

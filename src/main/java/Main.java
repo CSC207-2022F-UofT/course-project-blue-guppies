@@ -7,8 +7,6 @@ import delete_event_use_case.*;
 import delete_task_use_case.*;
 import entities.EventFactory;
 import entities.TaskFactory;
-import data_access.*;
-import entities.Week;
 import modify_event_use_case.*;
 import modify_task_use_case.*;
 import screens.*;

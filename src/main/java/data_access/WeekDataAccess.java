@@ -20,7 +20,6 @@ public class WeekDataAccess implements Serializable {
     protected static ArrayList<Day> days = new ArrayList<>();
     private static long serialVersionUID = 1L;
 
-
     /**
      * Initializes days to a week with 7 empty days if it hasn't already been initialized.
      */

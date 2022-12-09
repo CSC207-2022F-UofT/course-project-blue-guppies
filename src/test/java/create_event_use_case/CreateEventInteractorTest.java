@@ -30,16 +30,16 @@ class CreateEventInteractorTest {
             DS_GATEWAY, OUTPUT_BOUNDARY, EVENT_FACTORY
     );
     private final static CreateEventInputData INPUT_DATA_1 = new CreateEventInputData(
-            "Sample Event", "09:00", "10:00", "Sunday"
+            "Sample Event", "09:00", "10:00", 0
     );
     private final static CreateEventInputData INPUT_DATA_2 = new CreateEventInputData(
-            "Sample Event", "09:00", "10:00", "Monday"
+            "Sample Event", "09:00", "10:00", 1
     );
     private final static CreateEventInputData INPUT_DATA_3 = new CreateEventInputData(
-            "Sample Event", "10:30", "11:30", "Sunday"
+            "Sample Event", "10:30", "11:30", 0
     );
     private final static CreateEventInputData INPUT_DATA_4 = new CreateEventInputData(
-            "Another Sample Event", "09:30", "11:00", "Sunday"
+            "Another Sample Event", "09:30", "11:00", 0
     );
 
     private static ViewModel getViewModel() {
@@ -169,8 +169,7 @@ class CreateEventInteractorTest {
 
     @Test
     void testCreateEventStartTimeNotBeforeEndTime() {
-        CreateEventInputData inputData = new CreateEventInputData("Relax", "11:30", "10:30",
-                "Wednesday");
+        CreateEventInputData inputData = new CreateEventInputData("Relax", "11:30", "10:30", 3);
         CreateEventOutputData outputData = INPUT_BOUNDARY.createEvent(inputData);
         assertFalse(outputData.isSuccess());
         assertEquals("Start time is not before end time.", outputData.getErrorMessage());
@@ -179,8 +178,7 @@ class CreateEventInteractorTest {
 
     @Test
     void testCreateEventStartTimeNotValid() {
-        CreateEventInputData inputData = new CreateEventInputData("Cry", "1:30", "10:30",
-                "Thursday");
+        CreateEventInputData inputData = new CreateEventInputData("Cry", "1:30", "10:30", 4);
         CreateEventOutputData outputData = INPUT_BOUNDARY.createEvent(inputData);
         assertFalse(outputData.isSuccess());
         assertEquals("Start time is not a valid time. \nEx: 21:39", outputData.getErrorMessage());
@@ -189,8 +187,7 @@ class CreateEventInteractorTest {
 
     @Test
     void testCreateEventEndTimeNotValid() {
-        CreateEventInputData inputData = new CreateEventInputData("Laugh", "11:30", "12:60",
-                "Thursday");
+        CreateEventInputData inputData = new CreateEventInputData("Laugh", "11:30", "12:60", 4);
         CreateEventOutputData outputData = INPUT_BOUNDARY.createEvent(inputData);
         assertFalse(outputData.isSuccess());
         assertEquals("End time is not a valid time. \nEx: 21:39", outputData.getErrorMessage());

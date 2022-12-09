@@ -21,7 +21,7 @@ public class ModifyEventController {
      * @param newTitle - The new title for the event being modified.
      * @param newStart - The new start time for the event being modified.
      * @param newEnd   - The new end time for the event being modified.
-     * @return An instance of outputdata with the necessary information about the modification of the event.
+     * @return An instance of output data with the necessary information about the modification of the event.
      */
     public ModifyEventOutputData modify(String title, int dayIndex, String newTitle, String newStart, String newEnd) {
         ModifyEventInputData inputData = new ModifyEventInputData(title, dayIndex, newTitle, newStart, newEnd);

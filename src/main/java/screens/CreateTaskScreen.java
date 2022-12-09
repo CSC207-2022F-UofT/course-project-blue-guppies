@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+import static screens.CreateEventScreen.getRadioButtons;
+
 /**
  * Creates a screen with the form a user fills out when making a new task consisting of 7 radio
  * buttons representing the days of the week; a text field for the task title; and create and cancel
@@ -74,18 +76,7 @@ public class CreateTaskScreen extends FormScreen {
      * @return an array of JRadioButtons representing the days of the week
      */
     private JRadioButton[] createRadioButtons() {
-        JRadioButton sundayButton = new JRadioButton("Sunday");
-        JRadioButton mondayButton = new JRadioButton("Monday");
-        JRadioButton tuesdayButton = new JRadioButton("Tuesday");
-        JRadioButton wednesdayButton = new JRadioButton("Wednesday");
-        JRadioButton thursdayButton = new JRadioButton("Thursday");
-        JRadioButton fridayButton = new JRadioButton("Friday");
-        JRadioButton saturdayButton = new JRadioButton("Saturday");
-
-        sundayButton.setSelected(true);
-
-        return new JRadioButton[]{sundayButton, mondayButton, tuesdayButton,
-                wednesdayButton, thursdayButton, fridayButton, saturdayButton};
+        return getRadioButtons();
     }
 
     /**

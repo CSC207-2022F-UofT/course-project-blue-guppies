@@ -19,7 +19,7 @@ public class ModifyEventOutputData {
      */
     private boolean successfullyModified = true;
     /**
-     * if the modification was not successful, represents the reason it failed. Otherwise null.
+     * if the modification was not successful, represents the reason it failed. Otherwise, null.
      */
     private String failureMessage = null;
 

@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class CreateEventDsInputDataTest {
     private final static EventFactory EVENT_FACTORY = new EventFactory();
-    static Event EVENT = EVENT_FACTORY.createEvent("Sample Event", LocalTime.parse("09:00"),
+    static final Event EVENT = EVENT_FACTORY.createEvent("Sample Event", LocalTime.parse("09:00"),
             LocalTime.parse("10:00"));
 
     private final static CreateEventDsInputData DS_INPUT_DATA = new CreateEventDsInputData(0, EVENT);

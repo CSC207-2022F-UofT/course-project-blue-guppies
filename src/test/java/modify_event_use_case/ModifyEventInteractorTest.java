@@ -23,10 +23,9 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class ModifyEventInteractorTest {
     static ViewModelBoundary VIEW_MODEL = getViewModel();
-
-    ModifyEventDataAccess sampleDataAccess = new ModifyEventDataAccess();
-    ModifyEventPresenter samplePresenter = new ModifyEventPresenter(VIEW_MODEL);
-    ModifyEventInteractor sampleInteractor = new ModifyEventInteractor(samplePresenter, sampleDataAccess);
+    final ModifyEventDataAccess sampleDataAccess = new ModifyEventDataAccess();
+    final ModifyEventPresenter samplePresenter = new ModifyEventPresenter(VIEW_MODEL);
+    final ModifyEventInteractor sampleInteractor = new ModifyEventInteractor(samplePresenter, sampleDataAccess);
 
     private static ViewModel getViewModel() {
         ArrayList<Day> days = new ArrayList<>();
