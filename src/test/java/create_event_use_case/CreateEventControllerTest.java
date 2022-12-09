@@ -3,7 +3,6 @@ package create_event_use_case;
 import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
-import entities.EventFactory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,7 +21,6 @@ class CreateEventControllerTest {
     private final static CreateEventOutputBoundary OUTPUT_BOUNDARY = new CreateEventPresenter();
     private final static CreateEventDataAccess DATA_ACCESS = new CreateEventDataAccess();
     private final static CreateEventDsGateway DS_GATEWAY = DATA_ACCESS;
-    private final static EventFactory EVENT_FACTORY = new EventFactory();
     private final static String TITLE = "Sample Event";
     private final static String START_TIME = "09:00";
     private final static String END_TIME = "10:00";
@@ -36,7 +34,7 @@ class CreateEventControllerTest {
         WeekDataAccess.getDays().set(0, referenceDay);
 
         CreateEventInputBoundary inputBoundary = new CreateEventInteractor(
-                DS_GATEWAY, OUTPUT_BOUNDARY, EVENT_FACTORY
+                DS_GATEWAY, OUTPUT_BOUNDARY
         );
         CreateEventController controller = new CreateEventController(inputBoundary);
         CreateEventOutputData outputData = controller.create(

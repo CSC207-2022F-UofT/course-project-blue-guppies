@@ -1,6 +1,5 @@
 package create_event_use_case;
 
-import entities.EventFactory;
 import entities.Event;
 
 import java.time.LocalTime;
@@ -14,17 +13,14 @@ import java.time.LocalTime;
 public class CreateEventInteractor implements CreateEventInputBoundary {
     private final CreateEventDsGateway dsGateway;
     private final CreateEventOutputBoundary outputBoundary;
-    private final EventFactory factory;
 
     private final static String[] DAYS_OF_WEEK = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
             "Saturday"};
 
     public CreateEventInteractor(CreateEventDsGateway dsGateway,
-                                 CreateEventOutputBoundary outputBoundary,
-                                 EventFactory factory) {
+                                 CreateEventOutputBoundary outputBoundary) {
         this.dsGateway = dsGateway;
         this.outputBoundary = outputBoundary;
-        this.factory = factory;
     }
 
     /**
@@ -61,7 +57,7 @@ public class CreateEventInteractor implements CreateEventInputBoundary {
                     "This event conflicts with an existing event.");
         }
 
-        Event event = factory.createEvent(inputData.getTitle(), startTime, endTime);
+        Event event = new Event(inputData.getTitle(), startTime, endTime);
 
         outputData = new CreateEventOutputData(
                 inputData.getTitle(), startTime,

@@ -3,7 +3,6 @@ package create_event_use_case;
 import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
-import entities.EventFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -45,8 +44,7 @@ class CreateEventDataAccessTest {
 
     @Test
     void testSave() {
-        EventFactory eventFactory = new EventFactory();
-        Event event = eventFactory.createEvent("Sample Event", LocalTime.parse("09:00"),
+        Event event = new Event("Sample Event", LocalTime.parse("09:00"),
                 LocalTime.parse("10:00"));
         CreateEventDsInputData dsInputData =  new CreateEventDsInputData(0, event);
         DS_GATEWAY.save(dsInputData);
@@ -68,8 +66,7 @@ class CreateEventDataAccessTest {
 
     @Test
     void testIsTimeConflictNoConflictingEvents() {
-        EventFactory eventFactory = new EventFactory();
-        Event event = eventFactory.createEvent("Study", LocalTime.parse("09:00"),
+        Event event = new Event("Study", LocalTime.parse("09:00"),
                 LocalTime.parse("10:00"));
         DS_GATEWAY.save(new CreateEventDsInputData(2, event));
         assertFalse(DS_GATEWAY.isTimeConflict(2, LocalTime.parse("11:30"), LocalTime.parse("12:30")));
@@ -77,8 +74,7 @@ class CreateEventDataAccessTest {
 
     @Test
     void testIsTimeConflictConflictingEventBefore() {
-        EventFactory eventFactory = new EventFactory();
-        Event event = eventFactory.createEvent("Study", LocalTime.parse("09:00"),
+        Event event = new Event("Study", LocalTime.parse("09:00"),
                 LocalTime.parse("12:00"));
         DS_GATEWAY.save(new CreateEventDsInputData(5, event));
         assertTrue(DS_GATEWAY.isTimeConflict(5, LocalTime.parse("11:30"), LocalTime.parse("12:30")));
@@ -86,8 +82,7 @@ class CreateEventDataAccessTest {
 
     @Test
     void testIsTimeConflictConsecutiveEvents() {
-        EventFactory eventFactory = new EventFactory();
-        Event event = eventFactory.createEvent("Study", LocalTime.parse("09:00"),
+        Event event = new Event("Study", LocalTime.parse("09:00"),
                 LocalTime.parse("12:00"));
         DS_GATEWAY.save(new CreateEventDsInputData(6, event));
         assertFalse(DS_GATEWAY.isTimeConflict(6, LocalTime.parse("08:30"), LocalTime.parse("09:00")));
@@ -95,8 +90,7 @@ class CreateEventDataAccessTest {
 
     @Test
     void testIsTimeConflictConflictingEventAfter() {
-        EventFactory eventFactory = new EventFactory();
-        Event event = eventFactory.createEvent("Study", LocalTime.parse("09:00"),
+        Event event = new Event("Study", LocalTime.parse("09:00"),
                 LocalTime.parse("12:00"));
         DS_GATEWAY.save(new CreateEventDsInputData(1, event));
         assertTrue(DS_GATEWAY.isTimeConflict(1, LocalTime.parse("08:30"), LocalTime.parse("09:01")));

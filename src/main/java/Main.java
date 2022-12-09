@@ -5,7 +5,6 @@ import create_task_use_case.*;
 import data_access.WeekDataAccess;
 import delete_event_use_case.*;
 import delete_task_use_case.*;
-import entities.EventFactory;
 import entities.TaskFactory;
 import modify_event_use_case.*;
 import modify_task_use_case.*;
@@ -25,9 +24,8 @@ public class Main {
         // Initialize create event classes
         CreateEventOutputBoundary createEventPresenter = new CreateEventPresenter(viewModel);
         CreateEventDsGateway createEventDsGateway = new CreateEventDataAccess();
-        EventFactory eventFactory = new EventFactory();
         CreateEventInputBoundary createEventInteractor = new CreateEventInteractor(
-                createEventDsGateway, createEventPresenter, eventFactory);
+                createEventDsGateway, createEventPresenter);
         CreateEventController createEventController = new CreateEventController(createEventInteractor);
 
         // Initialize modify event classes
