@@ -1,5 +1,5 @@
 package strategies;
 
 public interface DayToIndexConverter {
-    public int convertDayNameToIndex(String dayName);
+    int convertDayNameToIndex(String dayName);
 }
