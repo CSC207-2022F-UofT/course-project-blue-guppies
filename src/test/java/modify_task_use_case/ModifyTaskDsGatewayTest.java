@@ -1,5 +1,6 @@
 package modify_task_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
 import entities.Task;
@@ -32,7 +33,7 @@ class ModifyTaskDsGatewayTest {
         tasks.put("Sample Task 2", task2);
 
         Day day = new Day(tasks, events);
-        dataAccess.getDays().set(0, day);
+        WeekDataAccess.getDays().set(0, day);
 
         assertFalse(dsGateway.taskExistsByTitle("New Sample Task 1", 0));
         assertTrue(dsGateway.taskExistsByTitle("Sample Task 2", 0));
@@ -49,11 +50,11 @@ class ModifyTaskDsGatewayTest {
         tasks.put("Sample Task 2", task2);
 
         Day day = new Day(tasks, events);
-        dataAccess.getDays().set(0, day);
+        WeekDataAccess.getDays().set(0, day);
 
         // change the name of "Sample Task 1" to "New Sample Task 1"
         dsGateway.save(dsInputData);
-        Day day0 = dataAccess.getDays().get(0);
+        Day day0 = WeekDataAccess.getDays().get(0);
         assertFalse(day0.getTasks().containsKey("Sample Task 1"));
         assertTrue(day0.getTasks().containsKey("New Sample Task 1"));
     }

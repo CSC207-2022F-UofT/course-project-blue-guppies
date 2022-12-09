@@ -1,5 +1,6 @@
 package delete_task_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
 import entities.Task;
@@ -25,11 +26,11 @@ class DeleteTaskDataAccessTest {
         tasks.put("Homework", task1);
         tasks.put("Test", task2);
         Day day = new Day(tasks, events);
-        DATA_ACCESS.getDays().set(3, day);
+        WeekDataAccess.getDays().set(3, day);
         DATA_ACCESS.save(INPUT_DATA);
 
-        assertFalse(DATA_ACCESS.getDays().get(3).getTasks().containsKey("Homework"));
-        assertTrue(DATA_ACCESS.getDays().get(3).getTasks().containsKey("Test"));
+        assertFalse(WeekDataAccess.getDays().get(3).getTasks().containsKey("Homework"));
+        assertTrue(WeekDataAccess.getDays().get(3).getTasks().containsKey("Test"));
     }
 
     @Test
@@ -41,7 +42,7 @@ class DeleteTaskDataAccessTest {
         tasks.put("Homework", task1);
         tasks.put("Test", task2);
         Day day = new Day(tasks, events);
-        DATA_ACCESS.getDays().set(3, day);
+        WeekDataAccess.getDays().set(3, day);
 
         assertTrue(DATA_ACCESS.taskExistsInDay(3, "Homework"));
         assertFalse(DATA_ACCESS.taskExistsInDay(3, "Clean Room"));
@@ -53,8 +54,7 @@ class DeleteTaskDataAccessTest {
             PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
             pw.close();
         }
-        catch(IOException e){
-            return;
+        catch(IOException ignored){
         }
     }
 }

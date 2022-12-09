@@ -1,5 +1,6 @@
 package complete_task_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Task;
 import org.junit.jupiter.api.AfterEach;
@@ -23,7 +24,7 @@ public class CompleteTaskControllerTest {
         CompleteTaskInteractor interactor = new CompleteTaskInteractor(PRESENTER, DATA_ACCESS);
         CompleteTaskController controller = new CompleteTaskController(interactor);
         Task task = new Task("Daniel");
-        ArrayList<Day> days = DATA_ACCESS.getDays();
+        ArrayList<Day> days = WeekDataAccess.getDays();
         Day day = days.get(0);
         day.getTasks().put(task.getTitle(), task);
         CompleteTaskOutputData outputData = controller.completeTask(0, "Daniel", false);
@@ -37,8 +38,7 @@ public class CompleteTaskControllerTest {
             PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
             pw.close();
         }
-        catch(IOException e){
-            return;
+        catch(IOException ignored){
         }
     }
 }

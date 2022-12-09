@@ -38,8 +38,7 @@ public class CreateTaskControllerTest {
             PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
             pw.close();
         }
-        catch(IOException e){
-            return;
+        catch(IOException ignored){
         }
     }
 }

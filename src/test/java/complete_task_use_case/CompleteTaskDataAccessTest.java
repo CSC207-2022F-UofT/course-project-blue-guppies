@@ -1,5 +1,6 @@
 package complete_task_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Task;
 import org.junit.jupiter.api.AfterEach;
@@ -26,7 +27,7 @@ public class CompleteTaskDataAccessTest {
     @Test
     public void testExistsByTitleWithDuplicateTask(){
         CompleteTaskDataAccess dataAccess = new CompleteTaskDataAccess();
-        ArrayList<Day> days = dataAccess.getDays();
+        ArrayList<Day> days = WeekDataAccess.getDays();
         Day referenceDay = days.get(0);
         HashMap<String, Task> tasks = referenceDay.getTasks();
         Task newTask = new Task("Sample Task");
@@ -40,9 +41,9 @@ public class CompleteTaskDataAccessTest {
         CompleteTaskDataAccess dataAccess = new CompleteTaskDataAccess();
         Task dataAccessTask = new Task("Watch World Cup");
         CompleteTaskDsInputData task = new CompleteTaskDsInputData(0, "Watch World Cup");
-        dataAccess.getDays().get(0).getTasks().put(dataAccessTask.getTitle(), dataAccessTask);
+        WeekDataAccess.getDays().get(0).getTasks().put(dataAccessTask.getTitle(), dataAccessTask);
         dataAccess.save(task);
-        HashMap<String, Task> tasks = dataAccess.getDays().get(0).getTasks();
+        HashMap<String, Task> tasks = WeekDataAccess.getDays().get(0).getTasks();
         Task taskCheck = tasks.get(task.getTitle());
         assertTrue(taskCheck.getCompleted());
     }
@@ -53,8 +54,7 @@ public class CompleteTaskDataAccessTest {
             PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
             pw.close();
         }
-        catch(IOException e){
-            return;
+        catch(IOException ignored){
         }
     }
 }

@@ -3,9 +3,6 @@ package data_access;
 import entities.Day;
 import entities.Event;
 import entities.Task;
-import entities.Week;
-import modify_event_use_case.ModifyEventDataAccess;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;

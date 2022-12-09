@@ -1,5 +1,6 @@
 package delete_task_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
 import entities.Task;
@@ -28,15 +29,15 @@ class DeleteTaskInteractorTest {
         HashMap<String, Event> events = new HashMap<>();
         tasks.put("Task", task);
         Day day = new Day(tasks, events);
-        DATA_ACCESS.getDays().set(5, day);
+        WeekDataAccess.getDays().set(5, day);
 
         DeleteTaskInputBoundary inputBoundary = new DeleteTaskInteractor(OUTPUT_BOUNDARY, DS_GATEWAY);
         DeleteTaskOutputData outputData = inputBoundary.deleteTask(INPUT_DATA_1);
 
         assertEquals(5, outputData.getDayIndex());
         assertEquals("Task", outputData.getTaskTitle());
-        assertFalse(DATA_ACCESS.getDays().get(5).getTasks().containsKey("Task"));
-        assertFalse(DATA_ACCESS.getDays().get(5).getTasks().containsValue(task));
+        assertFalse(WeekDataAccess.getDays().get(5).getTasks().containsKey("Task"));
+        assertFalse(WeekDataAccess.getDays().get(5).getTasks().containsValue(task));
         assertTrue(outputData.isSuccess());
     }
 
@@ -48,14 +49,14 @@ class DeleteTaskInteractorTest {
         HashMap<String, Event> events = new HashMap<>();
         tasks.put("Task", task);
         Day day = new Day(tasks, events);
-        DATA_ACCESS.getDays().set(5, day);
+        WeekDataAccess.getDays().set(5, day);
 
         DeleteTaskInputBoundary inputBoundary = new DeleteTaskInteractor(OUTPUT_BOUNDARY, DS_GATEWAY);
         DeleteTaskOutputData outputData = inputBoundary.deleteTask(INPUT_DATA_2);
 
         assertEquals("Task Title: \"Task2\" does not exist for day Sunday", outputData.getErrorMessage());
         assertFalse(outputData.isSuccess());
-        assertTrue(DATA_ACCESS.getDays().get(5).getTasks().containsKey("Task"));
+        assertTrue(WeekDataAccess.getDays().get(5).getTasks().containsKey("Task"));
     }
 
     @AfterEach
@@ -64,8 +65,7 @@ class DeleteTaskInteractorTest {
             PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
             pw.close();
         }
-        catch(IOException e){
-            return;
+        catch(IOException ignored){
         }
     }
 }
