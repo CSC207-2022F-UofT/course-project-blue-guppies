@@ -9,7 +9,7 @@ package modify_task_use_case;
 class ModifyTaskDsInputData {
     private final int dayIndex;
     private final String newTitle;
-    private String title;
+    private final String title;
 
     ModifyTaskDsInputData(int dayIndex, String newTitle, String title) {
         this.dayIndex = dayIndex;

@@ -20,7 +20,7 @@ import screens.ViewModelBoundary;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClearAllInteractorTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     private final static ClearAllPresenter OUTPUT_BOUNDARY = new ClearAllPresenter(VIEW_MODEL);
     private final static ClearAllDataAccess DATA_ACCESS = new ClearAllDataAccess();
     private final static ClearAllDsGateway DS_GATEWAY = DATA_ACCESS;

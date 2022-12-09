@@ -17,10 +17,11 @@ import java.io.PrintWriter;
 import static org.junit.jupiter.api.Assertions.*;
 /**
  * Task Creation Controller Test Cases.
+ *
  * @author Fardin Faruk
  */
 public class CreateTaskControllerTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     private final static CreateTaskPresenter PRESENTER = new CreateTaskPresenter(VIEW_MODEL);
     private final static CreateTaskDataAccess DATA_ACCESS = new CreateTaskDataAccess();
     private final static TaskFactory TASK_FACTORY = new TaskFactory();

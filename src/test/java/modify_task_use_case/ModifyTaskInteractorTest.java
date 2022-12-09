@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Raghav Arora
  */
 class ModifyTaskInteractorTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
 
     private final static ModifyTaskInputData inputData1 = new ModifyTaskInputData(
             0,"Another Sample Task", "Sample Task"

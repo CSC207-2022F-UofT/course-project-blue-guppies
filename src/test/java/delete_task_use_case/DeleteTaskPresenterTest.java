@@ -11,7 +11,7 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteTaskPresenterTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     private final static DeleteTaskOutputData OUTPUT_DATA = new DeleteTaskOutputData(
             5, "Task");
     private final static DeleteTaskOutputBoundary OUTPUT_BOUNDARY = new DeleteTaskPresenter(VIEW_MODEL);

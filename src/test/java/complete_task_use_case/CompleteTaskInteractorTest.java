@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Fardin Faruk
  */
 public class CompleteTaskInteractorTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     public final static CompleteTaskOutputBoundary PRESENTER = new CompleteTaskPresenter(VIEW_MODEL);
     public final static CompleteTaskDataAccess DATA_ACCESS = new CompleteTaskDataAccess();
 

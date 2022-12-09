@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Fardin Faruk
  */
 public class CompleteTaskControllerTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     private final static CompleteTaskPresenter PRESENTER = new CompleteTaskPresenter(VIEW_MODEL);
     private final static CompleteTaskDataAccess DATA_ACCESS = new CompleteTaskDataAccess();
     

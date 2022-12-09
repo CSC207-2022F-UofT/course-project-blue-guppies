@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Raghav Arora, Anna Myllyniemi
  */
 class CreateEventInteractorTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     private final static CreateEventOutputBoundary OUTPUT_BOUNDARY = new CreateEventPresenter(VIEW_MODEL);
     private final static CreateEventDataAccess DATA_ACCESS = new CreateEventDataAccess();
     private final static CreateEventDsGateway DS_GATEWAY = DATA_ACCESS;

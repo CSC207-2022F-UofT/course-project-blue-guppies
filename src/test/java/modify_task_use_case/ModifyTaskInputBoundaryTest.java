@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Raghav Arora
  */
 public class ModifyTaskInputBoundaryTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     private final static ModifyTaskPresenter presenter = new ModifyTaskPresenter(VIEW_MODEL);
     private final static ModifyTaskOutputBoundary outputBoundary = presenter;
     private final static ModifyTaskDataAccess dataAccess = new ModifyTaskDataAccess();

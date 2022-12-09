@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Daniel Livshits
  */
 class ModifyEventPresenterTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     final ModifyEventPresenter samplePresenter = new ModifyEventPresenter(VIEW_MODEL);
     final ModifyEventOutputData outputData =  new ModifyEventOutputData("Team Mtg", 6, "Blue Guppies Meeting",
             LocalTime.parse("15:00"), LocalTime.parse("16:00"));

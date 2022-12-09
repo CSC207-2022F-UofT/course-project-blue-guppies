@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Raghav Arora
  */
 public class ModifyTaskOutputBoundaryTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
 
     // task and event instances (and maps) to be used across tests.
     private final static ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter(VIEW_MODEL);

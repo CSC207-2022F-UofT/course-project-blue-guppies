@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 class ClearAllPresenterTest {
 
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
 
     private static ViewModel getViewModel() {
         ArrayList<Day> days = new ArrayList<>();

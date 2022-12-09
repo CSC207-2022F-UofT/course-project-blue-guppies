@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Fardin Faruk
  */
 public class CompleteTaskPresenterTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
 
     private static ViewModel getViewModel() {
         ArrayList<Day> days = new ArrayList<>();

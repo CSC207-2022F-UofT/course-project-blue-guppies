@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Raghav Arora
  */
 class ModifyTaskPresenterTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     private final static ModifyTaskOutputData outputData = new ModifyTaskOutputData(
             "Sample Task", 0, "old sample task"
     );

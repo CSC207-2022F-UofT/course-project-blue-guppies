@@ -20,7 +20,7 @@ import screens.ViewModelBoundary;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteEventInteractorTest extends WeekDataAccess {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
 
     private final static DeleteEventInputData INPUT_DATA = new DeleteEventInputData(
             5, "Event");

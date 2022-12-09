@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Daniel Livshits
  */
 class ModifyEventInteractorTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     final ModifyEventDataAccess sampleDataAccess = new ModifyEventDataAccess();
     final ModifyEventPresenter samplePresenter = new ModifyEventPresenter(VIEW_MODEL);
     final ModifyEventInteractor sampleInteractor = new ModifyEventInteractor(samplePresenter, sampleDataAccess);

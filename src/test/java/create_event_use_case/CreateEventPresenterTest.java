@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Raghav Arora, Anna Myllyniemi
  */
 class CreateEventPresenterTest {
-    static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     private final static CreateEventOutputBoundary OUTPUT_BOUNDARY = new CreateEventPresenter(VIEW_MODEL);
     private final static CreateEventOutputData OUTPUT_DATA = new CreateEventOutputData(
             "Event", LocalTime.parse("09:00"), LocalTime.parse("10:00"), 0
