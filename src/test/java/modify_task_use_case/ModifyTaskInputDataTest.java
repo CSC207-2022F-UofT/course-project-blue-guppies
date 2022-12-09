@@ -27,9 +27,4 @@ public class ModifyTaskInputDataTest {
         assertEquals("Title", inputData.getTitle());
     }
 
-    @Test
-    void testSetTitle() {
-        inputData.setTitle("Very New Title");
-        assertEquals("Very New Title", inputData.getTitle());
-    }
 }
