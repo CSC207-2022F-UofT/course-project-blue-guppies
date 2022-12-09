@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 /**
  * Day class for use in data access.
+ *
  * @author Daniel Livshits
  */
 public class Day implements Serializable {
@@ -13,7 +14,7 @@ public class Day implements Serializable {
     private HashMap<String, Event> events;
 
     /**
-     * @param tasks the tasks to be stored in the day, with their titles as keys
+     * @param tasks  the tasks to be stored in the day, with their titles as keys
      * @param events the events to be stored in the day, with their titles as keys
      */
     //this constructor will be useful for data persistence later.
@@ -30,7 +31,7 @@ public class Day implements Serializable {
         return events;
     }
 
-    public void setTasks(HashMap<String, Task> tasks){
+    public void setTasks(HashMap<String, Task> tasks) {
         this.tasks = tasks;
     }
 

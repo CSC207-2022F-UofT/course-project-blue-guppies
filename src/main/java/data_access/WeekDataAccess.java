@@ -9,6 +9,7 @@ import java.util.HashMap;
 /**
  * The superclass for data access, with a static attribute and private method to be shared across all create_event_use_case.CreateEventPresenter.data_access.DataAccess
  * classes.
+ *
  * @author Daniel Livshits, Khizer Ahmad
  */
 public class WeekDataAccess implements Serializable {
@@ -24,8 +25,8 @@ public class WeekDataAccess implements Serializable {
      * Initializes days to a week with 7 empty days if it hasn't already been initialized.
      */
     public WeekDataAccess() {
-        if(days.isEmpty()){
-            for(int i = 0; i < 7; i++){
+        if (days.isEmpty()) {
+            for (int i = 0; i < 7; i++) {
                 Day emptyDay = new Day(new HashMap<>(), new HashMap<>());
                 days.add(emptyDay);
             }
@@ -42,6 +43,7 @@ public class WeekDataAccess implements Serializable {
 
     /**
      * Writes the contents of the days class variable onto a .ser file, persisting data
+     *
      * @param days an ArrayList whose indices contain Day objects that contain
      *             two hashmaps that contain events and tasks separately, representing the
      *             week schedule
@@ -64,10 +66,9 @@ public class WeekDataAccess implements Serializable {
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             WeekDataAccess.days = (ArrayList<Day>) objectInputStream.readObject();
             objectInputStream.close();
-        }
-        else {
+        } else {
             WeekDataAccess.days = new ArrayList<>();
-            for(int i = 0; i < 7; i++) {
+            for (int i = 0; i < 7; i++) {
                 Day emptyDay = new Day(new HashMap<>(), new HashMap<>());
                 days.add(emptyDay);
             }
@@ -78,7 +79,7 @@ public class WeekDataAccess implements Serializable {
      * Save method. Saves the contents of days into a .ser file to enforce data persistence.
      */
     protected void save() {
-        try{
+        try {
             WeekDataAccess.writeObject(WeekDataAccess.days);
         } catch (IOException ignored) {
         }

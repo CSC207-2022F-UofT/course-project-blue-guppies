@@ -101,7 +101,7 @@ public class Main {
         eventMenu.setVisible(false);
 
         Map<String, JFrame> screens = new HashMap<>();
-        Map<String, Object>  controllers = new HashMap<>();
+        Map<String, Object> controllers = new HashMap<>();
 
         controllers.put("clear all", clearAllController);
 

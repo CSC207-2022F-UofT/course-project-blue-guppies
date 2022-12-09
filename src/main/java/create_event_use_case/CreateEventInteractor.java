@@ -29,8 +29,8 @@ public class CreateEventInteractor implements CreateEventInputBoundary {
      * appropriate.
      *
      * @param inputData The Input Data instance which contains the title of the Event the user
-     * wants to create, its start and end times, and the index of the Day object the Event will
-     * be created for, if at all.
+     *                  wants to create, its start and end times, and the index of the Day object the Event will
+     *                  be created for, if at all.
      * @return An instance of CreateEventOutputData whose instance attributes indicate
      * whether the event was successfully created.
      */

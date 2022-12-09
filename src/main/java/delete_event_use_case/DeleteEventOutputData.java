@@ -3,6 +3,7 @@ package delete_event_use_case;
 /**
  * Output Data that is sent back to controller.
  * errorMessage and success status indicating the results of deletion.
+ *
  * @author Khizer Ahmad
  */
 public class DeleteEventOutputData {
@@ -30,7 +31,9 @@ public class DeleteEventOutputData {
         return success;
     }
 
-    public String getErrorMessage() {return errorMessage;}
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 
     public void setSuccess(boolean success) {
         this.success = success;

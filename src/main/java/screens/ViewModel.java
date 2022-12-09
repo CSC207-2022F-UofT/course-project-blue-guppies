@@ -14,6 +14,7 @@ import java.util.List;
 /**
  * View Model class. Contains all the data used by the WeekViewScreen, and tells WeekViewScreen to update whenever a
  * use case changes the state of the program. Similar to an Observer pattern and MVVM pattern.
+ *
  * @author Anna Myllyniemi
  */
 public class ViewModel implements ViewModelBoundary {
@@ -33,13 +34,13 @@ public class ViewModel implements ViewModelBoundary {
         for (int i = 0; i < 7; i++) {
             HashMap<String, Event> loadedEvents = days.get(i).getEvents();
             events.add(i, new ArrayList<>());
-            for (String title: loadedEvents.keySet()) {
+            for (String title : loadedEvents.keySet()) {
                 this.events.get(i).add(new ViewModelEvent(title, loadedEvents.get(title).getStartTime(),
                         loadedEvents.get(title).getEndTime()));
             }
             HashMap<String, Task> loadedTasks = days.get(i).getTasks();
             tasks.add(i, new ArrayList<>());
-            for (String title: loadedTasks.keySet()) {
+            for (String title : loadedTasks.keySet()) {
                 this.tasks.get(i).add(new ViewModelTask(title, loadedTasks.get(title).getCompleted()));
             }
             Collections.sort(events.get(i));
@@ -55,7 +56,7 @@ public class ViewModel implements ViewModelBoundary {
     }
 
     /**
-     *  An entity similar to Event for use in the ViewModel
+     * An entity similar to Event for use in the ViewModel
      */
     private static class ViewModelEvent implements Comparable<ViewModelEvent> {
         private String title;
@@ -158,12 +159,12 @@ public class ViewModel implements ViewModelBoundary {
 
     @Override
     public void clearAll() {
-         for (int i = 0; i < 7; i++) {
-             tasks.get(i).clear();
-             events.get(i).clear();
-             updateInfoForAllTasksOnDay(i);
-             updateInfoForAllEventsOnDay(i);
-         }
+        for (int i = 0; i < 7; i++) {
+            tasks.get(i).clear();
+            events.get(i).clear();
+            updateInfoForAllTasksOnDay(i);
+            updateInfoForAllEventsOnDay(i);
+        }
 
     }
 
@@ -176,7 +177,7 @@ public class ViewModel implements ViewModelBoundary {
             startTimes.add(event.startTime);
             endTimes.add(event.endTime);
         }
-        for (ViewModelObserver observer: observers) {
+        for (ViewModelObserver observer : observers) {
             observer.updateEventSectionOnDay(dayIndex, titles, startTimes, endTimes);
         }
     }
@@ -188,13 +189,13 @@ public class ViewModel implements ViewModelBoundary {
             titles.add(task.title);
             completionStatuses.add(task.completed);
         }
-        for (ViewModelObserver observer: observers) {
+        for (ViewModelObserver observer : observers) {
             observer.updateTaskSectionOnDay(dayIndex, titles, completionStatuses);
         }
     }
 
     private ViewModelEvent getEventByDayAndTitle(int dayIndex, String title) {
-        for (ViewModelEvent event: events.get(dayIndex)) {
+        for (ViewModelEvent event : events.get(dayIndex)) {
             if (event.title.equals(title)) {
                 return event;
             }
@@ -215,7 +216,7 @@ public class ViewModel implements ViewModelBoundary {
     }
 
     private ViewModelTask getTaskByDayAndTitle(int dayIndex, String title) {
-        for (ViewModelTask task: tasks.get(dayIndex)) {
+        for (ViewModelTask task : tasks.get(dayIndex)) {
             if (task.title.equals(title)) {
                 return task;
             }

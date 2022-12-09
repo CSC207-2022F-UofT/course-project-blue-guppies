@@ -5,12 +5,16 @@ import entities.Day;
 import entities.Event;
 import entities.Task;
 
+import java.util.ArrayList;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import screens.ViewModel;
+import screens.ViewModelBoundary;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -18,7 +22,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Raghav Arora
  */
 public class ModifyTaskControllerTest {
-    private final static ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter(VIEW_MODEL);
     private final static ModifyTaskDataAccess dataAccess = new ModifyTaskDataAccess();
     private final static ModifyTaskDsGateway dsGateway = dataAccess;
     private final static ModifyTaskInputBoundary inputBoundary = new ModifyTaskInteractor(
@@ -28,6 +33,14 @@ public class ModifyTaskControllerTest {
     private final static int dayId = 0;
     private final static String newTitle = "New Sample Task";
     private final static String title = "Sample Task";
+
+    private static ViewModel getViewModel() {
+        ArrayList<Day> days = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            days.add(new Day(new HashMap<>(), new HashMap<>()));
+        }
+        return new ViewModel(days);
+    }
 
     @Test
     public void testModifyTask() {

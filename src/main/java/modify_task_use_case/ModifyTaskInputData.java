@@ -4,6 +4,7 @@ package modify_task_use_case;
  * Task Modification Input Data Class. Parameters passed on to the method modifyTask
  * of the Controller class are assembled into a ModifyTaskInputData object before invoking
  * the implementation of modifyTask given by the interactor/input boundary.
+ *
  * @author Raghav Arora
  */
 class ModifyTaskInputData {
@@ -17,10 +18,16 @@ class ModifyTaskInputData {
         this.title = title;
     }
 
-    protected String getNewTitle() { return this.newTitle; }
+    protected String getNewTitle() {
+        return this.newTitle;
+    }
 
-    protected int getDayIndex() { return this.dayIndex; }
+    protected int getDayIndex() {
+        return this.dayIndex;
+    }
 
-    protected String getTitle() { return this.title; }
+    protected String getTitle() {
+        return this.title;
+    }
 
 }

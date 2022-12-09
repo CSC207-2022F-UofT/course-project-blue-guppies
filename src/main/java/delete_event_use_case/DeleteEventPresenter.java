@@ -4,14 +4,11 @@ import screens.ViewModelBoundary;
 
 /**
  * Implements the prepareSuccessView and prepareFailView methods in DeleteTaskOutputBoundary.
- * @author Khizer Ahmad
+ *
+ * @author Khizer Ahmad, Anna Myllyniemi
  */
 public class DeleteEventPresenter implements DeleteEventOutputBoundary {
     private final ViewModelBoundary viewModelBoundary;
-
-    public DeleteEventPresenter() {
-        viewModelBoundary = null;
-    }
 
     public DeleteEventPresenter(ViewModelBoundary viewModelBoundary) {
         this.viewModelBoundary = viewModelBoundary;
@@ -19,21 +16,21 @@ public class DeleteEventPresenter implements DeleteEventOutputBoundary {
 
     /**
      * Sets success of the DeleteEventOutputData instance to true, errorMessage left unmodified.
+     *
      * @param eventOutputData An instance of DeleteEventOutputData which contains the
-     * eventTitle of the event for deletion as well as the corresponding dayIndex.
+     *                        eventTitle of the event for deletion as well as the corresponding dayIndex.
      * @return The DeleteTaskOutputData object with the success attribute set to true.
      */
     @Override
     public DeleteEventOutputData prepareSuccessView(DeleteEventOutputData eventOutputData) {
-        if (viewModelBoundary != null) {
-            viewModelBoundary.deleteEvent(eventOutputData.getDayIndex(), eventOutputData.getLabel());
-        }
+        viewModelBoundary.deleteEvent(eventOutputData.getDayIndex(), eventOutputData.getLabel());
         eventOutputData.setSuccess(true);
         return eventOutputData;
     }
 
     /**
      * Sets success of the DeleteEventOutputData instance to false, errorMessage modified to represent failure
+     *
      * @param eventOutputData the instance of OutputData for a failing modification.
      * @return outputData with successState changed to false
      */

@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
  * current values of the event to be modified. When the user cancels or closes the form no changes are made. When the
  * user submits the form the modify event use case is called. User can modify the start and end time of an event, along
  * with its title. Form similar to when creating a new event.
+ *
  * @author Anna Myllyniemi
  */
 public class ModifyEventScreen extends FormScreen {
@@ -54,7 +55,7 @@ public class ModifyEventScreen extends FormScreen {
     /**
      * Adds the time fields to the form.
      *
-     * @param panel The JPanel to and the start and end time to
+     * @param panel       The JPanel to and the start and end time to
      * @param constraints The GridBagConstrains to use
      */
     private void addTimeFields(JPanel panel, GridBagConstraints constraints) {

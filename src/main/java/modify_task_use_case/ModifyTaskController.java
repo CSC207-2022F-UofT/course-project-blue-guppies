@@ -3,6 +3,7 @@ package modify_task_use_case;
 /**
  * Task Modification Controller Class; invokes the implementation of modifyTask given
  * by ModifyTaskInteractor to execute the application logic.
+ *
  * @author Raghav Arora
  */
 public class ModifyTaskController {
@@ -10,7 +11,7 @@ public class ModifyTaskController {
 
     /**
      * @param inputBoundary Instance which is used to invoke the application logic
-     * for the use case. Instance is implicitly of type ModifyTaskInteractor.
+     *                      for the use case. Instance is implicitly of type ModifyTaskInteractor.
      */
     public ModifyTaskController(ModifyTaskInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
@@ -22,7 +23,7 @@ public class ModifyTaskController {
      *
      * @param dayIndex The index of the Day object containing the Task instance we want to modify.
      * @param newTitle The new title of the Task whose title will be changed (to newTitle).
-     * @param title The current title of the Task whose title attribute will be changed.
+     * @param title    The current title of the Task whose title attribute will be changed.
      * @return A ModifyTaskOutputData instance which indicates whether the execution of
      * the use case was successful.
      */

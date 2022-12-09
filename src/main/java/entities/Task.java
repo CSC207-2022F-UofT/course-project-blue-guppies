@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * Task class for use in data access.
+ *
  * @author Fardin Faruk
  */
 public class Task implements Serializable {

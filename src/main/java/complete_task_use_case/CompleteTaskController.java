@@ -3,16 +3,17 @@ package complete_task_use_case;
 /**
  * Task Completion Controller Class; invokes the implementation of completeTask given
  * by CompleteTaskInteractor to execute the application logic.
+ *
  * @author Fardin Faruk
  */
 public class CompleteTaskController {
     private final CompleteTaskInputBoundary inputBoundary;
 
-    public CompleteTaskController(CompleteTaskInputBoundary inputBoundary){
+    public CompleteTaskController(CompleteTaskInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
     }
 
-    public CompleteTaskOutputData completeTask(int dayIndex, String title, boolean completed){
+    public CompleteTaskOutputData completeTask(int dayIndex, String title, boolean completed) {
         CompleteTaskInputData inputData = new CompleteTaskInputData(dayIndex, title, completed);
         return inputBoundary.completeTask(inputData);
     }

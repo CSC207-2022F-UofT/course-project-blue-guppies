@@ -1,8 +1,9 @@
 package delete_event_use_case;
 
 /**
- *  Contains inputs for DeleteEventInputBoundary's delete method.
- *  @author Khizer Ahmad
+ * Contains inputs for DeleteEventInputBoundary's delete method.
+ *
+ * @author Khizer Ahmad
  */
 public class DeleteEventInputData {
 
