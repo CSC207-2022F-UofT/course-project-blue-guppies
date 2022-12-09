@@ -1,5 +1,7 @@
 package create_event_use_case;
 
+import strategies.DayToIndexConverter;
+
 /**
  * Controller class for the Create Event use case. Invokes the application logic
  * given by the input boundary.
@@ -8,9 +10,11 @@ package create_event_use_case;
  */
 public class CreateEventController {
     private final CreateEventInputBoundary inputBoundary;
+    private final DayToIndexConverter converter;
 
-    public CreateEventController(CreateEventInputBoundary inputBoundary) {
+    public CreateEventController(CreateEventInputBoundary inputBoundary, DayToIndexConverter converter) {
         this.inputBoundary = inputBoundary;
+        this.converter = converter;
     }
 
     /**
@@ -21,31 +25,7 @@ public class CreateEventController {
      * whether the event was successfully created.
      */
     public CreateEventOutputData create(String day, String title, String startTime, String endTime) {
-        int dayIndex;
-        switch (day) {
-            case "Sunday":
-                dayIndex = 0;
-                break;
-            case "Monday":
-                dayIndex = 1;
-                break;
-            case "Tuesday":
-                dayIndex = 2;
-                break;
-            case "Wednesday":
-                dayIndex = 3;
-                break;
-            case "Thursday":
-                dayIndex = 4;
-                break;
-            case "Friday":
-                dayIndex = 5;
-                break;
-            default:
-                dayIndex = 6;
-                break;
-            // if no match assume Saturday
-        }
+        int dayIndex = this.converter.convertDayNameToIndex(day);
         CreateEventInputData inputData = new CreateEventInputData(
                 title, startTime, endTime, dayIndex
         );

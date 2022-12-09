@@ -1,8 +1,9 @@
 package create_task_use_case;
 
-import entities.TaskFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import strategies.DayToIndexConverter;
+import strategies.SaturdayAssumingConverter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,14 +16,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CreateTaskControllerTest {
     private final static CreateTaskPresenter PRESENTER = new CreateTaskPresenter();
     private final static CreateTaskDataAccess DATA_ACCESS = new CreateTaskDataAccess();
-    private final static TaskFactory TASK_FACTORY = new TaskFactory();
 
     @Test
     public void testCreateTask(){
-        CreateTaskInteractor interactor = new CreateTaskInteractor(
-                TASK_FACTORY, PRESENTER, DATA_ACCESS
-        );
-        CreateTaskController controller = new CreateTaskController(interactor);
+        CreateTaskInteractor interactor = new CreateTaskInteractor( PRESENTER, DATA_ACCESS);
+        DayToIndexConverter converter = new SaturdayAssumingConverter();
+        CreateTaskController controller = new CreateTaskController(interactor, converter);
         CreateTaskOutputData outputData = controller.createTask(
                 "Sunday",  "Sampled Task"
         );

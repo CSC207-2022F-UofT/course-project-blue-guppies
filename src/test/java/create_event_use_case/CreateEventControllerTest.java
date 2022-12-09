@@ -11,6 +11,9 @@ import java.util.HashMap;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import strategies.DayToIndexConverter;
+import strategies.SaturdayAssumingConverter;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -36,7 +39,8 @@ class CreateEventControllerTest {
         CreateEventInputBoundary inputBoundary = new CreateEventInteractor(
                 DS_GATEWAY, OUTPUT_BOUNDARY
         );
-        CreateEventController controller = new CreateEventController(inputBoundary);
+        DayToIndexConverter converter = new SaturdayAssumingConverter();
+        CreateEventController controller = new CreateEventController(inputBoundary, converter);
         CreateEventOutputData outputData = controller.create(
                 DAY, TITLE, START_TIME, END_TIME
         );
