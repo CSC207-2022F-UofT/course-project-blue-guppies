@@ -1,5 +1,6 @@
 package delete_event_use_case;
 
+import data_access.WeekDataAccess;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ public class DeleteEventControllerTest {
         DeleteEventController controller = new DeleteEventController(inputBoundary);
         DeleteEventOutputData outputData = controller.delete(EVENT_TITLE, DAY_INDEX);
 
-        assertFalse(DS_GATEWAY.getDays().get(1).getEvents().containsKey("Event"));
+        assertFalse(WeekDataAccess.getDays().get(1).getEvents().containsKey("Event"));
         assertEquals(3, outputData.getDayIndex());
         assertEquals("Event", outputData.getLabel());
     }
@@ -31,8 +32,7 @@ public class DeleteEventControllerTest {
             PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
             pw.close();
         }
-        catch(IOException e){
-            return;
+        catch(IOException ignored){
         }
     }
 }

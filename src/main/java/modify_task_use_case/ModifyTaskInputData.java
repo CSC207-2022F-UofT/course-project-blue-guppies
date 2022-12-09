@@ -23,5 +23,4 @@ class ModifyTaskInputData {
 
     protected String getTitle() { return this.title; }
 
-    protected void setTitle(String title) { this.title = title; }
 }

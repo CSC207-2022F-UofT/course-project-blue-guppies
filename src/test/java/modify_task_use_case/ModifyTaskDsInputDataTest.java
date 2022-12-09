@@ -27,10 +27,4 @@ public class ModifyTaskDsInputDataTest {
         assertEquals("Old Task", dsInputData.getTitle());
     }
 
-    @Test
-    void testSetTitle() {
-        dsInputData.setTitle("Very New Task");
-        assertEquals("Very New Task", dsInputData.getTitle());
-    }
-
 }

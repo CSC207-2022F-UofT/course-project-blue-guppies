@@ -1,5 +1,6 @@
 package modify_event_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
 import org.junit.jupiter.api.AfterEach;
@@ -26,9 +27,9 @@ class ModifyEventDataAccessTest {
         ModifyEventDsInputData inputData = new ModifyEventDsInputData(1, "MAT237", "Mat237",
                 LocalTime.parse("09:00"), LocalTime.parse("10:00"));
         dataAccess.save(inputData);
-        assertEquals("Mat237", dataAccess.getDays().get(1).getEvents().get("Mat237").getTitle());
-        assertEquals(LocalTime.parse("09:00"), dataAccess.getDays().get(1).getEvents().get("Mat237").getStartTime());
-        assertEquals(LocalTime.parse("10:00"), dataAccess.getDays().get(1).getEvents().get("Mat237").getEndTime());
+        assertEquals("Mat237", WeekDataAccess.getDays().get(1).getEvents().get("Mat237").getTitle());
+        assertEquals(LocalTime.parse("09:00"), WeekDataAccess.getDays().get(1).getEvents().get("Mat237").getStartTime());
+        assertEquals(LocalTime.parse("10:00"), WeekDataAccess.getDays().get(1).getEvents().get("Mat237").getEndTime());
     }
 
     @Test
@@ -36,9 +37,9 @@ class ModifyEventDataAccessTest {
         ModifyEventDsInputData inputData = new ModifyEventDsInputData(2, "Sta247", "Sta247 Lecture",
                 LocalTime.parse("15:00"), LocalTime.parse("16:00"));
         dataAccess.save(inputData);
-        assertEquals("Sta247 Lecture", dataAccess.getDays().get(2).getEvents().get("Sta247 Lecture").getTitle());
-        assertEquals(LocalTime.parse("15:00"), dataAccess.getDays().get(2).getEvents().get("Sta247 Lecture").getStartTime());
-        assertEquals(LocalTime.parse("16:00"), dataAccess.getDays().get(2).getEvents().get("Sta247 Lecture").getEndTime());
+        assertEquals("Sta247 Lecture", WeekDataAccess.getDays().get(2).getEvents().get("Sta247 Lecture").getTitle());
+        assertEquals(LocalTime.parse("15:00"), WeekDataAccess.getDays().get(2).getEvents().get("Sta247 Lecture").getStartTime());
+        assertEquals(LocalTime.parse("16:00"), WeekDataAccess.getDays().get(2).getEvents().get("Sta247 Lecture").getEndTime());
     }
 
     @Test
@@ -46,12 +47,12 @@ class ModifyEventDataAccessTest {
         ModifyEventDsInputData inputData = new ModifyEventDsInputData(2, "Mat237", "MAT237",
                                 LocalTime.parse("09:00"), LocalTime.parse("10:00"));
         dataAccess.save(inputData);
-        assertEquals("MAT237", dataAccess.getDays().get(2).getEvents().get("MAT237").getTitle());
-        assertEquals(LocalTime.parse("09:00"), dataAccess.getDays().get(2).getEvents().get("MAT237").getStartTime());
-        assertEquals(LocalTime.parse("10:00"), dataAccess.getDays().get(2).getEvents().get("MAT237").getEndTime());
-        assertEquals("MAT237", dataAccess.getDays().get(4).getEvents().get("MAT237").getTitle());
-        assertEquals(LocalTime.parse("09:00"), dataAccess.getDays().get(4).getEvents().get("MAT237").getStartTime());
-        assertEquals(LocalTime.parse("10:00"), dataAccess.getDays().get(4).getEvents().get("MAT237").getEndTime());
+        assertEquals("MAT237", WeekDataAccess.getDays().get(2).getEvents().get("MAT237").getTitle());
+        assertEquals(LocalTime.parse("09:00"), WeekDataAccess.getDays().get(2).getEvents().get("MAT237").getStartTime());
+        assertEquals(LocalTime.parse("10:00"), WeekDataAccess.getDays().get(2).getEvents().get("MAT237").getEndTime());
+        assertEquals("MAT237", WeekDataAccess.getDays().get(4).getEvents().get("MAT237").getTitle());
+        assertEquals(LocalTime.parse("09:00"), WeekDataAccess.getDays().get(4).getEvents().get("MAT237").getStartTime());
+        assertEquals(LocalTime.parse("10:00"), WeekDataAccess.getDays().get(4).getEvents().get("MAT237").getEndTime());
     }
 
     @Test
@@ -121,8 +122,7 @@ class ModifyEventDataAccessTest {
             PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
             pw.close();
         }
-        catch(IOException e){
-            return;
+        catch(IOException ignored){
         }
     }
 }

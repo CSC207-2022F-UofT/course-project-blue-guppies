@@ -1,5 +1,6 @@
 package create_event_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
 import entities.EventFactory;
@@ -41,9 +42,9 @@ class CreateEventInteractorTest {
     @Test
     void testCreateEvent() {
         HashMap<String, Event> events = new HashMap<>();
-        Day referenceDay = DATA_ACCESS.getDays().get(0);
+        Day referenceDay = WeekDataAccess.getDays().get(0);
         referenceDay.setEvents(events);
-        DATA_ACCESS.getDays().set(0, referenceDay);
+        WeekDataAccess.getDays().set(0, referenceDay);
 
         CreateEventOutputData outputData = INPUT_BOUNDARY.createEvent(INPUT_DATA_1);
 
@@ -53,8 +54,8 @@ class CreateEventInteractorTest {
         assertTrue(outputData.isSuccess());
 
         // check if an Event with the name "Sample Event" exists for day 0 i.e. Sunday
-        assertTrue(DATA_ACCESS.getDays().get(0).getEvents().containsKey("Sample Event"));
-        assertEquals(INPUT_DATA_1.getTitle(), DATA_ACCESS.getDays().get(0).getEvents().get("Sample Event").getTitle());
+        assertTrue(WeekDataAccess.getDays().get(0).getEvents().containsKey("Sample Event"));
+        assertEquals(INPUT_DATA_1.getTitle(), WeekDataAccess.getDays().get(0).getEvents().get("Sample Event").getTitle());
 
     }
 
@@ -66,14 +67,14 @@ class CreateEventInteractorTest {
         );
         HashMap<String, Event> events = new HashMap<>();
         events.put("Sample Event", event);
-        Day referenceDay = DATA_ACCESS.getDays().get(0);
+        Day referenceDay = WeekDataAccess.getDays().get(0);
         referenceDay.setEvents(events);
-        DATA_ACCESS.getDays().set(0, referenceDay);
+        WeekDataAccess.getDays().set(0, referenceDay);
 
         HashMap<String, Event> eventsMonday = new HashMap<>();
-        Day referenceDayMonday = DATA_ACCESS.getDays().get(1);
+        Day referenceDayMonday = WeekDataAccess.getDays().get(1);
         referenceDayMonday.setEvents(eventsMonday);
-        DATA_ACCESS.getDays().set(1, referenceDayMonday);
+        WeekDataAccess.getDays().set(1, referenceDayMonday);
 
         // We should be able to create an event with name "Sample Event" for a day OTHER than Sunday.
         // In this case, we create an event called "Sample Task" for day 1/Monday.
@@ -85,10 +86,10 @@ class CreateEventInteractorTest {
         assertTrue(outputData.isSuccess());
 
         // check if an Event with the name "Sample Event" exists for day 1 i.e. Monday
-        assertTrue(DATA_ACCESS.getDays().get(1).getEvents().containsKey("Sample Event"));
+        assertTrue(WeekDataAccess.getDays().get(1).getEvents().containsKey("Sample Event"));
         assertEquals(
                 INPUT_DATA_2.getTitle(),
-                DATA_ACCESS.getDays().get(1).getEvents().get("Sample Event").getTitle()
+                WeekDataAccess.getDays().get(1).getEvents().get("Sample Event").getTitle()
         );
     }
 
@@ -100,9 +101,9 @@ class CreateEventInteractorTest {
         );
         HashMap<String, Event> events = new HashMap<>();
         events.put("Sample Event", event);
-        Day referenceDay = DATA_ACCESS.getDays().get(0);
+        Day referenceDay = WeekDataAccess.getDays().get(0);
         referenceDay.setEvents(events);
-        DATA_ACCESS.getDays().set(0, referenceDay);
+        WeekDataAccess.getDays().set(0, referenceDay);
 
         // We should NOT be able to create an event with name "Sample Event" for the same day (i.e. day 0/Sunday),
         // even if their times do not overlap.
@@ -112,24 +113,24 @@ class CreateEventInteractorTest {
 
         // An event with name "Sample Event" continues to exist for day 0, but
         // does NOT begin and end at 10:30 and 11:30 respectively.
-        assertTrue(DATA_ACCESS.getDays().get(0).getEvents().containsKey("Sample Event"));
+        assertTrue(WeekDataAccess.getDays().get(0).getEvents().containsKey("Sample Event"));
         assertNotEquals(
                 LocalTime.parse(INPUT_DATA_3.getStartTime()),
-                DATA_ACCESS.getDays().get(0).getEvents().get("Sample Event").getStartTime()
+                WeekDataAccess.getDays().get(0).getEvents().get("Sample Event").getStartTime()
         );
         assertNotEquals(
                 LocalTime.parse(INPUT_DATA_3.getEndTime()),
-                DATA_ACCESS.getDays().get(0).getEvents().get("Sample Event").getEndTime()
+                WeekDataAccess.getDays().get(0).getEvents().get("Sample Event").getEndTime()
         );
 
         // The event continues to begin at 09:00 and end at 10:00
         assertEquals(
                 LocalTime.parse("09:00"),
-                DATA_ACCESS.getDays().get(0).getEvents().get("Sample Event").getStartTime()
+                WeekDataAccess.getDays().get(0).getEvents().get("Sample Event").getStartTime()
         );
         assertEquals(
                 LocalTime.parse("10:00"),
-                DATA_ACCESS.getDays().get(0).getEvents().get("Sample Event").getEndTime()
+                WeekDataAccess.getDays().get(0).getEvents().get("Sample Event").getEndTime()
         );
     }
 
@@ -141,9 +142,9 @@ class CreateEventInteractorTest {
         );
         HashMap<String, Event> events = new HashMap<>();
         events.put("Sample Event", event);
-        Day referenceDay = DATA_ACCESS.getDays().get(0);
+        Day referenceDay = WeekDataAccess.getDays().get(0);
         referenceDay.setEvents(events);
-        DATA_ACCESS.getDays().set(0, referenceDay);
+        WeekDataAccess.getDays().set(0, referenceDay);
 
         // We should NOT be able to create an event with name "Another Sample Event" for the same day (i.e. day 0/Sunday),
         // if its timings overlap with that of "Sample Event"
@@ -152,7 +153,7 @@ class CreateEventInteractorTest {
         assertEquals("This event conflicts with an existing event.", outputData.getErrorMessage());
 
         // An event with name "Another Sample Event" is not created for day 0/Sunday.
-        assertFalse(DATA_ACCESS.getDays().get(0).getEvents().containsKey("Another Sample Event"));
+        assertFalse(WeekDataAccess.getDays().get(0).getEvents().containsKey("Another Sample Event"));
     }
 
     @Test
@@ -188,8 +189,7 @@ class CreateEventInteractorTest {
             PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
             pw.close();
         }
-        catch(IOException e){
-            return;
+        catch(IOException ignored){
         }
     }
 }

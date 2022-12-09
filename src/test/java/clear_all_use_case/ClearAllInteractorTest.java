@@ -1,5 +1,6 @@
 package clear_all_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
 import entities.Task;
@@ -27,21 +28,21 @@ class ClearAllInteractorTest {
 
         assertTrue(outputData.getSuccess());
 
-        assertTrue(DATA_ACCESS.getDays().get(0).getTasks().isEmpty());
-        assertTrue(DATA_ACCESS.getDays().get(1).getTasks().isEmpty());
-        assertTrue(DATA_ACCESS.getDays().get(2).getTasks().isEmpty());
-        assertTrue(DATA_ACCESS.getDays().get(3).getTasks().isEmpty());
-        assertTrue(DATA_ACCESS.getDays().get(4).getTasks().isEmpty());
-        assertTrue(DATA_ACCESS.getDays().get(5).getTasks().isEmpty());
-        assertTrue(DATA_ACCESS.getDays().get(6).getTasks().isEmpty());
+        assertTrue(WeekDataAccess.getDays().get(0).getTasks().isEmpty());
+        assertTrue(WeekDataAccess.getDays().get(1).getTasks().isEmpty());
+        assertTrue(WeekDataAccess.getDays().get(2).getTasks().isEmpty());
+        assertTrue(WeekDataAccess.getDays().get(3).getTasks().isEmpty());
+        assertTrue(WeekDataAccess.getDays().get(4).getTasks().isEmpty());
+        assertTrue(WeekDataAccess.getDays().get(5).getTasks().isEmpty());
+        assertTrue(WeekDataAccess.getDays().get(6).getTasks().isEmpty());
 
-        assertTrue(DATA_ACCESS.getDays().get(0).getEvents().isEmpty());
-        assertTrue(DATA_ACCESS.getDays().get(1).getEvents().isEmpty());
-        assertTrue(DATA_ACCESS.getDays().get(2).getEvents().isEmpty());
-        assertTrue(DATA_ACCESS.getDays().get(3).getEvents().isEmpty());
-        assertTrue(DATA_ACCESS.getDays().get(4).getEvents().isEmpty());
-        assertTrue(DATA_ACCESS.getDays().get(5).getEvents().isEmpty());
-        assertTrue(DATA_ACCESS.getDays().get(6).getEvents().isEmpty());
+        assertTrue(WeekDataAccess.getDays().get(0).getEvents().isEmpty());
+        assertTrue(WeekDataAccess.getDays().get(1).getEvents().isEmpty());
+        assertTrue(WeekDataAccess.getDays().get(2).getEvents().isEmpty());
+        assertTrue(WeekDataAccess.getDays().get(3).getEvents().isEmpty());
+        assertTrue(WeekDataAccess.getDays().get(4).getEvents().isEmpty());
+        assertTrue(WeekDataAccess.getDays().get(5).getEvents().isEmpty());
+        assertTrue(WeekDataAccess.getDays().get(6).getEvents().isEmpty());
     }
 
     @BeforeEach
@@ -128,8 +129,7 @@ class ClearAllInteractorTest {
             PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
             pw.close();
         }
-        catch(IOException e){
-            return;
+        catch(IOException ignored){
         }
     }
 }
