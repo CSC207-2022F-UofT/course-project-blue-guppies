@@ -1,5 +1,7 @@
 package create_task_use_case;
 
+import strategies.DayToIndexConverter;
+
 /**
  * Task Creation Controller Class; invokes the implementation of createTask given
  * by CreateTaskInteractor to execute the application logic.
@@ -9,9 +11,11 @@ package create_task_use_case;
 public class CreateTaskController {
 
     private final CreateTaskInputBoundary inputBoundary;
+    private final DayToIndexConverter converter;
 
-    public CreateTaskController(CreateTaskInputBoundary inputBoundary) {
+    public CreateTaskController(CreateTaskInputBoundary inputBoundary, DayToIndexConverter converter) {
         this.inputBoundary = inputBoundary;
+        this.converter = converter;
     }
 
     /**
@@ -23,32 +27,8 @@ public class CreateTaskController {
      * @return A CreateTaskOutputData instance which indicates whether the execution of
      * the use case was successful.
      */
-    public CreateTaskOutputData createTask(String day, String title) {
-        int dayIndex;
-        switch (day) {
-            case "Sunday":
-                dayIndex = 0;
-                break;
-            case "Monday":
-                dayIndex = 1;
-                break;
-            case "Tuesday":
-                dayIndex = 2;
-                break;
-            case "Wednesday":
-                dayIndex = 3;
-                break;
-            case "Thursday":
-                dayIndex = 4;
-                break;
-            case "Friday":
-                dayIndex = 5;
-                break;
-            default:
-                dayIndex = 6;
-                break;
-            // if no match assume Saturday
-        }
+    public CreateTaskOutputData createTask(String day, String title){
+        int dayIndex = this.converter.convertDayNameToIndex(day);
         CreateTaskInputData taskInputData = new CreateTaskInputData(title, dayIndex);
         return inputBoundary.create(taskInputData);
     }

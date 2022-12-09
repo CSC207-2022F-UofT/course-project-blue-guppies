@@ -5,11 +5,11 @@ import create_task_use_case.*;
 import data_access.WeekDataAccess;
 import delete_event_use_case.*;
 import delete_task_use_case.*;
-import entities.EventFactory;
-import entities.TaskFactory;
 import modify_event_use_case.*;
 import modify_task_use_case.*;
 import screens.*;
+import strategies.DayToIndexConverter;
+import strategies.SaturdayAssumingConverter;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -25,10 +25,10 @@ public class Main {
         // Initialize create event classes
         CreateEventOutputBoundary createEventPresenter = new CreateEventPresenter(viewModel);
         CreateEventDsGateway createEventDsGateway = new CreateEventDataAccess();
-        EventFactory eventFactory = new EventFactory();
         CreateEventInputBoundary createEventInteractor = new CreateEventInteractor(
-                createEventDsGateway, createEventPresenter, eventFactory);
-        CreateEventController createEventController = new CreateEventController(createEventInteractor);
+                createEventDsGateway, createEventPresenter);
+        DayToIndexConverter converter = new SaturdayAssumingConverter();
+        CreateEventController createEventController = new CreateEventController(createEventInteractor, converter);
 
         // Initialize modify event classes
         ModifyEventOutputBoundary modifyEventOutputBoundary = new ModifyEventPresenter(viewModel);
@@ -47,10 +47,9 @@ public class Main {
         // Initialize create task classes
         CreateTaskOutputBoundary createTaskOutputBoundary = new CreateTaskPresenter(viewModel);
         CreateTaskDsGateway createTaskDsGateway = new CreateTaskDataAccess();
-        TaskFactory taskFactory = new TaskFactory();
-        CreateTaskInputBoundary createTaskInputBoundary = new CreateTaskInteractor(taskFactory,
+        CreateTaskInputBoundary createTaskInputBoundary = new CreateTaskInteractor(
                 createTaskOutputBoundary, createTaskDsGateway);
-        CreateTaskController createTaskController = new CreateTaskController(createTaskInputBoundary);
+        CreateTaskController createTaskController = new CreateTaskController(createTaskInputBoundary, converter);
 
         // Initialize modify task classes
         ModifyTaskOutputBoundary modifyTaskPresenter = new ModifyTaskPresenter(viewModel);

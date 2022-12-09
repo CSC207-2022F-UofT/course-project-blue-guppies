@@ -1,15 +1,15 @@
 package create_task_use_case;
 
-import entities.Day;
-import entities.TaskFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import strategies.DayToIndexConverter;
+import strategies.SaturdayAssumingConverter;
+import entities.Day;
 import screens.ViewModel;
 import screens.ViewModelBoundary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,7 +24,6 @@ public class CreateTaskControllerTest {
     private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     private final static CreateTaskPresenter PRESENTER = new CreateTaskPresenter(VIEW_MODEL);
     private final static CreateTaskDataAccess DATA_ACCESS = new CreateTaskDataAccess();
-    private final static TaskFactory TASK_FACTORY = new TaskFactory();
 
     private static ViewModel getViewModel() {
         ArrayList<Day> days = new ArrayList<>();
@@ -36,10 +35,9 @@ public class CreateTaskControllerTest {
 
     @Test
     public void testCreateTask(){
-        CreateTaskInteractor interactor = new CreateTaskInteractor(
-                TASK_FACTORY, PRESENTER, DATA_ACCESS
-        );
-        CreateTaskController controller = new CreateTaskController(interactor);
+        CreateTaskInteractor interactor = new CreateTaskInteractor( PRESENTER, DATA_ACCESS);
+        DayToIndexConverter converter = new SaturdayAssumingConverter();
+        CreateTaskController controller = new CreateTaskController(interactor, converter);
         CreateTaskOutputData outputData = controller.createTask(
                 "Sunday",  "Sampled Task"
         );

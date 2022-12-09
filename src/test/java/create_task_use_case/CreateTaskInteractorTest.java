@@ -3,7 +3,6 @@ package create_task_use_case;
 import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Task;
-import entities.TaskFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import screens.ViewModel;
@@ -23,7 +22,6 @@ public class CreateTaskInteractorTest {
     private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     private final static CreateTaskOutputBoundary PRESENTER = new CreateTaskPresenter(VIEW_MODEL);
     private final static CreateTaskDataAccess DATA_ACCESS = new CreateTaskDataAccess();
-    private final static TaskFactory TASK_FACTORY = new TaskFactory();
 
     private static ViewModel getViewModel() {
         ArrayList<Day> days = new ArrayList<>();
@@ -32,10 +30,11 @@ public class CreateTaskInteractorTest {
         }
         return new ViewModel(days);
     }
+
     @Test
     public void createTestSuccess(){
         CreateTaskInputData inputData = new CreateTaskInputData("Finish Unit Test", 2);
-        CreateTaskInteractor createTaskInteractor = new CreateTaskInteractor(TASK_FACTORY, PRESENTER,
+        CreateTaskInteractor createTaskInteractor = new CreateTaskInteractor(PRESENTER,
                 DATA_ACCESS );
         CreateTaskOutputData createTaskOutputData = createTaskInteractor.create(inputData);
         Day day = WeekDataAccess.getDays().get(2);
@@ -49,8 +48,7 @@ public class CreateTaskInteractorTest {
     @Test
     public void createTestFail(){
         CreateTaskInputData inputData = new CreateTaskInputData("Update", 2);
-        CreateTaskInteractor createTaskInteractor = new CreateTaskInteractor(TASK_FACTORY, PRESENTER,
-                DATA_ACCESS);
+        CreateTaskInteractor createTaskInteractor = new CreateTaskInteractor(PRESENTER, DATA_ACCESS);
         // Add Task twice to mock adding duplicate task on the same day
         createTaskInteractor.create(inputData);
         CreateTaskOutputData createTaskOutputData = createTaskInteractor.create(inputData);

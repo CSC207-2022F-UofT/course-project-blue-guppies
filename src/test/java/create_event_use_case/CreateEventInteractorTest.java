@@ -3,7 +3,6 @@ package create_event_use_case;
 import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
-import entities.EventFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import screens.ViewModel;
@@ -26,9 +25,8 @@ class CreateEventInteractorTest {
     private final static CreateEventOutputBoundary OUTPUT_BOUNDARY = new CreateEventPresenter(VIEW_MODEL);
     private final static CreateEventDataAccess DATA_ACCESS = new CreateEventDataAccess();
     private final static CreateEventDsGateway DS_GATEWAY = DATA_ACCESS;
-    private final static EventFactory EVENT_FACTORY = new EventFactory();
     private final static CreateEventInputBoundary INPUT_BOUNDARY = new CreateEventInteractor(
-            DS_GATEWAY, OUTPUT_BOUNDARY, EVENT_FACTORY
+            DS_GATEWAY, OUTPUT_BOUNDARY
     );
     private final static CreateEventInputData INPUT_DATA_1 = new CreateEventInputData(
             "Sample Event", "09:00", "10:00", 0
