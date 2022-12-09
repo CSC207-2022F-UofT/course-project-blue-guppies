@@ -1,7 +1,6 @@
 package create_task_use_case;
 
 import entities.Task;
-import entities.TaskFactory;
 
 /**
  * Task Creation Interactor Class. Implements the createTask method provides
@@ -12,13 +11,11 @@ import entities.TaskFactory;
 public class CreateTaskInteractor implements CreateTaskInputBoundary {
     final CreateTaskDsGateway dsGateway;
     final CreateTaskOutputBoundary outputBoundary;
-    final TaskFactory taskFactory;
 
     final private String[] DAYS_OF_WEEK = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
-    public CreateTaskInteractor(TaskFactory taskFactory, CreateTaskOutputBoundary outputBoundary,
+    public CreateTaskInteractor(CreateTaskOutputBoundary outputBoundary,
                                 CreateTaskDsGateway dsGateway){
-        this.taskFactory = taskFactory;
         this.outputBoundary = outputBoundary;
         this.dsGateway = dsGateway;
     }
@@ -36,7 +33,7 @@ public class CreateTaskInteractor implements CreateTaskInputBoundary {
      */
     @Override
     public CreateTaskOutputData create(CreateTaskInputData inputData) {
-        Task task = taskFactory.createTask(inputData.getTitle());
+        Task task = new Task(inputData.getTitle());
         CreateTaskOutputData createTaskData = new CreateTaskOutputData(task.getTitle(), inputData.getDayIndex());
         if (dsGateway.existsByTitle(inputData.getTitle(), inputData.getDayIndex())){
             return outputBoundary.prepareFailView(createTaskData,"There already exists a task with name: " +

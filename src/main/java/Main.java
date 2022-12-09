@@ -5,7 +5,6 @@ import create_task_use_case.*;
 import data_access.WeekDataAccess;
 import delete_event_use_case.*;
 import delete_task_use_case.*;
-import entities.TaskFactory;
 import modify_event_use_case.*;
 import modify_task_use_case.*;
 import screens.*;
@@ -45,8 +44,7 @@ public class Main {
         // Initialize create task classes
         CreateTaskOutputBoundary createTaskOutputBoundary = new CreateTaskPresenter(viewModel);
         CreateTaskDsGateway createTaskDsGateway = new CreateTaskDataAccess();
-        TaskFactory taskFactory = new TaskFactory();
-        CreateTaskInputBoundary createTaskInputBoundary = new CreateTaskInteractor(taskFactory,
+        CreateTaskInputBoundary createTaskInputBoundary = new CreateTaskInteractor(
                 createTaskOutputBoundary, createTaskDsGateway);
         CreateTaskController createTaskController = new CreateTaskController(createTaskInputBoundary);
 
