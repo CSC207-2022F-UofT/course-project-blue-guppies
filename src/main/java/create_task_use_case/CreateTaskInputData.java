@@ -12,10 +12,10 @@ public class CreateTaskInputData {
     private final String title;
     private final int dayIndex;
 
-    public CreateTaskInputData(String title, int dayIndex){
+    public CreateTaskInputData(String title, int dayIndex) {
         this.title = title;
         this.dayIndex = dayIndex;
-        }
+    }
 
 
     String getTitle() {

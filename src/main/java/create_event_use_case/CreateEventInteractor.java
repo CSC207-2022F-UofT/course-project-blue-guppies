@@ -1,7 +1,7 @@
 package create_event_use_case;
 
-import entities.EventFactory;
 import entities.Event;
+import entities.EventFactory;
 
 import java.time.LocalTime;
 

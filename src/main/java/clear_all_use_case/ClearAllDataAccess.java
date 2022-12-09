@@ -1,7 +1,7 @@
 package clear_all_use_case;
 
-import entities.Day;
 import data_access.WeekDataAccess;
+import entities.Day;
 
 /**
  * Implements the save method in ClearAllDsGateway. Save method mutates day instance

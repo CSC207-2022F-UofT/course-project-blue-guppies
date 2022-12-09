@@ -55,7 +55,7 @@ public class ModifyEventInteractor implements ModifyEventInputBoundary {
         if (!(inputData.getTitle().equals(inputData.getNewTitle())) &&
                 dsGateway.titleExistsInDay(inputData.getDayIndex(), inputData.getNewTitle())) {
             String failMessage = "The title " + inputData.getNewTitle() + " was already used for another event on " +
-                   DAYS_OF_WEEK[inputData.getDayIndex()] + ".";
+                    DAYS_OF_WEEK[inputData.getDayIndex()] + ".";
             return outputBoundary.prepareFailView(outputData, failMessage);
         }
         if (dsGateway.isTimeConflict(inputData.getDayIndex(), inputData.getTitle(), newStartTime,

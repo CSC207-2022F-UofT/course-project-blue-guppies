@@ -23,7 +23,7 @@ public class CreateTaskController {
      * @return A CreateTaskOutputData instance which indicates whether the execution of
      * the use case was successful.
      */
-    public CreateTaskOutputData createTask(String day, String title){
+    public CreateTaskOutputData createTask(String day, String title) {
         int dayIndex;
         switch (day) {
             case "Sunday":

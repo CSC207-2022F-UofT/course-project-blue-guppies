@@ -1,7 +1,7 @@
 package delete_event_use_case;
 
-import entities.Day;
 import data_access.WeekDataAccess;
+import entities.Day;
 
 /**
  * Data Access Class. Interacts with the WeekDataAccess to save the effect of any deletions within data persistence.

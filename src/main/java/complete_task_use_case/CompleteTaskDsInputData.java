@@ -10,7 +10,7 @@ class CompleteTaskDsInputData {
     private final int dayIndex;
     private final String title;
 
-    CompleteTaskDsInputData(int dayIndex, String title){
+    CompleteTaskDsInputData(int dayIndex, String title) {
         this.dayIndex = dayIndex;
         this.title = title;
 

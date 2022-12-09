@@ -177,7 +177,7 @@ public class ViewModel implements ViewModelBoundary {
             startTimes.add(event.startTime);
             endTimes.add(event.endTime);
         }
-        for (ViewModelObserver observer: observers) {
+        for (ViewModelObserver observer : observers) {
             observer.updateEventSectionOnDay(dayIndex, titles, startTimes, endTimes);
         }
     }
@@ -189,7 +189,7 @@ public class ViewModel implements ViewModelBoundary {
             titles.add(task.title);
             completionStatuses.add(task.completed);
         }
-        for (ViewModelObserver observer: observers) {
+        for (ViewModelObserver observer : observers) {
             observer.updateTaskSectionOnDay(dayIndex, titles, completionStatuses);
         }
     }
