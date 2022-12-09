@@ -2,6 +2,7 @@ package delete_task_use_case;
 
 /**
  * Contains inputs for save method in DeleteTaskDataAccess.
+ *
  * @author Ricky Fung
  */
 public class DeleteTaskDsInputData {

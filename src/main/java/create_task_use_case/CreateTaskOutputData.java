@@ -5,6 +5,7 @@ package create_task_use_case;
  * execution of the application logic for this use case. The errorMessage and
  * isSuccessfullyModified instance attributes, in particular, represent whether the use
  * case logic was successfully executed.
+ *
  * @author Fardin Faruk
  */
 public class CreateTaskOutputData {
@@ -15,7 +16,7 @@ public class CreateTaskOutputData {
     private String errorMessage;
 
 
-    public CreateTaskOutputData(String title, int dayIndex){
+    public CreateTaskOutputData(String title, int dayIndex) {
         this.title = title;
         this.dayIndex = dayIndex;
         this.isSuccessfullyCreated = false;
@@ -41,6 +42,7 @@ public class CreateTaskOutputData {
     public String getErrorMessage() {
         return errorMessage;
     }
+
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }

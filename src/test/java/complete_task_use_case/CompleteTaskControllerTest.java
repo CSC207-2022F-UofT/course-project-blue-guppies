@@ -5,10 +5,13 @@ import entities.Day;
 import entities.Task;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import screens.ViewModel;
+import screens.ViewModelBoundary;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 /**
@@ -16,8 +19,17 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Fardin Faruk
  */
 public class CompleteTaskControllerTest {
-    private final static CompleteTaskPresenter PRESENTER = new CompleteTaskPresenter();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static CompleteTaskPresenter PRESENTER = new CompleteTaskPresenter(VIEW_MODEL);
     private final static CompleteTaskDataAccess DATA_ACCESS = new CompleteTaskDataAccess();
+    
+    private static ViewModel getViewModel() {
+        ArrayList<Day> days = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            days.add(new Day(new HashMap<>(), new HashMap<>()));
+        }
+        return new ViewModel(days);
+    }
 
     @Test
     public void testCompleteTask(){

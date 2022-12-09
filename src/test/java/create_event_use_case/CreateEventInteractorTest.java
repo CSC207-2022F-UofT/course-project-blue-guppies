@@ -6,10 +6,13 @@ import entities.Event;
 import entities.EventFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import screens.ViewModel;
+import screens.ViewModelBoundary;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,7 +22,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Raghav Arora, Anna Myllyniemi
  */
 class CreateEventInteractorTest {
-    private final static CreateEventOutputBoundary OUTPUT_BOUNDARY = new CreateEventPresenter();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static CreateEventOutputBoundary OUTPUT_BOUNDARY = new CreateEventPresenter(VIEW_MODEL);
     private final static CreateEventDataAccess DATA_ACCESS = new CreateEventDataAccess();
     private final static CreateEventDsGateway DS_GATEWAY = DATA_ACCESS;
     private final static EventFactory EVENT_FACTORY = new EventFactory();
@@ -38,6 +42,14 @@ class CreateEventInteractorTest {
     private final static CreateEventInputData INPUT_DATA_4 = new CreateEventInputData(
             "Another Sample Event", "09:30", "11:00", 0
     );
+
+    private static ViewModel getViewModel() {
+        ArrayList<Day> days = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            days.add(new Day(new HashMap<>(), new HashMap<>()));
+        }
+        return new ViewModel(days);
+    }
 
     @Test
     void testCreateEvent() {

@@ -11,9 +11,10 @@ import java.awt.event.ActionEvent;
  * Creates a screen with the form a user fills out to modify an existing task.
  * Contains a text field autofilled with the original task name, a modify
  * button, and a cancel button.
+ *
  * @author Anna Myllyniemi
  */
-public class ModifyTaskScreen extends FormScreen{
+public class ModifyTaskScreen extends FormScreen {
     private final ModifyTaskController modifyTaskController;
     private String oldTitle = "";
     private int dayIndex = 0;

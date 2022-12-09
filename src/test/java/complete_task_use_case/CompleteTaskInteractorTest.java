@@ -1,9 +1,15 @@
 package complete_task_use_case;
 
+import entities.Day;
 import data_access.WeekDataAccess;
 import entities.Task;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import screens.ViewModel;
+import screens.ViewModelBoundary;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,11 +17,21 @@ import java.io.PrintWriter;
 import static org.junit.jupiter.api.Assertions.*;
 /**
  * Task Completion Interactor Test Cases.
+ *
  * @author Fardin Faruk
  */
 public class CompleteTaskInteractorTest {
-    public final static CompleteTaskOutputBoundary PRESENTER = new CompleteTaskPresenter();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
+    public final static CompleteTaskOutputBoundary PRESENTER = new CompleteTaskPresenter(VIEW_MODEL);
     public final static CompleteTaskDataAccess DATA_ACCESS = new CompleteTaskDataAccess();
+
+    private static ViewModel getViewModel() {
+        ArrayList<Day> days = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            days.add(new Day(new HashMap<>(), new HashMap<>()));
+        }
+        return new ViewModel(days);
+    }
 
     @Test
     public void testSuccessCompleteTask(){

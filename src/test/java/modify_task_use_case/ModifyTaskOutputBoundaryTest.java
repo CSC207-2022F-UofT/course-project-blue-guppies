@@ -1,6 +1,12 @@
 package modify_task_use_case;
 
+import entities.Day;
 import org.junit.jupiter.api.Test;
+import screens.ViewModel;
+import screens.ViewModelBoundary;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,12 +15,22 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Raghav Arora
  */
 public class ModifyTaskOutputBoundaryTest {
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
+
     // task and event instances (and maps) to be used across tests.
-    private final static ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter();
+    private final static ModifyTaskOutputBoundary outputBoundary = new ModifyTaskPresenter(VIEW_MODEL);
     private final static ModifyTaskOutputData outputData = new ModifyTaskOutputData(
             "Sample Task", 0, "old sample task"
     );
     private final static String ERROR = "ERROR!";
+
+    private static ViewModel getViewModel() {
+        ArrayList<Day> days = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            days.add(new Day(new HashMap<>(), new HashMap<>()));
+        }
+        return new ViewModel(days);
+    }
 
     @Test
     public void testPrepareSuccessView(){

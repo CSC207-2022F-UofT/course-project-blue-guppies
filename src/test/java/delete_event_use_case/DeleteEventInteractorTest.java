@@ -9,18 +9,31 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalTime;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import screens.ViewModel;
+import screens.ViewModelBoundary;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteEventInteractorTest extends WeekDataAccess {
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
+
     private final static DeleteEventInputData INPUT_DATA = new DeleteEventInputData(
             5, "Event");
-
-    private final static DeleteEventPresenter OUTPUT_BOUNDARY = new DeleteEventPresenter();
+    private final static DeleteEventPresenter OUTPUT_BOUNDARY = new DeleteEventPresenter(VIEW_MODEL);
     private final static DeleteEventDataAccess DS_GATEWAY = new DeleteEventDataAccess();
+
+    private static ViewModel getViewModel() {
+        ArrayList<Day> days = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            days.add(new Day(new HashMap<>(), new HashMap<>()));
+        }
+        return new ViewModel(days);
+    }
 
     @Test
     public void testDeleteEventInteractor() {

@@ -14,12 +14,24 @@ import java.util.HashMap;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import screens.ViewModel;
+import screens.ViewModelBoundary;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClearAllInteractorTest {
-    private final static ClearAllPresenter OUTPUT_BOUNDARY = new ClearAllPresenter();
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
+    private final static ClearAllPresenter OUTPUT_BOUNDARY = new ClearAllPresenter(VIEW_MODEL);
     private final static ClearAllDataAccess DATA_ACCESS = new ClearAllDataAccess();
     private final static ClearAllDsGateway DS_GATEWAY = DATA_ACCESS;
+
+    private static ViewModel getViewModel() {
+        ArrayList<Day> days = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            days.add(new Day(new HashMap<>(), new HashMap<>()));
+        }
+        return new ViewModel(days);
+    }
 
     @Test
     void testClearInteractor() {

@@ -6,14 +6,11 @@ import screens.ViewModelBoundary;
  * Task Completion Presenter Class. Implements the prepareSuccessView and prepareFailView
  * methods in the output boundary, by mutating the CompleteTaskOutputData object that is
  * passed on as a parameter, appropriately.
- * @author Fardin Faruk
+ *
+ * @author Fardin Faruk, Anna Myllyniemi
  */
 public class CompleteTaskPresenter implements CompleteTaskOutputBoundary {
     private final ViewModelBoundary viewModel;
-
-    public CompleteTaskPresenter() {
-        viewModel = null;
-    }
 
     public CompleteTaskPresenter(ViewModelBoundary viewModel) {
         this.viewModel = viewModel;
@@ -24,7 +21,7 @@ public class CompleteTaskPresenter implements CompleteTaskOutputBoundary {
      * isSuccessfullyModified attribute to true, and errorMessage to the empty string.
      *
      * @param task A CompleteTaskOutputData instance which contains the title of the new task
-     * as well as the corresponding dayIndex.
+     *             as well as the corresponding dayIndex.
      * @return The same CompleteTaskOutputData object with its isSuccessfullyModified attribute
      * set to True, and errorMessage set to an empty string.
      */
@@ -32,9 +29,7 @@ public class CompleteTaskPresenter implements CompleteTaskOutputBoundary {
     public CompleteTaskOutputData prepareSuccessView(CompleteTaskOutputData task) {
         task.setTaskCompleted(!task.isTaskCompleted());
         task.setSuccessfullyCreated(true);
-        if (viewModel != null) {
-            viewModel.completeTask(task.getDayIndex(), task.getTitle(), task.isTaskCompleted());
-        }
+        viewModel.completeTask(task.getDayIndex(), task.getTitle(), task.isTaskCompleted());
         return task;
     }
 
@@ -43,7 +38,7 @@ public class CompleteTaskPresenter implements CompleteTaskOutputBoundary {
      * isSuccessfullyModified attribute to false, and errorMessage to a non-empty string.
      *
      * @param task A CompleteTaskOutputData instance which contains the title of the task modified
-     * as well as the corresponding dayIndex.
+     *             as well as the corresponding dayIndex.
      * @return The same CompleteTaskOutputData object with its isSuccessfullyModified attribute
      * set to True, and errorMessage set to an empty string.
      */

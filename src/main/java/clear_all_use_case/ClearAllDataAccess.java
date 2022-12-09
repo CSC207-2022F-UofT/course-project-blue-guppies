@@ -1,11 +1,12 @@
 package clear_all_use_case;
 
-import entities.Day;
 import data_access.WeekDataAccess;
+import entities.Day;
 
 /**
  * Implements the save method in ClearAllDsGateway. Save method mutates day instance
  * attribute of WeekDataAccess by removing the Tasks and Events of all days.
+ *
  * @author Ricky Fung
  */
 public class ClearAllDataAccess extends WeekDataAccess implements ClearAllDsGateway {
@@ -17,7 +18,7 @@ public class ClearAllDataAccess extends WeekDataAccess implements ClearAllDsGate
      */
     @Override
     public void save() {
-        for(Day day : days){
+        for (Day day : days) {
             day.getEvents().clear();
             day.getTasks().clear();
         }

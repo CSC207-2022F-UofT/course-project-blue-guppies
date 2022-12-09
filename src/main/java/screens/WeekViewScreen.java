@@ -14,9 +14,10 @@ import java.util.Map;
 
 /**
  * The screen for the main week view. Links all use cases together.
+ *
  * @author Anna Myllyniemi
  */
-public class WeekViewScreen extends JFrame implements WindowListener, ActionListener, ViewModelObserver{
+public class WeekViewScreen extends JFrame implements WindowListener, ActionListener, ViewModelObserver {
     private static final int HEIGHT = 550 / 2;
     private static final int WIDTH = 1100 / 7;
     private final Map<String, Object> controllers;
@@ -28,7 +29,7 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
     /**
      * Create the screen showing all tasks and events for every day of the week and all buttons for each use case.
      *
-     * @param screens  Map of all the screens used throughout the program
+     * @param screens     Map of all the screens used throughout the program
      * @param controllers Map of all the controllers that need to be used directly from the WeekViewScreen
      */
     public WeekViewScreen(Map<String, JFrame> screens, Map<String, Object> controllers, ViewModelBoundary viewModel) {
@@ -166,7 +167,7 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
             // Make buttons for completed tasks have a lighter background and italicized font.
             if (taskCompletionStatuses.get(i)) {
                 b.setBackground(new Color(240, 240, 240));
-                Font italics = new Font (b.getFont().toString(), Font.ITALIC, b.getFont().getSize());
+                Font italics = new Font(b.getFont().toString(), Font.ITALIC, b.getFont().getSize());
                 b.setFont(italics);
             }
             panels[0][dayIndex].add(b);
@@ -211,7 +212,7 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
                     JOptionPane.YES_NO_OPTION);
 
             if (confirmed == JOptionPane.YES_OPTION) {
-                ClearAllOutputData outputData = ((ClearAllController)controllers.get("clear all")).clearAll();
+                ClearAllOutputData outputData = ((ClearAllController) controllers.get("clear all")).clearAll();
                 if (outputData.getSuccess()) {
                     JOptionPane.showMessageDialog(new JFrame(), "Week cleared");
                 } else {
@@ -223,23 +224,23 @@ public class WeekViewScreen extends JFrame implements WindowListener, ActionList
         } else if (e.getActionCommand().contains("event")) {
             String eventTitle = e.getActionCommand().substring(6);
             int dayIndex = e.getActionCommand().charAt(0) - 48;
-            ((ClickEventScreen)screens.get("click event")).setDayIndex(dayIndex);
-            ((ClickEventScreen)screens.get("click event")).setStartTime(((ViewModel)viewModel).getEventStartTime(
+            ((ClickEventScreen) screens.get("click event")).setDayIndex(dayIndex);
+            ((ClickEventScreen) screens.get("click event")).setStartTime(((ViewModel) viewModel).getEventStartTime(
                     dayIndex, eventTitle));
-            System.out.println(((ViewModel)viewModel).getEventStartTime(
+            System.out.println(((ViewModel) viewModel).getEventStartTime(
                     dayIndex, eventTitle));
-            ((ClickEventScreen)screens.get("click event")).setEndTime(((ViewModel)viewModel).getEventEndTime(
+            ((ClickEventScreen) screens.get("click event")).setEndTime(((ViewModel) viewModel).getEventEndTime(
                     dayIndex, eventTitle));
-            ((ClickEventScreen)screens.get("click event")).setEventTitle(eventTitle);
+            ((ClickEventScreen) screens.get("click event")).setEventTitle(eventTitle);
 
             screens.get("click event").setVisible(true);
         } else if (e.getActionCommand().contains("task")) {
             String taskTitle = e.getActionCommand().substring(5);
             int dayIndex = e.getActionCommand().charAt(0) - 48;
-            ((ClickTaskScreen)screens.get("click task")).setDayIndex(dayIndex);
-            ((ClickTaskScreen)screens.get("click task")).setTaskCompleted(((ViewModel)viewModel).getTaskCompletion(
+            ((ClickTaskScreen) screens.get("click task")).setDayIndex(dayIndex);
+            ((ClickTaskScreen) screens.get("click task")).setTaskCompleted(((ViewModel) viewModel).getTaskCompletion(
                     dayIndex, taskTitle));
-            ((ClickTaskScreen)screens.get("click task")).setTaskTitle(taskTitle);
+            ((ClickTaskScreen) screens.get("click task")).setTaskTitle(taskTitle);
 
             screens.get("click task").setVisible(true);
         }

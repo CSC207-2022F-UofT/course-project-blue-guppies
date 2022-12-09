@@ -7,6 +7,8 @@ import entities.Task;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import screens.ViewModel;
+import screens.ViewModelBoundary;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,9 +23,18 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Daniel Livshits
  */
 class ModifyEventInteractorTest {
+    private final static ViewModelBoundary VIEW_MODEL = getViewModel();
     final ModifyEventDataAccess sampleDataAccess = new ModifyEventDataAccess();
-    final ModifyEventPresenter samplePresenter = new ModifyEventPresenter();
+    final ModifyEventPresenter samplePresenter = new ModifyEventPresenter(VIEW_MODEL);
     final ModifyEventInteractor sampleInteractor = new ModifyEventInteractor(samplePresenter, sampleDataAccess);
+
+    private static ViewModel getViewModel() {
+        ArrayList<Day> days = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            days.add(new Day(new HashMap<>(), new HashMap<>()));
+        }
+        return new ViewModel(days);
+    }
 
     @Test
     void testModify() {
