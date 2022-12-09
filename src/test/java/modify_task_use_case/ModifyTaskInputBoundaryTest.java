@@ -1,5 +1,6 @@
 package modify_task_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
 import entities.Task;
@@ -46,7 +47,7 @@ public class ModifyTaskInputBoundaryTest {
         HashMap<String, Event> events = new HashMap<>();
         tasks.put("Sample Task", task);
         Day day = new Day(tasks, events);
-        dataAccess.getDays().set(0, day);
+        WeekDataAccess.getDays().set(0, day);
 
         ModifyTaskOutputData outputData = inputBoundary.modifyTask(
                 inputData
@@ -56,7 +57,7 @@ public class ModifyTaskInputBoundaryTest {
         // have "New Sample Task"
         assertEquals("New Sample Task", outputData.getTitle());
         assertEquals(0, outputData.getDayIndex());
-        Day day0 = dataAccess.getDays().get(0);
+        Day day0 = WeekDataAccess.getDays().get(0);
         assertFalse(day0.getTasks().containsKey("Sample Task"));
         assertTrue(day0.getTasks().containsKey("New Sample Task"));
     }

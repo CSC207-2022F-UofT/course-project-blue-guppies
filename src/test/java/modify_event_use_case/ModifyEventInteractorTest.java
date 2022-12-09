@@ -1,5 +1,6 @@
 package modify_event_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
 import entities.Task;
@@ -47,13 +48,13 @@ class ModifyEventInteractorTest {
         assertEquals(LocalTime.parse("10:00"), output.getNewEndTime());
         assertTrue(output.getSuccessfullyModified());
         assertNull(output.getFailureMessage());
-        assertEquals("Feed dog", sampleDataAccess.getDays().get(3).getTasks().get("Feed dog").getTitle());
-        assertFalse(sampleDataAccess.getDays().get(3).getTasks().get("Feed dog").getCompleted());
+        assertEquals("Feed dog", WeekDataAccess.getDays().get(3).getTasks().get("Feed dog").getTitle());
+        assertFalse(WeekDataAccess.getDays().get(3).getTasks().get("Feed dog").getCompleted());
     }
 
     @Test
     void testModifyTitleConflict(){
-        Event originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event originalEvent = WeekDataAccess.getDays().get(2).getEvents().get("Mat237");
         String originalTitle = originalEvent.getTitle();
         LocalTime originalStart = originalEvent.getStartTime();
         LocalTime originalEnd = originalEvent.getEndTime();
@@ -63,7 +64,7 @@ class ModifyEventInteractorTest {
         String failMessage = "The title Sta247 was already used for another event on Tuesday.";
         assertEquals(failMessage, output.getFailureMessage());
         assertFalse(output.getSuccessfullyModified());
-        Event currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event currentEvent = WeekDataAccess.getDays().get(2).getEvents().get("Mat237");
         assertEquals(originalTitle, currentEvent.getTitle());
         assertEquals(originalStart, currentEvent.getStartTime());
         assertEquals(originalEnd, currentEvent.getEndTime());
@@ -71,7 +72,7 @@ class ModifyEventInteractorTest {
 
     @Test
     void testModifyTimeConflict(){
-        Event originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event originalEvent = WeekDataAccess.getDays().get(2).getEvents().get("Mat237");
         String originalTitle = originalEvent.getTitle();
         LocalTime originalStart = originalEvent.getStartTime();
         LocalTime originalEnd = originalEvent.getEndTime();
@@ -81,7 +82,7 @@ class ModifyEventInteractorTest {
         String failMessage = "The new times for the event Mat237 conflict with another event on Tuesday.";
         assertEquals(failMessage, output.getFailureMessage());
         assertFalse(output.getSuccessfullyModified());
-        Event currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event currentEvent = WeekDataAccess.getDays().get(2).getEvents().get("Mat237");
         assertEquals(originalTitle, currentEvent.getTitle());
         assertEquals(originalStart, currentEvent.getStartTime());
         assertEquals(originalEnd, currentEvent.getEndTime());
@@ -89,7 +90,7 @@ class ModifyEventInteractorTest {
 
     @Test
     void testModifyInvalidTimes(){
-        Event originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event originalEvent = WeekDataAccess.getDays().get(2).getEvents().get("Mat237");
         String originalTitle = originalEvent.getTitle();
         LocalTime originalStart = originalEvent.getStartTime();
         LocalTime originalEnd = originalEvent.getEndTime();
@@ -99,7 +100,7 @@ class ModifyEventInteractorTest {
         String failMessage = "The start and end times are not valid times!";
         assertEquals(failMessage, output.getFailureMessage());
         assertFalse(output.getSuccessfullyModified());
-        Event currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event currentEvent = WeekDataAccess.getDays().get(2).getEvents().get("Mat237");
         assertEquals(originalTitle, currentEvent.getTitle());
         assertEquals(originalStart, currentEvent.getStartTime());
         assertEquals(originalEnd, currentEvent.getEndTime());
@@ -107,7 +108,7 @@ class ModifyEventInteractorTest {
 
     @Test
     void testModifyTimesOutOfOrder(){
-        Event originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event originalEvent = WeekDataAccess.getDays().get(2).getEvents().get("Mat237");
         String originalTitle = originalEvent.getTitle();
         LocalTime originalStart = originalEvent.getStartTime();
         LocalTime originalEnd = originalEvent.getEndTime();
@@ -117,7 +118,7 @@ class ModifyEventInteractorTest {
         String failMessage = "The new start time is not before the new end time!";
         assertEquals(failMessage, output.getFailureMessage());
         assertFalse(output.getSuccessfullyModified());
-        Event currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event currentEvent = WeekDataAccess.getDays().get(2).getEvents().get("Mat237");
         assertEquals(originalTitle, currentEvent.getTitle());
         assertEquals(originalStart, currentEvent.getStartTime());
         assertEquals(originalEnd, currentEvent.getEndTime());
@@ -125,7 +126,7 @@ class ModifyEventInteractorTest {
 
     @Test
     void testModifyOriginalTaskNotInDay(){
-        Event originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event originalEvent = WeekDataAccess.getDays().get(2).getEvents().get("Mat237");
         String originalTitle = originalEvent.getTitle();
         LocalTime originalStart = originalEvent.getStartTime();
         LocalTime originalEnd = originalEvent.getEndTime();
@@ -135,7 +136,7 @@ class ModifyEventInteractorTest {
         String failMessage = "There is no event called Sleep on Thursday!";
         assertEquals(failMessage, output.getFailureMessage());
         assertFalse(output.getSuccessfullyModified());
-        Event currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event currentEvent = WeekDataAccess.getDays().get(2).getEvents().get("Mat237");
         assertEquals(originalTitle, currentEvent.getTitle());
         assertEquals(originalStart, currentEvent.getStartTime());
         assertEquals(originalEnd, currentEvent.getEndTime());
@@ -180,8 +181,7 @@ class ModifyEventInteractorTest {
             PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
             pw.close();
         }
-        catch(IOException e){
-            return;
+        catch(IOException ignored){
         }
     }
 }

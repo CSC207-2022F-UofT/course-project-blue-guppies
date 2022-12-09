@@ -1,5 +1,6 @@
 package create_event_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
 import entities.EventFactory;
@@ -43,9 +44,9 @@ class CreateEventControllerTest {
     @Test
     void testCreate() {
         HashMap<String, Event> events = new HashMap<>();
-        Day referenceDay = DATA_ACCESS.getDays().get(0);
+        Day referenceDay = WeekDataAccess.getDays().get(0);
         referenceDay.setEvents(events);
-        DATA_ACCESS.getDays().set(0, referenceDay);
+        WeekDataAccess.getDays().set(0, referenceDay);
 
         CreateEventInputBoundary inputBoundary = new CreateEventInteractor(
                 DS_GATEWAY, OUTPUT_BOUNDARY, EVENT_FACTORY
@@ -70,8 +71,7 @@ class CreateEventControllerTest {
             PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
             pw.close();
         }
-        catch(IOException e){
-            return;
+        catch(IOException ignored){
         }
     }
 }

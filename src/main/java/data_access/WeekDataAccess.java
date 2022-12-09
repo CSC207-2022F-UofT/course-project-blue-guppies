@@ -45,20 +45,17 @@ public class WeekDataAccess implements Serializable {
      * @param days an ArrayList whose indices contain Day objects that contain
      *             two hashmaps that contain events and tasks separately, representing the
      *             week schedule
-     * @throws IOException
      */
     protected static void writeObject(ArrayList<Day> days) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream("CleanCalendarStorage.txt");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-        objectOutputStream.writeObject(new ArrayList<Day>(days));
+        objectOutputStream.writeObject(new ArrayList<>(days));
         objectOutputStream.flush();
         objectOutputStream.close();
     }
 
     /**
      * Reads the object from the .ser file and reinitialized day
-     * @throws ClassNotFoundException
-     * @throws IOException
      */
     public static void readObject() throws ClassNotFoundException, IOException {
         File file = new File("CleanCalendarStorage.txt");
@@ -83,8 +80,7 @@ public class WeekDataAccess implements Serializable {
     protected void save() {
         try{
             WeekDataAccess.writeObject(WeekDataAccess.days);
-        } catch (IOException e) {
-            return;
+        } catch (IOException ignored) {
         }
     }
 }

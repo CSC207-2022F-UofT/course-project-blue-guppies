@@ -30,7 +30,4 @@ class ModifyTaskInputData {
         return this.title;
     }
 
-    protected void setTitle(String title) {
-        this.title = title;
-    }
 }

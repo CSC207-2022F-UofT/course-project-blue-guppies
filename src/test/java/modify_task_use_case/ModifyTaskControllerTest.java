@@ -1,5 +1,6 @@
 package modify_task_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
 import entities.Task;
@@ -48,7 +49,7 @@ public class ModifyTaskControllerTest {
         HashMap<String, Event> events = new HashMap<>();
         tasks.put("Sample Task", task);
         Day day = new Day(tasks, events);
-        dataAccess.getDays().set(0, day);
+        WeekDataAccess.getDays().set(0, day);
 
 
         ModifyTaskOutputData outputData = controller.modifyTask(
@@ -59,7 +60,7 @@ public class ModifyTaskControllerTest {
         // have "New Sample Task"
         assertEquals(0, outputData.getDayIndex());
         assertEquals("New Sample Task", outputData.getTitle());
-        Day day0 = dataAccess.getDays().get(0);
+        Day day0 = WeekDataAccess.getDays().get(0);
         assertFalse(day0.getTasks().containsKey("Sample Task"));
         assertTrue(day0.getTasks().containsKey("New Sample Task"));
     }
@@ -70,8 +71,7 @@ public class ModifyTaskControllerTest {
             PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
             pw.close();
         }
-        catch(IOException e){
-            return;
+        catch(IOException ignored){
         }
     }
 }

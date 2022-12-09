@@ -1,5 +1,6 @@
 package modify_event_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
 import org.junit.jupiter.api.AfterEach;
@@ -49,27 +50,27 @@ class ModifyEventControllerTest {
 
     @Test
     void testModifyTitleConflict(){
-        Event originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event originalEvent = WeekDataAccess.getDays().get(2).getEvents().get("Mat237");
         ModifyEventOutputData output = sampleController.modify("Mat237", 2, "Sta247",
                 "09:00", "09:59");
         assertFalse(output.getSuccessfullyModified());
         String failMessage = "The title Sta247 was already used for another event on Tuesday.";
         assertEquals(failMessage, output.getFailureMessage());
         assertFalse(output.getSuccessfullyModified());
-        Event currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event currentEvent = WeekDataAccess.getDays().get(2).getEvents().get("Mat237");
         assertEquals(originalEvent, currentEvent);
     }
 
     @Test
     void testModifyTimeConflict(){
-        Event originalEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event originalEvent = WeekDataAccess.getDays().get(2).getEvents().get("Mat237");
         ModifyEventOutputData output = sampleController.modify("Mat237", 2, "Mat237",
                 "14:30", "15:00");
         assertFalse(output.getSuccessfullyModified());
         String failMessage = "The new times for the event Mat237 conflict with another event on Tuesday.";
         assertEquals(failMessage, output.getFailureMessage());
         assertFalse(output.getSuccessfullyModified());
-        Event currentEvent = sampleDataAccess.getDays().get(2).getEvents().get("Mat237");
+        Event currentEvent = WeekDataAccess.getDays().get(2).getEvents().get("Mat237");
         assertEquals(originalEvent, currentEvent);
     }
 
@@ -109,8 +110,7 @@ class ModifyEventControllerTest {
             PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
             pw.close();
         }
-        catch(IOException e){
-            return;
+        catch(IOException ignored){
         }
     }
 }

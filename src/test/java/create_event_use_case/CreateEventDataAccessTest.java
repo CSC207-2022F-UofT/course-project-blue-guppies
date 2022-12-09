@@ -1,5 +1,6 @@
 package create_event_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
 import entities.EventFactory;
@@ -36,7 +37,7 @@ class CreateEventDataAccessTest {
         // Make day 0 i.e. Sunday have an event called "Sample Event"
         HashMap<String, Event> events = new HashMap<>();
         events.put("Sample Event", event);
-        Day day = DATA_ACCESS.getDays().get(0);
+        Day day = WeekDataAccess.getDays().get(0);
         day.setEvents(events);
 
         assertTrue(DS_GATEWAY.eventExistsByTitle("Sample Event", 0));
@@ -51,13 +52,13 @@ class CreateEventDataAccessTest {
         DS_GATEWAY.save(dsInputData);
 
         // check whether an Event by the name "Sample Event" was created for day 0 i.e. Sunday
-        assertTrue(DATA_ACCESS.getDays().get(0).getEvents().containsKey("Sample Event"));
+        assertTrue(WeekDataAccess.getDays().get(0).getEvents().containsKey("Sample Event"));
         //assertEquals(dsInputData.getNewEvent(), DATA_ACCESS.getDays().get(0).getEvents().get("Sample Event"));
-        assertEquals("Sample Event", DATA_ACCESS.getDays().get(0).getEvents().get("Sample Event").getTitle());
+        assertEquals("Sample Event", WeekDataAccess.getDays().get(0).getEvents().get("Sample Event").getTitle());
         assertEquals(LocalTime.parse("09:00"),
-                DATA_ACCESS.getDays().get(0).getEvents().get("Sample Event").getStartTime());
+                WeekDataAccess.getDays().get(0).getEvents().get("Sample Event").getStartTime());
         assertEquals(LocalTime.parse("10:00"),
-                DATA_ACCESS.getDays().get(0).getEvents().get("Sample Event").getEndTime());
+                WeekDataAccess.getDays().get(0).getEvents().get("Sample Event").getEndTime());
     }
 
     @Test
@@ -107,8 +108,7 @@ class CreateEventDataAccessTest {
             PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
             pw.close();
         }
-        catch(IOException e){
-            return;
+        catch(IOException ignored){
         }
     }
 }

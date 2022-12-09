@@ -1,5 +1,6 @@
 package modify_task_use_case;
 
+import data_access.WeekDataAccess;
 import entities.Day;
 import entities.Event;
 import entities.Task;
@@ -55,7 +56,7 @@ class ModifyTaskInteractorTest {
         tasks.put("Sample Task", task1);
         tasks.put("Another Sample Task", task2);
         Day day = new Day(tasks, events);
-        dataAccess.getDays().set(0, day);
+        WeekDataAccess.getDays().set(0, day);
 
         // Cannot change the title of "Sample Task" to "Another Sample Task"
         // because a Task by that name already exists for day 0!
@@ -69,7 +70,7 @@ class ModifyTaskInteractorTest {
         assertFalse(outputData.getIsSuccessfullyModified());
 
         // Day 0 should continue to have a task called "Sample Task"
-        Day day0 = dataAccess.getDays().get(0);
+        Day day0 = WeekDataAccess.getDays().get(0);
         assertTrue(day0.getTasks().containsKey("Sample Task"));
     }
 
@@ -81,7 +82,7 @@ class ModifyTaskInteractorTest {
         HashMap<String, Event> events = new HashMap<>();
         tasks.put("Sample Task", task);
         Day day = new Day(tasks, events);
-        dataAccess.getDays().set(0, day);
+        WeekDataAccess.getDays().set(0, day);
 
         // Should be able to change the name of "Sample Task" to "New Sample Task"
         ModifyTaskOutputData outputData = inputBoundary.modifyTask(
@@ -92,7 +93,7 @@ class ModifyTaskInteractorTest {
 
         // Day 0 should 1. not have a task named "Sample Task" and, 2. instead
         // have a task named "New Sample Task"
-        Day day0 = dataAccess.getDays().get(0);
+        Day day0 = WeekDataAccess.getDays().get(0);
         assertFalse(day0.getTasks().containsKey("Sample Task"));
         assertTrue(day0.getTasks().containsKey("New Sample Task"));
     }
@@ -103,8 +104,7 @@ class ModifyTaskInteractorTest {
             PrintWriter pw = new PrintWriter("CleanCalendarStorage.txt"); //deleting the contents of the file
             pw.close();
         }
-        catch(IOException e){
-            return;
+        catch(IOException ignored){
         }
     }
 }
